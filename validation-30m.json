@@ -1,0 +1,79 @@
+{
+  "venue": "polymarket.com",
+  "sqlite_integrity": "ok",
+  "sessions": [
+    {
+      "session_id": "c40c0dda-0dcf-4e92-bc9b-6c47efa83c10",
+      "started_china_time": "2026-10-14T13:00:32.740000+08:00",
+      "stopped_china_time": "2026-10-14T13:30:34.043000+08:00",
+      "duration_seconds": 1801.303,
+      "connections": 10,
+      "verified_snapshots": 590,
+      "verified_span_seconds": 1784.915
+    }
+  ],
+  "event_counts": {
+    "book": 34,
+    "new_market": 351,
+    "price_change": 177,
+    "rest_snapshot": 121
+  },
+  "normalized_snapshots": 509,
+  "assets": 4,
+  "duplicate_primary_keys": 0,
+  "duplicate_identifiable_payloads": 0,
+  "duplicates_skipped": 6,
+  "bbo": {
+    "crossed": 0,
+    "locked": 0,
+    "empty": 0,
+    "unmarked_anomalies": 0
+  },
+  "disconnects": [
+    {
+      "session_id": "c40c0dda-0dcf-4e92-bc9b-6c47efa83c10",
+      "local_timestamp": 1791954214911,
+      "detail": "ResyncRequired: forced_reconnect_test"
+    },
+    {
+      "session_id": "c40c0dda-0dcf-4e92-bc9b-6c47efa83c10",
+      "local_timestamp": 1791954400738,
+      "detail": "ResyncRequired: forced_reconnect_test"
+    },
+    {
+      "session_id": "c40c0dda-0dcf-4e92-bc9b-6c47efa83c10",
+      "local_timestamp": 1791954584242,
+      "detail": "ResyncRequired: forced_reconnect_test"
+    },
+    {
+      "session_id": "c40c0dda-0dcf-4e92-bc9b-6c47efa83c10",
+      "local_timestamp": 1791954768016,
+      "detail": "ResyncRequired: forced_reconnect_test"
+    },
+    {
+      "session_id": "c40c0dda-0dcf-4e92-bc9b-6c47efa83c10",
+      "local_timestamp": 1791954951360,
+      "detail": "ResyncRequired: forced_reconnect_test"
+    },
+    {
+      "session_id": "c40c0dda-0dcf-4e92-bc9b-6c47efa83c10",
+      "local_timestamp": 1791955135032,
+      "detail": "ResyncRequired: forced_reconnect_test"
+    },
+    {
+      "session_id": "c40c0dda-0dcf-4e92-bc9b-6c47efa83c10",
+      "local_timestamp": 1791955318518,
+      "detail": "ResyncRequired: forced_reconnect_test"
+    },
+    {
+      "session_id": "c40c0dda-0dcf-4e92-bc9b-6c47efa83c10",
+      "local_timestamp": 1791955501759,
+      "detail": "ResyncRequired: forced_reconnect_test"
+    },
+    {
+      "session_id": "c40c0dda-0dcf-4e92-bc9b-6c47efa83c10",
+      "local_timestamp": 1791955686042,
+      "detail": "ResyncRequired: forced_reconnect_test"
+    }
+  ]
+}
