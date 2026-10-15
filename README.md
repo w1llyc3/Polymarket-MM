@@ -1,4 +1,26 @@
-# Polymarket NBA MM v2.1 — In-play BOOK_DRIVEN / Paper
+# Polymarket NBA MM v2.2 — 本地操作台 / BOOK_DRIVEN Paper
+
+**日常入口：一次安装后，双击 `start-console.cmd`。** 默认浏览器打开本地操作台，可选真实比赛、启动观察/受控Paper/明确标记的合成演示、查看盘口/订单/账本、暂停/停止/核对/请求人工恢复并导出报告。不需要每天寻找market ID、改JSON、运行SQL或启动多个CLI。没有钱包、私钥、博彩赔率凭证或真实交易权限。
+
+本轮修复 feed、watchdog、提交边界的连接许可不一致；连接epoch、排队旧消息、watchdog失效均不能重新授权报价。执行证据分项统计，不再把“存在订单对象”解释为执行闭环验收通过。**完整回归215 PASS，原204项保留，新增11项。** 当前验收以 [V2_2_RUNNER_AND_CONSOLE_ACCEPTANCE.md](V2_2_RUNNER_AND_CONSOLE_ACCEPTANCE.md) 为准；以下 v2.1/课程说明保留历史。
+
+## Windows 安装与日常使用
+
+1. 安装 Python 3.12（含 Python Launcher），下载/拉取本仓库。
+2. 首次双击 `install-console.cmd`，安装锁定的两个Python依赖。已有 `.venv` 会复用；失败时窗口保留中文提示。没有 Node/React 构建步骤。
+3. 此后双击 `start-console.cmd`，浏览器自动打开 `http://127.0.0.1:8765`。重复双击复用健康实例，跨端口也禁止同仓库第二个owner。
+4. 点“刷新真实比赛”，选择比赛和模式，再确认启动。赛前观察不等于赛中报价验证；真实体育字段不足时仍 UNKNOWN/NO_QUOTE。可以直接选“合成演示”，但不会伪装为实时行情。
+5. 停止时点“停止并撤销 Paper 活动单”，等待后台回执与STOPPED，检查未确认订单、残余库存，再导出报告。关网页不停止后台风险检查；关闭启动窗口前应先停止会话。
+
+端口冲突可关闭占用程序，或开发诊断用 `.\.venv\Scripts\python.exe -m nba_recorder.console --port 8766`；不要绕过已有实例锁。目录不可写请检查仓库下 `data/console` 权限；依赖失败重跑安装入口。服务/网页失联时不能假定撤单成功，应检查进程和会话账本。首次安装未在全新Windows系统做端到端验证，本轮复用了现有Python 3.12环境。
+
+四页：比赛与运行、盘口与报价、订单与账本、操作与诊断。盘口使用真实结果标签，报价中心/距离不是胜率；数据过期或后台离线会变灰。未知估值显示“未知”。预计/确认返佣不当现金，未归属奖励不算单场收入。人工阶段确认本版网页只读，不自动续期。网页离线回放明确禁用，已有封存CLI继续可用。
+
+每次明确启动使用独立Paper研究账户；旧库存和亏损留在旧账本，不能把新会话现金100当成旧账户清仓或恢复。当前网页只展示本次会话。原始数据/订单/账本在 `data/console` 本机保存，GitHub只提交有界、已标来源的验收证据。API、幂等回执、安全限制见 [LOCAL_CONSOLE_API.md](LOCAL_CONSOLE_API.md)。
+
+**Data短窗GO / Offline Paper受控GO / Real-input Observation受控GO；真实报价验收、无人值守及Live继续NO-GO。** 界面可用不代表体育数据契约、真实成交概率或盈利能力已经通过。
+
+## v2.1 历史基线
 
 本轮按 `NBA_MM_V2_1_CODEX_FIX.md` 修复，审计基线为 `1a1eb9b304b6e47ea7e75c623d6ecd75ba86748c`。当前结论见 [V2_1_REVIEW_FIX_ACCEPTANCE.md](V2_1_REVIEW_FIX_ACCEPTANCE.md)，它取代下面 v2/课程历史报告中的当前验收结论；旧报告和测试保留。
 

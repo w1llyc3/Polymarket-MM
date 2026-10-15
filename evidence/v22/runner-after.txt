@@ -1,0 +1,6 @@
+test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill (test_v22_runner.RunnerBoundaryTests.test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.044s
+
+OK

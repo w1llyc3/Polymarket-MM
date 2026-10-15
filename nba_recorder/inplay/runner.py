@@ -34,6 +34,26 @@ class PaperRunner:
         self.issues = []
         self.last_wall_ms = None
         self.connection_guard = None
+        self.connection_epoch = None
+        self.watchdog_task = None
+        self.last_watchdog_tick_mono = None
+        self.quotes_enabled = True
+        self.om.runtime_guard = self.authorize
+
+    def authorize(self, frame):
+        observed = frame.get("observed_connected", frame.get("connected"))
+        epoch = self.connection_epoch() if self.connection_epoch else None
+        source_epoch = frame.get("connection_epoch")
+        watchdog_age = time.monotonic()-self.last_watchdog_tick_mono if self.last_watchdog_tick_mono is not None else None
+        healthy = self.watchdog_task is None or (not self.watchdog_task.done() and watchdog_age is not None and watchdog_age <= max(1, 3*self.watchdog_ms/1000))
+        connected = bool(observed and healthy and self.quotes_enabled and
+                         (self.connection_guard is None or self.connection_guard()) and
+                         (epoch is None or source_epoch == epoch) and
+                         (frame.get("message_epoch", epoch) == epoch))
+        return {**frame, "observed_connected": observed, "connected": connected,
+                "runtime_permission": {"transport_now": self.connection_guard() if self.connection_guard else None,
+                                       "epoch_now": epoch, "source_epoch": source_epoch,
+                                       "watchdog_alive": healthy, "watchdog_age_ms": int(watchdog_age*1000) if watchdog_age is not None else None, "quotes_enabled": self.quotes_enabled}}
 
     def manual_update(self, at):
         if not self.om.policy.allow_manual_phase or not self.manual_file:
@@ -65,16 +85,17 @@ class PaperRunner:
                 if self.om.db.execute("SELECT 1 FROM ip_manual_confirmations LIMIT 1").fetchone() or any(o["state"] in {"OPEN", "PARTIALLY_FILLED", "SUBMITTING", "QUEUED"} for o in self.om.orders()):
                     self.om._kill("manual_confirmation_invalid")
 
-    def feed(self, frames, trades=(), provenance="PUBLIC_INPUT", reuse=False):
+    def feed(self, frames, trades=(), provenance="PUBLIC_INPUT", reuse=False, message_epoch=None):
         at = max(utc_ms(), self.om.now)
         self.sequence += 1
         cooked = []
         for frame in frames:
             received = frame.get("received_ms")
-            cooked.append({**frame, "time_ms": at, "strategy_available_ms": at,
+            cooked.append(self.authorize({**frame, "time_ms": at, "strategy_available_ms": at,
+                           **({"message_epoch": message_epoch} if message_epoch is not None else {}),
                            "source_processed_ms": frame.get("processed_ms"), "processed_ms": frame.get("processed_ms") if reuse else at,
                            "backlog_ms": frame.get("backlog_ms") if reuse else at-received if type(received) is int else None,
-                           "input_provenance": provenance})
+                           "input_provenance": provenance}))
         self.latest.update({f["asset_id"]: f for f in cooked})
         self.manual_update(at)
         event = {"id": digest(["live-paper-v2.1", self.om.run_id, at, self.sequence, cooked, trades]),
@@ -83,6 +104,7 @@ class PaperRunner:
         self.events += 1
 
     def tick(self, wall_ms=None):
+        self.last_watchdog_tick_mono = time.monotonic()
         wall = utc_ms() if wall_ms is None else wall_ms
         if self.last_wall_ms is not None and wall < self.last_wall_ms:
             self.om.kill("wall_clock_regression")
@@ -90,7 +112,7 @@ class PaperRunner:
         at = max(self.om.now, wall)
         self.manual_update(at)
         self.sequence += 1
-        frames = [{**f, "time_ms": at, "connected": bool(f.get("connected") and (self.connection_guard is None or self.connection_guard()))} for f in self.latest.values()]
+        frames = [self.authorize({**f, "time_ms": at}) for f in self.latest.values()]
         self.session.on_event({"id": digest(["watchdog-v2.1", self.om.run_id, at, self.sequence]), "time_ms": at,
                                "kind": "WATCHDOG", "wall_ms": wall, "frames": frames, "trades": [], "provenance": "WALL_CLOCK_WATCHDOG"})
         self.ticks += 1
@@ -104,7 +126,7 @@ class PaperRunner:
                 pass
 
 
-async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, interval=1, model="L2", manual_file=None, contracts=None, operator_reset=False):
+async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, interval=1, model="L2", manual_file=None, contracts=None, operator_reset=False, control=None):
     if seconds <= 0 or interval <= 0 or Path(db_path).resolve() == Path(source_path).resolve():
         raise ValueError("bounded duration, positive interval and distinct source/paper paths required")
     api = PublicAPI()
@@ -130,6 +152,9 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
     with om.db:
         om.db.execute("INSERT OR IGNORE INTO ip_session_config VALUES('runner_game',?)", (binding,))
     runner = PaperRunner(om, model, manual_file=manual_file)
+    if control:
+        runner.quotes_enabled = control.mode != "OBSERVATION"
+        control.attach(runner)
     runner.issues.append("AUTO_SPORTS_CONTRACT_UNVERIFIED" if not manual_file else "MANUAL_CONFIRMED_NOT_UNATTENDED")
     if operator_reset:
         om.reconcile()
@@ -138,8 +163,9 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
     market_state = {}
     sports_state = {}
     health = {"rest_batches": 0, "sports_updates": 0, "metadata_updates": 0, "rest_errors": 0, "sports_connections": 0, "market_ws_connections": 0, "public_trades": 0}
-    market_connection = {"connected": False}
+    market_connection = {"connected": False, "epoch": 0}
     runner.connection_guard = lambda: market_connection["connected"]
+    runner.connection_epoch = lambda: market_connection["epoch"]
     deadline = time.monotonic()+seconds
 
     async def metadata():
@@ -174,6 +200,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
             observed = market_state["processed_ms"]
             try:
                 rows = []
+                epoch = market_connection["epoch"]
                 for outcome in market["outcomes"]:
                     raw = await api.book(outcome["asset_id"])
                     received = utc_ms()
@@ -190,6 +217,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                                  "market_observed_ms": observed, "market_available_ms": observed, "time_ms": processed,
                                  "book": snapshot, "book_received_ms": received, "book_ref": key+":"+str(received), "connected": True,
                                  "received_ms": received, "processed_ms": processed, "sports": {}})
+                    rows[-1]["connection_epoch"] = epoch
                 source.health(utc_ms(), "connected", "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY")
                 await queue.put(rows)
                 health["rest_batches"] += 1
@@ -212,6 +240,8 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                 async with connect(WS, ping_interval=None, open_timeout=10, close_timeout=2) as ws:
                     await ws.send(encode({"type": "market", "assets_ids": sorted(assets), "custom_feature_enabled": True}))
                     market_connection["connected"] = True
+                    market_connection["epoch"] += 1
+                    ws_epoch = market_connection["epoch"]
                     health["market_ws_connections"] += 1
                     last_pong = time.monotonic()
                     next_ping = last_pong+10
@@ -245,7 +275,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                                 except (ValueError, KeyError, TypeError):
                                     runner.issues.append("PUBLIC_TRADE_SCHEMA_UNKNOWN")
                                     continue
-                                await queue.put({"trade": trade})
+                                await queue.put({"trade": trade, "connection_epoch": ws_epoch})
                                 health["public_trades"] += 1
                             elif msg.get("event_type") == "market_resolved":
                                 market_state["market"]["status"]["closed"] = True
@@ -288,9 +318,14 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                 await asyncio.sleep(1)
 
     tasks = [asyncio.create_task(runner.watchdog()), asyncio.create_task(metadata()), asyncio.create_task(books_loop()), asyncio.create_task(sports_loop()), asyncio.create_task(market_ws_loop())]
+    runner.watchdog_task = tasks[0]
     started = utc_ms()
     try:
         while time.monotonic() < deadline:
+            if control:
+                await control.pump()
+                if runner.stopping.is_set():
+                    break
             if tasks[0].done():
                 tasks[0].result()  # never continue risk submission if watchdog died
                 raise RuntimeError("watchdog stopped")
@@ -301,7 +336,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
             if isinstance(message, dict):
                 if runner.latest and "trade" in message:
                     trade = {**message["trade"], "strategy_available_ms": max(utc_ms(), om.now)}
-                    runner.feed(list(runner.latest.values()), [trade], provenance="REAL_PUBLIC_WS_TRADE; received/processed/exchange clocks retained", reuse=True)
+                    runner.feed(list(runner.latest.values()), [trade], provenance="REAL_PUBLIC_WS_TRADE; received/processed/exchange clocks retained", reuse=True, message_epoch=message.get("connection_epoch"))
                     continue
                 if not runner.latest or not message.get("sports_update"):
                     continue
@@ -310,8 +345,6 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
             else:
                 rows = message
                 reuse = False
-            for f in rows:
-                f["connected"] = bool(market_connection["connected"])
             contract = (contracts or {}).get(str(market_id), {})
             item = sports_state.get(str(contract.get("game_id")))
             if item:
@@ -320,6 +353,8 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                     f["sports"].update(processed_ms=item[2], strategy_available_ms=item[2])
             runner.feed(rows, provenance="REAL_PUBLIC_REST_AND_SPORTS; no synthetic stage", reuse=reuse)
     finally:
+        if control:
+            control.begin_stop()
         runner.stopping.set()
         for task in tasks:
             task.cancel()
@@ -333,12 +368,14 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
         result["runner"] = {"start_ms": started, "stop_ms": utc_ms(), "duration_requested_s": seconds, "market_id": str(market_id), "event_slug": event_slug,
                             "public_input_batches": runner.events, "wall_watchdog_ticks": runner.ticks, "health": health,
                             "issues": sorted(set(runner.issues)), "source_provenance": "real public GET/WS", "phase_authority": "MANUAL_CONFIRMED" if manual_file else "AUTOMATIC_UNVERIFIED_UNTIL_CONTRACT_PROVEN",
-                            "quote_execution_loop_verified": bool(om.orders()), "game_full_window_verified": False,
+                            "execution_evidence": result["execution_evidence"], "game_full_window_verified": False,
                             "reduce_s": policy.reduce_remaining_s, "close_s": policy.close_remaining_s, "parameters_calibrated": False,
                             "initial_inventory_source": "cash-only, no injected shares", "public_trades_consumed": health["public_trades"],
                             "fill_scope": "same asynchronous L0/L1/L2 proxies; zero prints is not proof of no real market trades"}
         from .__main__ import save_report
         save_report(om, result)
+        if control:
+            control.finished(result)
         source.health(utc_ms(), "stopped", "bounded_paper_runner")
         await api.close()
         source.close()

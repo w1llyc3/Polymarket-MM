@@ -113,6 +113,9 @@ class UnifiedPaperManager(OrderManager):
         return super().enqueue(request_id, target, current, min_edge)
 
     def prepare_submission_frame(self, order, frame):
+        guard = getattr(self, "runtime_guard", None)
+        if guard:
+            frame = guard(frame)
         frame = self.phase_frame(frame)
         return {**frame, "phase": self.phases.boundary(frame, self.now)}
 

@@ -1,0 +1,14 @@
+test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill (test_v22_runner.RunnerBoundaryTests.test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill) ... FAIL
+
+======================================================================
+FAIL: test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill (test_v22_runner.RunnerBoundaryTests.test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_v22_runner.py", line 33, in test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill
+    self.assertTrue(all(f["connected"] is False for f in cooked["frames"]))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.046s
+
+FAILED (failures=1)

@@ -5,6 +5,36 @@ from ..fill_management.ledger import valuation
 from .reference import book_risk
 
 
+def execution_evidence(om):
+    def count(kind):
+        return om.db.execute("SELECT count(*) FROM pe_journal WHERE kind=?", (kind,)).fetchone()[0]
+    orders = om.orders()
+    receipts = [json.loads(r[0]) for r in om.db.execute("SELECT payload FROM pe_journal WHERE kind IN ('EXECUTION_REPORT','RECONCILED')")]
+    accepted_ids, cancelled_ids = set(), set()
+    for receipt in receipts:
+        authority = (receipt.get("detail") or {}).get("authority") or {}
+        if authority.get("state") in {"OPEN", "PARTIALLY_FILLED", "FILLED", "CANCELLED"}:
+            accepted_ids.add(authority["id"])
+        if authority.get("state") == "CANCELLED":
+            cancelled_ids.add(authority["id"])
+    accepted = len(accepted_ids)
+    fills = om.db.execute("SELECT count(*) FROM ip_receipts").fetchone()[0]
+    cancelled = len(cancelled_ids)
+    decisions = [json.loads(r[0]) for r in om.db.execute("SELECT payload FROM pe_quotes")]
+    inputs = om.db.execute("SELECT count(*) FROM ip_inputs").fetchone()[0]
+    reduced = any(o.get("purpose") == "RISK_EXIT" and decimal(o["filled"]) > 0 for o in orders)
+    return {"input_loop_operational": inputs > 0,
+            "eligible_quote_decisions": sum(bool(d.get("targets")) for d in decisions),
+            "intents_created": len(orders), "local_rejections": count("LOCAL_REJECTION")+count("DISPATCH_RISK_REJECTED"),
+            "paper_submissions": count("SUBMIT_REQUEST"), "paper_orders_accepted": accepted,
+            "simulated_fill_events": fills, "cancel_acknowledged": cancelled,
+            "inventory_reconciled": om.consistent(), "reduce_exit_observed": reduced,
+            "full_game_coverage_verified": False,
+            "quote_execution_acceptance_status": "NOT_VERIFIED",
+            "evidence_refs": ["pe_journal", "pe_quotes", "pe_exchange", "pe_fills", "ip_inputs", "ip_receipts"],
+            "limitation": "component observations never automatically certify complete real-game execution acceptance"}
+
+
 def report(manager):
     om = manager
     def diagnostics(table):
@@ -78,4 +108,4 @@ def report(manager):
             "risk_reasons": [dict(r) for r in om.db.execute("SELECT reason,count(*) AS count FROM pe_risks GROUP BY reason ORDER BY reason")],
             "coverage": {"inputs": len(inputs), "asset_frames": len(frames), "markets": len({f["market_id"] for f in frames}), "first_ms": inputs[0]["time_ms"] if inputs else None, "last_ms": inputs[-1]["time_ms"] if inputs else None},
             "statistical_unit": "game, not correlated frames", "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
-            "live_go": False, "real_submission_calls": 0}
+            "execution_evidence": execution_evidence(om), "live_go": False, "real_submission_calls": 0}
