@@ -1,0 +1,30 @@
+test_reduce_only_retains_its_existing_risk_exit (test_v21_regressions.RestingOrderRetentionRegression.test_reduce_only_retains_its_existing_risk_exit) ... FAIL
+test_stable_book_retains_existing_sell_without_reserving_twice (test_v21_regressions.RestingOrderRetentionRegression.test_stable_book_retains_existing_sell_without_reserving_twice) ... FAIL
+
+======================================================================
+FAIL: test_reduce_only_retains_its_existing_risk_exit (test_v21_regressions.RestingOrderRetentionRegression.test_reduce_only_retains_its_existing_risk_exit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_v21_regressions.py", line 63, in test_reduce_only_retains_its_existing_risk_exit
+    self.assertEqual(self.om.order(exit_order['id'])['state'], 'OPEN',
+AssertionError: 'CANCEL_PENDING' != 'OPEN'
+- CANCEL_PENDING
++ OPEN
+ : An existing reduction order consumes capacity but must not erase itself from the desired portfolio.
+
+======================================================================
+FAIL: test_stable_book_retains_existing_sell_without_reserving_twice (test_v21_regressions.RestingOrderRetentionRegression.test_stable_book_retains_existing_sell_without_reserving_twice)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_v21_regressions.py", line 42, in test_stable_book_retains_existing_sell_without_reserving_twice
+    self.assertEqual(current['state'], 'OPEN',
+AssertionError: 'CANCEL_PENDING' != 'OPEN'
+- CANCEL_PENDING
++ OPEN
+ : An unchanged valid resting SELL must not be cancelled because its own shares are reserved.
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.100s
+
+FAILED (failures=2)
+

@@ -1,0 +1,4284 @@
+{
+  "baseline": "1a1eb9b304b6e47ea7e75c623d6ecd75ba86748c",
+  "fixture_digest": "5f8d67bf369a64212065d073845692582413f8141d8c93a53b53bc526bfe2249",
+  "source": "synthetic; equal initial cash100/split5, L1, latency and stream; skew0 to isolate P0-A",
+  "scope": "baseline reference/session vs repaired reference/session, shared current OMS/FIFO; not full baseline service",
+  "stream": [
+    {
+      "id": "same-fixture-0",
+      "time_ms": 1791954000000,
+      "frames": [
+        {
+          "time_ms": 1791954000000,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000000,
+          "book_ref": "1791954000000",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000000,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000000,
+          "received_ms": 1791954000000,
+          "processed_ms": 1791954000000,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000000,
+            "observed_ms": 1791954000000
+          }
+        },
+        {
+          "time_ms": 1791954000000,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000000,
+          "book_ref": "1791954000000",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000000,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000000,
+          "received_ms": 1791954000000,
+          "processed_ms": 1791954000000,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000000,
+            "observed_ms": 1791954000000
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-1",
+      "time_ms": 1791954000030,
+      "frames": [
+        {
+          "time_ms": 1791954000030,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000030,
+          "book_ref": "1791954000030",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000030,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000030,
+          "received_ms": 1791954000030,
+          "processed_ms": 1791954000030,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000030,
+            "observed_ms": 1791954000030
+          }
+        },
+        {
+          "time_ms": 1791954000030,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000030,
+          "book_ref": "1791954000030",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000030,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000030,
+          "received_ms": 1791954000030,
+          "processed_ms": 1791954000030,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000030,
+            "observed_ms": 1791954000030
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-2",
+      "time_ms": 1791954000060,
+      "frames": [
+        {
+          "time_ms": 1791954000060,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000060,
+          "book_ref": "1791954000060",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000060,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000060,
+          "received_ms": 1791954000060,
+          "processed_ms": 1791954000060,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000060,
+            "observed_ms": 1791954000060
+          }
+        },
+        {
+          "time_ms": 1791954000060,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000060,
+          "book_ref": "1791954000060",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000060,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000060,
+          "received_ms": 1791954000060,
+          "processed_ms": 1791954000060,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000060,
+            "observed_ms": 1791954000060
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-3",
+      "time_ms": 1791954000090,
+      "frames": [
+        {
+          "time_ms": 1791954000090,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000090,
+          "book_ref": "1791954000090",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000090,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000090,
+          "received_ms": 1791954000090,
+          "processed_ms": 1791954000090,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000090,
+            "observed_ms": 1791954000090
+          }
+        },
+        {
+          "time_ms": 1791954000090,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000090,
+          "book_ref": "1791954000090",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000090,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000090,
+          "received_ms": 1791954000090,
+          "processed_ms": 1791954000090,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000090,
+            "observed_ms": 1791954000090
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-4",
+      "time_ms": 1791954000120,
+      "frames": [
+        {
+          "time_ms": 1791954000120,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000120,
+          "book_ref": "1791954000120",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000120,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000120,
+          "received_ms": 1791954000120,
+          "processed_ms": 1791954000120,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000120,
+            "observed_ms": 1791954000120
+          }
+        },
+        {
+          "time_ms": 1791954000120,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000120,
+          "book_ref": "1791954000120",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000120,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000120,
+          "received_ms": 1791954000120,
+          "processed_ms": 1791954000120,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000120,
+            "observed_ms": 1791954000120
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-5",
+      "time_ms": 1791954000150,
+      "frames": [
+        {
+          "time_ms": 1791954000150,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000150,
+          "book_ref": "1791954000150",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000150,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000150,
+          "received_ms": 1791954000150,
+          "processed_ms": 1791954000150,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000150,
+            "observed_ms": 1791954000150
+          }
+        },
+        {
+          "time_ms": 1791954000150,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000150,
+          "book_ref": "1791954000150",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000150,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000150,
+          "received_ms": 1791954000150,
+          "processed_ms": 1791954000150,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000150,
+            "observed_ms": 1791954000150
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-6",
+      "time_ms": 1791954000180,
+      "frames": [
+        {
+          "time_ms": 1791954000180,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000180,
+          "book_ref": "1791954000180",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000180,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000180,
+          "received_ms": 1791954000180,
+          "processed_ms": 1791954000180,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000180,
+            "observed_ms": 1791954000180
+          }
+        },
+        {
+          "time_ms": 1791954000180,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000180,
+          "book_ref": "1791954000180",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000180,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000180,
+          "received_ms": 1791954000180,
+          "processed_ms": 1791954000180,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000180,
+            "observed_ms": 1791954000180
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-7",
+      "time_ms": 1791954000210,
+      "frames": [
+        {
+          "time_ms": 1791954000210,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000210,
+          "book_ref": "1791954000210",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000210,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000210,
+          "received_ms": 1791954000210,
+          "processed_ms": 1791954000210,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000210,
+            "observed_ms": 1791954000210
+          }
+        },
+        {
+          "time_ms": 1791954000210,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000210,
+          "book_ref": "1791954000210",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000210,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000210,
+          "received_ms": 1791954000210,
+          "processed_ms": 1791954000210,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000210,
+            "observed_ms": 1791954000210
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-8",
+      "time_ms": 1791954000240,
+      "frames": [
+        {
+          "time_ms": 1791954000240,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000240,
+          "book_ref": "1791954000240",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000240,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000240,
+          "received_ms": 1791954000240,
+          "processed_ms": 1791954000240,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000240,
+            "observed_ms": 1791954000240
+          }
+        },
+        {
+          "time_ms": 1791954000240,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000240,
+          "book_ref": "1791954000240",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000240,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000240,
+          "received_ms": 1791954000240,
+          "processed_ms": 1791954000240,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000240,
+            "observed_ms": 1791954000240
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-9",
+      "time_ms": 1791954000270,
+      "frames": [
+        {
+          "time_ms": 1791954000270,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000270,
+          "book_ref": "1791954000270",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000270,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000270,
+          "received_ms": 1791954000270,
+          "processed_ms": 1791954000270,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000270,
+            "observed_ms": 1791954000270
+          }
+        },
+        {
+          "time_ms": 1791954000270,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000270,
+          "book_ref": "1791954000270",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000270,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000270,
+          "received_ms": 1791954000270,
+          "processed_ms": 1791954000270,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000270,
+            "observed_ms": 1791954000270
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-10",
+      "time_ms": 1791954000300,
+      "frames": [
+        {
+          "time_ms": 1791954000300,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000300,
+          "book_ref": "1791954000300",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000300,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000300,
+          "received_ms": 1791954000300,
+          "processed_ms": 1791954000300,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000300,
+            "observed_ms": 1791954000300
+          }
+        },
+        {
+          "time_ms": 1791954000300,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000300,
+          "book_ref": "1791954000300",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000300,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000300,
+          "received_ms": 1791954000300,
+          "processed_ms": 1791954000300,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000300,
+            "observed_ms": 1791954000300
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-11",
+      "time_ms": 1791954000330,
+      "frames": [
+        {
+          "time_ms": 1791954000330,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000330,
+          "book_ref": "1791954000330",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000330,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000330,
+          "received_ms": 1791954000330,
+          "processed_ms": 1791954000330,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000330,
+            "observed_ms": 1791954000330
+          }
+        },
+        {
+          "time_ms": 1791954000330,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000330,
+          "book_ref": "1791954000330",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000330,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000330,
+          "received_ms": 1791954000330,
+          "processed_ms": 1791954000330,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000330,
+            "observed_ms": 1791954000330
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-12",
+      "time_ms": 1791954000360,
+      "frames": [
+        {
+          "time_ms": 1791954000360,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000360,
+          "book_ref": "1791954000360",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000360,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000360,
+          "received_ms": 1791954000360,
+          "processed_ms": 1791954000360,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000360,
+            "observed_ms": 1791954000360
+          }
+        },
+        {
+          "time_ms": 1791954000360,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000360,
+          "book_ref": "1791954000360",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000360,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000360,
+          "received_ms": 1791954000360,
+          "processed_ms": 1791954000360,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000360,
+            "observed_ms": 1791954000360
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-13",
+      "time_ms": 1791954000390,
+      "frames": [
+        {
+          "time_ms": 1791954000390,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000390,
+          "book_ref": "1791954000390",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000390,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000390,
+          "received_ms": 1791954000390,
+          "processed_ms": 1791954000390,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000390,
+            "observed_ms": 1791954000390
+          }
+        },
+        {
+          "time_ms": 1791954000390,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000390,
+          "book_ref": "1791954000390",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000390,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000390,
+          "received_ms": 1791954000390,
+          "processed_ms": 1791954000390,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000390,
+            "observed_ms": 1791954000390
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-14",
+      "time_ms": 1791954000420,
+      "frames": [
+        {
+          "time_ms": 1791954000420,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000420,
+          "book_ref": "1791954000420",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000420,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000420,
+          "received_ms": 1791954000420,
+          "processed_ms": 1791954000420,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000420,
+            "observed_ms": 1791954000420
+          }
+        },
+        {
+          "time_ms": 1791954000420,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000420,
+          "book_ref": "1791954000420",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000420,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000420,
+          "received_ms": 1791954000420,
+          "processed_ms": 1791954000420,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000420,
+            "observed_ms": 1791954000420
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-15",
+      "time_ms": 1791954000450,
+      "frames": [
+        {
+          "time_ms": 1791954000450,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000450,
+          "book_ref": "1791954000450",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000450,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000450,
+          "received_ms": 1791954000450,
+          "processed_ms": 1791954000450,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000450,
+            "observed_ms": 1791954000450
+          }
+        },
+        {
+          "time_ms": 1791954000450,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000450,
+          "book_ref": "1791954000450",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000450,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000450,
+          "received_ms": 1791954000450,
+          "processed_ms": 1791954000450,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000450,
+            "observed_ms": 1791954000450
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-16",
+      "time_ms": 1791954000480,
+      "frames": [
+        {
+          "time_ms": 1791954000480,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000480,
+          "book_ref": "1791954000480",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000480,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000480,
+          "received_ms": 1791954000480,
+          "processed_ms": 1791954000480,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000480,
+            "observed_ms": 1791954000480
+          }
+        },
+        {
+          "time_ms": 1791954000480,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000480,
+          "book_ref": "1791954000480",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000480,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000480,
+          "received_ms": 1791954000480,
+          "processed_ms": 1791954000480,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000480,
+            "observed_ms": 1791954000480
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-17",
+      "time_ms": 1791954000510,
+      "frames": [
+        {
+          "time_ms": 1791954000510,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000510,
+          "book_ref": "1791954000510",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000510,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000510,
+          "received_ms": 1791954000510,
+          "processed_ms": 1791954000510,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000510,
+            "observed_ms": 1791954000510
+          }
+        },
+        {
+          "time_ms": 1791954000510,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000510,
+          "book_ref": "1791954000510",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000510,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000510,
+          "received_ms": 1791954000510,
+          "processed_ms": 1791954000510,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000510,
+            "observed_ms": 1791954000510
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-18",
+      "time_ms": 1791954000540,
+      "frames": [
+        {
+          "time_ms": 1791954000540,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000540,
+          "book_ref": "1791954000540",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000540,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000540,
+          "received_ms": 1791954000540,
+          "processed_ms": 1791954000540,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000540,
+            "observed_ms": 1791954000540
+          }
+        },
+        {
+          "time_ms": 1791954000540,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000540,
+          "book_ref": "1791954000540",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000540,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000540,
+          "received_ms": 1791954000540,
+          "processed_ms": 1791954000540,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000540,
+            "observed_ms": 1791954000540
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-19",
+      "time_ms": 1791954000570,
+      "frames": [
+        {
+          "time_ms": 1791954000570,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000570,
+          "book_ref": "1791954000570",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000570,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000570,
+          "received_ms": 1791954000570,
+          "processed_ms": 1791954000570,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000570,
+            "observed_ms": 1791954000570
+          }
+        },
+        {
+          "time_ms": 1791954000570,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000570,
+          "book_ref": "1791954000570",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000570,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000570,
+          "received_ms": 1791954000570,
+          "processed_ms": 1791954000570,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000570,
+            "observed_ms": 1791954000570
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-20",
+      "time_ms": 1791954000600,
+      "frames": [
+        {
+          "time_ms": 1791954000600,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000600,
+          "book_ref": "1791954000600",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000600,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000600,
+          "received_ms": 1791954000600,
+          "processed_ms": 1791954000600,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000600,
+            "observed_ms": 1791954000600
+          }
+        },
+        {
+          "time_ms": 1791954000600,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000600,
+          "book_ref": "1791954000600",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000600,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000600,
+          "received_ms": 1791954000600,
+          "processed_ms": 1791954000600,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000600,
+            "observed_ms": 1791954000600
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-21",
+      "time_ms": 1791954000630,
+      "frames": [
+        {
+          "time_ms": 1791954000630,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000630,
+          "book_ref": "1791954000630",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000630,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000630,
+          "received_ms": 1791954000630,
+          "processed_ms": 1791954000630,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000630,
+            "observed_ms": 1791954000630
+          }
+        },
+        {
+          "time_ms": 1791954000630,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000630,
+          "book_ref": "1791954000630",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000630,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000630,
+          "received_ms": 1791954000630,
+          "processed_ms": 1791954000630,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000630,
+            "observed_ms": 1791954000630
+          }
+        }
+      ],
+      "trades": [],
+      "provenance": "synthetic regression"
+    },
+    {
+      "id": "same-fixture-22",
+      "time_ms": 1791954000660,
+      "frames": [
+        {
+          "time_ms": 1791954000660,
+          "market_id": "m",
+          "asset_id": "a",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000660,
+          "book_ref": "1791954000660",
+          "book": {
+            "market_id": "m",
+            "asset_id": "a",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000660,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000660,
+          "received_ms": 1791954000660,
+          "processed_ms": 1791954000660,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000660,
+            "observed_ms": 1791954000660
+          }
+        },
+        {
+          "time_ms": 1791954000660,
+          "market_id": "m",
+          "asset_id": "b",
+          "market": {
+            "venue": "polymarket.com",
+            "season": "2026-27",
+            "market_id": "m",
+            "event_id": "synthetic-event",
+            "condition_id": "synthetic-condition",
+            "league": "nba",
+            "market_type": "moneyline",
+            "team_ordering": "away",
+            "home_team": "det",
+            "away_team": "bos",
+            "home_away_evidence": "synthetic_fixture",
+            "game_start_ms": 1791957600000,
+            "synthetic": true,
+            "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+            "status": {
+              "active": true,
+              "closed": false,
+              "archived": false,
+              "acceptingOrders": true,
+              "enableOrderBook": true
+            },
+            "tick_size": "0.01",
+            "minimum_order_size": "5",
+            "outcomes": [
+              {
+                "asset_id": "a",
+                "label": "Pistons"
+              },
+              {
+                "asset_id": "b",
+                "label": "Celtics"
+              }
+            ],
+            "event_live": true
+          },
+          "connected": true,
+          "book_received_ms": 1791954000660,
+          "book_ref": "1791954000660",
+          "book": {
+            "market_id": "m",
+            "asset_id": "b",
+            "bid": ".49",
+            "ask": ".51",
+            "tick_size": ".01",
+            "minimum_order_size": "5",
+            "flags": [],
+            "exchange_timestamp": 1791954000660,
+            "bids": [
+              {
+                "price": ".49",
+                "size": "100"
+              }
+            ],
+            "asks": [
+              {
+                "price": ".51",
+                "size": "100"
+              }
+            ]
+          },
+          "strategy_mode": "BOOK_DRIVEN",
+          "market_observed_ms": 1791954000660,
+          "received_ms": 1791954000660,
+          "processed_ms": 1791954000660,
+          "backlog_ms": 0,
+          "phase": "UNKNOWN",
+          "sports": {
+            "event_id": "synthetic-event",
+            "game_id": "synthetic-game",
+            "source": "synthetic_verified_clock_fixture",
+            "identity_evidence": "fixture mapping, not a real game",
+            "status": "InProgress",
+            "live": true,
+            "ended": false,
+            "paused": false,
+            "period": 2,
+            "remaining_s": 600,
+            "clock_semantics": "REMAINING_IN_PERIOD",
+            "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+            "received_ms": 1791954000660,
+            "observed_ms": 1791954000660
+          }
+        }
+      ],
+      "trades": [
+        {
+          "event_id": "fixture-print",
+          "asset_id": "a",
+          "condition_id": "synthetic-condition",
+          "side": "BUY",
+          "price": ".53",
+          "size": "2",
+          "exchange_ms": 1791954000660
+        }
+      ],
+      "provenance": "synthetic regression"
+    }
+  ],
+  "results": [
+    {
+      "lane": "baseline_planner",
+      "cancel_requests": 22,
+      "retained_order_observations": 42,
+      "retention_opportunities": 64,
+      "retention_ratio": "0.65625",
+      "orders_created": 24,
+      "simulated_fill_quantity": "2",
+      "net_pnl": "0.04",
+      "inventory": {
+        "a": "3",
+        "b": "5"
+      },
+      "consistent": true
+    },
+    {
+      "lane": "v2.1_planner",
+      "cancel_requests": 0,
+      "retained_order_observations": 84,
+      "retention_opportunities": 84,
+      "retention_ratio": "1",
+      "orders_created": 4,
+      "simulated_fill_quantity": "2",
+      "net_pnl": "0.04",
+      "inventory": {
+        "a": "3",
+        "b": "5"
+      },
+      "consistent": true
+    }
+  ],
+  "not_real_profit": true,
+  "real_submission_calls": 0
+}

@@ -53,13 +53,20 @@ def book_risk(frame, policy, at=None):
         reasons.extend(b.get("flags", []))
         if frame.get("phase") not in {"ACTIVE_MM", "REDUCE_ONLY"}:
             reasons.append("phase_not_permitted")
-        sports = frame["sports"]
+        if policy.allow_manual_phase:
+            from .manual import effective
+            manual_state, errors = effective(frame.get("manual_confirmation"), m, at, policy)
+            reasons.extend(errors)
+            if manual_state not in {"ACTIVE_MM", "REDUCE_ONLY"} or (manual_state == "REDUCE_ONLY" and frame.get("phase") != "REDUCE_ONLY"):
+                reasons.append("manual_phase_not_permitted")
+            return sorted(set(reasons))
+        sports = frame.get("sports") or {}
         if sports.get("event_id") != m["event_id"] or not sports.get("identity_evidence") or sports.get("status") != "InProgress" or sports.get("live") is not True or sports.get("ended") or sports.get("paused") is not False or sports.get("conflict") or sports.get("clock_semantics") != "REMAINING_IN_PERIOD" or not sports.get("clock_evidence"):
             reasons.append("unreliable_sports_state")
         for key in ("received_ms", "observed_ms"):
-            if not 0 <= at-sports[key] <= policy.sports_max_age_ms:
+            if type(sports.get(key)) is not int or not 0 <= at-sports[key] <= policy.sports_max_age_ms:
                 reasons.append("sports_stale_or_future")
-        period, remaining = sports["period"], sports["remaining_s"]
+        period, remaining = sports.get("period"), sports.get("remaining_s")
         if type(period) is not int or type(remaining) is not int or period < 1 or not 0 <= remaining <= (720 if period <= 4 else 300):
             reasons.append("invalid_clock")
         elif period >= 4 and remaining <= policy.close_remaining_s:
@@ -87,14 +94,15 @@ def reduction_capacity(order, frame, account, orders):
     return max(decimal(0), abs(delta)-committed)
 
 
-def submission_risk(order, frame, account, orders, policy, at):
+def submission_risk(order, frame, account, orders, policy, at, retaining=False):
     reasons = book_risk(frame, policy, at)
     try:
         price, qty = decimal(order["price"]), decimal(order["size"])
         book, asset = frame["book"], order["asset_id"]
         tick = decimal(book["tick_size"])
         side = order["side"]
-        if side not in {"BUY", "SELL"} or not tick <= price <= 1-tick or price % tick or qty < decimal(book["minimum_order_size"]) or qty % decimal(".01") or order.get("maker_only") is not True:
+        size_invalid = qty <= 0 or (not retaining and (qty < decimal(book["minimum_order_size"]) or qty % decimal(".01")))
+        if side not in {"BUY", "SELL"} or not tick <= price <= 1-tick or price % tick or size_invalid or order.get("maker_only") is not True:
             reasons.append("unsafe_order_grid_size_or_postonly")
         if asset != frame["asset_id"] or order["market_id"] != frame["market_id"] or order["event_id"] != frame["market"]["event_id"]:
             reasons.append("intent_identity_mismatch")
@@ -143,21 +151,45 @@ def book_targets(frame, account, orders, catalog, policy):
         book, asset, at = frame["book"], frame["asset_id"], frame["time_ms"]
         mid = (decimal(book["bid"])+decimal(book["ask"]))/2
         inventory = decimal(account["positions"].get(asset, "0"))
-        center = mid-decimal(policy.inventory_skew)*inventory if policy.enhanced else mid
+        complement = next(o["asset_id"] for o in frame["market"]["outcomes"] if o["asset_id"] != asset)
+        paired = min(inventory, decimal(account["positions"].get(complement, "0")))
+        directional = inventory-decimal(account["positions"].get(complement, "0"))
+        # Deliberate one-sided entry suppression, not a claim of two-sided skew.
+        center = mid-decimal(policy.inventory_skew)*max(decimal(0), directional) if policy.enhanced else mid
         distance, tick = decimal(policy.quote_distance), decimal(book["tick_size"])
         result.update(reference_mid=str(mid), quote_center=str(center), quote_distance=str(distance), inventory=str(inventory), side_reasons={})
+        result.update(paired_inventory=str(paired), net_directional_inventory=str(directional), inventory_rule="SUPPRESS_BUY_ON_NET_LONG; ask distance floor unchanged")
+        result["actions"] = []
         for side in ("BUY", "SELL"):
             reduce = frame["phase"] == "REDUCE_ONLY"
             price = grid(min(center-distance, mid-distance, decimal(book["ask"])-tick), tick, side) if side == "BUY" else grid(max(center+distance, mid+distance, decimal(book["bid"])+tick), tick, side)
             if reduce:
                 # Independent risk-exit distance budget; still post-only.
                 price = decimal(book["bid"]) if side == "BUY" else decimal(book["ask"])
+            retained = None
+            for existing in orders:
+                if existing["asset_id"] != asset or existing["side"] != side or existing["state"] not in {"SUBMITTING", "OPEN", "PARTIALLY_FILLED"}:
+                    continue
+                purpose = "RISK_EXIT" if reduce else "MAKER"
+                if decimal(existing["price"]) != price or existing.get("purpose") != purpose:
+                    continue
+                remaining = decimal(existing["size"])-decimal(existing["filled"])
+                probe = {**existing, "size": str(remaining), "filled": "0"}
+                others = [o for o in orders if o["id"] != existing["id"]]
+                if not submission_risk(probe, frame, account, others, policy, at, retaining=True):
+                    retained = {**probe, "action": "RETAIN", "retained_order_id": existing["id"]}
+                    break
+            if retained:
+                result["targets"].append(retained)
+                result["actions"].append({"action": "RETAIN", "order_id": retained["retained_order_id"], "side": side})
+                continue
             qty = min(decimal(policy.order_size), decimal(policy.max_order_shares))
             if price > 0:
                 qty = min(qty, decimal(policy.max_order_notional)/price)
             candidate = {"asset_id": asset, "market_id": frame["market_id"], "event_id": frame["market"]["event_id"], "side": side, "price": str(price), "size": str(qty),
                          "purpose": "RISK_EXIT" if reduce else "MAKER", "strategy_mode": "BOOK_DRIVEN", "maker_only": True,
-                         "expires_ms": min(at+policy.ttl_ms, frame["book_received_ms"]+policy.book_max_age_ms, frame["sports"]["received_ms"]+policy.sports_max_age_ms)}
+                         "expires_ms": min(at+policy.ttl_ms, frame["book_received_ms"]+policy.book_max_age_ms,
+                                           frame["manual_confirmation"]["expires_ms"] if policy.allow_manual_phase else frame["sports"]["received_ms"]+policy.sports_max_age_ms)}
             if reduce:
                 qty = min(qty, reduction_capacity(candidate, frame, account, orders), decimal(policy.exit_notional)/price if price > 0 else decimal(0))
             if side == "SELL":
@@ -167,7 +199,12 @@ def book_targets(frame, account, orders, catalog, policy):
             if errors:
                 result["side_reasons"][side] = errors
             else:
+                candidate["action"] = "CREATE"
                 result["targets"].append(candidate)
+        retained_ids = {t["retained_order_id"] for t in result["targets"] if t.get("action") == "RETAIN"}
+        for existing in orders:
+            if existing["asset_id"] == asset and existing["state"] in ACTIVE and existing["id"] not in retained_ids:
+                result["actions"].append({"action": "WAIT" if existing["state"] in {"CANCEL_PENDING", "UNKNOWN", "TIMEOUT", "RECONCILED"} else "CANCEL", "order_id": existing["id"], "side": existing["side"]})
         sides = {t["side"] for t in result["targets"]}
         result["state"] = "TWO_SIDED" if len(sides) == 2 else "BUY_ONLY" if sides == {"BUY"} else "SELL_ONLY" if sides else "NO_QUOTE"
         return result

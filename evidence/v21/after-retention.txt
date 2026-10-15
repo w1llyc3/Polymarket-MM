@@ -1,0 +1,8 @@
+test_reduce_only_retains_its_existing_risk_exit (test_v21_regressions.RestingOrderRetentionRegression.test_reduce_only_retains_its_existing_risk_exit) ... ok
+test_stable_book_retains_existing_sell_without_reserving_twice (test_v21_regressions.RestingOrderRetentionRegression.test_stable_book_retains_existing_sell_without_reserving_twice) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.105s
+
+OK
+

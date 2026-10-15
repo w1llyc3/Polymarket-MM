@@ -1,0 +1,9 @@
+test_book_remains_unavailable_before_processing (test_v21_timing.AvailabilityRegressions.test_book_remains_unavailable_before_processing) ... ok
+test_sports_not_visible_until_processed_and_bucket_is_present (test_v21_timing.AvailabilityRegressions.test_sports_not_visible_until_processed_and_bucket_is_present) ... ok
+test_trade_first_available_at_processed_time_preserves_exchange_time (test_v21_timing.AvailabilityRegressions.test_trade_first_available_at_processed_time_preserves_exchange_time) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.127s
+
+OK
+

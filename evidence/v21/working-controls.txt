@@ -1,0 +1,37 @@
+test_changed_price_waits_for_cancel_ack_before_replacement (test_v21_controls.ControlRegressions.test_changed_price_waits_for_cancel_ack_before_replacement) ... ok
+test_delayed_public_print_before_cancel_fills_causally_after_local_cancel (test_v21_controls.ControlRegressions.test_delayed_public_print_before_cancel_fills_causally_after_local_cancel) ... ok
+test_manual_expiry_not_upstream_freshness_and_auto_mode_stays_unknown (test_v21_controls.ControlRegressions.test_manual_expiry_not_upstream_freshness_and_auto_mode_stays_unknown) ... ok
+test_near_cash_and_inventory_cap_buy_retains_itself (test_v21_controls.ControlRegressions.test_near_cash_and_inventory_cap_buy_retains_itself) ... ok
+test_no_message_watchdog_cancels_resting_orders (test_v21_controls.ControlRegressions.test_no_message_watchdog_cancels_resting_orders) ... FAIL
+test_paired_vs_directional_inventory_named_one_sided_rule (test_v21_controls.ControlRegressions.test_paired_vs_directional_inventory_named_one_sided_rule) ... ERROR
+test_public_sixteen_shares_without_own_fill_is_diagnostic_not_halted (test_v21_controls.ControlRegressions.test_public_sixteen_shares_without_own_fill_is_diagnostic_not_halted) ... ok
+test_twenty_stable_frames_preserve_order_ids_and_partial_remainders (test_v21_controls.ControlRegressions.test_twenty_stable_frames_preserve_order_ids_and_partial_remainders) ... ok
+
+======================================================================
+ERROR: test_paired_vs_directional_inventory_named_one_sided_rule (test_v21_controls.ControlRegressions.test_paired_vs_directional_inventory_named_one_sided_rule)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_v21_controls.py", line 96, in test_paired_vs_directional_inventory_named_one_sided_rule
+    a = book_targets(self.f, paired, [], {}, self.om.policy)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\vibe coding\polymarket\nba\nba_recorder\inplay\reference.py", line 196, in book_targets
+    qty = min(qty, max(decimal(0), inventory-commitments(account, orders)["reserved_sell"].get(asset, decimal(0))))
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\vibe coding\polymarket\nba\nba_recorder\paper_execution\risk.py", line 31, in commitments
+    event = account["events"][asset]
+            ~~~~~~~^^^^^^^^^^
+KeyError: 'events'
+
+======================================================================
+FAIL: test_no_message_watchdog_cancels_resting_orders (test_v21_controls.ControlRegressions.test_no_message_watchdog_cancels_resting_orders)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_v21_controls.py", line 126, in test_no_message_watchdog_cancels_resting_orders
+    self.assertTrue(self.om.halted)
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.506s
+
+FAILED (failures=1, errors=1)
+

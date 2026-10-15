@@ -22,6 +22,11 @@ class UnifiedPaperManager(OrderManager):
     def __init__(self, store, policy=BookPolicy(), start_ms=0):
         if not isinstance(policy, BookPolicy):
             raise ValueError("unified inplay manager requires BookPolicy")
+        saved = store.db.execute("SELECT config FROM pe_control WHERE id=1").fetchone()
+        if saved and json.loads(saved[0]) != asdict(policy):
+            # Refuse legacy/incompatible writers before creating a new ledger
+            # or capital receipt. Historical results remain read-only auditable.
+            raise ValueError("policy/version immutable; use a fresh v2.1 paper database")
         install(store.db)
         initialize(store.db)
         store.db.executescript("""
@@ -35,6 +40,8 @@ class UnifiedPaperManager(OrderManager):
         CREATE TABLE IF NOT EXISTS ip_fill_evidence(fill_id TEXT PRIMARY KEY,payload TEXT);
         CREATE TABLE IF NOT EXISTS ip_flow(asset_id TEXT PRIMARY KEY,side TEXT,quantity TEXT,first_ms INTEGER);
         CREATE TABLE IF NOT EXISTS ip_session_config(id TEXT PRIMARY KEY,payload TEXT);
+        CREATE TABLE IF NOT EXISTS ip_flow_diagnostics(id INTEGER PRIMARY KEY,time_ms INTEGER,asset_id TEXT,payload TEXT);
+        CREATE TABLE IF NOT EXISTS ip_own_fills(id TEXT PRIMARY KEY,exchange_ms INTEGER,receipt_ms INTEGER,asset_id TEXT,side TEXT,quantity TEXT,payload TEXT);
         CREATE UNIQUE INDEX IF NOT EXISTS ip_unique_cash_receipt ON ip_income(json_extract(evidence,'$.cash_flow_id')) WHERE stage='RECEIVED';
         """)
         self.run_id = digest(["book-driven-unified-v2", asdict(policy)])
@@ -106,7 +113,19 @@ class UnifiedPaperManager(OrderManager):
         return super().enqueue(request_id, target, current, min_edge)
 
     def prepare_submission_frame(self, order, frame):
+        frame = self.phase_frame(frame)
         return {**frame, "phase": self.phases.boundary(frame, self.now)}
+
+    def phase_frame(self, frame):
+        if not self.policy.allow_manual_phase:
+            return {k: v for k, v in frame.items() if k != "manual_confirmation"}
+        latest = None
+        for row in self.db.execute("SELECT payload FROM ip_manual_confirmations WHERE available_ms<=? ORDER BY available_ms DESC,rowid DESC", (self.now,)):
+            candidate = json.loads(row[0])
+            if candidate.get("market_id") == frame["market_id"]:
+                latest = candidate
+                break
+        return {**frame, "manual_confirmation": latest, "phase_authority": "MANUAL_CONFIRMED", "not_unattended": True}
 
     def _report(self, order_id, payload, reconciled=False):
         previous = decimal(self.order(order_id)["filled"])
@@ -129,6 +148,10 @@ class UnifiedPaperManager(OrderManager):
                    "exchange_ms": payload.get("exchange_ms"), "stale_quote": self.now-frame["book_received_ms"] > self.policy.book_max_age_ms}
         self.ledger.add(event_id, self.now, "FILL", {"asset_id": asset, **meta, "order_id": order_id, "side": order["side"], "price": order["price"], "quantity": str(qty), "fee": "0", "purpose": order.get("purpose", "MAKER"), "context": context})
         self.db.execute("INSERT INTO ip_receipts VALUES(?,?,?,?)", (event_id, order_id, str(cumulative), encode(context)))
+        position = decimal(self.account()["positions"][asset])
+        other = decimal(self.account()["positions"].get(meta["complement"], "0"))
+        before = position-qty if order["side"] == "BUY" else position+qty
+        self.db.execute("INSERT INTO ip_own_fills VALUES(?,?,?,?,?,?,?)", (event_id, payload.get("exchange_ms"), self.now, asset, order["side"], str(qty), encode({"net_directional_before": str(before-other), "net_directional_after": str(position-other), "absolute_directional_increase": str(abs(position-other)-abs(before-other)), "public_flow_is_not_own_fill": True})))
         self._log("UNIFIED_FIFO_RECEIPT", order, {"ledger_event_id": event_id, "quantity": str(qty)})
 
     def consistent(self):

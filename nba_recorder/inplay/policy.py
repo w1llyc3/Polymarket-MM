@@ -23,6 +23,9 @@ class BookPolicy(ExecutionPolicy):
     close_remaining_s: int = 60
     sync_observations: int = 2
     enhanced: bool = True
+    public_flow_pause: bool = False
+    allow_manual_phase: bool = False
+    manual_max_age_ms: int = 15000
     max_one_sided_shares: str = "15"
     min_top_depth: str = "5"
     exit_slippage: str = ".03"
@@ -37,3 +40,5 @@ class BookPolicy(ExecutionPolicy):
             raise ValueError("invalid conservative phase parameters")
         if not 0 < float(self.quote_distance) < .5 or float(self.max_order_shares) <= 0:
             raise ValueError("invalid distance or share cap")
+        if not 0 < self.manual_max_age_ms <= 15000:
+            raise ValueError("manual authority must expire within 15 seconds")

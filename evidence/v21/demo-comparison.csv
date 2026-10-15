@@ -1,0 +1,13 @@
+strategy,model,delay_ms,fill_events,net_pnl,risk_state,ledger_consistent
+A,L0,2,0,0.00,HALTED,True
+B,L0,2,0,0.00,HALTED,True
+A,L0,20,0,0.00,HALTED,True
+B,L0,20,0,0.00,HALTED,True
+A,L1,2,2,0.16,HALTED,True
+B,L1,2,1,0.06,HALTED,True
+A,L1,20,2,0.16,HALTED,True
+B,L1,20,1,0.06,HALTED,True
+A,L2,2,1,0.10,HALTED,True
+B,L2,2,1,0.10,HALTED,True
+A,L2,20,1,0.10,HALTED,True
+B,L2,20,1,0.10,HALTED,True

@@ -47,22 +47,26 @@ class PaperExchangeAdapter:
     def apply_cancel(self, order_id, at, payload):
         authority = self.authoritative(order_id)
         if authority and authority["state"] not in {"FILLED", "REJECTED", "CANCELLED"}:
-            authority.update(state="CANCELLED", exchange_ms=at)
+            authority.update(state="CANCELLED", exchange_ms=at, cancelled_ms=at)
             self.db.execute("UPDATE pe_exchange SET payload=? WHERE id=?", (encode(authority), order_id))
         if not payload["drop_response"]:
             self.schedule(at, "REPORT", order_id, {"authority": authority, "report_id": f"cancel:{order_id}:{payload['requested_ms']}", "exchange_ms": at, "cancel_requested_ms": payload["requested_ms"]})
 
-    def fill(self, order_id, size, at, event_id, transport_ms=0):
+    def fill(self, order_id, size, at, event_id, transport_ms=0, observed_ms=None):
         authority = self.authoritative(order_id)
-        if not authority or authority["state"] not in {"OPEN", "PARTIALLY_FILLED"}:
+        late_causal = observed_ms is not None and authority and authority["state"] == "CANCELLED" and at < authority.get("cancelled_ms", -1)
+        if not authority or (authority["state"] not in {"OPEN", "PARTIALLY_FILLED"} and not late_causal):
             return False
+        if observed_ms is not None and (at > observed_ms or at <= authority.get("submit_ms", at) or (authority.get("cancelled_ms") is not None and at >= authority["cancelled_ms"])):
+            return False  # equal-ms ordering is not proven
         qty = decimal(size)
         if qty <= 0 or qty > decimal(authority["size"])-decimal(authority["filled"]):
             raise ValueError("invalid paper execution quantity")
         if not self.db.execute("INSERT OR IGNORE INTO pe_fills VALUES(?,?,?,?)", (event_id, order_id, at, str(qty))).rowcount:
             return False
+        previous_state = authority["state"]
         authority["filled"] = str(decimal(authority["filled"])+qty)
-        authority.update(state="FILLED" if decimal(authority["filled"]) == decimal(authority["size"]) else "PARTIALLY_FILLED", exchange_ms=at)
+        authority.update(state="FILLED" if decimal(authority["filled"]) == decimal(authority["size"]) else "CANCELLED" if previous_state == "CANCELLED" else "PARTIALLY_FILLED", exchange_ms=at)
         self.db.execute("UPDATE pe_exchange SET payload=? WHERE id=?", (encode(authority), order_id))
-        self.schedule(at+transport_ms, "REPORT", order_id, {"authority": authority, "report_id": "fill:"+event_id, "exchange_ms": at})
+        self.schedule((at if observed_ms is None else observed_ms)+transport_ms, "REPORT", order_id, {"authority": authority, "report_id": "fill:"+event_id, "exchange_ms": at, "public_observed_ms": observed_ms})
         return True

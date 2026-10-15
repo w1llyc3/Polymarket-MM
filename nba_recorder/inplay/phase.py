@@ -12,6 +12,9 @@ def install(db):
     db.executescript("""
     CREATE TABLE IF NOT EXISTS ip_phase(market_id TEXT PRIMARY KEY,payload TEXT);
     CREATE TABLE IF NOT EXISTS ip_phase_log(id INTEGER PRIMARY KEY,market_id TEXT,time_ms INTEGER,payload TEXT);
+    CREATE TABLE IF NOT EXISTS ip_manual_confirmations(id TEXT PRIMARY KEY,available_ms INTEGER,payload TEXT);
+    CREATE TRIGGER IF NOT EXISTS ip_manual_u BEFORE UPDATE ON ip_manual_confirmations BEGIN SELECT RAISE(ABORT,'append-only'); END;
+    CREATE TRIGGER IF NOT EXISTS ip_manual_d BEFORE DELETE ON ip_manual_confirmations BEGIN SELECT RAISE(ABORT,'append-only'); END;
     CREATE TRIGGER IF NOT EXISTS ip_phase_log_immutable_u BEFORE UPDATE ON ip_phase_log BEGIN SELECT RAISE(ABORT,'append-only'); END;
     CREATE TRIGGER IF NOT EXISTS ip_phase_log_immutable_d BEFORE DELETE ON ip_phase_log BEGIN SELECT RAISE(ABORT,'append-only'); END;
     """)
@@ -29,6 +32,24 @@ class PhaseController:
         old = self.get(frame["market_id"])
         state = {**old, "observed_ms": at, "reasons": []}
         sports = frame.get("sports", {})
+        if self.policy.allow_manual_phase:
+            from .manual import effective
+            grant = frame.get("manual_confirmation")
+            chosen, reasons = effective(grant, frame["market"], at, self.policy)
+            if old["latched_closed"]:
+                chosen, reasons = "MM_CLOSED", ["closed_latch"]
+            elif old["state"] == "REDUCE_ONLY" and chosen == "ACTIVE_MM":
+                chosen = "REDUCE_ONLY"
+            if chosen in {"ACTIVE_MM", "REDUCE_ONLY"} and old.get("period") and (grant["period"] < old["period"] or (grant["period"] == old["period"] and grant["remaining_s"] > old["remaining_s"])):
+                chosen, reasons = "UNKNOWN", ["manual_clock_correction_requires_review"]
+            state.update(state=chosen, reasons=reasons, phase_authority="MANUAL_CONFIRMED", not_unattended=True,
+                         latched_closed=old["latched_closed"] or chosen == "MM_CLOSED", evidence=grant)
+            if grant and chosen in {"ACTIVE_MM", "REDUCE_ONLY"}:
+                state.update(period=grant["period"], remaining_s=grant["remaining_s"])
+            with self.db:
+                self.db.execute("INSERT INTO ip_phase VALUES(?,?) ON CONFLICT(market_id) DO UPDATE SET payload=excluded.payload", (frame["market_id"], encode(state)))
+                self.db.execute("INSERT INTO ip_phase_log(market_id,time_ms,payload) VALUES(?,?,?)", (frame["market_id"], at, encode(state)))
+            return state
         try:
             if old["latched_closed"]:
                 state.update(state="MM_CLOSED", reasons=["closed_latch"])
@@ -81,9 +102,14 @@ class PhaseController:
         phase = self.get(frame["market_id"])
         if phase["latched_closed"]:
             return "MM_CLOSED"
+        if self.policy.allow_manual_phase:
+            from .manual import effective
+            chosen, _ = effective(frame.get("manual_confirmation"), frame["market"], at, self.policy)
+            return "REDUCE_ONLY" if phase["state"] == "REDUCE_ONLY" and chosen == "ACTIVE_MM" else chosen
         # Re-evaluate source freshness and actual game clock at submission,
         # never derive remaining time by subtracting wall-clock elapsed time.
         for key in ("received_ms", "observed_ms"):
-            if not 0 <= at-frame.get("sports", {}).get(key, -10**15) <= self.policy.sports_max_age_ms:
+            stamp = (frame.get("sports") or {}).get(key)
+            if type(stamp) is not int or not 0 <= at-stamp <= self.policy.sports_max_age_ms:
                 return "UNKNOWN"
         return phase["state"]

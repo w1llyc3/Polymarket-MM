@@ -1,10 +1,40 @@
-# Polymarket NBA MM v2 — In-play BOOK_DRIVEN / Paper
+# Polymarket NBA MM v2.1 — In-play BOOK_DRIVEN / Paper
+
+本轮按 `NBA_MM_V2_1_CODEX_FIX.md` 修复，审计基线为 `1a1eb9b304b6e47ea7e75c623d6ecd75ba86748c`。当前结论见 [V2_1_REVIEW_FIX_ACCEPTANCE.md](V2_1_REVIEW_FIX_ACCEPTANCE.md)，它取代下面 v2/课程历史报告中的当前验收结论；旧报告和测试保留。
+
+已修复自身预留导致有效 SELL/REDUCE_ONLY 被误撤、体育/成交在处理完成前提前进入回放的问题。新增独立墙钟 watchdog、单场真实输入 `run-paper`、有限期 `MANUAL_CONFIRMED`、公共流量与自身成交分账诊断。库存规则明确为“净多头抑制买入，卖价距离下限不变”，不是双边库存偏移。完整测试 **204 PASS / 0 FAIL**（原183项 + 新增21项）。
+
+真实35秒窗口连接了 Gamma/CLOB REST、市场/体育 WebSocket，系统保持 **NO_QUOTE、零订单、零真实提交**；没有 NBA 体育阶段样本，因此真实输入报价执行闭环、完整比赛与无人值守均未验收。[逐字段体育契约](SPORTS_FIELD_CONTRACT_V2_1.md)和[原始运行证据](evidence/v21/real-run.json)可复核。数据短窗连通 GO、受控离线 Paper GO、真实输入观察 GO；真实输入报价验收、无人值守及 Live 均 NO-GO。
+
+## v2.1 运行入口
+
+```powershell
+# 在仓库根目录；公共接口，不需要钱包或博彩赔率 key。
+.\.venv\Scripts\python.exe -m nba_recorder scan --scope full-game
+# 先用 scan 核实 event slug / market ID；下面是本轮实际核实过的常规赛样例，不能永久假定有效。
+.\.venv\Scripts\python.exe -m nba_recorder.inplay run-paper --db data/v21-new-paper.sqlite --source-db data/v21-new-source.sqlite --event-slug nba-bos-det-2026-10-20 --market-id 5676016 --seconds 35 --model L2
+.\.venv\Scripts\python.exe -m nba_recorder.inplay show --db data/v21-new-paper.sqlite
+.\.venv\Scripts\python.exe scripts/validate_inplay.py --db data/v21-new-paper.sqlite --out data/v21-audit.json
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+# 相同合成流、共享 Paper OMS/FIFO 的修复前后规划器对照，需要本地保留基线 Git 对象。
+.\.venv\Scripts\python.exe scripts/compare_v21_retention.py --out data/v21-retention.json
+```
+
+`run-paper` 只绑定显式的一场比赛。REST 双资产完整快照、公开市场成交、体育事件进入同一 BookSession/OMS/FIFO；250ms watchdog 独立于源消息与 HTTP 等待，静默时仍核查陈旧数据/撤单。这里使用 REST 周期快照，不声称维护了市场 WS 增量连续性；原 `record` 的 WS 重同步采集路径仍保留。L0/L1/L2 均为未校准模拟，不能等价于真实成交。
+
+自动体育契约不足时 UNKNOWN/NO_QUOTE 是预期结果。短窗结束取消 Paper 活动订单、核对并保持 HALTED；重启不会自动解锁，确需人工复位可显式加 `--operator-reset`，失败仍停机。v2.1 使用**全新 Paper 数据库**；旧政策账本不静默迁移，不注入新资本，仍可只读查看/审计。原始采集库允许添加 nullable 时序列，旧行缺处理证据保持 UNKNOWN。
+
+人工研究可另用 `confirm-phase --help` 和 `run-paper --manual-file <文件>`：必须由操作者实际核实游戏身份、IN_PROGRESS、RUNNING、节次与剩余时间，并提供 evidence、exit-instructions；确认最长15秒，过期撤单并对未清风险保持人工处置。人工确认不会伪造上游时间或 paused=False，不能算自动数据契约通过。默认 reduce=180秒/close=60秒未经校准和用户策略确认，不是最佳退出时间或实盘授权。
+
+时间口径：exchange=源交易所时间；received=本地回调接收；processed=处理完成；strategy_available=策略可读取时点。封存流中全部分支使用已记录处理完成时间，未知时不补零/现在；实际 runner 的队列等待另在可用时间与 backlog 中保留。延迟公开成交仍按其原始 exchange time 判断曾经在场的 Paper 挂单，不能把已确认取消误当作从未存在成交；更正后的账本须 HALTED 核对。同毫秒跨通道顺序无证据时不假定成交，并记录不确定性。
+
+以下为保留的 v2 与 Lesson 2–7 使用说明；**183 PASS 是历史结果，本轮测试结果以 v2.1 验收报告为准**。
 
 主路线调整为 **Polymarket.com NBA 全场 Moneyline、赛中、盘口驱动、小额及库存受限的做市研究**。使用盘口中点作为可观察参考，不把它解释为最终胜率；研究价差、可核实返佣、不利成交和风险退出成本。原赛前 EXTERNAL_FAIR 保留。
 
 **新主线 BOOK_DRIVEN 不需要博彩赔率 key 或两个外部来源。** 它要求有效盘口、可信比赛阶段与时钟语义、时效、资金/库存及提交边界风控；缺失时 NO_QUOTE，不静默回退至另一模式。
 
-v2 实际改动及验收以 [INPLAY_BOOK_DRIVEN_ACCEPTANCE.md](INPLAY_BOOK_DRIVEN_ACCEPTANCE.md) 为准。下方 Lesson 2–7 记录是保留的历史基线。
+v2 历史改动见 [INPLAY_BOOK_DRIVEN_ACCEPTANCE.md](INPLAY_BOOK_DRIVEN_ACCEPTANCE.md)。下方 Lesson 2–7 记录是保留的历史基线。
 
 ## v2 入口
 

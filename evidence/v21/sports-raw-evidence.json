@@ -1,0 +1,353 @@
+{
+  "source": "wss://sports-api.polymarket.com/ws",
+  "documentation": "https://docs.polymarket.com/market-data/realtime-data",
+  "raw_rows": [
+    {
+      "id": 1,
+      "receive_ms": 1792072462395,
+      "processed_ms": 1792072462395,
+      "raw": {
+        "awayTeam": "Nikolas Sanchez Izquierdo",
+        "ended": true,
+        "finishedTimestamp": "2026-10-15T13:54:21.107199397Z",
+        "gameId": 6441094,
+        "homeTeam": "Francesco Passaro",
+        "leagueAbbreviation": "challenger",
+        "live": false,
+        "period": "FT",
+        "score": "7-6(7-2), 7-6(8-6)",
+        "status": "finished"
+      },
+      "payload_sha256": "2bc35f21ac3c742263d28dcd8314b29bb52632d5bd2bb2f99d8d043dd9789f6c"
+    },
+    {
+      "id": 2,
+      "receive_ms": 1792072462551,
+      "processed_ms": 1792072462551,
+      "raw": {
+        "awayTeam": "Joshua Paris",
+        "ended": false,
+        "gameId": 6442931,
+        "homeTeam": "Ariel Behar",
+        "leagueAbbreviation": "challenger",
+        "live": true,
+        "period": "S1",
+        "score": "0-0",
+        "status": "inprogress"
+      },
+      "payload_sha256": "fa30091f1845c92631e70c757369818d5f3aa333d3b7c6996004cf80f2120247"
+    },
+    {
+      "id": 3,
+      "receive_ms": 1792072467929,
+      "processed_ms": 1792072467929,
+      "raw": {
+        "awayTeam": "Just Players",
+        "ended": false,
+        "gameId": 1727859,
+        "homeTeam": "ex-Zero Tenacity",
+        "leagueAbbreviation": "cs2",
+        "live": true,
+        "period": "2/3",
+        "score": "000-000|1-0|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "c8971e2ee987f04614dc8a236937d87efe52911435c0860647119597a5780fe0"
+    },
+    {
+      "id": 4,
+      "receive_ms": 1792072467956,
+      "processed_ms": 1792072467956,
+      "raw": {
+        "awayTeam": "Team Falcons",
+        "ended": false,
+        "gameId": 1741369,
+        "homeTeam": "9z",
+        "leagueAbbreviation": "cs2",
+        "live": true,
+        "period": "3/3",
+        "score": "2-5|1-1|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "e25993f34520867ea37610285dfe6a750035b4a19bb8fcc7679644e19cda9690"
+    },
+    {
+      "id": 5,
+      "receive_ms": 1792072470897,
+      "processed_ms": 1792072470897,
+      "raw": {
+        "awayTeam": "zxcursed Team",
+        "ended": false,
+        "gameId": 1748431,
+        "homeTeam": "Gorgc Team",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "2/3",
+        "score": "000-000|1-0|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "c29756120acef44f4f5e9ab16228d65cdde3b5a6761e5a8099983d5387c6fe39"
+    },
+    {
+      "id": 6,
+      "receive_ms": 1792072470961,
+      "processed_ms": 1792072470961,
+      "raw": {
+        "awayTeam": "PuckChamp",
+        "ended": false,
+        "gameId": 1743571,
+        "homeTeam": "Zero Tenacity",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "1/3",
+        "score": "15-2|0-0|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "ad08047add333a5515013a09c02de39a2f1aea95e609712c5cb1e71612e490b9"
+    },
+    {
+      "id": 7,
+      "receive_ms": 1792072471136,
+      "processed_ms": 1792072471136,
+      "raw": {
+        "awayTeam": "Kalmychata",
+        "ended": false,
+        "gameId": 1743381,
+        "homeTeam": "Yellow Submarine",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "1/5",
+        "score": "7-3|0-0|Bo5",
+        "status": "running"
+      },
+      "payload_sha256": "762ec4c51773fd15517ef52fc078bed5159cd576eb5d62aafad47f0ef9da961b"
+    },
+    {
+      "id": 8,
+      "receive_ms": 1792072471197,
+      "processed_ms": 1792072471197,
+      "raw": {
+        "awayTeam": "InterActive Philippines",
+        "ended": false,
+        "gameId": 1743430,
+        "homeTeam": "Yangon Galacticos",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "2/3",
+        "score": "23-19|1-0|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "09d634589117f0aff9d8310e4d8b784f28cc4a336d3c10fc7ba16f2348ac85d0"
+    },
+    {
+      "id": 9,
+      "receive_ms": 1792072471343,
+      "processed_ms": 1792072471343,
+      "raw": {
+        "awayTeam": "Royal Bear",
+        "ended": false,
+        "gameId": 1743429,
+        "homeTeam": "Direborn",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "2/3",
+        "score": "22-21|0-1|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "1417331061408bdcafd48ac6984f69f784c6c4ed0d133adcac7f003eb9d98170"
+    },
+    {
+      "id": 10,
+      "receive_ms": 1792072471499,
+      "processed_ms": 1792072471499,
+      "raw": {
+        "awayTeam": "Dawn Bulls",
+        "ended": false,
+        "gameId": 1743406,
+        "homeTeam": "Team Lynx",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "3/3",
+        "score": "29-23|1-1|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "44ebee248592aec7e457e7df11fe774fc151e79133bb1007054b76e3dd277b0e"
+    },
+    {
+      "id": 11,
+      "receive_ms": 1792072475275,
+      "processed_ms": 1792072475275,
+      "raw": {
+        "awayTeam": "Al Kholood Saudi Club",
+        "elapsed": "15",
+        "ended": false,
+        "gameId": 90121355,
+        "homeTeam": "Al Faisaly Saudi Club",
+        "leagueAbbreviation": "spl",
+        "live": true,
+        "period": "1H",
+        "score": "1-0",
+        "status": "InProgress"
+      },
+      "payload_sha256": "d9b9cc4747865a3472ff1f5e709b4c3fc370cd6e813ac6cab4b3e55d3bc52e96"
+    },
+    {
+      "id": 12,
+      "receive_ms": 1792072488062,
+      "processed_ms": 1792072488062,
+      "raw": {
+        "awayTeam": "Just Players",
+        "ended": false,
+        "gameId": 1727859,
+        "homeTeam": "ex-Zero Tenacity",
+        "leagueAbbreviation": "cs2",
+        "live": true,
+        "period": "2/3",
+        "score": "000-000|1-0|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "c8971e2ee987f04614dc8a236937d87efe52911435c0860647119597a5780fe0"
+    },
+    {
+      "id": 13,
+      "receive_ms": 1792072488148,
+      "processed_ms": 1792072488148,
+      "raw": {
+        "awayTeam": "Team Falcons",
+        "ended": false,
+        "gameId": 1741369,
+        "homeTeam": "9z",
+        "leagueAbbreviation": "cs2",
+        "live": true,
+        "period": "3/3",
+        "score": "2-5|1-1|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "e25993f34520867ea37610285dfe6a750035b4a19bb8fcc7679644e19cda9690"
+    },
+    {
+      "id": 14,
+      "receive_ms": 1792072491073,
+      "processed_ms": 1792072491073,
+      "raw": {
+        "awayTeam": "zxcursed Team",
+        "ended": false,
+        "gameId": 1748431,
+        "homeTeam": "Gorgc Team",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "2/3",
+        "score": "000-000|1-0|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "c29756120acef44f4f5e9ab16228d65cdde3b5a6761e5a8099983d5387c6fe39"
+    },
+    {
+      "id": 15,
+      "receive_ms": 1792072491143,
+      "processed_ms": 1792072491143,
+      "raw": {
+        "awayTeam": "Dawn Bulls",
+        "ended": false,
+        "gameId": 1743406,
+        "homeTeam": "Team Lynx",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "3/3",
+        "score": "000-000|1-1|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "4d5cd27f832c59a8db0ddf163d02443fcb35477a98fd744ef8db03e6fc95b835"
+    },
+    {
+      "id": 16,
+      "receive_ms": 1792072491197,
+      "processed_ms": 1792072491197,
+      "raw": {
+        "awayTeam": "InterActive Philippines",
+        "ended": false,
+        "gameId": 1743430,
+        "homeTeam": "Yangon Galacticos",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "2/3",
+        "score": "000-000|1-0|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "b9d0efd79a3c0de4bd1e5edc362dd98f7f2525437b992c12e86478e955874d2d"
+    },
+    {
+      "id": 17,
+      "receive_ms": 1792072491342,
+      "processed_ms": 1792072491342,
+      "raw": {
+        "awayTeam": "Kalmychata",
+        "ended": false,
+        "gameId": 1743381,
+        "homeTeam": "Yellow Submarine",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "1/5",
+        "score": "000-000|0-0|Bo5",
+        "status": "running"
+      },
+      "payload_sha256": "167d36799902acce1d7d471dcc18545c529f86b2e010a47cecf8e8fe5603be11"
+    },
+    {
+      "id": 18,
+      "receive_ms": 1792072491463,
+      "processed_ms": 1792072491463,
+      "raw": {
+        "awayTeam": "PuckChamp",
+        "ended": false,
+        "gameId": 1743571,
+        "homeTeam": "Zero Tenacity",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "1/3",
+        "score": "000-000|0-0|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "988828cc2d99b1cfb2d07b9bc4e68b762c0221411bc1ceec3bd7985c1eb9a693"
+    },
+    {
+      "id": 19,
+      "receive_ms": 1792072491654,
+      "processed_ms": 1792072491654,
+      "raw": {
+        "awayTeam": "Royal Bear",
+        "ended": false,
+        "gameId": 1743429,
+        "homeTeam": "Direborn",
+        "leagueAbbreviation": "dota2",
+        "live": true,
+        "period": "2/3",
+        "score": "000-000|0-1|Bo3",
+        "status": "running"
+      },
+      "payload_sha256": "707a510185fcfb2e5b94c83abd7528ac263b7219e674a4bbf44a81cf7489e943"
+    },
+    {
+      "id": 20,
+      "receive_ms": 1792072494363,
+      "processed_ms": 1792072494363,
+      "raw": {
+        "ended": false,
+        "leagueAbbreviation": "cricket",
+        "live": true,
+        "metadataGameId": "id2703917575152370",
+        "period": "Live",
+        "score": "0-149"
+      },
+      "payload_sha256": "ebc36552feb0d4227aab5813bb4d57988fcff41779c8d738fe6316291b6947f6"
+    }
+  ],
+  "nba_rows": 0,
+  "raw_market_event_counts": {
+    "book": 2,
+    "rest_snapshot": 2
+  },
+  "not_a_nba_clock_calibration": true,
+  "source_database": "data/v21-final-source.sqlite",
+  "auto_contract_accepted": false
+}

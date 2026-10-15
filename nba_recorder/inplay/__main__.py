@@ -31,6 +31,25 @@ def main():
     replay.add_argument("--tape", required=True)
     replay.add_argument("--model", choices=("L0", "L1", "L2"), default="L2")
     replay.add_argument("--strategy", choices=("A", "B"), default="B")
+    live = sub.add_parser("run-paper", help="One explicit game, public inputs and independent wall-clock watchdog; never live trading")
+    live.add_argument("--db", required=True)
+    live.add_argument("--source-db", required=True)
+    live.add_argument("--event-slug", required=True)
+    live.add_argument("--market-id", required=True)
+    live.add_argument("--seconds", type=float, default=30)
+    live.add_argument("--interval", type=float, default=1)
+    live.add_argument("--model", choices=("L0", "L1", "L2"), default="L2")
+    live.add_argument("--manual-file")
+    live.add_argument("--contracts")
+    live.add_argument("--operator-reset", action="store_true", help="Explicit operator request to reconcile and try reset; never automatic")
+    confirm = sub.add_parser("confirm-phase", help="Write finite human Paper confirmation; not automatic sports evidence")
+    for field in ("market-id", "event-id", "game-id", "operator-id", "evidence", "exit-instructions", "out"):
+        confirm.add_argument("--"+field, required=True)
+    confirm.add_argument("--period", type=int, required=True)
+    confirm.add_argument("--remaining-s", type=int, required=True)
+    confirm.add_argument("--duration-s", type=int, choices=range(1, 16), default=10)
+    confirm.add_argument("--permission", choices=("ACTIVE_MM", "REDUCE_ONLY", "MM_CLOSED", "UNKNOWN", "PRE_GAME_OBSERVE"), required=True)
+    confirm.add_argument("--clock-observation", choices=("RUNNING", "STOPPED", "UNKNOWN"), required=True)
     freeze = sub.add_parser("freeze-book")
     freeze.add_argument("--source", required=True)
     freeze.add_argument("--db", required=True)
@@ -42,6 +61,26 @@ def main():
         p = sub.add_parser(command)
         p.add_argument("--db", required=True)
     args = parser.parse_args()
+    if args.command == "run-paper":
+        from .runner import run_paper
+        contracts = json.loads(Path(args.contracts).read_text(encoding="utf-8")) if args.contracts else None
+        result = asyncio.run(run_paper(args.db, args.source_db, args.event_slug, args.market_id, args.seconds, args.interval, args.model, args.manual_file, contracts, args.operator_reset))
+        print(json.dumps(result, indent=2))
+        return
+    if args.command == "confirm-phase":
+        from ..api import utc_ms
+        at = utc_ms()
+        grant = {"authority_mode": "MANUAL_CONFIRMED", "confirmation_id": __import__('uuid').uuid4().hex, "market_id": args.market_id, "event_id": args.event_id,
+                 "game_id": args.game_id, "operator_id": args.operator_id, "evidence": args.evidence, "exit_instructions": args.exit_instructions,
+                 "period": args.period, "remaining_s": args.remaining_s, "permission": args.permission, "clock_observation": args.clock_observation,
+                 "status_observation": "IN_PROGRESS", "confirmed_ms": at, "expires_ms": at+args.duration_s*1000, "not_unattended": True}
+        out = Path(args.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        temp = out.with_suffix(out.suffix+".tmp")
+        temp.write_text(json.dumps(grant, indent=2), encoding="utf-8")
+        temp.replace(out)
+        print(json.dumps({"file": str(out), "expires_ms": grant["expires_ms"], "not_unattended": True, "automatic_contract_passed": False}))
+        return
     if args.command == "freeze-book":
         from .tape import freeze
         contracts = json.loads(Path(args.contracts).read_text(encoding="utf-8")) if args.contracts else {}

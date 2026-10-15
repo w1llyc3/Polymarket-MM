@@ -35,16 +35,22 @@ class Store:
         CREATE TABLE IF NOT EXISTS event_processing(id INTEGER PRIMARY KEY,event_key TEXT NOT NULL,received_ms INTEGER NOT NULL,processed_ms INTEGER NOT NULL,lag_ms INTEGER NOT NULL,UNIQUE(event_key,received_ms));
         CREATE TABLE IF NOT EXISTS health(id INTEGER PRIMARY KEY, session_id TEXT, local_timestamp INTEGER, kind TEXT, detail TEXT);
         """)
+        for table in ("market_versions", "health"):
+            if "processed_ms" not in {r[1] for r in self.db.execute(f"PRAGMA table_info({table})")}:
+                self.db.execute(f"ALTER TABLE {table} ADD COLUMN processed_ms INTEGER")
         self.session = str(uuid.uuid4())
 
-    def markets(self, markets, now):
+    def markets(self, markets, now, processed_ms=None):
+        # `now` is the completed metadata-normalization callback, not upstream
+        # exchange time. Delayed callers may supply a later completion point.
+        processed_ms = now if processed_ms is None else processed_ms
         with self.db:
             self.db.executemany("INSERT INTO markets VALUES(?,?,?) ON CONFLICT(market_id) DO UPDATE SET metadata=excluded.metadata,updated_ms=excluded.updated_ms", [(m["market_id"], encode(m), now) for m in markets])
-            self.db.executemany("INSERT OR IGNORE INTO market_versions(market_id,observed_ms,metadata) VALUES(?,?,?)", [(m["market_id"], now, encode(m)) for m in markets])
+            self.db.executemany("INSERT OR IGNORE INTO market_versions(market_id,observed_ms,metadata,processed_ms) VALUES(?,?,?,?)", [(m["market_id"], now, encode(m), processed_ms) for m in markets])
 
-    def health(self, now, kind, detail=""):
+    def health(self, now, kind, detail="", processed_ms=None):
         with self.db:
-            self.db.execute("INSERT INTO health(session_id,local_timestamp,kind,detail) VALUES(?,?,?,?)", (self.session, now, kind, detail))
+            self.db.execute("INSERT INTO health(session_id,local_timestamp,kind,detail,processed_ms) VALUES(?,?,?,?,?)", (self.session, now, kind, detail, now if processed_ms is None else processed_ms))
 
     def key(self, event, source):
         # Timestamp/hash-bearing identical events have a restart-stable identity.

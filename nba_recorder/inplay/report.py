@@ -1,4 +1,5 @@
 import json
+from ..fair_value.engine import table_exists
 from ..fair_value.maths import decimal
 from ..fill_management.ledger import valuation
 from .reference import book_risk
@@ -6,6 +7,8 @@ from .reference import book_risk
 
 def report(manager):
     om = manager
+    def diagnostics(table):
+        return [{**dict(r), "payload": json.loads(r["payload"])} for r in om.db.execute(f"SELECT * FROM {table} ORDER BY id")] if table_exists(om.db, table) else []
     inputs = [json.loads(r[0]) for r in om.db.execute("SELECT payload FROM ip_inputs ORDER BY time_ms,rowid")]
     frames = [f for e in inputs for f in e["frames"]]
     marks = {}
@@ -37,7 +40,7 @@ def report(manager):
                     mid = (decimal(future["book"]["bid"])+decimal(future["book"]["ask"]))/2
                     value = str((mid-decimal(fill["price"]))* (1 if fill["side"] == "BUY" else -1))
                     status = "OBSERVED"
-            markouts.append({"fill_id": row["id"], "horizon_s": horizon, "signed_markout_per_share": value, "status": status, "receipt_ms": row["time_ms"], "exchange_ms": exchange_ms, "fill_mid": fill.get("context", {}).get("reference_mid"), "diagnostic_not_added_to_pnl": True})
+            markouts.append({"fill_id": row["id"], "horizon_s": horizon, "signed_markout_per_share": value, "adverse": decimal(value) < 0 if value is not None else None, "status": status, "receipt_ms": row["time_ms"], "exchange_ms": exchange_ms, "fill_mid": fill.get("context", {}).get("reference_mid"), "diagnostic_not_added_to_pnl": True})
     incomes = [dict(r) for r in om.db.execute("SELECT * FROM ip_income ORDER BY time_ms,rowid")]
     totals = {}
     for row in incomes:
@@ -63,6 +66,12 @@ def report(manager):
             "quote_availability": str(decimal(sum(d["state"] != "NO_QUOTE" for d in decisions))/len(decisions)) if decisions else None,
             "orders": len(orders), "fill_events": len(fills), "simulated_fill_order_rate": str(decimal(len(filled))/len(orders)) if orders else None,
             "quote_distance": om.policy.quote_distance,
+            "inventory_rule": "SUPPRESS_BUY_ON_NET_LONG; ask distance floor unchanged",
+            "public_flow_diagnostics": diagnostics("ip_flow_diagnostics"),
+            "own_fill_diagnostics": diagnostics("ip_own_fills"),
+            "flow_risk_policy": "explicit optional PAUSE" if om.policy.public_flow_pause else "public volume diagnostic only; account hard limits unchanged",
+            "phase_authority": "MANUAL_CONFIRMED_NOT_UNATTENDED" if om.policy.allow_manual_phase else "AUTOMATIC_CONTRACT_REQUIRED",
+            "experimental_boundaries_s": {"reduce": om.policy.reduce_remaining_s, "close": om.policy.close_remaining_s, "calibrated_or_user_approved": False},
             "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge", "markouts": markouts,
             "inventory_ages": ages, "residual_inventory": residual, "residual_risk_status": "MANUAL_REVIEW" if residual else "FLAT",
             "ledger_and_oms_consistent": om.consistent(), "latency_ms": om.status()["latency_ms"], "latency_provenance": "synthetic_paper_clock",

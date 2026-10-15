@@ -24,7 +24,9 @@ def audit(path):
         om.policy = BookPolicy(**json.loads(control["config"]))
         from nba_recorder.fair_value.store import digest
         from dataclasses import asdict
-        om.run_id = digest(["book-driven-unified-v2", asdict(om.policy)])
+        # Historical run identity comes from saved policy, not newly added
+        # defaults. This reader must not manufacture a new empty ledger.
+        om.run_id = digest(["book-driven-unified-v2", json.loads(control["config"])])
         om.ledger = Ledger(db, om.run_id, "UNIFIED_PAPER")
         om.phases = PhaseController(db, om.policy)
         if not om.consistent():

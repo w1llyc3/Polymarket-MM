@@ -21,6 +21,7 @@ class BookSession:
     def observe(self, frame):
         om = self.om
         om.advance(max(om.now, frame["time_ms"]))
+        frame = om.phase_frame(frame)
         # phase supplied in input is never trusted as an OMS authorization.
         phase = om.phases.update(frame, om.now)
         frame = {**frame, "phase": phase["state"]}
@@ -49,7 +50,7 @@ class BookSession:
             if order["asset_id"] != frame["asset_id"] or order["state"] not in ACTIVE:
                 continue
             target = wanted.get(order["side"])
-            if target and order["state"] in {"OPEN", "PARTIALLY_FILLED"} and decimal(order["price"]) == decimal(target["price"]) and decimal(order["size"])-decimal(order["filled"]) == decimal(target["size"]) and order.get("purpose") == target["purpose"]:
+            if target and target.get("action") == "RETAIN" and target.get("retained_order_id") == order["id"]:
                 wanted.pop(order["side"])
             elif order["state"] not in {"UNKNOWN", "RECONCILED", "CANCEL_PENDING"}:
                 om.cancel(order["id"])
@@ -94,17 +95,27 @@ class BookSession:
                 quantity = decimal(flow["quantity"])+available if flow and flow["side"] == trade["side"] and om.now-flow["first_ms"] <= 5000 else available
                 first = flow["first_ms"] if flow and flow["side"] == trade["side"] and om.now-flow["first_ms"] <= 5000 else om.now
                 om.db.execute("INSERT INTO ip_flow VALUES(?,?,?,?) ON CONFLICT(asset_id) DO UPDATE SET side=excluded.side,quantity=excluded.quantity,first_ms=excluded.first_ms", (trade["asset_id"], trade["side"], str(quantity), first))
-                if om.policy.enhanced and quantity > decimal(om.policy.max_one_sided_shares):
-                    om._kill("one_sided_trade_flow")
-                elif quantity > decimal(om.policy.max_one_sided_shares):
-                    om._risk("observed_one_sided_flow_baseline", evidence={"quantity": str(quantity), "asset_id": trade["asset_id"], "monitor_only": True})
+                depth = sum((decimal(l["size"]) for l in (f.get("book") or {}).get("bids" if trade["side"] == "SELL" else "asks", [])), decimal(0))
+                diagnostic = {"kind": "public_one_sided_flow", "quantity": str(quantity), "visible_side_depth": str(depth), "flow_depth_ratio": str(quantity/depth) if depth else None,
+                              "previous_streak_quantity": flow["quantity"] if flow else None, "own_fill_quantity": str(sum((decimal(r[0]) for r in om.db.execute("SELECT quantity FROM ip_own_fills WHERE asset_id=? AND receipt_ms>=?", (trade["asset_id"], om.now-5000))), decimal(0))),
+                              "risk_level": "DIAGNOSTIC", "threshold_calibrated": False}
+                diagnostic["own_same_side_fills"] = str(sum((decimal(r[0]) for r in om.db.execute("SELECT quantity FROM ip_own_fills WHERE asset_id=? AND side=? AND receipt_ms>=?", (trade["asset_id"], "BUY" if trade["side"] == "SELL" else "SELL", om.now-5000))), decimal(0)))
+                diagnostic["recent_volume_baseline"] = "UNAVAILABLE: previous streak is not calibrated market activity"
+                om.db.execute("INSERT INTO ip_flow_diagnostics(time_ms,asset_id,payload) VALUES(?,?,?)", (om.now, trade["asset_id"], encode(diagnostic)))
+                if quantity > decimal(om.policy.max_one_sided_shares):
+                    om._risk("public_one_sided_flow_diagnostic", evidence=diagnostic)
+                    if om.policy.public_flow_pause and not om.halted:
+                        om.pause("explicit_public_flow_pause_policy")
                 # Allocate one public print budget across queue and all local
                 # orders, including cancellation-in-flight. Never use phase to
                 # pretend an already resting order cannot fill after cutoff.
                 orders = sorted(om.orders(), key=lambda o: (0 if o["side"] == "BUY" else 1, -decimal(o["price"]) if o["side"] == "BUY" else decimal(o["price"]), o.get("submit_ms", o["created_ms"]), o["id"]))
                 for order in orders:
                     authority = om.adapter.authoritative(order["id"])
-                    if not authority or authority["state"] not in {"OPEN", "PARTIALLY_FILLED"} or order["asset_id"] != trade["asset_id"] or order["frame"]["market"]["condition_id"] != trade["condition_id"] or order.get("submit_ms", om.now) >= trade["exchange_ms"]:
+                    if authority and order["asset_id"] == trade["asset_id"] and trade["exchange_ms"] in {order.get("submit_ms"), authority.get("cancelled_ms")}:
+                        om._log("SAME_MS_EXECUTION_AMBIGUOUS", order, {"trade_id": key, "exchange_ms": trade["exchange_ms"], "action": "exclude uncertain fill; no ordering evidence"})
+                    eligible_at_exchange = authority and (authority["state"] in {"OPEN", "PARTIALLY_FILLED"} or (authority["state"] == "CANCELLED" and trade["exchange_ms"] < authority.get("cancelled_ms", -1)))
+                    if not eligible_at_exchange or order["asset_id"] != trade["asset_id"] or order["frame"]["market"]["condition_id"] != trade["condition_id"] or order.get("submit_ms", om.now) >= trade["exchange_ms"]:
                         continue
                     matches = (order["side"] == "BUY" and trade["side"] == "SELL" and price <= decimal(order["price"])) or (order["side"] == "SELL" and trade["side"] == "BUY" and price >= decimal(order["price"]))
                     if not matches or self.model == "L0":
@@ -124,9 +135,16 @@ class BookSession:
                     if qty <= 0:
                         continue
                     fill_id = digest(["unified-fill", key, order["id"]])
-                    if om.adapter.fill(order["id"], str(qty), om.now, fill_id, om.policy.data_transport_ms):
+                    if om.adapter.fill(order["id"], str(qty), trade["exchange_ms"], fill_id, om.policy.data_transport_ms, observed_ms=om.now):
                         available -= qty
-                        om.db.execute("INSERT INTO ip_fill_evidence VALUES(?,?)", (fill_id, encode({"trade_id": key, "model": self.model, "assumptions": "public aggressor side assumed, volume budget; not actual execution", "confidence": "uncalibrated", "reference_mid_at_fill": observed_mid(f, om.policy, om.now)})))
+                        fill_mid = observed_mid(f, om.policy, om.now) if trade["exchange_ms"] == om.now else None
+                        if fill_mid is None:
+                            for history in om.db.execute("SELECT payload FROM ip_inputs WHERE time_ms<=? ORDER BY time_ms DESC,rowid DESC", (trade["exchange_ms"],)):
+                                past = next((v for v in json.loads(history[0])["frames"] if v["asset_id"] == order["asset_id"]), None)
+                                if past:
+                                    fill_mid = observed_mid(past, om.policy, trade["exchange_ms"])
+                                    break
+                        om.db.execute("INSERT INTO ip_fill_evidence VALUES(?,?)", (fill_id, encode({"trade_id": key, "model": self.model, "assumptions": "public aggressor side assumed, causal exchange time and volume budget; not actual execution", "confidence": "uncalibrated", "exchange_ms": trade["exchange_ms"], "strategy_available_ms": om.now, "reference_mid_at_fill": fill_mid})))
             if self.model == "L0":
                 for order in om.orders():
                     authority = om.adapter.authoritative(order["id"])
@@ -167,6 +185,15 @@ class BookSession:
             raise ValueError("future frame cannot enter current paper event")
         om.advance(event["time_ms"])
         frames = [self.observe(f) for f in event["frames"]]
+        if event.get("kind") == "WATCHDOG":
+            if not frames and any(o["state"] in ACTIVE for o in om.orders()):
+                om.kill("watchdog_no_valid_inputs")
+            if frames:
+                om.mark_equity(frames)
+            with om.db:
+                om.db.execute("INSERT INTO ip_inputs VALUES(?,?,?)", (identity, event["time_ms"], encode(event)))
+                om._log("WALL_CLOCK_WATCHDOG", detail={"input_id": identity, "wall_ms": event.get("wall_ms"), "new_quotes_allowed": False})
+            return True
         # Existing orders can fill in the same frame that requests a cancel.
         self.executions(frames, event.get("trades", []), identity)
         for index, f in enumerate(frames):

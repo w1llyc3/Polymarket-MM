@@ -19,7 +19,7 @@ TRANSITIONS = {
     "PARTIALLY_FILLED": {"FILLED", "CANCEL_PENDING", "TIMEOUT", "UNKNOWN", "RECONCILED"},
     "CANCEL_PENDING": {"FILLED", "CANCELLED", "REJECTED", "TIMEOUT", "UNKNOWN", "RECONCILED"},
     "TIMEOUT": {"UNKNOWN"}, "UNKNOWN": {"RECONCILED"}, "RECONCILED": {"UNKNOWN", "FILLED", "CANCELLED", "REJECTED"},
-    **{s: set() for s in TERMINAL}}
+    **{s: {"UNKNOWN"} for s in TERMINAL}}
 
 
 class OrderManager:
@@ -242,6 +242,10 @@ class OrderManager:
         if cumulative > decimal(order["size"]):
             self._kill("authority_overfill")
             return
+        if order["state"] in TERMINAL and cumulative > previous:
+            order.update(state="UNKNOWN", unknown_since_ms=self.now)
+            self._save(order, "LATE_TERMINAL_FILL_REQUIRES_RECONCILIATION")
+            self._kill("late_terminal_fill_correction")
         delta = cumulative-previous
         if delta:
             account = self.account()
