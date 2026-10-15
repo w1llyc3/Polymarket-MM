@@ -1,0 +1,540 @@
+{
+  "version": "lesson7-v1",
+  "provenance": "synthetic_paper_clock",
+  "passed": 16,
+  "failed": 0,
+  "results": [
+    {
+      "scenario": "fair_value_jump",
+      "status": "PASS",
+      "risk_state": "HALTED",
+      "orders": [
+        {
+          "state": "CANCEL_PENDING",
+          "filled": "0"
+        },
+        {
+          "state": "REJECTED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "edge_lost",
+        "edge_lost",
+        "edge_lost",
+        "kill_switch_halted"
+      ],
+      "latency_ms": {
+        "data_transport": {
+          "count": 1,
+          "P50": 5,
+          "P95": 5,
+          "P99": 5
+        },
+        "risk_detection": {
+          "count": 1,
+          "P50": 1,
+          "P95": 1,
+          "P99": 1
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "odds_stale",
+      "status": "PASS",
+      "risk_state": "HALTED",
+      "orders": [
+        {
+          "state": "CANCEL_PENDING",
+          "filled": "0"
+        },
+        {
+          "state": "REJECTED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "odds_stale_at_detection",
+        "odds_stale_or_future",
+        "odds_stale_at_detection;odds_stale_or_future",
+        "odds_stale_at_detection;odds_stale_or_future",
+        "kill_switch_halted"
+      ],
+      "latency_ms": {
+        "data_transport": {
+          "count": 1,
+          "P50": 5,
+          "P95": 5,
+          "P99": 5
+        },
+        "risk_detection": {
+          "count": 1,
+          "P50": 1,
+          "P95": 1,
+          "P99": 1
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "odds_conflict",
+      "status": "PASS",
+      "risk_state": "HALTED",
+      "orders": [
+        {
+          "state": "CANCEL_PENDING",
+          "filled": "0"
+        },
+        {
+          "state": "REJECTED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "invalid_fair_reference",
+        "invalid_fair_reference",
+        "invalid_fair_reference",
+        "kill_switch_halted"
+      ],
+      "latency_ms": {
+        "data_transport": {
+          "count": 1,
+          "P50": 5,
+          "P95": 5,
+          "P99": 5
+        },
+        "risk_detection": {
+          "count": 1,
+          "P50": 1,
+          "P95": 1,
+          "P99": 1
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "websocket_disconnect",
+      "status": "PASS",
+      "risk_state": "HALTED",
+      "orders": [
+        {
+          "state": "CANCEL_PENDING",
+          "filled": "0"
+        },
+        {
+          "state": "REJECTED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "disconnected",
+        "disconnected",
+        "disconnected",
+        "kill_switch_halted"
+      ],
+      "latency_ms": {
+        "data_transport": {
+          "count": 1,
+          "P50": 5,
+          "P95": 5,
+          "P99": 5
+        },
+        "risk_detection": {
+          "count": 1,
+          "P50": 1,
+          "P95": 1,
+          "P99": 1
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "rest_timeout",
+      "status": "PASS",
+      "risk_state": "HALTED",
+      "orders": [
+        {
+          "state": "CANCELLED",
+          "filled": "0"
+        },
+        {
+          "state": "REJECTED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "rest_test",
+        "rest_test",
+        "authoritative_query_timeout",
+        "kill_switch_halted"
+      ],
+      "latency_ms": {
+        "data_transport": {
+          "count": 2,
+          "P50": 0,
+          "P95": 5,
+          "P99": 5
+        },
+        "simulated_cancel": {
+          "count": 1,
+          "P50": 10,
+          "P95": 10,
+          "P99": 10
+        },
+        "authority_query": {
+          "count": 1,
+          "P50": 100,
+          "P95": 100,
+          "P99": 100
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "cancel_partial_race",
+      "status": "PASS",
+      "risk_state": "ACTIVE",
+      "orders": [
+        {
+          "state": "CANCELLED",
+          "filled": "2"
+        }
+      ],
+      "risk_reasons": [],
+      "latency_ms": {
+        "data_transport": {
+          "count": 3,
+          "P50": 0,
+          "P95": 5,
+          "P99": 5
+        },
+        "simulated_cancel": {
+          "count": 1,
+          "P50": 10,
+          "P95": 10,
+          "P99": 10
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "submit_response_lost",
+      "status": "PASS",
+      "risk_state": "HALTED",
+      "orders": [
+        {
+          "state": "UNKNOWN",
+          "filled": "0"
+        },
+        {
+          "state": "REJECTED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "request_timeout",
+        "request_timeout",
+        "manual_reset_requires_completed_reconciliation",
+        "kill_switch_halted"
+      ],
+      "latency_ms": {},
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "duplicate_fill",
+      "status": "PASS",
+      "risk_state": "ACTIVE",
+      "orders": [
+        {
+          "state": "PARTIALLY_FILLED",
+          "filled": "2"
+        }
+      ],
+      "risk_reasons": [],
+      "latency_ms": {
+        "data_transport": {
+          "count": 2,
+          "P50": 0,
+          "P95": 5,
+          "P99": 5
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "simultaneous_fills",
+      "status": "PASS",
+      "risk_state": "ACTIVE",
+      "orders": [
+        {
+          "state": "FILLED",
+          "filled": "5"
+        },
+        {
+          "state": "FILLED",
+          "filled": "5"
+        }
+      ],
+      "risk_reasons": [],
+      "latency_ms": {
+        "data_transport": {
+          "count": 4,
+          "P50": 0,
+          "P95": 5,
+          "P99": 5
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "service_restart",
+      "status": "PASS",
+      "risk_state": "READY_FOR_MANUAL_RESET",
+      "orders": [
+        {
+          "state": "RECONCILED",
+          "filled": "2"
+        },
+        {
+          "state": "REJECTED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "service_restart_requires_authoritative_reconciliation",
+        "service_restart_requires_authoritative_reconciliation",
+        "kill_switch_halted"
+      ],
+      "latency_ms": {
+        "data_transport": {
+          "count": 4,
+          "P50": 0,
+          "P95": 30,
+          "P99": 30
+        },
+        "simulated_cancel": {
+          "count": 1,
+          "P50": 10,
+          "P95": 10,
+          "P99": 10
+        },
+        "authority_query": {
+          "count": 1,
+          "P50": 5,
+          "P95": 5,
+          "P99": 5
+        },
+        "state_recovery": {
+          "count": 1,
+          "P50": 45,
+          "P95": 45,
+          "P99": 45
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "game_start_boundary",
+      "status": "PASS",
+      "risk_state": "HALTED",
+      "orders": [
+        {
+          "state": "CANCEL_PENDING",
+          "filled": "0"
+        },
+        {
+          "state": "REJECTED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "start_protection",
+        "start_protection",
+        "start_protection",
+        "kill_switch_halted"
+      ],
+      "latency_ms": {
+        "data_transport": {
+          "count": 1,
+          "P50": 5,
+          "P95": 5,
+          "P99": 5
+        },
+        "risk_detection": {
+          "count": 1,
+          "P50": 1,
+          "P95": 1,
+          "P99": 1
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "daily_loss",
+      "status": "PASS",
+      "risk_state": "HALTED",
+      "orders": [
+        {
+          "state": "CANCELLED",
+          "filled": "0"
+        },
+        {
+          "state": "REJECTED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "daily_paper_loss_circuit_breaker",
+        "daily_paper_loss_circuit_breaker",
+        "resume_blocked_by_daily_paper_loss",
+        "kill_switch_halted"
+      ],
+      "latency_ms": {
+        "data_transport": {
+          "count": 2,
+          "P50": 0,
+          "P95": 5,
+          "P99": 5
+        },
+        "simulated_cancel": {
+          "count": 1,
+          "P50": 10,
+          "P95": 10,
+          "P99": 10
+        },
+        "authority_query": {
+          "count": 1,
+          "P50": 5,
+          "P95": 5,
+          "P99": 5
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "account_mismatch",
+      "status": "PASS",
+      "risk_state": "HALTED",
+      "orders": [
+        {
+          "state": "RECONCILED",
+          "filled": "0"
+        },
+        {
+          "state": "REJECTED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "authority_ledger_mismatch",
+        "authority_ledger_mismatch",
+        "kill_switch_halted"
+      ],
+      "latency_ms": {
+        "data_transport": {
+          "count": 2,
+          "P50": 0,
+          "P95": 5,
+          "P99": 5
+        },
+        "authority_query": {
+          "count": 1,
+          "P50": 5,
+          "P95": 5,
+          "P99": 5
+        },
+        "state_recovery": {
+          "count": 1,
+          "P50": 0,
+          "P95": 0,
+          "P99": 0
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "submission_boundary",
+      "status": "PASS",
+      "risk_state": "ACTIVE",
+      "orders": [
+        {
+          "state": "CANCELLED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "intent_expired"
+      ],
+      "latency_ms": {},
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "manual_reset_barrier",
+      "status": "PASS",
+      "risk_state": "ACTIVE",
+      "orders": [
+        {
+          "state": "CANCELLED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "severe_breaker",
+        "severe_breaker",
+        "manual_reset_requires_completed_reconciliation"
+      ],
+      "latency_ms": {
+        "data_transport": {
+          "count": 2,
+          "P50": 0,
+          "P95": 5,
+          "P99": 5
+        },
+        "simulated_cancel": {
+          "count": 1,
+          "P50": 10,
+          "P95": 10,
+          "P99": 10
+        },
+        "authority_query": {
+          "count": 1,
+          "P50": 5,
+          "P95": 5,
+          "P99": 5
+        }
+      },
+      "real_submission_calls": 0
+    },
+    {
+      "scenario": "pause",
+      "status": "PASS",
+      "risk_state": "PAUSED",
+      "orders": [
+        {
+          "state": "CANCEL_PENDING",
+          "filled": "0"
+        },
+        {
+          "state": "REJECTED",
+          "filled": "0"
+        }
+      ],
+      "risk_reasons": [
+        "operator_pause",
+        "operator_pause",
+        "kill_switch_halted"
+      ],
+      "latency_ms": {
+        "data_transport": {
+          "count": 1,
+          "P50": 5,
+          "P95": 5,
+          "P99": 5
+        }
+      },
+      "real_submission_calls": 0
+    }
+  ],
+  "authority_scope": "independent reducer, same SQLite/process; not independent service"
+}

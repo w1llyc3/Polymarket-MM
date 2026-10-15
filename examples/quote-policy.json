@@ -1,0 +1,14 @@
+{
+  "initial_cash": "1000",
+  "initial_inventory": "0",
+  "target_inventory": "0",
+  "order_size": "5",
+  "max_order_notional": "25",
+  "max_event_risk": "100",
+  "max_account_risk": "500",
+  "max_asset_inventory": "50",
+  "min_spread": "0.02",
+  "inventory_skew": "0.001",
+  "ttl_ms": 30000,
+  "start_guard_ms": 300000
+}

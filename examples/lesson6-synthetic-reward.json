@@ -1,0 +1,14 @@
+{
+  "id": "synthetic-reward-example-not-real",
+  "time_ms": 1791954351000,
+  "kind": "REWARD",
+  "data_kind": "synthetic",
+  "payload": {
+    "amount": "0.03",
+    "evidence": {
+      "observed_ms": 1791954351000,
+      "data_kind": "synthetic",
+      "source": "explicit fictional accounting example; not an awarded maker rebate"
+    }
+  }
+}

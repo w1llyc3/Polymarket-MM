@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "data_kind": "synthetic",
+  "quotes": [
+    {
+      "source_id": "synthetic-book-a",
+      "event_id": "synthetic-event",
+      "league": "nba",
+      "season": "2026-27",
+      "home_team": "Detroit Pistons",
+      "away_team": "Boston Celtics",
+      "start_ms": 1791957600000,
+      "status": "pregame",
+      "odds_format": "american",
+      "home_odds": -110,
+      "away_odds": -110,
+      "outcome_count": 2,
+      "updated_ms": 1791953999000,
+      "rules": {
+        "period": "full_game",
+        "overtime": true,
+        "outcomes": 2,
+        "cancellation": "half_payout",
+        "postponement": "wait_until_completed"
+      },
+      "rule_evidence": {
+        "source_url": "https://example.test/synthetic-rules-not-a-bookmaker",
+        "verified_ms": 1791953998000
+      }
+    }
+  ]
+}

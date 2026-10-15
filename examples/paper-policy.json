@@ -1,0 +1,23 @@
+{
+  "initial_cash": "1000",
+  "initial_inventory": "0",
+  "target_inventory": "0",
+  "order_size": "5",
+  "max_order_notional": "25",
+  "max_event_risk": "100",
+  "max_account_risk": "500",
+  "max_asset_inventory": "50",
+  "min_spread": "0.02",
+  "inventory_skew": "0.001",
+  "ttl_ms": 30000,
+  "start_guard_ms": 300000,
+  "request_timeout_ms": 100,
+  "submit_ack_ms": 5,
+  "cancel_latency_ms": 10,
+  "risk_detection_ms": 1,
+  "data_transport_ms": 2,
+  "rest_latency_ms": 5,
+  "rest_timeout_ms": 100,
+  "max_price_jump": "0.05",
+  "max_daily_loss": "20"
+}

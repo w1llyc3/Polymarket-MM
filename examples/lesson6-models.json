@@ -1,0 +1,7 @@
+{
+  "queue_multiplier": "1",
+  "hidden_ahead": "0",
+  "maker_fee_rate": "0",
+  "taker_fee_rate": null,
+  "fee_source": "unverified_market_parameters_research_only"
+}

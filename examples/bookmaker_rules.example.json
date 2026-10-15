@@ -1,0 +1,15 @@
+{
+  "REPLACE_WITH_VERIFIED_BOOKMAKER_KEY": {
+    "rules": {
+      "period": "full_game",
+      "overtime": null,
+      "outcomes": 2,
+      "cancellation": null,
+      "postponement": null
+    },
+    "rule_evidence": {
+      "source_url": "",
+      "verified_ms": null
+    }
+  }
+}

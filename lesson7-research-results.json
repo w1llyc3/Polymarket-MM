@@ -1,0 +1,1575 @@
+{
+  "reports": [
+    {
+      "day": "2026-10-14",
+      "timezone": "UTC",
+      "run_id": "d8e9b5ea07ef29863951b3ae28943e622d1f0debd3ae6c8edaeb3dc7ad66e3c8",
+      "cursor": 353,
+      "mode": "RECORD_ONLY_PAPER",
+      "real_submission_calls": 0,
+      "source_tape_id": "a4660cd0244dd310f9ad1bb1f0d2989f7a9512aee871fc07b7e6bc432f50669f",
+      "markout_evaluation_cutoff_ms": 1791954350000,
+      "markouts_are_retrospective_cohort_diagnostics_not_pnl": true,
+      "coverage": {
+        "time_buckets": 353,
+        "asset_frames": 706,
+        "valid_reference_and_book_frames": 702,
+        "valid_fraction": "0.994334277620396600566572237960339943342776",
+        "first_ms": 1791954000000,
+        "last_ms": 1791954350000,
+        "distinct_book_observations": 702,
+        "trade_prints": 2,
+        "anomalies": {
+          "disconnected": 4,
+          "invalid_fair_reference": 4
+        },
+        "coverage_is_recorded_interval_not_24h": true
+      },
+      "assumptions": {
+        "fee_source": "synthetic_fee_assumption",
+        "hidden_ahead": "0",
+        "maker_fee_rate": "0",
+        "queue_multiplier": "1",
+        "taker_fee_rate": ".05"
+      },
+      "lanes": [
+        {
+          "lane": "1c-L0",
+          "model": "L0",
+          "quote_opportunities": 702,
+          "decisions": 706,
+          "orders_created": 55,
+          "fill_events": 2,
+          "submitted_quantity": "275",
+          "filled_quantity": "9",
+          "pending_quantity": "0",
+          "cancelled_or_expired_quantity": "266",
+          "order_fill_rate": "0.0363636363636363636363636363636363636363636",
+          "quantity_fill_rate": "0.0327272727272727272727272727272727272727273",
+          "partial_order_rate_among_filled": "0.5",
+          "markouts": {
+            "10": {
+              "quantity_weighted_per_share": "0.01",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "30": {
+              "quantity_weighted_per_share": "0.01",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "60": {
+              "quantity_weighted_per_share": "0.01",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "300": {
+              "quantity_weighted_per_share": "0.01",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            }
+          },
+          "hedge_success_rate": null,
+          "hedge_quantity_completion_rate": null,
+          "hedge_partial_intent_rate": null,
+          "hedge_sample_count": 0,
+          "hedge_fill_events_today": 0,
+          "hedge_rate_basis": "same-day paper intent cohort; success requires full intended quantity, not partial fills or candidates",
+          "inventory": {
+            "synthetic-demo-market": {
+              "YES": {
+                "asset_id": "synthetic-home",
+                "label": "Pistons",
+                "quantity": "11"
+              },
+              "NO": {
+                "asset_id": "synthetic-away",
+                "label": "Celtics",
+                "quantity": "10"
+              },
+              "paired_quantity": "10",
+              "directional_quantity": "1",
+              "binary_role_basis": "native YES/NO labels when present; otherwise outcome_index, with actual labels/assets retained"
+            }
+          },
+          "opening_equity": "0",
+          "closing_account": {
+            "available_cash": "999.59",
+            "available_inventory": {
+              "synthetic-away": "10",
+              "synthetic-home": "11"
+            },
+            "capital_contributions": "1010.00",
+            "cash": "999.59",
+            "cash_flows": "-0.41",
+            "conservative_committed_exposure": "21",
+            "cost_basis_complete": true,
+            "equity": "1010.09",
+            "exposure_before_close": "31",
+            "fees": "0.00",
+            "input_seq": 353,
+            "mark_evidence": {
+              "synthetic-away": {
+                "book_ref": "observation:702",
+                "received_ms": 1791954350000
+              },
+              "synthetic-home": {
+                "book_ref": "observation:701",
+                "received_ms": 1791954350000
+              }
+            },
+            "market_value": "10.50",
+            "marks": {
+              "synthetic-away": "0.50",
+              "synthetic-home": "0.50"
+            },
+            "missing_marks": [],
+            "net_pnl": "0.09",
+            "not_real_profit": true,
+            "pair_cash_flow": "0",
+            "peak_conservative_committed_exposure": "35",
+            "positions": {
+              "synthetic-away": "10",
+              "synthetic-home": "11"
+            },
+            "realized_trading_pnl": "0.04",
+            "reconciled": true,
+            "reserved_cash": "0",
+            "reserved_inventory": {
+              "synthetic-away": "0",
+              "synthetic-home": "0"
+            },
+            "rewards": "0",
+            "run_closed": true,
+            "settlement_cash_flow": "0",
+            "time_ms": 1791954350000,
+            "trading_pnl": "0.09",
+            "unrealized_trading_pnl": "0.05",
+            "virtual": true
+          },
+          "daily_trading_pnl": "0.09",
+          "daily_fees": "0.00",
+          "daily_rewards": "0",
+          "daily_net_pnl": "0.09",
+          "net_pnl_reconciled": true,
+          "max_conservative_committed_exposure": "35",
+          "attribution": {
+            "entry_edge": "0.00",
+            "spread_capture": "0.04",
+            "directional_residual": "0.00",
+            "stale_quote_loss": null,
+            "covered_closures": 1,
+            "total_closures": 1,
+            "additive_components": [
+              "entry_edge",
+              "spread_capture",
+              "directional_residual"
+            ],
+            "nonadditive_diagnostics": [
+              "markout",
+              "hedge_slippage",
+              "stale_quote_loss"
+            ],
+            "hedge_slippage": null,
+            "stale_quote_loss_is_partial_realized_diagnostic": false,
+            "overlapping_metrics_never_summed": true,
+            "entry_edge_at_fill_diagnostic": "0.05",
+            "entry_edge_sample_count": 1,
+            "hedge_slippage_samples": 0,
+            "stale_quote_open_lots": 0,
+            "stale_quote_closed_lots": 0
+          },
+          "valuation_missing_count": 2,
+          "not_real_profit": true,
+          "acceptance_metrics": {
+            "quote_availability": "0.9943342776203966005665722380",
+            "gross_edge_target_sample_count": 1404,
+            "gross_edge_min": "0.01",
+            "gross_edge_max": "0.03",
+            "gross_edge_mean": "0.01245726495726495726495726496",
+            "gross_edge_scope": "UTC-day target quotes, theoretical per-share; not profit",
+            "hedge_cost": null,
+            "hedge_cost_sample_count": 0,
+            "cancel_latency_ms": null,
+            "reconciliation_latency_ms": null,
+            "latency_scope": "instant-cancel research replay; use separate OMS fault latency, never join as measured live latency",
+            "stale_quote_loss": null
+          }
+        },
+        {
+          "lane": "1c-L1",
+          "model": "L1",
+          "quote_opportunities": 702,
+          "decisions": 706,
+          "orders_created": 58,
+          "fill_events": 2,
+          "submitted_quantity": "290",
+          "filled_quantity": "10",
+          "pending_quantity": "0",
+          "cancelled_or_expired_quantity": "280",
+          "order_fill_rate": "0.0344827586206896551724137931034482758620690",
+          "quantity_fill_rate": "0.0344827586206896551724137931034482758620690",
+          "partial_order_rate_among_filled": "0",
+          "markouts": {
+            "10": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "30": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "60": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "300": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            }
+          },
+          "hedge_success_rate": null,
+          "hedge_quantity_completion_rate": null,
+          "hedge_partial_intent_rate": null,
+          "hedge_sample_count": 0,
+          "hedge_fill_events_today": 0,
+          "hedge_rate_basis": "same-day paper intent cohort; success requires full intended quantity, not partial fills or candidates",
+          "inventory": {
+            "synthetic-demo-market": {
+              "YES": {
+                "asset_id": "synthetic-home",
+                "label": "Pistons",
+                "quantity": "10"
+              },
+              "NO": {
+                "asset_id": "synthetic-away",
+                "label": "Celtics",
+                "quantity": "10"
+              },
+              "paired_quantity": "10",
+              "directional_quantity": "0",
+              "binary_role_basis": "native YES/NO labels when present; otherwise outcome_index, with actual labels/assets retained"
+            }
+          },
+          "opening_equity": "0",
+          "closing_account": {
+            "available_cash": "1000.25",
+            "available_inventory": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "capital_contributions": "1010.00",
+            "cash": "1000.25",
+            "cash_flows": "0.25",
+            "conservative_committed_exposure": "20",
+            "cost_basis_complete": true,
+            "equity": "1010.25",
+            "exposure_before_close": "30",
+            "fees": "0.00",
+            "input_seq": 353,
+            "mark_evidence": {
+              "synthetic-away": {
+                "book_ref": "observation:702",
+                "received_ms": 1791954350000
+              },
+              "synthetic-home": {
+                "book_ref": "observation:701",
+                "received_ms": 1791954350000
+              }
+            },
+            "market_value": "10.00",
+            "marks": {
+              "synthetic-away": "0.50",
+              "synthetic-home": "0.50"
+            },
+            "missing_marks": [],
+            "net_pnl": "0.25",
+            "not_real_profit": true,
+            "pair_cash_flow": "0",
+            "peak_conservative_committed_exposure": "35",
+            "positions": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "realized_trading_pnl": "0.15",
+            "reconciled": true,
+            "reserved_cash": "0",
+            "reserved_inventory": {
+              "synthetic-away": "0",
+              "synthetic-home": "0"
+            },
+            "rewards": "0",
+            "run_closed": true,
+            "settlement_cash_flow": "0",
+            "time_ms": 1791954350000,
+            "trading_pnl": "0.25",
+            "unrealized_trading_pnl": "0.10",
+            "virtual": true
+          },
+          "daily_trading_pnl": "0.25",
+          "daily_fees": "0.00",
+          "daily_rewards": "0",
+          "daily_net_pnl": "0.25",
+          "net_pnl_reconciled": true,
+          "max_conservative_committed_exposure": "35",
+          "attribution": {
+            "entry_edge": "0.00",
+            "spread_capture": "0.15",
+            "directional_residual": "0.00",
+            "stale_quote_loss": null,
+            "covered_closures": 1,
+            "total_closures": 1,
+            "additive_components": [
+              "entry_edge",
+              "spread_capture",
+              "directional_residual"
+            ],
+            "nonadditive_diagnostics": [
+              "markout",
+              "hedge_slippage",
+              "stale_quote_loss"
+            ],
+            "hedge_slippage": null,
+            "stale_quote_loss_is_partial_realized_diagnostic": false,
+            "overlapping_metrics_never_summed": true,
+            "entry_edge_at_fill_diagnostic": "0.10",
+            "entry_edge_sample_count": 1,
+            "hedge_slippage_samples": 0,
+            "stale_quote_open_lots": 0,
+            "stale_quote_closed_lots": 0
+          },
+          "valuation_missing_count": 2,
+          "not_real_profit": true,
+          "acceptance_metrics": {
+            "quote_availability": "0.9943342776203966005665722380",
+            "gross_edge_target_sample_count": 1404,
+            "gross_edge_min": "0.01",
+            "gross_edge_max": "0.03",
+            "gross_edge_mean": "0.01005698005698005698005698006",
+            "gross_edge_scope": "UTC-day target quotes, theoretical per-share; not profit",
+            "hedge_cost": null,
+            "hedge_cost_sample_count": 0,
+            "cancel_latency_ms": null,
+            "reconciliation_latency_ms": null,
+            "latency_scope": "instant-cancel research replay; use separate OMS fault latency, never join as measured live latency",
+            "stale_quote_loss": null
+          }
+        },
+        {
+          "lane": "1c-L2",
+          "model": "L2",
+          "quote_opportunities": 702,
+          "decisions": 706,
+          "orders_created": 58,
+          "fill_events": 2,
+          "submitted_quantity": "290",
+          "filled_quantity": "4",
+          "pending_quantity": "0",
+          "cancelled_or_expired_quantity": "286",
+          "order_fill_rate": "0.0344827586206896551724137931034482758620690",
+          "quantity_fill_rate": "0.0137931034482758620689655172413793103448276",
+          "partial_order_rate_among_filled": "1",
+          "markouts": {
+            "10": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "30": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "60": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "300": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            }
+          },
+          "hedge_success_rate": null,
+          "hedge_quantity_completion_rate": null,
+          "hedge_partial_intent_rate": null,
+          "hedge_sample_count": 0,
+          "hedge_fill_events_today": 0,
+          "hedge_rate_basis": "same-day paper intent cohort; success requires full intended quantity, not partial fills or candidates",
+          "inventory": {
+            "synthetic-demo-market": {
+              "YES": {
+                "asset_id": "synthetic-home",
+                "label": "Pistons",
+                "quantity": "10"
+              },
+              "NO": {
+                "asset_id": "synthetic-away",
+                "label": "Celtics",
+                "quantity": "10"
+              },
+              "paired_quantity": "10",
+              "directional_quantity": "0",
+              "binary_role_basis": "native YES/NO labels when present; otherwise outcome_index, with actual labels/assets retained"
+            }
+          },
+          "opening_equity": "0",
+          "closing_account": {
+            "available_cash": "1000.10",
+            "available_inventory": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "capital_contributions": "1010.00",
+            "cash": "1000.10",
+            "cash_flows": "0.10",
+            "conservative_committed_exposure": "20",
+            "cost_basis_complete": true,
+            "equity": "1010.10",
+            "exposure_before_close": "30",
+            "fees": "0.00",
+            "input_seq": 353,
+            "mark_evidence": {
+              "synthetic-away": {
+                "book_ref": "observation:702",
+                "received_ms": 1791954350000
+              },
+              "synthetic-home": {
+                "book_ref": "observation:701",
+                "received_ms": 1791954350000
+              }
+            },
+            "market_value": "10.00",
+            "marks": {
+              "synthetic-away": "0.50",
+              "synthetic-home": "0.50"
+            },
+            "missing_marks": [],
+            "net_pnl": "0.10",
+            "not_real_profit": true,
+            "pair_cash_flow": "0",
+            "peak_conservative_committed_exposure": "32",
+            "positions": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "realized_trading_pnl": "0.06",
+            "reconciled": true,
+            "reserved_cash": "0",
+            "reserved_inventory": {
+              "synthetic-away": "0",
+              "synthetic-home": "0"
+            },
+            "rewards": "0",
+            "run_closed": true,
+            "settlement_cash_flow": "0",
+            "time_ms": 1791954350000,
+            "trading_pnl": "0.10",
+            "unrealized_trading_pnl": "0.04",
+            "virtual": true
+          },
+          "daily_trading_pnl": "0.10",
+          "daily_fees": "0.00",
+          "daily_rewards": "0",
+          "daily_net_pnl": "0.10",
+          "net_pnl_reconciled": true,
+          "max_conservative_committed_exposure": "32",
+          "attribution": {
+            "entry_edge": "0.00",
+            "spread_capture": "0.06",
+            "directional_residual": "0.00",
+            "stale_quote_loss": null,
+            "covered_closures": 1,
+            "total_closures": 1,
+            "additive_components": [
+              "entry_edge",
+              "spread_capture",
+              "directional_residual"
+            ],
+            "nonadditive_diagnostics": [
+              "markout",
+              "hedge_slippage",
+              "stale_quote_loss"
+            ],
+            "hedge_slippage": null,
+            "stale_quote_loss_is_partial_realized_diagnostic": false,
+            "overlapping_metrics_never_summed": true,
+            "entry_edge_at_fill_diagnostic": "0.04",
+            "entry_edge_sample_count": 1,
+            "hedge_slippage_samples": 0,
+            "stale_quote_open_lots": 0,
+            "stale_quote_closed_lots": 0
+          },
+          "valuation_missing_count": 2,
+          "not_real_profit": true,
+          "acceptance_metrics": {
+            "quote_availability": "0.9943342776203966005665722380",
+            "gross_edge_target_sample_count": 1404,
+            "gross_edge_min": "0.01",
+            "gross_edge_max": "0.03",
+            "gross_edge_mean": "0.01005698005698005698005698006",
+            "gross_edge_scope": "UTC-day target quotes, theoretical per-share; not profit",
+            "hedge_cost": null,
+            "hedge_cost_sample_count": 0,
+            "cancel_latency_ms": null,
+            "reconciliation_latency_ms": null,
+            "latency_scope": "instant-cancel research replay; use separate OMS fault latency, never join as measured live latency",
+            "stale_quote_loss": null
+          }
+        },
+        {
+          "lane": "2c-L0",
+          "model": "L0",
+          "quote_opportunities": 702,
+          "decisions": 706,
+          "orders_created": 54,
+          "fill_events": 1,
+          "submitted_quantity": "270",
+          "filled_quantity": "4",
+          "pending_quantity": "0",
+          "cancelled_or_expired_quantity": "266",
+          "order_fill_rate": "0.0185185185185185185185185185185185185185185",
+          "quantity_fill_rate": "0.0148148148148148148148148148148148148148148",
+          "partial_order_rate_among_filled": "1",
+          "markouts": {
+            "10": {
+              "quantity_weighted_per_share": "0.02",
+              "statuses": {
+                "OBSERVED": 1
+              },
+              "diagnostic_not_pnl": true
+            },
+            "30": {
+              "quantity_weighted_per_share": "0.02",
+              "statuses": {
+                "OBSERVED": 1
+              },
+              "diagnostic_not_pnl": true
+            },
+            "60": {
+              "quantity_weighted_per_share": "0.02",
+              "statuses": {
+                "OBSERVED": 1
+              },
+              "diagnostic_not_pnl": true
+            },
+            "300": {
+              "quantity_weighted_per_share": "0.02",
+              "statuses": {
+                "OBSERVED": 1
+              },
+              "diagnostic_not_pnl": true
+            }
+          },
+          "hedge_success_rate": null,
+          "hedge_quantity_completion_rate": null,
+          "hedge_partial_intent_rate": null,
+          "hedge_sample_count": 0,
+          "hedge_fill_events_today": 0,
+          "hedge_rate_basis": "same-day paper intent cohort; success requires full intended quantity, not partial fills or candidates",
+          "inventory": {
+            "synthetic-demo-market": {
+              "YES": {
+                "asset_id": "synthetic-home",
+                "label": "Pistons",
+                "quantity": "6"
+              },
+              "NO": {
+                "asset_id": "synthetic-away",
+                "label": "Celtics",
+                "quantity": "10"
+              },
+              "paired_quantity": "6",
+              "directional_quantity": "4",
+              "binary_role_basis": "native YES/NO labels when present; otherwise outcome_index, with actual labels/assets retained"
+            }
+          },
+          "opening_equity": "0",
+          "closing_account": {
+            "available_cash": "1002.08",
+            "available_inventory": {
+              "synthetic-away": "10",
+              "synthetic-home": "6"
+            },
+            "capital_contributions": "1010.00",
+            "cash": "1002.08",
+            "cash_flows": "2.08",
+            "conservative_committed_exposure": "16",
+            "cost_basis_complete": true,
+            "equity": "1010.08",
+            "exposure_before_close": "26",
+            "fees": "0.00",
+            "input_seq": 353,
+            "mark_evidence": {
+              "synthetic-away": {
+                "book_ref": "observation:702",
+                "received_ms": 1791954350000
+              },
+              "synthetic-home": {
+                "book_ref": "observation:701",
+                "received_ms": 1791954350000
+              }
+            },
+            "market_value": "8.00",
+            "marks": {
+              "synthetic-away": "0.50",
+              "synthetic-home": "0.50"
+            },
+            "missing_marks": [],
+            "net_pnl": "0.08",
+            "not_real_profit": true,
+            "pair_cash_flow": "0",
+            "peak_conservative_committed_exposure": "30",
+            "positions": {
+              "synthetic-away": "10",
+              "synthetic-home": "6"
+            },
+            "realized_trading_pnl": "0.08",
+            "reconciled": true,
+            "reserved_cash": "0",
+            "reserved_inventory": {
+              "synthetic-away": "0",
+              "synthetic-home": "0"
+            },
+            "rewards": "0",
+            "run_closed": true,
+            "settlement_cash_flow": "0",
+            "time_ms": 1791954350000,
+            "trading_pnl": "0.08",
+            "unrealized_trading_pnl": "0.00",
+            "virtual": true
+          },
+          "daily_trading_pnl": "0.08",
+          "daily_fees": "0.00",
+          "daily_rewards": "0",
+          "daily_net_pnl": "0.08",
+          "net_pnl_reconciled": true,
+          "max_conservative_committed_exposure": "30",
+          "attribution": {
+            "entry_edge": "0.00",
+            "spread_capture": "0.08",
+            "directional_residual": "0.00",
+            "stale_quote_loss": null,
+            "covered_closures": 1,
+            "total_closures": 1,
+            "additive_components": [
+              "entry_edge",
+              "spread_capture",
+              "directional_residual"
+            ],
+            "nonadditive_diagnostics": [
+              "markout",
+              "hedge_slippage",
+              "stale_quote_loss"
+            ],
+            "hedge_slippage": null,
+            "stale_quote_loss_is_partial_realized_diagnostic": false,
+            "overlapping_metrics_never_summed": true,
+            "entry_edge_at_fill_diagnostic": null,
+            "entry_edge_sample_count": 0,
+            "hedge_slippage_samples": 0,
+            "stale_quote_open_lots": 0,
+            "stale_quote_closed_lots": 0
+          },
+          "valuation_missing_count": 2,
+          "not_real_profit": true,
+          "acceptance_metrics": {
+            "quote_availability": "0.9943342776203966005665722380",
+            "gross_edge_target_sample_count": 1404,
+            "gross_edge_min": "0.02",
+            "gross_edge_max": "0.03",
+            "gross_edge_mean": "0.02001424501424501424501424501",
+            "gross_edge_scope": "UTC-day target quotes, theoretical per-share; not profit",
+            "hedge_cost": null,
+            "hedge_cost_sample_count": 0,
+            "cancel_latency_ms": null,
+            "reconciliation_latency_ms": null,
+            "latency_scope": "instant-cancel research replay; use separate OMS fault latency, never join as measured live latency",
+            "stale_quote_loss": null
+          }
+        },
+        {
+          "lane": "2c-L1",
+          "model": "L1",
+          "quote_opportunities": 702,
+          "decisions": 706,
+          "orders_created": 56,
+          "fill_events": 2,
+          "submitted_quantity": "280",
+          "filled_quantity": "10",
+          "pending_quantity": "0",
+          "cancelled_or_expired_quantity": "270",
+          "order_fill_rate": "0.0357142857142857142857142857142857142857143",
+          "quantity_fill_rate": "0.0357142857142857142857142857142857142857143",
+          "partial_order_rate_among_filled": "0",
+          "markouts": {
+            "10": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "30": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "60": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "300": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            }
+          },
+          "hedge_success_rate": null,
+          "hedge_quantity_completion_rate": null,
+          "hedge_partial_intent_rate": null,
+          "hedge_sample_count": 0,
+          "hedge_fill_events_today": 0,
+          "hedge_rate_basis": "same-day paper intent cohort; success requires full intended quantity, not partial fills or candidates",
+          "inventory": {
+            "synthetic-demo-market": {
+              "YES": {
+                "asset_id": "synthetic-home",
+                "label": "Pistons",
+                "quantity": "10"
+              },
+              "NO": {
+                "asset_id": "synthetic-away",
+                "label": "Celtics",
+                "quantity": "10"
+              },
+              "paired_quantity": "10",
+              "directional_quantity": "0",
+              "binary_role_basis": "native YES/NO labels when present; otherwise outcome_index, with actual labels/assets retained"
+            }
+          },
+          "opening_equity": "0",
+          "closing_account": {
+            "available_cash": "1000.25",
+            "available_inventory": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "capital_contributions": "1010.00",
+            "cash": "1000.25",
+            "cash_flows": "0.25",
+            "conservative_committed_exposure": "20",
+            "cost_basis_complete": true,
+            "equity": "1010.25",
+            "exposure_before_close": "30",
+            "fees": "0.00",
+            "input_seq": 353,
+            "mark_evidence": {
+              "synthetic-away": {
+                "book_ref": "observation:702",
+                "received_ms": 1791954350000
+              },
+              "synthetic-home": {
+                "book_ref": "observation:701",
+                "received_ms": 1791954350000
+              }
+            },
+            "market_value": "10.00",
+            "marks": {
+              "synthetic-away": "0.50",
+              "synthetic-home": "0.50"
+            },
+            "missing_marks": [],
+            "net_pnl": "0.25",
+            "not_real_profit": true,
+            "pair_cash_flow": "0",
+            "peak_conservative_committed_exposure": "35",
+            "positions": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "realized_trading_pnl": "0.15",
+            "reconciled": true,
+            "reserved_cash": "0",
+            "reserved_inventory": {
+              "synthetic-away": "0",
+              "synthetic-home": "0"
+            },
+            "rewards": "0",
+            "run_closed": true,
+            "settlement_cash_flow": "0",
+            "time_ms": 1791954350000,
+            "trading_pnl": "0.25",
+            "unrealized_trading_pnl": "0.10",
+            "virtual": true
+          },
+          "daily_trading_pnl": "0.25",
+          "daily_fees": "0.00",
+          "daily_rewards": "0",
+          "daily_net_pnl": "0.25",
+          "net_pnl_reconciled": true,
+          "max_conservative_committed_exposure": "35",
+          "attribution": {
+            "entry_edge": "0.00",
+            "spread_capture": "0.15",
+            "directional_residual": "0.00",
+            "stale_quote_loss": null,
+            "covered_closures": 1,
+            "total_closures": 1,
+            "additive_components": [
+              "entry_edge",
+              "spread_capture",
+              "directional_residual"
+            ],
+            "nonadditive_diagnostics": [
+              "markout",
+              "hedge_slippage",
+              "stale_quote_loss"
+            ],
+            "hedge_slippage": null,
+            "stale_quote_loss_is_partial_realized_diagnostic": false,
+            "overlapping_metrics_never_summed": true,
+            "entry_edge_at_fill_diagnostic": "0.10",
+            "entry_edge_sample_count": 1,
+            "hedge_slippage_samples": 0,
+            "stale_quote_open_lots": 0,
+            "stale_quote_closed_lots": 0
+          },
+          "valuation_missing_count": 2,
+          "not_real_profit": true,
+          "acceptance_metrics": {
+            "quote_availability": "0.9943342776203966005665722380",
+            "gross_edge_target_sample_count": 1404,
+            "gross_edge_min": "0.02",
+            "gross_edge_max": "0.03",
+            "gross_edge_mean": "0.02001424501424501424501424501",
+            "gross_edge_scope": "UTC-day target quotes, theoretical per-share; not profit",
+            "hedge_cost": null,
+            "hedge_cost_sample_count": 0,
+            "cancel_latency_ms": null,
+            "reconciliation_latency_ms": null,
+            "latency_scope": "instant-cancel research replay; use separate OMS fault latency, never join as measured live latency",
+            "stale_quote_loss": null
+          }
+        },
+        {
+          "lane": "2c-L2",
+          "model": "L2",
+          "quote_opportunities": 702,
+          "decisions": 706,
+          "orders_created": 56,
+          "fill_events": 2,
+          "submitted_quantity": "280",
+          "filled_quantity": "4",
+          "pending_quantity": "0",
+          "cancelled_or_expired_quantity": "276",
+          "order_fill_rate": "0.0357142857142857142857142857142857142857143",
+          "quantity_fill_rate": "0.0142857142857142857142857142857142857142857",
+          "partial_order_rate_among_filled": "1",
+          "markouts": {
+            "10": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "30": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "60": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "300": {
+              "quantity_weighted_per_share": "0.025",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            }
+          },
+          "hedge_success_rate": null,
+          "hedge_quantity_completion_rate": null,
+          "hedge_partial_intent_rate": null,
+          "hedge_sample_count": 0,
+          "hedge_fill_events_today": 0,
+          "hedge_rate_basis": "same-day paper intent cohort; success requires full intended quantity, not partial fills or candidates",
+          "inventory": {
+            "synthetic-demo-market": {
+              "YES": {
+                "asset_id": "synthetic-home",
+                "label": "Pistons",
+                "quantity": "10"
+              },
+              "NO": {
+                "asset_id": "synthetic-away",
+                "label": "Celtics",
+                "quantity": "10"
+              },
+              "paired_quantity": "10",
+              "directional_quantity": "0",
+              "binary_role_basis": "native YES/NO labels when present; otherwise outcome_index, with actual labels/assets retained"
+            }
+          },
+          "opening_equity": "0",
+          "closing_account": {
+            "available_cash": "1000.10",
+            "available_inventory": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "capital_contributions": "1010.00",
+            "cash": "1000.10",
+            "cash_flows": "0.10",
+            "conservative_committed_exposure": "20",
+            "cost_basis_complete": true,
+            "equity": "1010.10",
+            "exposure_before_close": "30",
+            "fees": "0.00",
+            "input_seq": 353,
+            "mark_evidence": {
+              "synthetic-away": {
+                "book_ref": "observation:702",
+                "received_ms": 1791954350000
+              },
+              "synthetic-home": {
+                "book_ref": "observation:701",
+                "received_ms": 1791954350000
+              }
+            },
+            "market_value": "10.00",
+            "marks": {
+              "synthetic-away": "0.50",
+              "synthetic-home": "0.50"
+            },
+            "missing_marks": [],
+            "net_pnl": "0.10",
+            "not_real_profit": true,
+            "pair_cash_flow": "0",
+            "peak_conservative_committed_exposure": "32",
+            "positions": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "realized_trading_pnl": "0.06",
+            "reconciled": true,
+            "reserved_cash": "0",
+            "reserved_inventory": {
+              "synthetic-away": "0",
+              "synthetic-home": "0"
+            },
+            "rewards": "0",
+            "run_closed": true,
+            "settlement_cash_flow": "0",
+            "time_ms": 1791954350000,
+            "trading_pnl": "0.10",
+            "unrealized_trading_pnl": "0.04",
+            "virtual": true
+          },
+          "daily_trading_pnl": "0.10",
+          "daily_fees": "0.00",
+          "daily_rewards": "0",
+          "daily_net_pnl": "0.10",
+          "net_pnl_reconciled": true,
+          "max_conservative_committed_exposure": "32",
+          "attribution": {
+            "entry_edge": "0.00",
+            "spread_capture": "0.06",
+            "directional_residual": "0.00",
+            "stale_quote_loss": null,
+            "covered_closures": 1,
+            "total_closures": 1,
+            "additive_components": [
+              "entry_edge",
+              "spread_capture",
+              "directional_residual"
+            ],
+            "nonadditive_diagnostics": [
+              "markout",
+              "hedge_slippage",
+              "stale_quote_loss"
+            ],
+            "hedge_slippage": null,
+            "stale_quote_loss_is_partial_realized_diagnostic": false,
+            "overlapping_metrics_never_summed": true,
+            "entry_edge_at_fill_diagnostic": "0.04",
+            "entry_edge_sample_count": 1,
+            "hedge_slippage_samples": 0,
+            "stale_quote_open_lots": 0,
+            "stale_quote_closed_lots": 0
+          },
+          "valuation_missing_count": 2,
+          "not_real_profit": true,
+          "acceptance_metrics": {
+            "quote_availability": "0.9943342776203966005665722380",
+            "gross_edge_target_sample_count": 1404,
+            "gross_edge_min": "0.02",
+            "gross_edge_max": "0.03",
+            "gross_edge_mean": "0.02001424501424501424501424501",
+            "gross_edge_scope": "UTC-day target quotes, theoretical per-share; not profit",
+            "hedge_cost": null,
+            "hedge_cost_sample_count": 0,
+            "cancel_latency_ms": null,
+            "reconciliation_latency_ms": null,
+            "latency_scope": "instant-cancel research replay; use separate OMS fault latency, never join as measured live latency",
+            "stale_quote_loss": null
+          }
+        },
+        {
+          "lane": "3c-L0",
+          "model": "L0",
+          "quote_opportunities": 702,
+          "decisions": 706,
+          "orders_created": 52,
+          "fill_events": 0,
+          "submitted_quantity": "260",
+          "filled_quantity": "0",
+          "pending_quantity": "0",
+          "cancelled_or_expired_quantity": "260",
+          "order_fill_rate": "0",
+          "quantity_fill_rate": "0",
+          "partial_order_rate_among_filled": null,
+          "markouts": {
+            "10": {
+              "quantity_weighted_per_share": null,
+              "statuses": {},
+              "diagnostic_not_pnl": true
+            },
+            "30": {
+              "quantity_weighted_per_share": null,
+              "statuses": {},
+              "diagnostic_not_pnl": true
+            },
+            "60": {
+              "quantity_weighted_per_share": null,
+              "statuses": {},
+              "diagnostic_not_pnl": true
+            },
+            "300": {
+              "quantity_weighted_per_share": null,
+              "statuses": {},
+              "diagnostic_not_pnl": true
+            }
+          },
+          "hedge_success_rate": null,
+          "hedge_quantity_completion_rate": null,
+          "hedge_partial_intent_rate": null,
+          "hedge_sample_count": 0,
+          "hedge_fill_events_today": 0,
+          "hedge_rate_basis": "same-day paper intent cohort; success requires full intended quantity, not partial fills or candidates",
+          "inventory": {
+            "synthetic-demo-market": {
+              "YES": {
+                "asset_id": "synthetic-home",
+                "label": "Pistons",
+                "quantity": "10"
+              },
+              "NO": {
+                "asset_id": "synthetic-away",
+                "label": "Celtics",
+                "quantity": "10"
+              },
+              "paired_quantity": "10",
+              "directional_quantity": "0",
+              "binary_role_basis": "native YES/NO labels when present; otherwise outcome_index, with actual labels/assets retained"
+            }
+          },
+          "opening_equity": "0",
+          "closing_account": {
+            "available_cash": "1000",
+            "available_inventory": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "capital_contributions": "1010.00",
+            "cash": "1000",
+            "cash_flows": "0",
+            "conservative_committed_exposure": "20",
+            "cost_basis_complete": true,
+            "equity": "1010.00",
+            "exposure_before_close": "30",
+            "fees": "0",
+            "input_seq": 353,
+            "mark_evidence": {
+              "synthetic-away": {
+                "book_ref": "observation:702",
+                "received_ms": 1791954350000
+              },
+              "synthetic-home": {
+                "book_ref": "observation:701",
+                "received_ms": 1791954350000
+              }
+            },
+            "market_value": "10.00",
+            "marks": {
+              "synthetic-away": "0.50",
+              "synthetic-home": "0.50"
+            },
+            "missing_marks": [],
+            "net_pnl": "0.00",
+            "not_real_profit": true,
+            "pair_cash_flow": "0",
+            "peak_conservative_committed_exposure": "30",
+            "positions": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "realized_trading_pnl": "0",
+            "reconciled": true,
+            "reserved_cash": "0",
+            "reserved_inventory": {
+              "synthetic-away": "0",
+              "synthetic-home": "0"
+            },
+            "rewards": "0",
+            "run_closed": true,
+            "settlement_cash_flow": "0",
+            "time_ms": 1791954350000,
+            "trading_pnl": "0.00",
+            "unrealized_trading_pnl": "0.00",
+            "virtual": true
+          },
+          "daily_trading_pnl": "0.00",
+          "daily_fees": "0",
+          "daily_rewards": "0",
+          "daily_net_pnl": "0.00",
+          "net_pnl_reconciled": true,
+          "max_conservative_committed_exposure": "30",
+          "attribution": {
+            "entry_edge": "0",
+            "spread_capture": "0",
+            "directional_residual": "0",
+            "stale_quote_loss": null,
+            "covered_closures": 0,
+            "total_closures": 0,
+            "additive_components": [
+              "entry_edge",
+              "spread_capture",
+              "directional_residual"
+            ],
+            "nonadditive_diagnostics": [
+              "markout",
+              "hedge_slippage",
+              "stale_quote_loss"
+            ],
+            "hedge_slippage": null,
+            "stale_quote_loss_is_partial_realized_diagnostic": false,
+            "overlapping_metrics_never_summed": true,
+            "entry_edge_at_fill_diagnostic": null,
+            "entry_edge_sample_count": 0,
+            "hedge_slippage_samples": 0,
+            "stale_quote_open_lots": 0,
+            "stale_quote_closed_lots": 0
+          },
+          "valuation_missing_count": 2,
+          "not_real_profit": true,
+          "acceptance_metrics": {
+            "quote_availability": "0.9943342776203966005665722380",
+            "gross_edge_target_sample_count": 1404,
+            "gross_edge_min": "0.03",
+            "gross_edge_max": "0.03",
+            "gross_edge_mean": "0.03",
+            "gross_edge_scope": "UTC-day target quotes, theoretical per-share; not profit",
+            "hedge_cost": null,
+            "hedge_cost_sample_count": 0,
+            "cancel_latency_ms": null,
+            "reconciliation_latency_ms": null,
+            "latency_scope": "instant-cancel research replay; use separate OMS fault latency, never join as measured live latency",
+            "stale_quote_loss": null
+          }
+        },
+        {
+          "lane": "3c-L1",
+          "model": "L1",
+          "quote_opportunities": 702,
+          "decisions": 706,
+          "orders_created": 53,
+          "fill_events": 1,
+          "submitted_quantity": "265",
+          "filled_quantity": "5",
+          "pending_quantity": "0",
+          "cancelled_or_expired_quantity": "260",
+          "order_fill_rate": "0.0188679245283018867924528301886792452830189",
+          "quantity_fill_rate": "0.0188679245283018867924528301886792452830189",
+          "partial_order_rate_among_filled": "0",
+          "markouts": {
+            "10": {
+              "quantity_weighted_per_share": "0.03",
+              "statuses": {
+                "OBSERVED": 1
+              },
+              "diagnostic_not_pnl": true
+            },
+            "30": {
+              "quantity_weighted_per_share": "0.03",
+              "statuses": {
+                "OBSERVED": 1
+              },
+              "diagnostic_not_pnl": true
+            },
+            "60": {
+              "quantity_weighted_per_share": "0.03",
+              "statuses": {
+                "OBSERVED": 1
+              },
+              "diagnostic_not_pnl": true
+            },
+            "300": {
+              "quantity_weighted_per_share": "0.03",
+              "statuses": {
+                "OBSERVED": 1
+              },
+              "diagnostic_not_pnl": true
+            }
+          },
+          "hedge_success_rate": null,
+          "hedge_quantity_completion_rate": null,
+          "hedge_partial_intent_rate": null,
+          "hedge_sample_count": 0,
+          "hedge_fill_events_today": 0,
+          "hedge_rate_basis": "same-day paper intent cohort; success requires full intended quantity, not partial fills or candidates",
+          "inventory": {
+            "synthetic-demo-market": {
+              "YES": {
+                "asset_id": "synthetic-home",
+                "label": "Pistons",
+                "quantity": "5"
+              },
+              "NO": {
+                "asset_id": "synthetic-away",
+                "label": "Celtics",
+                "quantity": "10"
+              },
+              "paired_quantity": "5",
+              "directional_quantity": "5",
+              "binary_role_basis": "native YES/NO labels when present; otherwise outcome_index, with actual labels/assets retained"
+            }
+          },
+          "opening_equity": "0",
+          "closing_account": {
+            "available_cash": "1002.65",
+            "available_inventory": {
+              "synthetic-away": "10",
+              "synthetic-home": "5"
+            },
+            "capital_contributions": "1010.00",
+            "cash": "1002.65",
+            "cash_flows": "2.65",
+            "conservative_committed_exposure": "15",
+            "cost_basis_complete": true,
+            "equity": "1010.15",
+            "exposure_before_close": "25",
+            "fees": "0.00",
+            "input_seq": 353,
+            "mark_evidence": {
+              "synthetic-away": {
+                "book_ref": "observation:702",
+                "received_ms": 1791954350000
+              },
+              "synthetic-home": {
+                "book_ref": "observation:701",
+                "received_ms": 1791954350000
+              }
+            },
+            "market_value": "7.50",
+            "marks": {
+              "synthetic-away": "0.50",
+              "synthetic-home": "0.50"
+            },
+            "missing_marks": [],
+            "net_pnl": "0.15",
+            "not_real_profit": true,
+            "pair_cash_flow": "0",
+            "peak_conservative_committed_exposure": "30",
+            "positions": {
+              "synthetic-away": "10",
+              "synthetic-home": "5"
+            },
+            "realized_trading_pnl": "0.15",
+            "reconciled": true,
+            "reserved_cash": "0",
+            "reserved_inventory": {
+              "synthetic-away": "0",
+              "synthetic-home": "0"
+            },
+            "rewards": "0",
+            "run_closed": true,
+            "settlement_cash_flow": "0",
+            "time_ms": 1791954350000,
+            "trading_pnl": "0.15",
+            "unrealized_trading_pnl": "0.00",
+            "virtual": true
+          },
+          "daily_trading_pnl": "0.15",
+          "daily_fees": "0.00",
+          "daily_rewards": "0",
+          "daily_net_pnl": "0.15",
+          "net_pnl_reconciled": true,
+          "max_conservative_committed_exposure": "30",
+          "attribution": {
+            "entry_edge": "0.00",
+            "spread_capture": "0.15",
+            "directional_residual": "0.00",
+            "stale_quote_loss": null,
+            "covered_closures": 1,
+            "total_closures": 1,
+            "additive_components": [
+              "entry_edge",
+              "spread_capture",
+              "directional_residual"
+            ],
+            "nonadditive_diagnostics": [
+              "markout",
+              "hedge_slippage",
+              "stale_quote_loss"
+            ],
+            "hedge_slippage": null,
+            "stale_quote_loss_is_partial_realized_diagnostic": false,
+            "overlapping_metrics_never_summed": true,
+            "entry_edge_at_fill_diagnostic": null,
+            "entry_edge_sample_count": 0,
+            "hedge_slippage_samples": 0,
+            "stale_quote_open_lots": 0,
+            "stale_quote_closed_lots": 0
+          },
+          "valuation_missing_count": 2,
+          "not_real_profit": true,
+          "acceptance_metrics": {
+            "quote_availability": "0.9943342776203966005665722380",
+            "gross_edge_target_sample_count": 1404,
+            "gross_edge_min": "0.03",
+            "gross_edge_max": "0.03",
+            "gross_edge_mean": "0.03",
+            "gross_edge_scope": "UTC-day target quotes, theoretical per-share; not profit",
+            "hedge_cost": null,
+            "hedge_cost_sample_count": 0,
+            "cancel_latency_ms": null,
+            "reconciliation_latency_ms": null,
+            "latency_scope": "instant-cancel research replay; use separate OMS fault latency, never join as measured live latency",
+            "stale_quote_loss": null
+          }
+        },
+        {
+          "lane": "3c-L2",
+          "model": "L2",
+          "quote_opportunities": 702,
+          "decisions": 706,
+          "orders_created": 54,
+          "fill_events": 2,
+          "submitted_quantity": "270",
+          "filled_quantity": "4",
+          "pending_quantity": "0",
+          "cancelled_or_expired_quantity": "266",
+          "order_fill_rate": "0.0370370370370370370370370370370370370370370",
+          "quantity_fill_rate": "0.0148148148148148148148148148148148148148148",
+          "partial_order_rate_among_filled": "1",
+          "markouts": {
+            "10": {
+              "quantity_weighted_per_share": "0.03",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "30": {
+              "quantity_weighted_per_share": "0.03",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "60": {
+              "quantity_weighted_per_share": "0.03",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            },
+            "300": {
+              "quantity_weighted_per_share": "0.03",
+              "statuses": {
+                "OBSERVED": 2
+              },
+              "diagnostic_not_pnl": true
+            }
+          },
+          "hedge_success_rate": null,
+          "hedge_quantity_completion_rate": null,
+          "hedge_partial_intent_rate": null,
+          "hedge_sample_count": 0,
+          "hedge_fill_events_today": 0,
+          "hedge_rate_basis": "same-day paper intent cohort; success requires full intended quantity, not partial fills or candidates",
+          "inventory": {
+            "synthetic-demo-market": {
+              "YES": {
+                "asset_id": "synthetic-home",
+                "label": "Pistons",
+                "quantity": "10"
+              },
+              "NO": {
+                "asset_id": "synthetic-away",
+                "label": "Celtics",
+                "quantity": "10"
+              },
+              "paired_quantity": "10",
+              "directional_quantity": "0",
+              "binary_role_basis": "native YES/NO labels when present; otherwise outcome_index, with actual labels/assets retained"
+            }
+          },
+          "opening_equity": "0",
+          "closing_account": {
+            "available_cash": "1000.12",
+            "available_inventory": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "capital_contributions": "1010.00",
+            "cash": "1000.12",
+            "cash_flows": "0.12",
+            "conservative_committed_exposure": "20",
+            "cost_basis_complete": true,
+            "equity": "1010.12",
+            "exposure_before_close": "30",
+            "fees": "0.00",
+            "input_seq": 353,
+            "mark_evidence": {
+              "synthetic-away": {
+                "book_ref": "observation:702",
+                "received_ms": 1791954350000
+              },
+              "synthetic-home": {
+                "book_ref": "observation:701",
+                "received_ms": 1791954350000
+              }
+            },
+            "market_value": "10.00",
+            "marks": {
+              "synthetic-away": "0.50",
+              "synthetic-home": "0.50"
+            },
+            "missing_marks": [],
+            "net_pnl": "0.12",
+            "not_real_profit": true,
+            "pair_cash_flow": "0",
+            "peak_conservative_committed_exposure": "32",
+            "positions": {
+              "synthetic-away": "10",
+              "synthetic-home": "10"
+            },
+            "realized_trading_pnl": "0.06",
+            "reconciled": true,
+            "reserved_cash": "0",
+            "reserved_inventory": {
+              "synthetic-away": "0",
+              "synthetic-home": "0"
+            },
+            "rewards": "0",
+            "run_closed": true,
+            "settlement_cash_flow": "0",
+            "time_ms": 1791954350000,
+            "trading_pnl": "0.12",
+            "unrealized_trading_pnl": "0.06",
+            "virtual": true
+          },
+          "daily_trading_pnl": "0.12",
+          "daily_fees": "0.00",
+          "daily_rewards": "0",
+          "daily_net_pnl": "0.12",
+          "net_pnl_reconciled": true,
+          "max_conservative_committed_exposure": "32",
+          "attribution": {
+            "entry_edge": "0.00",
+            "spread_capture": "0.06",
+            "directional_residual": "0.00",
+            "stale_quote_loss": null,
+            "covered_closures": 1,
+            "total_closures": 1,
+            "additive_components": [
+              "entry_edge",
+              "spread_capture",
+              "directional_residual"
+            ],
+            "nonadditive_diagnostics": [
+              "markout",
+              "hedge_slippage",
+              "stale_quote_loss"
+            ],
+            "hedge_slippage": null,
+            "stale_quote_loss_is_partial_realized_diagnostic": false,
+            "overlapping_metrics_never_summed": true,
+            "entry_edge_at_fill_diagnostic": "0.06",
+            "entry_edge_sample_count": 1,
+            "hedge_slippage_samples": 0,
+            "stale_quote_open_lots": 0,
+            "stale_quote_closed_lots": 0
+          },
+          "valuation_missing_count": 2,
+          "not_real_profit": true,
+          "acceptance_metrics": {
+            "quote_availability": "0.9943342776203966005665722380",
+            "gross_edge_target_sample_count": 1404,
+            "gross_edge_min": "0.03",
+            "gross_edge_max": "0.03",
+            "gross_edge_mean": "0.03",
+            "gross_edge_scope": "UTC-day target quotes, theoretical per-share; not profit",
+            "hedge_cost": null,
+            "hedge_cost_sample_count": 0,
+            "cancel_latency_ms": null,
+            "reconciliation_latency_ms": null,
+            "latency_scope": "instant-cancel research replay; use separate OMS fault latency, never join as measured live latency",
+            "stale_quote_loss": null
+          }
+        }
+      ],
+      "comparison": "independent counterfactual lanes; do not add account equities or PnL across models",
+      "not_live_performance": true
+    }
+  ],
+  "sample_provenance": "caller must identify source; demo is synthetic",
+  "live_go": false,
+  "real_submission_calls": 0
+}

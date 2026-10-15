@@ -4,6 +4,7 @@ import re
 from datetime import datetime, timezone
 from collections import Counter
 from decimal import Decimal, InvalidOperation
+from .teams import team_code
 
 import httpx
 
@@ -33,7 +34,7 @@ def array(value):
     return json.loads(value) if isinstance(value, str) else value
 
 
-def select_market(event, market, series_id, now):
+def select_market(event, market, series_id, now, ordering=None):
     """Fail closed on missing identity/type/time. Never infer time from listing date."""
     slug = event.get("slug", "")
     match = re.fullmatch(r"nba-([a-z0-9]+)-([a-z0-9]+)-(\d{4}-\d{2}-\d{2})", slug)
@@ -71,10 +72,25 @@ def select_market(event, market, series_id, now):
         return None, "not_pregame"
     if not (event.get("active") and market.get("active") and not event.get("closed") and not event.get("archived") and not market.get("closed") and not market.get("archived") and market.get("enableOrderBook")):
         return None, "inactive"
+    roles = {}
+    for role in ("home", "away"):
+        teams = [t for t in event.get("teams", []) if isinstance(t, dict) and t.get("ordering") == role and t.get("league") == "nba"]
+        if len(teams) == 1:
+            abbreviation, name = team_code(teams[0].get("abbreviation")), team_code(teams[0].get("name"))
+            if abbreviation and name and abbreviation != name:
+                continue
+            roles[role] = abbreviation or name
+    if set(roles.values()) != {match[1], match[2]}:
+        roles = {}
     result = {"venue": "polymarket.com", "season": "2026-27", "calendar_source": CALENDAR_SOURCE,
               "event_id": str(event["id"]), "market_id": str(market["id"]), "condition_id": market["conditionId"],
               "slug": slug, "question": market["question"], "game_start": start, "game_start_ms": start_ms,
               "version": market.get("version", "v1"), "outcomes": [{"label": label, "asset_id": str(token)} for label, token in zip(outcomes, tokens)],
+              "description": market.get("description", ""), "resolution_source": market.get("resolutionSource"),
+              "market_type": market.get("sportsMarketType"), "league": "nba", "team_ordering": ordering,
+              "away_team": roles.get("away"), "home_team": roles.get("home"),
+              "home_away_evidence": "event_teams" if len(roles) == 2 else None, "event_teams": event.get("teams", []),
+              "event_live": event.get("live"), "event_ended": event.get("ended"),
               "yes_asset_id": next((str(t) for l, t in zip(outcomes, tokens) if l.lower() == "yes"), None),
               "no_asset_id": next((str(t) for l, t in zip(outcomes, tokens) if l.lower() == "no"), None),
               "tick_size": str(market.get("orderPriceMinTickSize")), "minimum_order_size": str(market.get("orderMinSize")),
@@ -90,7 +106,8 @@ class PublicAPI:
         await self.client.aclose()
 
     async def get(self, host, path, params=None):
-        if (host, path) not in {(GAMMA, "/sports"), (GAMMA, "/events"), (CLOB, "/book")}:
+        event_detail = host == GAMMA and re.fullmatch(r"/events/slug/nba-[a-z0-9]+-[a-z0-9]+-\d{4}-\d{2}-\d{2}", path)
+        if (host, path) not in {(GAMMA, "/sports"), (GAMMA, "/events"), (CLOB, "/book")} and not event_detail:
             raise ValueError("Only allowlisted public GET routes permitted")
         for attempt in range(4):
             try:
@@ -116,8 +133,19 @@ class PublicAPI:
             if not isinstance(events, list):
                 raise ValueError("Unexpected Gamma events schema")
             for event in events:
+                detail = None
                 for market in event.get("markets", []):
-                    item, reason = select_market(event, market, str(nba["series"]), now)
+                    item, reason = select_market(event, market, str(nba["series"]), now, nba.get("ordering"))
+                    if item and not item.get("home_away_evidence"):
+                        if detail is None:
+                            detail = await self.get(GAMMA, "/events/slug/" + event["slug"])
+                            if not isinstance(detail, dict):
+                                raise ValueError("Unexpected Gamma event detail schema")
+                        current = next((m for m in detail.get("markets", []) if str(m.get("id")) == str(market["id"])), None)
+                        if current:
+                            item, reason = select_market(detail, current, str(nba["series"]), utc_ms(), nba.get("ordering"))
+                        else:
+                            item, reason = None, "event_detail_missing_market"
                     counts[reason] += 1
                     if item:
                         selected[item["market_id"]] = item

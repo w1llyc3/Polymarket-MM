@@ -1,0 +1,7 @@
+{
+  "queue_multiplier": "1",
+  "hidden_ahead": "0",
+  "maker_fee_rate": "0",
+  "taker_fee_rate": ".05",
+  "fee_source": "synthetic_fee_assumption"
+}

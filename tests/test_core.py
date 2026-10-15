@@ -14,6 +14,7 @@ from nba_recorder.recorder import Recorder
 
 def fixture():
     e = {"id": "1", "slug": "nba-bos-det-2026-10-20", "series": [{"id": "10345"}], "active": True, "startTime": "2026-10-20T19:00:00Z"}
+    e["teams"] = [{"name": "Celtics", "abbreviation": "bos", "league": "nba", "ordering": "away"}, {"name": "Pistons", "abbreviation": "det", "league": "nba", "ordering": "home"}]
     m = {"id": "2", "slug": e["slug"], "question": "Celtics vs. Pistons", "conditionId": "condition", "sportsMarketType": "moneyline", "active": True, "enableOrderBook": True, "acceptingOrders": True, "clobTokenIds": '["a","b"]', "outcomes": '["Celtics","Pistons"]', "orderPriceMinTickSize": .01, "orderMinSize": 5}
     selected, _ = select_market(e, m, "10345", 0)
     return e, m, selected
@@ -24,6 +25,20 @@ def full(timestamp="100"):
 
 
 class ScannerTests(unittest.TestCase):
+    def test_per_event_roles_override_league_display_order(self):
+        e, m, _ = fixture()
+        result, _ = select_market(e, m, "10345", 0, "home")
+        self.assertEqual(result["home_team"], "det")
+        self.assertEqual(result["away_team"], "bos")
+        self.assertEqual(result["home_away_evidence"], "event_teams")
+
+    def test_missing_roles_never_guessed_from_slug(self):
+        e, m, _ = fixture()
+        e.pop("teams")
+        result, _ = select_market(e, m, "10345", 0, "away")
+        self.assertIsNone(result["home_team"])
+        self.assertIsNone(result["home_away_evidence"])
+
     def test_named_outcomes_not_false_yes_no(self):
         _, _, m = fixture()
         self.assertIsNone(m["yes_asset_id"])
@@ -176,6 +191,26 @@ class StorageTests(unittest.TestCase):
 
 
 class IntegrationUnitTests(unittest.IsolatedAsyncioTestCase):
+    async def test_missing_list_roles_fetches_public_event_detail(self):
+        api = PublicAPI()
+        e, m, _ = fixture()
+        detailed = {**e, "markets": [m]}
+        brief = copy.deepcopy(detailed)
+        brief.pop("teams")
+        calls = []
+        async def get(host, path, params=None):
+            calls.append(path)
+            if path == "/sports": return [{"sport":"nba", "series":"10345", "ordering":"away"}]
+            if path == "/events": return [brief]
+            return detailed
+        api.get = get
+        try:
+            result = await api.scan()
+            self.assertEqual(result["markets"][0]["home_away_evidence"], "event_teams")
+            self.assertIn("/events/slug/nba-bos-det-2026-10-20", calls)
+        finally:
+            await api.close()
+
     async def test_resolved_assets_are_not_resubscribed(self):
         with tempfile.TemporaryDirectory() as d:
             s = Store(str(Path(d) / "test.sqlite"))

@@ -1,0 +1,211 @@
+{
+  "quote_runs": [
+    {
+      "run_id": "7a4a3546321db1daba2d120e1a378c7d2d9247a067df16a734070da9450444b8",
+      "orders": 329,
+      "real_submission_calls": 0,
+      "cursor": 353,
+      "state": "CLOSED",
+      "tape_verified": true,
+      "frame_count": 353,
+      "decisions": 4236,
+      "states": [
+        {
+          "lane": "1c-L0",
+          "state": "CANCELLED",
+          "count": 10
+        },
+        {
+          "lane": "1c-L0",
+          "state": "EXPIRED",
+          "count": 44
+        },
+        {
+          "lane": "1c-L0",
+          "state": "FILLED",
+          "count": 2
+        },
+        {
+          "lane": "1c-L1",
+          "state": "CANCELLED",
+          "count": 14
+        },
+        {
+          "lane": "1c-L1",
+          "state": "EXPIRED",
+          "count": 44
+        },
+        {
+          "lane": "2c-L0",
+          "state": "CANCELLED",
+          "count": 9
+        },
+        {
+          "lane": "2c-L0",
+          "state": "EXPIRED",
+          "count": 44
+        },
+        {
+          "lane": "2c-L0",
+          "state": "FILLED",
+          "count": 1
+        },
+        {
+          "lane": "2c-L1",
+          "state": "CANCELLED",
+          "count": 12
+        },
+        {
+          "lane": "2c-L1",
+          "state": "EXPIRED",
+          "count": 44
+        },
+        {
+          "lane": "3c-L0",
+          "state": "CANCELLED",
+          "count": 8
+        },
+        {
+          "lane": "3c-L0",
+          "state": "EXPIRED",
+          "count": 44
+        },
+        {
+          "lane": "3c-L1",
+          "state": "CANCELLED",
+          "count": 9
+        },
+        {
+          "lane": "3c-L1",
+          "state": "EXPIRED",
+          "count": 44
+        }
+      ],
+      "markouts": [
+        {
+          "kind": "HYPOTHETICAL_FILL",
+          "status": "OBSERVED",
+          "horizon_s": 10,
+          "count": 8
+        },
+        {
+          "kind": "HYPOTHETICAL_FILL",
+          "status": "OBSERVED",
+          "horizon_s": 30,
+          "count": 8
+        },
+        {
+          "kind": "HYPOTHETICAL_FILL",
+          "status": "OBSERVED",
+          "horizon_s": 60,
+          "count": 8
+        },
+        {
+          "kind": "HYPOTHETICAL_FILL",
+          "status": "OBSERVED",
+          "horizon_s": 300,
+          "count": 8
+        },
+        {
+          "kind": "QUOTE",
+          "status": "OBSERVED",
+          "horizon_s": 10,
+          "count": 8136
+        },
+        {
+          "kind": "QUOTE",
+          "status": "OBSERVED",
+          "horizon_s": 30,
+          "count": 7704
+        },
+        {
+          "kind": "QUOTE",
+          "status": "OBSERVED",
+          "horizon_s": 60,
+          "count": 6984
+        },
+        {
+          "kind": "QUOTE",
+          "status": "OBSERVED",
+          "horizon_s": 300,
+          "count": 1224
+        },
+        {
+          "kind": "QUOTE",
+          "status": "RIGHT_CENSORED",
+          "horizon_s": 10,
+          "count": 240
+        },
+        {
+          "kind": "QUOTE",
+          "status": "RIGHT_CENSORED",
+          "horizon_s": 30,
+          "count": 720
+        },
+        {
+          "kind": "QUOTE",
+          "status": "RIGHT_CENSORED",
+          "horizon_s": 60,
+          "count": 1440
+        },
+        {
+          "kind": "QUOTE",
+          "status": "RIGHT_CENSORED",
+          "horizon_s": 300,
+          "count": 7200
+        },
+        {
+          "kind": "QUOTE",
+          "status": "UNAVAILABLE",
+          "horizon_s": 10,
+          "count": 48
+        }
+      ]
+    }
+  ],
+  "paper_execution": {
+    "mode": "PAPER",
+    "state": "HALTED",
+    "clock_ms": 1791954004207,
+    "authority_consistent": true,
+    "orders": 4,
+    "fill_events": 1,
+    "journal_events": 97,
+    "risk_events": 9,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 10,
+        "P50": 1,
+        "P95": 1,
+        "P99": 1
+      },
+      "data_transport": {
+        "count": 10,
+        "P50": 0,
+        "P95": 5,
+        "P99": 5
+      },
+      "simulated_cancel": {
+        "count": 4,
+        "P50": 10,
+        "P95": 10,
+        "P99": 10
+      },
+      "authority_query": {
+        "count": 2,
+        "P50": 5,
+        "P95": 100,
+        "P99": 100
+      },
+      "state_recovery": {
+        "count": 1,
+        "P50": 105,
+        "P95": 105,
+        "P99": 105
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "real_submission_calls": 0
+  },
+  "not_live_performance": true
+}

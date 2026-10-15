@@ -1,0 +1,24 @@
+{
+  "market": {
+    "venue": "polymarket.com", "market_id": "synthetic-demo-market", "synthetic": true,
+    "game_start_ms": 1791957600000,
+    "status": {"active": true, "closed": false, "acceptingOrders": true, "enableOrderBook": true},
+    "outcomes": [{"asset_id": "synthetic-home"}, {"asset_id": "synthetic-away"}]
+  },
+  "held_asset": "synthetic-home", "qty": "5", "holdings": {"synthetic-home": "10"},
+  "at_ms": 1791954000000, "fee_rate": "0", "fair_probability": "0.5", "available_cash": "100",
+  "books": {
+    "synthetic-home": {
+      "market_id": "synthetic-demo-market", "asset_id": "synthetic-home", "connected": true,
+      "local_receive_timestamp": 1791954000000, "exchange_timestamp": 1791954000000,
+      "flags": [], "bid": "0.49", "ask": "0.51", "minimum_order_size": "5",
+      "bids": [{"price": "0.49", "size": "100"}], "asks": [{"price": "0.51", "size": "100"}]
+    },
+    "synthetic-away": {
+      "market_id": "synthetic-demo-market", "asset_id": "synthetic-away", "connected": true,
+      "local_receive_timestamp": 1791954000000, "exchange_timestamp": 1791954000000,
+      "flags": [], "bid": "0.49", "ask": "0.51", "minimum_order_size": "5",
+      "bids": [{"price": "0.49", "size": "100"}], "asks": [{"price": "0.51", "size": "100"}]
+    }
+  }
+}

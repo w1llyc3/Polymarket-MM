@@ -1,0 +1,96 @@
+{
+  "stage": "record_only",
+  "tests": {
+    "passed": 69,
+    "failed": 0
+  },
+  "live_bookmaker_api_verified": false,
+  "real_polymarket_integration": {
+    "decision_ms": 1791958468089,
+    "markets": 2,
+    "assets": 4,
+    "roles": [
+      "event_teams",
+      "event_teams"
+    ],
+    "description_rules_recognized": true,
+    "signals": [
+      {
+        "market_id": "5676016",
+        "asset_id": "67105986151420762389444558710598385187601372419417593599928887317008220174126",
+        "status": "NO_QUOTE",
+        "reasons": [
+          "no_valid_reference"
+        ],
+        "book_ref": "observation:13",
+        "snapshot_id": 11,
+        "market_version_id": 3,
+        "auto_live_quote_allowed": false
+      },
+      {
+        "market_id": "5676016",
+        "asset_id": "6194634649894872222114139800075806437965693537103509072979175541757029916386",
+        "status": "NO_QUOTE",
+        "reasons": [
+          "no_valid_reference"
+        ],
+        "book_ref": "observation:14",
+        "snapshot_id": 12,
+        "market_version_id": 3,
+        "auto_live_quote_allowed": false
+      },
+      {
+        "market_id": "5676021",
+        "asset_id": "18530775482813086164830807568132305463750341655031391169642129768649683734274",
+        "status": "NO_QUOTE",
+        "reasons": [
+          "no_valid_reference"
+        ],
+        "book_ref": "observation:11",
+        "snapshot_id": 3,
+        "market_version_id": 4,
+        "auto_live_quote_allowed": false
+      },
+      {
+        "market_id": "5676021",
+        "asset_id": "66905676566583664317573429201649106692138646973280275919092487111590728334465",
+        "status": "NO_QUOTE",
+        "reasons": [
+          "no_valid_reference"
+        ],
+        "book_ref": "observation:12",
+        "snapshot_id": 4,
+        "market_version_id": 4,
+        "auto_live_quote_allowed": false
+      }
+    ]
+  },
+  "synthetic_demo": {
+    "signals": 2,
+    "candidates": 4,
+    "markouts": [
+      {
+        "horizon_s": 10,
+        "status": "OBSERVED",
+        "count": 4
+      },
+      {
+        "horizon_s": 30,
+        "status": "OBSERVED",
+        "count": 4
+      },
+      {
+        "horizon_s": 60,
+        "status": "OBSERVED",
+        "count": 4
+      },
+      {
+        "horizon_s": 300,
+        "status": "OBSERVED",
+        "count": 4
+      }
+    ],
+    "integrity": "ok"
+  },
+  "lesson2_acceptance_snapshots_preserved": 545
+}
