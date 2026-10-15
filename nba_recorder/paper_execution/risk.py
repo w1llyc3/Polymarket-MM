@@ -39,6 +39,9 @@ def commitments(account, orders):
 
 
 def order_risk(order, frame, account, orders, policy, at):
+    if policy.strategy_mode == "BOOK_DRIVEN":
+        from ..inplay.reference import submission_risk
+        return submission_risk(order, frame, account, orders, policy, at)
     reasons = hard_risk(frame, policy)
     if at < frame["time_ms"] or at-frame["time_ms"] > frame.get("signal", {}).get("config", {}).get("book_max_age_ms", 0):
         reasons.append("decision_transport_stale_or_future")

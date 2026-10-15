@@ -34,7 +34,7 @@ def array(value):
     return json.loads(value) if isinstance(value, str) else value
 
 
-def select_market(event, market, series_id, now, ordering=None):
+def select_market(event, market, series_id, now, ordering=None, scope="pregame"):
     """Fail closed on missing identity/type/time. Never infer time from listing date."""
     slug = event.get("slug", "")
     match = re.fullmatch(r"nba-([a-z0-9]+)-([a-z0-9]+)-(\d{4}-\d{2}-\d{2})", slug)
@@ -68,9 +68,11 @@ def select_market(event, market, series_id, now, ordering=None):
             raise ValueError("missing identity")
     except (KeyError, ValueError, TypeError, InvalidOperation):
         return None, "missing_metadata"
-    if start_ms <= now or event.get("live") or event.get("ended"):
+    if scope not in {"pregame", "full-game"}:
+        raise ValueError("explicit supported collection scope required")
+    if scope == "pregame" and (start_ms <= now or event.get("live") or event.get("ended")):
         return None, "not_pregame"
-    if not (event.get("active") and market.get("active") and not event.get("closed") and not event.get("archived") and not market.get("closed") and not market.get("archived") and market.get("enableOrderBook")):
+    if scope == "pregame" and not (event.get("active") and market.get("active") and not event.get("closed") and not event.get("archived") and not market.get("closed") and not market.get("archived") and market.get("enableOrderBook")):
         return None, "inactive"
     roles = {}
     for role in ("home", "away"):
@@ -121,7 +123,9 @@ class PublicAPI:
                     raise
                 await asyncio.sleep(2 ** attempt)
 
-    async def scan(self):
+    async def scan(self, scope="pregame"):
+        if scope not in {"pregame", "full-game"}:
+            raise ValueError("unsupported collection scope")
         sports = await self.get(GAMMA, "/sports")
         nba = next((x for x in sports if x.get("sport") == "nba"), None)
         if not nba or not nba.get("series"):
@@ -129,13 +133,16 @@ class PublicAPI:
         counts, selected, offset = Counter(), {}, 0
         now = utc_ms()
         while True:
-            events = await self.get(GAMMA, "/events", {"series_id": str(nba["series"]), "closed": "false", "limit": 100, "offset": offset, "order": "id", "ascending": "true"})
+            params = {"series_id": str(nba["series"]), "limit": 100, "offset": offset, "order": "id", "ascending": "true"}
+            if scope == "pregame":
+                params["closed"] = "false"
+            events = await self.get(GAMMA, "/events", params)
             if not isinstance(events, list):
                 raise ValueError("Unexpected Gamma events schema")
             for event in events:
                 detail = None
                 for market in event.get("markets", []):
-                    item, reason = select_market(event, market, str(nba["series"]), now, nba.get("ordering"))
+                    item, reason = select_market(event, market, str(nba["series"]), now, nba.get("ordering"), scope)
                     if item and not item.get("home_away_evidence"):
                         if detail is None:
                             detail = await self.get(GAMMA, "/events/slug/" + event["slug"])
@@ -143,7 +150,7 @@ class PublicAPI:
                                 raise ValueError("Unexpected Gamma event detail schema")
                         current = next((m for m in detail.get("markets", []) if str(m.get("id")) == str(market["id"])), None)
                         if current:
-                            item, reason = select_market(detail, current, str(nba["series"]), utc_ms(), nba.get("ordering"))
+                            item, reason = select_market(detail, current, str(nba["series"]), utc_ms(), nba.get("ordering"), scope)
                         else:
                             item, reason = None, "event_detail_missing_market"
                     counts[reason] += 1

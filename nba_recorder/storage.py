@@ -2,6 +2,7 @@ import hashlib
 import json
 import sqlite3
 import uuid
+import time
 from pathlib import Path
 
 
@@ -31,6 +32,7 @@ class Store:
           event_key TEXT NOT NULL, snapshot_id INTEGER, market_id TEXT NOT NULL, asset_id TEXT NOT NULL,
           received_ms INTEGER NOT NULL, payload TEXT NOT NULL);
         CREATE INDEX IF NOT EXISTS book_observations_time ON book_observations(asset_id,received_ms,id);
+        CREATE TABLE IF NOT EXISTS event_processing(id INTEGER PRIMARY KEY,event_key TEXT NOT NULL,received_ms INTEGER NOT NULL,processed_ms INTEGER NOT NULL,lag_ms INTEGER NOT NULL,UNIQUE(event_key,received_ms));
         CREATE TABLE IF NOT EXISTS health(id INTEGER PRIMARY KEY, session_id TEXT, local_timestamp INTEGER, kind TEXT, detail TEXT);
         """)
         self.session = str(uuid.uuid4())
@@ -69,6 +71,8 @@ class Store:
                 snapshot = self.db.execute("SELECT id FROM snapshots WHERE event_key=? AND asset_id=?", (key, s["asset_id"])).fetchone()
                 observation_key = hashlib.sha256(encode([key, s["asset_id"], received, s]).encode()).hexdigest()
                 self.db.execute("INSERT OR IGNORE INTO book_observations(observation_key,event_key,snapshot_id,market_id,asset_id,received_ms,payload) VALUES(?,?,?,?,?,?,?)", (observation_key, key, snapshot[0] if snapshot else None, s["market_id"], s["asset_id"], received, encode(s)))
+            processed = time.time_ns()//1000000
+            self.db.execute("INSERT OR IGNORE INTO event_processing(event_key,received_ms,processed_ms,lag_ms) VALUES(?,?,?,?)", (key, received, processed, processed-received))
         return bool(cur.rowcount)
 
     def contains(self, key):

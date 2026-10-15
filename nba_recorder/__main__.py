@@ -48,14 +48,18 @@ async def main(args):
         return
     api = PublicAPI()
     try:
-        result = await api.scan()
+        result = await api.scan(scope=args.scope)
+        if args.market_id:
+            result["markets"] = [m for m in result["markets"] if m["market_id"] == args.market_id]
+            if not result["markets"]:
+                result["status"] = "no_matching_markets"
         print(json.dumps(result, indent=2, ensure_ascii=True), flush=True)
         if args.command == "record":
             store = Store(args.db)
             try:
                 store.health(utc_ms(), "discovery", json.dumps(result))
                 if result["markets"]:
-                    recorder = Recorder(api, store, result["markets"][:args.limit], args.stale, args.resync)
+                    recorder = Recorder(api, store, result["markets"][:args.limit], args.stale, args.resync, scope=args.scope)
                     recorder.limit = args.limit
                     await recorder.run(args.minutes * 60, args.force_reconnect_seconds)
                 else:
@@ -69,6 +73,8 @@ async def main(args):
 def cli():
     p = argparse.ArgumentParser(description="Polymarket.com NBA 2026-27 public recorder; no accounts or orders")
     p.add_argument("command", choices=("scan", "record", "show"))
+    p.add_argument("--scope", choices=("pregame", "full-game"), default="pregame", help="Collection only; never authorizes in-play quotes")
+    p.add_argument("--market-id", help="Explicit market for full-game recording; prevents silently switching games")
     p.add_argument("--db", default=os.getenv("NBA_DB", "data/nba.sqlite"))
     p.add_argument("--limit", type=int, choices=(1, 2, 3), default=3)
     p.add_argument("--depth", type=int, default=5)
@@ -77,6 +83,8 @@ def cli():
     p.add_argument("--minutes", type=float, default=30)
     p.add_argument("--force-reconnect-seconds", type=float, default=0, help="record-only transport fault test")
     args = p.parse_args()
+    if args.command == "record" and args.scope == "full-game" and not args.market_id:
+        p.error("full-game record requires explicit --market-id from scan")
     if args.minutes <= 0 or args.resync <= 0 or args.stale <= 0 or args.depth <= 0 or args.force_reconnect_seconds < 0:
         p.error("durations/depth must be positive")
     try:

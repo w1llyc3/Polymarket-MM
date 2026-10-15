@@ -13,6 +13,7 @@ TRANSITIONS = {"CREATED": {"OPEN"}, "OPEN": {"PARTIALLY_FILLED", "FILLED", "CANC
 
 @dataclass(frozen=True)
 class Policy:
+    strategy_mode: str = "EXTERNAL_FAIR"
     initial_cash: str = "1000"
     initial_inventory: str = "0"
     target_inventory: str = "0"
@@ -29,7 +30,12 @@ class Policy:
 
     def __post_init__(self):
         for key, value in asdict(self).items():
-            if key.endswith("_ms"):
+            if key == "strategy_mode":
+                if value not in {"EXTERNAL_FAIR", "BOOK_DRIVEN"}:
+                    raise ValueError("explicit supported strategy_mode required")
+            elif isinstance(value, bool):
+                continue
+            elif key.endswith("_ms"):
                 if type(value) is not int or value <= 0:
                     raise ValueError("policy durations must be positive integer milliseconds")
             elif decimal(value) < 0:
@@ -44,6 +50,11 @@ def grid(price, tick, side):
 
 
 def hard_risk(frame, policy):
+    if policy.strategy_mode == "BOOK_DRIVEN":
+        from ..inplay.reference import book_risk
+        return book_risk(frame, policy)
+    if frame.get("strategy_mode", "EXTERNAL_FAIR") != "EXTERNAL_FAIR":
+        return ["strategy_mode_mismatch"]
     reasons = []
     at, market, signal, book = frame["time_ms"], frame.get("market"), frame.get("signal", {}), frame.get("book")
     if not market or not book:
@@ -110,6 +121,9 @@ def resources(account, orders, catalog, excluding_asset=None):
 
 
 def targets(frame, account, orders, catalog, min_edge, policy=Policy()):
+    if policy.strategy_mode == "BOOK_DRIVEN":
+        from ..inplay.reference import book_targets
+        return book_targets(frame, account, orders, catalog, policy)
     with localcontext() as ctx:
         ctx.prec = PRECISION
         reasons = hard_risk(frame, policy)

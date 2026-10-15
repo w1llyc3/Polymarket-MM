@@ -1,5 +1,7 @@
 # NBA MM MVP Acceptance — 2026-10-14
 
+**历史基线说明：** 2026-10-15 主线已按 v2 改为独立 BOOK_DRIVEN；外部赔率不再是该模式准入依赖，且新增了统一异步 OMS/FIFO、阶段控制和单写者/异常退出测试。最新结果与未通过项见 [INPLAY_BOOK_DRIVEN_ACCEPTANCE.md](INPLAY_BOOK_DRIVEN_ACCEPTANCE.md)。以下保持 Lesson 7 当时的验收记录，不作为 v2 当前状态。
+
 截至当前代码：**公开盘口采集 Data GO；受控离线 Paper GO；真实赔率驱动的无人值守 Paper NO-GO；Limited Live NO-GO。** 不因 10 月 20 日截止日期跳过 P0，不承诺 10 月 21 日能实盘做市。
 
 ## 1. 仓库实际审查与模块完成度

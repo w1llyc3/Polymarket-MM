@@ -1,0 +1,2960 @@
+[
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "A",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 10,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 2,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 90,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": false,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "95.0",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "5",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "95.0",
+      "cash_flows": "-5.0",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "5",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.00",
+      "trading_pnl": "0.00",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "5.00",
+      "equity": "100.00",
+      "net_pnl": "0.00",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "10",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.00",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.00",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.7555555555555555555555555556",
+    "orders": 52,
+    "fill_events": 0,
+    "simulated_fill_order_rate": "0",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      }
+    ],
+    "residual_inventory": {
+      "a": "5",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 104,
+        "P50": 0,
+        "P95": 5,
+        "P99": 5
+      },
+      "simulated_cancel": {
+        "count": 52,
+        "P50": 10,
+        "P95": 10,
+        "P99": 10
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 16
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 24
+      },
+      {
+        "reason": "observed_one_sided_flow_baseline",
+        "count": 1
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L0",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 2
+  },
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "B",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 10,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 2,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 180,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": true,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "95.0",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "5",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "95.0",
+      "cash_flows": "-5.0",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "5",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.00",
+      "trading_pnl": "0.00",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "5.00",
+      "equity": "100.00",
+      "net_pnl": "0.00",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "10",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.00",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.00",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.2444444444444444444444444444",
+    "orders": 18,
+    "fill_events": 0,
+    "simulated_fill_order_rate": "0",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      }
+    ],
+    "residual_inventory": {
+      "a": "5",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 36,
+        "P50": 0,
+        "P95": 5,
+        "P99": 5
+      },
+      "simulated_cancel": {
+        "count": 18,
+        "P50": 10,
+        "P95": 10,
+        "P99": 10
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 6
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 24
+      },
+      {
+        "reason": "one_sided_trade_flow",
+        "count": 5
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L0",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 2
+  },
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "A",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 100,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 20,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 90,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": false,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "95.0",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "5",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "95.0",
+      "cash_flows": "-5.0",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "5",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.00",
+      "trading_pnl": "0.00",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "5.00",
+      "equity": "100.00",
+      "net_pnl": "0.00",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "10",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.00",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.00",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.7555555555555555555555555556",
+    "orders": 52,
+    "fill_events": 0,
+    "simulated_fill_order_rate": "0",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      }
+    ],
+    "residual_inventory": {
+      "a": "5",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 104,
+        "P50": 0,
+        "P95": 5,
+        "P99": 5
+      },
+      "simulated_cancel": {
+        "count": 52,
+        "P50": 100,
+        "P95": 100,
+        "P99": 100
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 16
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 24
+      },
+      {
+        "reason": "observed_one_sided_flow_baseline",
+        "count": 1
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L0",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 20
+  },
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "B",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 100,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 20,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 180,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": true,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "95.0",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "5",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "95.0",
+      "cash_flows": "-5.0",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "5",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.00",
+      "trading_pnl": "0.00",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "5.00",
+      "equity": "100.00",
+      "net_pnl": "0.00",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "10",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.00",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.00",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.2444444444444444444444444444",
+    "orders": 18,
+    "fill_events": 0,
+    "simulated_fill_order_rate": "0",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      }
+    ],
+    "residual_inventory": {
+      "a": "5",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 36,
+        "P50": 0,
+        "P95": 5,
+        "P99": 5
+      },
+      "simulated_cancel": {
+        "count": 18,
+        "P50": 100,
+        "P95": 100,
+        "P99": 100
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 6
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 24
+      },
+      {
+        "reason": "one_sided_trade_flow",
+        "count": 5
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L0",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 20
+  },
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "A",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 10,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 2,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 90,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": false,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "91.16",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "13",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "91.16",
+      "cash_flows": "-8.84",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "13",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.16",
+      "trading_pnl": "0.16",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "9.00",
+      "equity": "100.16",
+      "net_pnl": "0.16",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "18",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.16",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.16",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.6555555555555555555555555556",
+    "orders": 59,
+    "fill_events": 2,
+    "simulated_fill_order_rate": "0.03389830508474576271186440678",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [
+      {
+        "fill_id": "e5c860c265a632dd5a548ab2baabfeb6e3e53b728e5ac7a59b37d42e3e22578e",
+        "horizon_s": 1,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954008002,
+        "exchange_ms": 1791954008000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "e5c860c265a632dd5a548ab2baabfeb6e3e53b728e5ac7a59b37d42e3e22578e",
+        "horizon_s": 3,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954008002,
+        "exchange_ms": 1791954008000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "e5c860c265a632dd5a548ab2baabfeb6e3e53b728e5ac7a59b37d42e3e22578e",
+        "horizon_s": 5,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954008002,
+        "exchange_ms": 1791954008000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "e5c860c265a632dd5a548ab2baabfeb6e3e53b728e5ac7a59b37d42e3e22578e",
+        "horizon_s": 10,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954008002,
+        "exchange_ms": 1791954008000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "e5c860c265a632dd5a548ab2baabfeb6e3e53b728e5ac7a59b37d42e3e22578e",
+        "horizon_s": 30,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954008002,
+        "exchange_ms": 1791954008000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "horizon_s": 1,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "horizon_s": 3,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "horizon_s": 5,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "horizon_s": 10,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "horizon_s": 30,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      }
+    ],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "e5c860c265a632dd5a548ab2baabfeb6e3e53b728e5ac7a59b37d42e3e22578e",
+        "asset_id": "a",
+        "remaining": "3",
+        "age_ms": 36000,
+        "local_observed_age_ms": 35998
+      },
+      {
+        "lot_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 32000,
+        "local_observed_age_ms": 31998
+      }
+    ],
+    "residual_inventory": {
+      "a": "13",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 119,
+        "P50": 2,
+        "P95": 5,
+        "P99": 5
+      },
+      "simulated_cancel": {
+        "count": 58,
+        "P50": 10,
+        "P95": 10,
+        "P99": 10
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 11
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 26
+      },
+      {
+        "reason": "observed_one_sided_flow_baseline",
+        "count": 1
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L1",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 2
+  },
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "B",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 10,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 2,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 180,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": true,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "95.0",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "5",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "95.0",
+      "cash_flows": "-5.0",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "5",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.00",
+      "trading_pnl": "0.00",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "5.00",
+      "equity": "100.00",
+      "net_pnl": "0.00",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "10",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.00",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.00",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.2444444444444444444444444444",
+    "orders": 18,
+    "fill_events": 0,
+    "simulated_fill_order_rate": "0",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      }
+    ],
+    "residual_inventory": {
+      "a": "5",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 36,
+        "P50": 0,
+        "P95": 5,
+        "P99": 5
+      },
+      "simulated_cancel": {
+        "count": 18,
+        "P50": 10,
+        "P95": 10,
+        "P99": 10
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 6
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 24
+      },
+      {
+        "reason": "one_sided_trade_flow",
+        "count": 5
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L1",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 2
+  },
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "A",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 100,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 20,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 90,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": false,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "91.16",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "13",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "91.16",
+      "cash_flows": "-8.84",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "13",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.16",
+      "trading_pnl": "0.16",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "9.00",
+      "equity": "100.16",
+      "net_pnl": "0.16",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "18",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.16",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.16",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.6555555555555555555555555556",
+    "orders": 59,
+    "fill_events": 2,
+    "simulated_fill_order_rate": "0.03389830508474576271186440678",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [
+      {
+        "fill_id": "f5604b68aaf65eb3107608cfccbbc64627dfecc12d156a2ce18e9247dc00117e",
+        "horizon_s": 1,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954008020,
+        "exchange_ms": 1791954008000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "f5604b68aaf65eb3107608cfccbbc64627dfecc12d156a2ce18e9247dc00117e",
+        "horizon_s": 3,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954008020,
+        "exchange_ms": 1791954008000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "f5604b68aaf65eb3107608cfccbbc64627dfecc12d156a2ce18e9247dc00117e",
+        "horizon_s": 5,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954008020,
+        "exchange_ms": 1791954008000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "f5604b68aaf65eb3107608cfccbbc64627dfecc12d156a2ce18e9247dc00117e",
+        "horizon_s": 10,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954008020,
+        "exchange_ms": 1791954008000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "f5604b68aaf65eb3107608cfccbbc64627dfecc12d156a2ce18e9247dc00117e",
+        "horizon_s": 30,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954008020,
+        "exchange_ms": 1791954008000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "horizon_s": 1,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "horizon_s": 3,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "horizon_s": 5,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "horizon_s": 10,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "horizon_s": 30,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      }
+    ],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "f5604b68aaf65eb3107608cfccbbc64627dfecc12d156a2ce18e9247dc00117e",
+        "asset_id": "a",
+        "remaining": "3",
+        "age_ms": 36000,
+        "local_observed_age_ms": 35980
+      },
+      {
+        "lot_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 32000,
+        "local_observed_age_ms": 31980
+      }
+    ],
+    "residual_inventory": {
+      "a": "13",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 119,
+        "P50": 5,
+        "P95": 5,
+        "P99": 20
+      },
+      "simulated_cancel": {
+        "count": 58,
+        "P50": 100,
+        "P95": 100,
+        "P99": 100
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 11
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 26
+      },
+      {
+        "reason": "observed_one_sided_flow_baseline",
+        "count": 1
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L1",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 20
+  },
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "B",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 100,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 20,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 180,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": true,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "95.0",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "5",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "95.0",
+      "cash_flows": "-5.0",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "5",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.00",
+      "trading_pnl": "0.00",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "5.00",
+      "equity": "100.00",
+      "net_pnl": "0.00",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "10",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.00",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.00",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.2444444444444444444444444444",
+    "orders": 18,
+    "fill_events": 0,
+    "simulated_fill_order_rate": "0",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      }
+    ],
+    "residual_inventory": {
+      "a": "5",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 36,
+        "P50": 0,
+        "P95": 5,
+        "P99": 5
+      },
+      "simulated_cancel": {
+        "count": 18,
+        "P50": 100,
+        "P95": 100,
+        "P99": 100
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 6
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 24
+      },
+      {
+        "reason": "one_sided_trade_flow",
+        "count": 5
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L1",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 20
+  },
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "A",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 10,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 2,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 90,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": false,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "92.60",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "10",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "92.60",
+      "cash_flows": "-7.40",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "10",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.10",
+      "trading_pnl": "0.10",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "7.50",
+      "equity": "100.10",
+      "net_pnl": "0.10",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "15",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.10",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.10",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.7777777777777777777777777778",
+    "orders": 49,
+    "fill_events": 1,
+    "simulated_fill_order_rate": "0.02040816326530612244897959184",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [
+      {
+        "fill_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "horizon_s": 1,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "horizon_s": 3,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "horizon_s": 5,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "horizon_s": 10,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "horizon_s": 30,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      }
+    ],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "09375042e5a811ad4845df0b2f5c9e6310d71cb7b7d6f3831e8a186a37f5d533",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 32000,
+        "local_observed_age_ms": 31998
+      }
+    ],
+    "residual_inventory": {
+      "a": "10",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 98,
+        "P50": 2,
+        "P95": 5,
+        "P99": 5
+      },
+      "simulated_cancel": {
+        "count": 48,
+        "P50": 10,
+        "P95": 10,
+        "P99": 10
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 21
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 26
+      },
+      {
+        "reason": "observed_one_sided_flow_baseline",
+        "count": 1
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L2",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 2
+  },
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "B",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 10,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 2,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 180,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": true,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "92.65",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "10",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "92.65",
+      "cash_flows": "-7.35",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "10",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.15",
+      "trading_pnl": "0.15",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "7.50",
+      "equity": "100.15",
+      "net_pnl": "0.15",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "15",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.15",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.15",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.2444444444444444444444444444",
+    "orders": 18,
+    "fill_events": 1,
+    "simulated_fill_order_rate": "0.05555555555555555555555555556",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [
+      {
+        "fill_id": "8bd39506749124757782114fb3015da89c667050e4f2560ca678652536490c04",
+        "horizon_s": 1,
+        "signed_markout_per_share": "0.03",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "8bd39506749124757782114fb3015da89c667050e4f2560ca678652536490c04",
+        "horizon_s": 3,
+        "signed_markout_per_share": "0.03",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "8bd39506749124757782114fb3015da89c667050e4f2560ca678652536490c04",
+        "horizon_s": 5,
+        "signed_markout_per_share": "0.03",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "8bd39506749124757782114fb3015da89c667050e4f2560ca678652536490c04",
+        "horizon_s": 10,
+        "signed_markout_per_share": "0.03",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "8bd39506749124757782114fb3015da89c667050e4f2560ca678652536490c04",
+        "horizon_s": 30,
+        "signed_markout_per_share": "0.03",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012002,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      }
+    ],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "8bd39506749124757782114fb3015da89c667050e4f2560ca678652536490c04",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 32000,
+        "local_observed_age_ms": 31998
+      }
+    ],
+    "residual_inventory": {
+      "a": "10",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 36,
+        "P50": 2,
+        "P95": 5,
+        "P99": 5
+      },
+      "simulated_cancel": {
+        "count": 17,
+        "P50": 10,
+        "P95": 10,
+        "P99": 10
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 6
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 24
+      },
+      {
+        "reason": "one_sided_trade_flow",
+        "count": 5
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L2",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 2
+  },
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "A",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 100,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 20,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 90,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": false,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "92.60",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "10",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "92.60",
+      "cash_flows": "-7.40",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "10",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.10",
+      "trading_pnl": "0.10",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "7.50",
+      "equity": "100.10",
+      "net_pnl": "0.10",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "15",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.10",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.10",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.7777777777777777777777777778",
+    "orders": 49,
+    "fill_events": 1,
+    "simulated_fill_order_rate": "0.02040816326530612244897959184",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [
+      {
+        "fill_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "horizon_s": 1,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "horizon_s": 3,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "horizon_s": 5,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "horizon_s": 10,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "horizon_s": 30,
+        "signed_markout_per_share": "0.02",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      }
+    ],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "ea82cc6736117b962560e68f2a26e20d5ec0ecb493795fcd6a3517f04d7d91c7",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 32000,
+        "local_observed_age_ms": 31980
+      }
+    ],
+    "residual_inventory": {
+      "a": "10",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 98,
+        "P50": 5,
+        "P95": 5,
+        "P99": 20
+      },
+      "simulated_cancel": {
+        "count": 48,
+        "P50": 100,
+        "P95": 100,
+        "P99": 100
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 21
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 26
+      },
+      {
+        "reason": "observed_one_sided_flow_baseline",
+        "count": 1
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L2",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 20
+  },
+  {
+    "mode": "BOOK_DRIVEN_UNIFIED_PAPER",
+    "strategy": "B",
+    "policy": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 100,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 20,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 180,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": true,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5"
+    },
+    "risk_state": "HALTED",
+    "phases": [
+      {
+        "correction": false,
+        "evidence": {
+          "clock_evidence": "synthetic fixture contract, not an assertion about sports elapsed",
+          "clock_semantics": "REMAINING_IN_PERIOD",
+          "ended": false,
+          "event_id": "synthetic-event",
+          "game_id": "synthetic-game",
+          "identity_evidence": "fixture mapping, not a real game",
+          "live": true,
+          "observed_ms": 1791954044000,
+          "paused": false,
+          "period": 4,
+          "received_ms": 1791954044000,
+          "remaining_s": 18,
+          "source": "synthetic_verified_clock_fixture",
+          "status": "InProgress"
+        },
+        "game_id": "synthetic-game",
+        "latched_closed": true,
+        "observed_ms": 1791954044000,
+        "period": 4,
+        "reasons": [
+          "closed_latch"
+        ],
+        "remaining_s": 58,
+        "source_received_ms": 1791954039000,
+        "state": "MM_CLOSED",
+        "synced": 40
+      }
+    ],
+    "account": {
+      "cash": "92.65",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "10",
+        "b": "5"
+      },
+      "reserved_cash": "0",
+      "available_cash": "92.65",
+      "cash_flows": "-7.35",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "10",
+        "b": "5"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.15",
+      "trading_pnl": "0.15",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "7.50",
+      "equity": "100.15",
+      "net_pnl": "0.15",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "15",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "income_stages": {},
+    "income_allocation_unknown": false,
+    "pnl_layers": {
+      "trading_pnl": "0.15",
+      "execution_fees": "0",
+      "recorded_running_costs": "0",
+      "received_income": "0",
+      "net_pnl": "0.15",
+      "expected_or_confirmed_rebates_in_cash": false,
+      "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+    },
+    "realized_book_attribution": [],
+    "stale_quote_loss_realized_diagnostic": null,
+    "overlapping_diagnostics_not_added_to_pnl": true,
+    "quote_availability": "0.2444444444444444444444444444",
+    "orders": 18,
+    "fill_events": 1,
+    "simulated_fill_order_rate": "0.05555555555555555555555555556",
+    "quote_distance": ".02",
+    "outcome_edge": "NOT_COMPUTED: book distance is not outcome fair value edge",
+    "markouts": [
+      {
+        "fill_id": "af04453b2e5c2295c7d8e9168647832345b58a25bc8fa9afad5164e9ba9aa820",
+        "horizon_s": 1,
+        "signed_markout_per_share": "0.03",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "af04453b2e5c2295c7d8e9168647832345b58a25bc8fa9afad5164e9ba9aa820",
+        "horizon_s": 3,
+        "signed_markout_per_share": "0.03",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "af04453b2e5c2295c7d8e9168647832345b58a25bc8fa9afad5164e9ba9aa820",
+        "horizon_s": 5,
+        "signed_markout_per_share": "0.03",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "af04453b2e5c2295c7d8e9168647832345b58a25bc8fa9afad5164e9ba9aa820",
+        "horizon_s": 10,
+        "signed_markout_per_share": "0.03",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      },
+      {
+        "fill_id": "af04453b2e5c2295c7d8e9168647832345b58a25bc8fa9afad5164e9ba9aa820",
+        "horizon_s": 30,
+        "signed_markout_per_share": "0.03",
+        "status": "OBSERVED",
+        "receipt_ms": 1791954012020,
+        "exchange_ms": 1791954012000,
+        "fill_mid": "0.50",
+        "diagnostic_not_added_to_pnl": true
+      }
+    ],
+    "inventory_ages": [
+      {
+        "lot_id": "31993ef5b7808c09d25a7ce662531935a90a71ffe9b82862d1b2f3983e271ada",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "93645f6be772a5fdc81eac2714148c04c3b00cad2d1bd043d6fc2283e412bed8",
+        "asset_id": "b",
+        "remaining": "5",
+        "age_ms": 44000,
+        "local_observed_age_ms": 44000
+      },
+      {
+        "lot_id": "af04453b2e5c2295c7d8e9168647832345b58a25bc8fa9afad5164e9ba9aa820",
+        "asset_id": "a",
+        "remaining": "5",
+        "age_ms": 32000,
+        "local_observed_age_ms": 31980
+      }
+    ],
+    "residual_inventory": {
+      "a": "10",
+      "b": "5"
+    },
+    "residual_risk_status": "MANUAL_REVIEW",
+    "ledger_and_oms_consistent": true,
+    "latency_ms": {
+      "risk_detection": {
+        "count": 90,
+        "P50": 0,
+        "P95": 0,
+        "P99": 0
+      },
+      "data_transport": {
+        "count": 36,
+        "P50": 5,
+        "P95": 5,
+        "P99": 20
+      },
+      "simulated_cancel": {
+        "count": 17,
+        "P50": 100,
+        "P95": 100,
+        "P99": 100
+      }
+    },
+    "latency_provenance": "synthetic_paper_clock",
+    "risk_reasons": [
+      {
+        "reason": "intent_expired",
+        "count": 6
+      },
+      {
+        "reason": "late_close_threshold",
+        "count": 24
+      },
+      {
+        "reason": "one_sided_trade_flow",
+        "count": 5
+      },
+      {
+        "reason": "phase_not_permitted",
+        "count": 14
+      }
+    ],
+    "coverage": {
+      "inputs": 45,
+      "asset_frames": 90,
+      "markets": 1,
+      "first_ms": 1791954000000,
+      "last_ms": 1791954044000
+    },
+    "statistical_unit": "game, not correlated frames",
+    "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
+    "live_go": false,
+    "real_submission_calls": 0,
+    "model": "L2",
+    "tape": "14880f572b96831a2f7fe30553fe7c327f9d049ec67b290f15427723cb374efe",
+    "source": "synthetic fixture, not actual game/odds",
+    "delay_sensitivity_group": 20
+  }
+]

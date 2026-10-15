@@ -11,7 +11,11 @@ from .book import Book, ResyncRequired
 
 
 class Recorder:
-    def __init__(self, api, store, markets, stale=30, resync=60):
+    def __init__(self, api, store, markets, stale=30, resync=60, scope="pregame"):
+        if scope not in {"pregame", "full-game"}:
+            raise ValueError("unsupported collection scope")
+        self.scope = scope
+        self.tracked_market_ids = {m["market_id"] for m in markets}
         self.api, self.store = api, store
         self.books = {o["asset_id"]: Book(m, o["asset_id"]) for m in markets for o in m["outcomes"]}
         self.stale, self.resync = stale, resync
@@ -48,8 +52,8 @@ class Recorder:
             self.store.health(received, "snapshot_verified", asset)
 
     async def rediscover(self):
-        result = await self.api.scan()
-        markets = result["markets"][:self.limit]
+        result = await self.api.scan(scope=self.scope) if self.scope == "full-game" else await self.api.scan()
+        markets = ([m for m in result["markets"] if m["market_id"] in self.tracked_market_ids] if self.scope == "full-game" else result["markets"][:self.limit])
         for m in markets:
             if any(o["asset_id"] in self.resolved for o in m["outcomes"]):
                 m["status"]["tracking_state"] = "resolved"
@@ -143,13 +147,14 @@ class Recorder:
         deadline = time.monotonic() + seconds
         attempts = 0
         self.health("started", "record-only")
-        next_scan = time.monotonic() + 300
+        scan_interval = 20 if self.scope == "full-game" else 300
+        next_scan = time.monotonic() + scan_interval
         try:
             while time.monotonic() < deadline:
                 for b in self.books.values():
                     b.invalidate()
                 # Drop assets at advertised start time. Never continue into live games.
-                assets = [a for a, b in self.books.items() if b.market["game_start_ms"] > utc_ms() and a not in self.resolved]
+                assets = [a for a, b in self.books.items() if (self.scope == "full-game" or b.market["game_start_ms"] > utc_ms()) and a not in self.resolved]
                 if not assets:
                     self.health("no_pregame_assets")
                     await asyncio.sleep(min(60, max(0, deadline - time.monotonic())))
@@ -168,12 +173,12 @@ class Recorder:
                             now = time.monotonic()
                             if now >= next_scan:
                                 changed = await self.rediscover()
-                                next_scan = time.monotonic() + 300
+                                next_scan = time.monotonic() + scan_interval
                                 if changed:
                                     raise ResyncRequired("subscription_set_changed")
                             if force_reconnect and now - connected >= force_reconnect:
                                 raise ResyncRequired("forced_reconnect_test")
-                            if any(self.books[a].market["game_start_ms"] <= utc_ms() for a in assets):
+                            if self.scope == "pregame" and any(self.books[a].market["game_start_ms"] <= utc_ms() for a in assets):
                                 raise ResyncRequired("game_start_subscription_refresh")
                             if now - last_pong > 30:
                                 raise ResyncRequired("heartbeat_timeout")

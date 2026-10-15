@@ -1,0 +1,2789 @@
+{
+  "initial_wide_attempt": {
+    "status": "TRUNCATED",
+    "complete_window": false,
+    "input_address": "0x216050de6080fac3926226b2b8ce3d5544784c78",
+    "window_start_s": 1791449710,
+    "window_end_s": 1792054510,
+    "http_pages": 173,
+    "nba_statistics": null,
+    "reason": "Operator stopped wide initial window after 173 requests to keep research lightweight; raw responses retained; no statistics claimed."
+  },
+  "inference": "No verified NBA Maker conclusions; complete one-hour windows contain no mapped NBA samples.",
+  "windows": [
+    {
+      "input_address": "0x216050de6080fac3926226b2b8ce3d5544784c78",
+      "window_start_s": 1792052042,
+      "window_end_s": 1792055642,
+      "status": "COMPLETE_WINDOW",
+      "complete_window": true,
+      "nba_statistics": {
+        "sample_count": 0,
+        "median_dollars": null,
+        "p90_dollars": null,
+        "le_5_count_fraction": null,
+        "le_10_count_fraction": null,
+        "le_5_amount_fraction": null,
+        "le_10_amount_fraction": null
+      },
+      "role_known_coverage": null,
+      "known_maker_fraction": null,
+      "inventory_reconstruction": "UNKNOWN: opening balances and share transfers unavailable",
+      "round_trip_evidence": "UNKNOWN",
+      "missing": [
+        "maker/taker proof",
+        "original order IDs and sizes",
+        "historical books/queues",
+        "opening inventory",
+        "share transfer history"
+      ],
+      "api_version": "v1 (legacy, explicitly verified docs); no v2 fields used",
+      "not_copy_trading": true,
+      "proxy_wallet": "0x216050de6080fac3926226b2b8ce3d5544784c78",
+      "identity_evidence": {
+        "source": "Gamma /public-profile",
+        "input": "0x216050de6080fac3926226b2b8ce3d5544784c78",
+        "proxy": "0x216050de6080fac3926226b2b8ce3d5544784c78",
+        "name": "iWasEnough",
+        "substitution_explicit": false
+      },
+      "season_cohorts": {},
+      "nba_samples": 0,
+      "unmatched": [
+        {
+          "raw_id": "ca253228a632396b0474369e76df17346f826956f6997ddf48a0f26a0f80d54b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e38689f689b79dcda78c455bb65cb049d76a3ae6bb46668731e0d7fe642eb301",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b8f1044956fd3be26b55333d320d566fd453116380b50c3139e5d1786410b0a2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "33b71d7468c69fa71b37464bf139b85a93f0a7fb72418049b89a735fc23feb21",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f42c1faba2fafb294626d59bec0956b8ca959c76e0bef7f1df0be452d1861302",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "02b6d5eb89f2fa445532aaecd6fb236e7f06d0e77bbf5e89406cdac509a02994",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "169cc0d0bea6d1ac086bd3258ebc114262fddd7f4f4f4172154388d0ca3fe10c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "633728d8fe335d759ae0ed9eaa6358485526c89e7d512cf05df80746d4840c36",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f57a2654d4dc3a3b5cd686a98bd8ca385924a7fce794d5a6ecadceb539282b02",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "88c7e8d4b081689bd9746c4e447aa2153f5dad88f065ca1b17ee232494a9241b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "75dd7be0df211b3f3f4add37b88ea48962a2c9fd84d544e2dcd82bba99a38ea6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "12bbe294af3840f29d05f5c162f435c2600b87a9e05ffe254c3621641eb57a0e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4c5b5c66dfd47e5035345648c43ae0c98ce185ff1194d77895244370a4420300",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5970098406be2bbc8bb04e9a542452eaa865c085bbdad7534d98b1aaba2ecf8f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6edd8234b4b781cf5bb80cd5b15a3ca6148164243f0dc41ed31c4e11e09d0386",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "241ceaf3782f7dd5923f46fc221e5caaa282433345805bce24bef27c3481130e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2c8e4a9e33d229e89e0bcef17b7eac8a9af20aa71724f4e6a581bd41e3fcb5ef",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "efdea5856dce381694da3631a74ac0dd95f84387b5fb6bf4518a12c3a08356b3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b99e95c93816fed769705eb2cdcd2ec0f8b5acd6e639387aa4d885aa88337a5a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a62b4e89232d033608f79f9b3ea268d7ce0281224555b2b9f4dce4ab2b6b9be8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5279dd5e8815a1c325a35f1fa8281c27bbc62fdafcd22a67f528c41c30357399",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "628a6247df444d36a9cbb353a47b3502594804b8b46e3985148ac1ede7f9faec",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0f904cd19802d67c9ec4776bb4dc41cc81ff4ad45769aa980437f00b37c9cf40",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "dbeeb5cd43148d0d9a41f461de7665bf1421f1571f2f2990a5e6819c1c61714f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "13103122a6853916ff49d21763f3e53095df3d6c30326bf35d750444b18cf15c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "84c6e85dc0fc883ac662199c67fa4de5d1fa5a2ab97242d16f422d71a912c49c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c05130e8146f4575a3d098f054950f2f2eb319eb8a684165d03f8790a90df59f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "18f61d8f03b80a6657385d7b237782899aee78da3e14e3234990361acf872d9a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a4a8fc71829b222f830a325c99984fc007360b4be2bfe6480acdf6b02722b61e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "691ee4c0969aae50adf8993d928233c4f963809d49b2814ad1a3e9ba72987fa5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "152123c02fd84a0e1d1aa143bc6c2bcb45a3647ca25b2d709ec007dd21849792",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b2417c5a54f29c34ff1aefb1dcdcaf94e6181271a3ee8a4b2b883c85683d9528",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8643ef6da47bec88d09c29fd6e07a63e53c9b364108129f102e65399e351eccd",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4a0062fb2186b9982e6b60c090a1c120f544bf12c7660911d283a2dfc3569d90",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b127eda99ba6082ec4a9878a4cb3eb97e00c0774d42513b05d0353f77c2f8285",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f592af9cb91892452ba98783495561f9a6c28d88996d0e17b51411f504386688",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "33a78b139c0d1aa68c59658f5bc14e34db955ee358f321504555957b0351b2a5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "aecdd4c1811516145cda3d34201892bc228a87d5066246ca7f69b2f99e691c87",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e0f2932d24aafcd180c0aee4748d176878a2fdfdc75f1cbbe6f601f097d12a67",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "319ec7bb975516e56b9083a710a69be8b36d4b74d41ce14ccc7091555a062666",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8eba3fa6a7c41550834bdea1feb7d2a22e2192c4941a64a48a5149d4c888ef08",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "aa5dfc16d550944142d4458c95ce7e1baa705ab09ab124f99ec314f18284819c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2146f2a746cdea003abd63b6fa1a1eddee7f9f10b7f8b45e8a3692ea6bdbbb11",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fbf2322a5a2ef65978e9263fb4158398688446ba25baa03d9cde623046132188",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ab75ff4a42d2a344d829adb4bf218f1a75a99836ef0aa40dff2ae3b4ec5b8a79",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4cacc30aad34b72a6d410beedf20ed8fb8d0a240df5cc63c505da5f5cd751347",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5649f79fc8a02b36033c333d290457f04ea04fd97c8adb44d88625eca562ded9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2ac59ee0dab16e3b68222f1ae5ea8dde873d136d41fe585e1d92d3f0439defcb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "dc75202e96bb2ab24f6387da21901a4ca6da23fa1539685d89cc9044404f3d63",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7b50405f18bc988d8c42f0e0faeda4104981a9bcf2024cf518d5ea387ac14901",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bf5c5bb8803fb953f1908556b27f6358403e42bf48d6d97eebc96950143aa0e0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "42540a520b2e15f880bcb503d31db38fb060fab585de5c87a0d249b5b1bb98ed",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6528f8e0e9f93a3c59ba2667d7fde4e4488505c7c52b05f2b68f6893aa9db076",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3f0dd1cff5049006b258aa7649cc1149cc6c175492575dcc46e0e8376346a101",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ea92be8de968c4b768665d5a5404f1d4eccaf65cd0735a47311198f2be1b6bd2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8ff823336e2a944e1cd8bd244de4c7040fb72ea883188f496e87b745e4d89d75",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e4dbbb4664336c6ebaaee7cf05282dc75b88c9c744c34ea7326f7386a54f9232",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1ff2242dcb28cf88ab711278aa2b57dd47a2e0baf4f3a7463f1b04e8644c8b1b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2c84b35e84089ba055ae7d2d0c1304d910a37274b1c779319b2ca81166a2c952",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a2a5535e211c494cd3157d6cf5b5176a3056a58d77783d9e4b995e1aec606c33",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7fc0602b0af304263206ef4b1b8d6a48580d7aef9dd65e7eef6f8431b702966f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "48e40b251757fed29fcc20e8c24ac9c1e225e6dcd1974e9f862c5c322b5c8b45",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fb68960c18853edab87ad6373f0542691862ed98809eecfde7782b95643714bb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "eb07b9deef1c38e80d7be2297007ab4d91b3839d1de13e9a5eccf2856b81d4c7",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cea1e340fa399c03b6a38bd7d4779d2e25a10714b8f273254bed12df661d7467",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "97ad451e6f876a089dfef3709a7fd1e422432dee11c1eab81affd0ef132143a0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d11bad482ebe6ea02f70c0fa2cec64bb47b478f4516aaadee0664d777efe577f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a29e41367ca0234ac91a7d058494c2a8b82d59167f0172e757d7850621509be1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "699c5e5caa70989a782bdefeef1187363f9eb02f7f6d16ead946f0bb188d4c55",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "15b48d92b9dae327cd2cd82e60ac8a45539ec372ac79b0c80f53ba03c25171b9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "11979b4507a119e5f9be719822cbfb79d55ed85cba49c343ffd1c937aa8fb02a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f98161c1c8ca9aa71702e3fd83654ff08981314e66ecf01a7df9fe5b2b30de8f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4b262b84235365876807a3ee161628d3c0aa599411f4fbfda3bb06f6147d862d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d68796722382162ed36017f985732d4cea99c2320e84d21878ba90f1b001b41e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fa1839c80ca1a2200ef0fba0e752f5574ba9def3ba08093f74c52f949dd66759",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5b398aaf426e0bf839e746d96af5a69e98a66717d3c63a7ca77a58b8680b852c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "415745dff3db6abd8614807d6e4b092b2d022dda1a472d20e97fb881e7248887",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "edb489e0f27f6de5551fcc1d317073dfa29e3ca02c2f549ab4f56103898eacaa",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7d43552fc9e18050596a22aeac146f3f38c4d710009bf4a42c6d5ddb339a31d0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "40ea5d69e47a187364115c5ced1c7c9366bd2bdf65d1e1395690756082d7ffed",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d9764da68db13455660560caf6d315765cd7f412c180a301c9b4b5c964edea58",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "31283d5307710bb98843fcecda0ea73105422bda268276ac581b7d44bb174732",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9fd0b6906795f8e38d625eb9b1669790b5a4cf36e59632b11a760df11142f9be",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bb4f9e3145fa9f32bf26849a2a36537421c5b27e168785175675597da31b7f88",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6db28cf4b81cdef1823096daba0d176e479000db8768fdfbdd53a8ae85c54c1d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "271c8bf2046fa7b021f5ecf47de67b20f366ab2be3644b918e2b2abe75ffee79",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7d3767fdb9c06019b8c9c7d4dc35ad603ea632f6e90cbc0e7accfe5e2aa6f2b2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b9d6cf467eee032382e2c4f36eddf30b6fb0a1386e196b647d58ee7dd50ca04c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "83c07574b114aade670efb83a5c99161e52f94c61b555e6353270ca3ac830b88",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b1405bd6b5b792b2668a1126c4af2364a1466ec70a39c16985923ce49c139932",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c81574b2ce747416e46aa556191b57e01058c608bb78ca77419214e3029c67ce",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "eab2d8cc4f30a261c72390970fcbdcc0c8e1f34448dfa079fbd0ba839dc6e222",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ba4027a7cd889557c1afd046bfbb4359b5315b78a6adfca7d0df2087a3282b5a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d9d3e3fe611e24e3cdadcef5b9513d2a99dc672cd3b268f44de225ee434298be",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "10fa33f79fd2197c4e1d9fc0a35497ce87b217695428a8d3ac68e8c924777dac",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0a473caafc045cb6ab5b25be67b41ac4a63c9f43241f543d7dbed8bcefbad597",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8cec177a6b80f6f57fe9a23f449136bc042f26c156bd5492ef2e1b7627cbb7e6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2aedfd98dc31962f6634353b500e4be003b3344741a2ad8b4bd8b12ee4659c1d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "df8ada361ab6a3ef8fff9191b6574d380d417c444a48c2781266ed506cba28da",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "64e829cb2b855cbf49d71d3b294d9c4a37329fdff7cc5d69eb33823b8da3e141",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "074342fd4472d051d93cbfb92fcd7cea92ecb30aa6fa3bf43c71cdfb8f60e4ef",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "21f83e6cc2989a0dd2efc1d4463e045aca29ff5a45fb5d6fbecc9a0dfc62db92",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6c9446653509ff6c7c690227344b42a18b9ddc9c58fa6a7e533766a8845931b7",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7593293803989f4f2513f1fbb4249381e097be523c659cd92ec6326f33fd5652",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f70552cd70f3b0126bb212d583abaa8ac0ccfe00855967a3aa8e811437c49870",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f943b484b5e39dfc761bf67328104f186152ec8899051d9f0a5105fafa1052f1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "83d9c0123bb2a85a9a36a823de00424bf9d7290b1ba45bb29bdcdf4c5f4289db",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bded75b032a918738ad106dd6215643c56f6207b9731214b9905f06aa5f44778",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9a44210e3e5f2397ac71fd11da35b6638ab2f589cd4612057ba8bea49edabb5e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e63436e2579d28ba0824c5893d187190cc06384ac7071fd7270a75dd6a8ed315",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f47ca4b1b0fafc8d69103b03eac45de1f765d41fd3deea67d20ca84703ee0a7d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b15f09f912e51843837e0b29bc63452a6c0fa1a6a1cb645e51ce5527bce7d4d0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fe38f1e5866514b41dcaa2f9190822c278f1d872c4568af21a85a4ef307033d2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8b998969fa7f7cd72e7e42f09b5621c391752693b614de666c97749e21317a4f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b67482f6ee3b3336672c570ffd3c78fe6dd2e1954fed2906bf1e7c8a716afc94",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8dfba6ddea8cb11d19f0519051e5cd20c3e5aabd989e9f92fda42e3bbb8ce199",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bc873f41d572a1bbedcc86504135f1316c10d819aa240440fc317fdeaf8bf5aa",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "79a35e02bb78f102314710397d3eb8d759d3a0d8806eba774a138457812c6166",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b72b8754ca0c0cf7732afe1a8ef456c7690fa9478488842622a8800b293658fb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "39dc44a41c9b6ceae5428f9e226814b37037be81c72fc055208489aadec1d9b3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "511f8298fc1b837160389e25be57f5ec4408403496051e69112353addb8cab36",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2aee94989820b56238aed20333c4148a2c5fa59eb4ec293c021a09a0c4e6eb00",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "88464f037441b3f0045fe4b989581436cb42b78093656bda76fec4d80f6a0877",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "25fcbd0172091ea72135915754478a24a4911e67e2582c53b9af7ae115b92b7d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cbb356296c046b7e9cdb68389793777f6ef51f4fd3db9eb810db5c0f8891d10d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c20b0603aa36e54d86f48e5a554b07a95f0dad5b7732b0c337ff1742a5d9a209",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "19101541887de88f47f61bcb222523ce473125f90264ce0287dfdcf829e24ae5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c06460d067218e04b95bb3d1a13218c1898c24a35e4885da002381c20d9cf1da",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c6a9ad730412fa588eafe08bc1a9a0f93aa0f2425a682a32c117fcf1f28cde9b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "832e1b157474d4ac345d628f03292b0478d27172d3f5b5c83852ce216e8a5b35",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3cef11f9932eac023bd18335784a55b6f461e7dd955fcc80e1e8878a4f5f6d52",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "011c782b9f45b33bc22c3bb5f1b10c130c42bd341153584d927243c0d264f7dc",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a6546791395e9cddcc578683f5c0a4dede606a09be7fce79b6070ccf588c804d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bd35763078817146bf7871266ecf428056a95fb86d30f2dc2465d398f78b9bea",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "763e41bdebc0886bfb34311e66bb31548679ab688ca9af53098232317da33084",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d39559ef15ffeebf540ffcc8d2717e5ec13a6d2d04560105cfaf3acad605659f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4788845f86a95ed2a6b026eec332b945912f493026d67db2fd2cc3cb819f8043",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d073f08c156a09286550cbc1d4310b4c2ecf5764329750ef3a2ea6a5cbd85ad8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ef40db9afd5985794479f812c82f4692b01aa2658ccda275497ef7e026d31942",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "664742533233faf993de8e7e7a699bf865dfdaad25bb69f444815015fd5fc09b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a1313d72be9fea5f4212e1ef33ea0d5f40faf8cd916b7e4eca29c3103227c709",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "77389debf4ecc7425dda6e3b23aacadcc383888555932247f26b3f75f5640a0a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "05b37f93dafed684b34dbf4bf254b87e115a7efa169c3ba5d903bf6bb003e41c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "80d987ba0841a15647b230f3932c8a822d3e20154058508511fcfb7a5505ba68",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "dcfbd2a49dd09c835025176327b9ee724778193f886bdc68e99069c87ad08765",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ff428c11ea41afc2bc49619575f8871f25cab7003427eaf72cd3ed4fd4b34ac2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7733e9e0396c404b5a45662e0bda03d530f860a372e4c13244e14a22fb35dd21",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "993181653e5f269c7bc71867553beecd8c6e09e01dca2711a802aa071fe085be",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8f28fb9cadd809cfd71f7c0d26b91add43d504b407e5fbc6adc5da8645eccfe5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "feddc40751a360a89344e1c462390b92ae070be596c9e1c0e422e825ae1ed8b5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6b6e12c190b8625bbf179d6f150591d773c57d04ec7fe1fc995db25c26fc3523",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "de33f194ffec08c829c2e8761e69cccdfc427ebd68b0cf34f6a517ec8eed8c0c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "44af6b38f27b609f65c5af6cb76088262edec085f501253f3313da25740e4bd3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "04156ae07484a2685d72778c03d2c897bf8165d2424f37d36fa458e9a9ac97bd",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "78ec3834b38fda39de949dff4fe4a2b0418d37e15a480ecedbed1f8fc9ec9905",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d6cdfd083ab8cea15ad3e22729e7a420f6e1a247874d6ec1a0ab71fbfde19ec5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "253f856a9fa56e99f443d3d30bf168767edf37d8800e94921ce7f882e8962353",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cb7fd68e82e69899f5b9e0ccd99dd235add11c8dda7d308c285341fffed8e0fa",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "230597d2002db1587c19ab67556fbd0fde61c8785934596bf7c6ae45957028ca",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "575112a303a9daf7db7bcc1fb097dd778a42f3a6ed8b31db4bacb3ffd231df41",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ecb34305e68ee9bfe37cae29f1278e0e611de6bb38c33cbdb8f3c4f95f9e704d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3fad0977c1f554de800c46976e1b518c6ed57ea1dcc14c0c4486f8f1df7c158d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "85742d22428279d06ee99106963b7ec2e8714d60a7fb1e0fdeed42a35780a66a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9ddd103e535332d09bf9410e9ff7b7a4c4fb2b2d4f4761bf09780e76e79be6a1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "763e1e5c5db2ac109033ae7b50492cc3774e121b7068f0c6ff43fe075005fb52",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6461fc42d72fad200ee47c25ed33a4f32d739fcebf41b1e51c6c57efb451debb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9c2e0dc4c9dea0dc5044c3c3649cdfc4595a72d2a90ebfc2ca1c6bbfc36f0559",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8fc5ec44233a17832557c6bdd96543c38df6dad06e8a2c1fd1ae73b1ba3cb9b6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f473420a9b00d41907d1d4f9ef5a3b25b00c2693c8c7a9823bcd0f81babd1a06",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b35602e4bb9b1dc8270887e5005a22337b50d20406d07034385b476c95867be0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4a2f23217e9b3398b63a4a4ef94efe1793424bf9a31459115a85c20a7bfdebe2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d4f9e7eaef855ad2c372d16d7e03c78211ed8399d5ca29c58a5e0c9de22f7fe4",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2944ce7bb4b16585ecf6d80712187b6c6a1c5c513bef91badc37b03a14588b4e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c8e1429f737b508625fad6230ac044e3d53a54f7ec82df2048ed8cf4f16ee1ce",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "33936075cbf7c3f2916874aeeff2986353a8a7b553629f730e43adbe866edaa6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "76cf60ff5d6fad0e1bcbebb287859aa978b6cd0899404fd2fdbcfeaea91baaeb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7978c960ce378b3b7b58acbeac96610693c14c55630013a560348a5b74c831d3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5b3df451bd1d424ef49572891f1509c26e5424794a127cb7397753624cde07fa",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "72a30866efe53503bebebb65e411ec782c5e0a5f90029ddb8c8fc5e32df74e8f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e488102c602e27c0912058b85f63c76aabc12199d9bf4b91bf51aa9c5e607073",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "86a7a2743aeff0d542976caf6835388b7a16b612084fec1a0f99edd33b5bc95d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ee74c3f605eff43314b0becbf58c93921bbaa0338a332ec77cd51a17afe6fe59",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "587d2e87fa722aa121729aff8a4b60e57437360d36c9e59b66b9b998c3df888f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0c1c7221b03e12c36bb322a9d62e5b884d13bab34ad2b816942c46495241fd2f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "08396705bcdeb76bcd181b61af3c7f7d1fb9dbe8ea8d5172d5ae9c8918df98e2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7ce5fe25be6cb17e5120d2e4616c00005cac4385597c1b84532de5733d3ccff2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e28acc1541168873688e56d8ee310bd93ad79e40dddc66ce37c7c18c0558fefa",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2691f306f1a646c34e007e71f03f220f846b93e5c93f2c2a2319d6f2cdfc563d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cfcb1a37ff0f9628eb28ce7c4de99e7c6c98293d697887a123b04aa19a9d83f2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7ccd9ddb9939019ec795bded91115ed90b66b4c00740be6025ccab7a62753b75",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b0772b9b529425b13fc19892861efe43efae22dcb28ab278d59b15cec3e3dd67",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "64e251233a236261f92d3b3466c0678cb3bed5a6746a8fcd5bd48198e683d2c7",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "136f84ee3221e0d263d9ebf8d7561b68cc64a08de52aaaad36a0cc5b1ca3585e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "18777b6ccfbf12e3c6937ad54f7d6380b8947a35c549a033cc4ff88d61a8b147",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d3a831e97838e0ca159982822b4ba1583dd3e0b3fa7f49ff52418675551cfa1c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9e8e9df14d8cddc2c0af48e4c7199f285207c7c1e95214031a3f6696a73ee78f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a003d76be09999d78059e390a7b7112a393b357d5a4847d4ef9a012d1f14ecf8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "99c9e8af8db229c82e415a10756958677f419cfd931beb1e14547e17ee85281c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "42cf5af643a5e31faa05fc340ddba0df25475f192c9ea36126c773a82b5fa520",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "888acd310f782b8c8dee2b988e93375fdd4df0bc2408bfa0b146cdada48d9981",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "618a748c2e0742bddaa0f7b993b7d2a6ffbb219509c1d210688e0ccf14ea9c95",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "29da9c00f68a4313936ee537031597f04bd233b45ab89ae81d8a51fb1877828c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8fb186429b941909bb9a65f10d87da002b193812de3df4c343557ca55ad87896",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "001d99c5e487adbef47d6ba1e9cd63320544f107496801e342cdffb8b43ac3a6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7f05b46c32ff854d6289823bda6b34a54b61310743a42cfe2b6ba5aed9370f3e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "df19f19856f09327134b0b725b41aaf71dec500320c329ba4c68526a506813e1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "aa3ad43bebc8686105b99cd9a94f26dbeb11fc595874dbcbf414a95feffb382a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5753d86db2957de6c80f778a7828170f37f2b5b2ed5bfe608874e87698354910",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f873e417fd5bf832058ededa7868212308173976a9d6ae1abfeba9af3c5f1278",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e11d9848a22072d44fa160315a3e0b3e34663c8e6451b2b85d98b8a870119c01",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "15cc4c559e882043e32af6cdf3c6c2bb298fbd72bad6fcd238a5842b8970993a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3ad8c9673f34dffc1e458f356858bf0b075ed18535a4842327503fd2f1859e37",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b24b87f0c30ca82e8776ae0ecba7ba023685f120a809e9c05446b0ff6a571e10",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2f6c53b40c44b5d5b8393a58da6114fc999266896a9db2780486c616a5388a7b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bffd09f486d68de1c0bd3fb0b650b468f27e12aa4c12fb7c90dc02a26c2d723a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f8a93b64e8b2d3d54de8911b4cb84ffad3a091c18c6a1e4f3ef79fcecf610fdb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "dfd1dd9ef9e46d7b6e1d88fba455505a2bbc528ec60d2a0136a90c6cac3f51fd",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7db5574e53070efb7567e470cb1701e19976cdcc0d7e434d995f9132ba2859aa",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8077740af4b37d6df9c4ac89e391f03f1f9da67f26ebe57dd2ef5964d53dd711",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "560951e28e999aacb68971a0c95688b9568262cde77caa7e689670454df3b1a6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b4344a6ffce11ad660f7cfb5f33914eb69314fc46336bd618ef09334e532361e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "064acac6ed32948c569e0b7598cbd8cfd604c7b93bcfb7da01c85dfd4ad0384c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5201e9f14c217f054e7fa1ed041cdf75d65fb1f99c2800c0f7bb9219478319a0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ee69dc528b8a0c44f1ccdbb2fa31461571d92f86a7f10e4e3fe3d0816009763c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5e18d18fc044c42225e09bfcef1004756545b21232efcb5194ce46e9f78d288f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "82ff78c62c68025b44fce0b7d18ba6bbee46f12c1de760bc9b6972f5972cf194",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0934748c2ded3df53674365ffc556d365dd25eea20d1d92442a0df881b4ec94c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fed3590945b2d43e4e70723fdf1ced6ed0b3bd17322a4d1a5d752ebda81d0d9c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "43eca4cccd1f17e5dc3d7a15c8ed0e98a003fa93587dfec6018455fcd1ba73bf",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ced29752150c0ad518cc077c107bb291bf342f84fe1a48912d91aadb75307118",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "731cfad7cac411c8180b25b4f7465f1eab91932c7089aae3027226aa7c0abc0b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d50993be40b6c5bada4c1a3f018980564f906a8566954176ea580f16e738f895",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3d909f40c221fbeccefc01fc7150e72cba8ce8c4f3cbf7bf2189f7ccd0aef976",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3950dfee22267126e18d472a8b0aacc21a04b4d681fddf4440ed4d017d0db5fd",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "68ff784d7a4750861739ad1139cef1f601adbd94fd1e3f1fbf9382b2eb073fc9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "14a70172c770b44f0f864819c8cc87aa279aa6e5f8864041f8821cb9033f0042",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8b134221aa22217544d651a1345e9849684fc882963774f66d7a525a610a5599",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "751f2de156402286c901468d98eb983c4130cc59380f8429f641a4a52d7fb5c2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "91b83688d531d309baaf2ec674319695865cd953bf494448413302a43e1305c9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f1b2b84e1e8c41414fbfb7afdeda10617148c54c5543ad9b952b4be142824493",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b5bef2de6b74623ddef027fb82ae6834b8ec654d6ce3ba92eeaedcc3fcd5b6f5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7393f791cca12da9c1cf59e14c0855d8128ffe7ea1aef76842a6acbc29ab4ba9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5ae53a0d40cb22ef1578252b51b2c5f72072678b73f46ebccd1732a12a5c8310",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fa6a3abf0dd9404b166d1a7d07f3fe84f12b994c83a14a3667ce079fa273b46c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "492ae6acd4cc7f3781065671d48b0f459ec12720ffa96c84654982a2c0ec7e98",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f6a4a7a35717361adee4551812d19f68f62856597c65e042dc93d014c26350ae",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "95525ff8d6210e321ee3405c72643d148ed225b1b6a624b79808fa89182bfda1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4c4cff16766444e437a73a36e2dfd6ebb289048d9c13e2aefc92b7f925926897",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cc62b0456a243bcf914b2a8d3fb56d926b523fee9ecc4aa79ef3a92f37c05d1a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "66a0f970f6e60285852196710d837c8df994eed1de02c0652ead258ad475f5f7",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e10fb2a69c4414517efe60656454697d83ec6fa5182cb294acaa6e021d382612",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0463926de22304e041e5f9248bbeb83ea76b09fa55ac3b2830fd46c1083c4a71",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d13769550291d0252ba280288e3d96f20105f0b15405358bc6f409ef39eae980",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "353db645fbf46ba458dfb0be83e21f0dd078dbc9f18673cdff7923895053fc79",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "23f9a55c6ba865633b6ff4d96affadf01993f21290a09631b72d5224abf84ac6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bfd7e5fa837448041066ef9c3280925f244a82337d917b97d6df78b8a3e5f779",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "55128a25c9a523f15bf66fc55d1b71038b1a1c18051c5ed353c87ee13297da91",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bf702de9b9f15a54b44c38ab347daaa0ded2c54da35668d51de1acde6345c6c9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e1855a2ad56e9726ec602c07d237b0b300a8110fccd934d485801662d4c60c6e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bc97181f209ae1cb19d1af2693d3e9163011399a29f6df0cb8ab02e7be3948b3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "82eb479776008dbc61ec2a626309eab64dfd59e5dffe41d8beeed8ff7145450e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "72e5668755c053f5ec3b59c35bd6d1d2d5654ed5584e0ff7598f68c0896330e5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1f219a368c03c13ef8127b93ddc581d78bb3e8d745dff3c862be13b4ef6ec86d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5cf1c11d2f0c93ada874bf69023e49d8fbca0cafd04460facfed65a36db7d37b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "55e789faadf58b3b0f9d611f11f834332aa0c3f2765494546899fa6287a78aaf",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "54dcf718557b7cebc3a1b457bb2f763da784e80a556fcd1a14f6f7efea0c3232",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "291659ef50903f6494fe6aca02d4046aba258a054526850d1e3ed9f8864c0fb6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "75b57dd462a272fb57a5dc372f346fd77e8ae9d87a8ef5e051c88bf6f0e3addd",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bb54f6727e4121665f81bcaae0f63b556814ab3f6ca7ca96d8563be9925efc6a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7912838b6ca4fca439595f9726c695280025bdcf18d36783ff35c58b00eb44fc",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4cc5267e103a4db93a13d76a30428a2642e5c881706a849dc49be31a1fea9fe5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "61be02bc58ee341e7e1e3175dfa6cd067ad8212fd417cbd8ee19d4bd10723de9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fa9bd8e2bfb2de758622be1525ff29a06110c5c74e43b9dfbb383251aeb2cadb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2dd3ee40bf90063255656ecf023459118b4268e7f17e3005668bdb4e151a1309",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e3176b3c98f6b534c03271415ce0e468951c8aaf7f30b33ef7cd7287fa7854aa",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "07e06ec6b4796943c51fab4360525184353347f07520b63e4ad1ba67735c68ad",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4d34cd037659755e2ab49a93cf1d7ed31994bb91ec982eb8370d3480da2e073a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "444dd83f9db4ab3ef78652772373cffc58bf08a979768fa7f379e97d0738e7b9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cd29cfb36ed0e1618346cf6783296da91443052236a4656a57d90e39a3a0cab0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "61052e137721698cd94640ce5d7b6acc9e626193f55cabcd2f9aadd2b6ddeb88",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "872b943b1108bb662b4a8211ba6c1b8ef9207014e63faf86326c7dd18ee507ad",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6cc6fc94f70b73a73abe2dec9da0372b143912ca31d60d1afda456a52c7c6fa0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d8da993c3880f3998cfc40097f146e463024e54c8b6d56100f264c1599a19cd7",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "21f7c9615740a3cb43dbb74416b752999e7f3b740d2c809026c1821948928078",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d1b81116dfb1029304ac1578b17388925b69ad1832a790be926102b622e475be",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4b61a4a157dd026aa9e82eb8842bcf112ee05b63fe718ba53cd9ca097753997a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "76409f1dfd1f4a7755995b301ea03913048a59d2f279f5848221ec13b385c7b7",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ba0fc816d098e7298fec7cdc5336f29bd43b3091620faf92f93a78a546cc56b9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8306cf6db4dd4eed91ff39e424bf981a01c09ddf52f1dba6e18c981726aa03f9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "eefbd3fed2b39ad8051c7bbc750791e1623ed9a0b34c720d93d142d0cfe5a8e3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "30330256b4f6402b51c0b310e706b71f5f0ac22f7c84faa39994dfa8a08b6726",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "235bb8d6f5a6974ec949615aac3fac746596f6ed8e5e0d2987ed603e8540cf7e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cb44e3c549eae0651a127f08baabe24d4ddeeb20bddceca74964d601b6c95a39",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5d51cf3ac9469e0001784c24d57838ec888c0821f3a8c5d01f40254c818e5862",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "90ffd4a1303a8758e4a3634da12b691512cf6d4cefa404760f13824fe25f9efa",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fa5674a477bae499f32bdfeec8b98875d44d7ac1152f2e53837823a92717b043",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "dcf9a017064b873436b80a083ae7b2a63c42de0697c750a3cd6a6aa79542d22c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "32aa79583dd971cdc04960711425da77d08716aa4ed9f9e827eb199696830e34",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cdbce3b9c546870f088623e74742fba88d5962317d4b825dc9f038f905c307b1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3e2bcfa1bbfbdd5d9b2687ee87f9144981e8b7ecc93f3d6f5bb015e554a1ac09",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "40505945e3ccbe71854c34a9186072d64f91f7fa3aa8b148cb3a1f43388894be",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5c5875c0279eb94e2c12594f3bc906f388a18655eee25196d37839f7ee2f766f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "03094fe594e858a937835a9cc29346d604040f058a40d29c6a302d21a4b7e134",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3c324fb0aa199dd31f18810fef6e2bac234c963e39885ad4df553255d498022b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "19d775b800b0f43d369b3e35adce7c3de36d31d191130664afa7330d86b535cf",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "67f2d0192283969cfb3ff4b72d59fa955828193cca07a83172d599a40da39412",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "54f5b4f53a82be3c682ac5d4bd46a869c3c5652ee262755c04cf602aa160c8f6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b0d3f750cfbc2c9f576417c27edbc304ac7631735d01d2e0d52ed8a5b2f67b5f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "389ca6778b5155ab7a5d17a2612c47f6792334c2f3e3a1f277c0a6c0ddea605d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1d7c6c54715c700bfcd75504eb2fd3f2ab74c9e435c6ff5ebe258f9906335ee1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c3796ed0bbfcd57f9cd24e8f979b2b3cf72856d7de542b3e7b900cf62443768c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "02184bc23ac878422daa6132f0812e63818fd28c2e0fcbf2b880a05ad8d254a3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4447a0193883d0a33bc5c754ff18a1b93df1f525a5f9481f024f159487eaba3b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0bfebb06d157d873b2014ab5de2047e1f4bdeb84c498e94cc07768e5f337b897",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "54e2bd6efb02ec1be948c1b6d62dae49d086a2887b33830638a6be269f235e4f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f46bf1253cd9abef55c421bb3cb476eea15d237bfdcad153cb7839488612fdc6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "eb10df2e2d78587fb4a773d5e176747a481496a73e1114d5966a456ad0d07fd3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8f8ae03a655f8648f666ea06bfc794745a316a6d3ad622f5bfe8362041a450d7",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1df578152d6ef3f27eb8f0f7931e84e3c36675fcc480ca9dd56cfe2162d247d3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e06b2276e76381654e6eb86846d658ec781f606fcd7b39e867c1fe6ff037c4ae",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "abd2e61a540f6866d4530f8acbed442ecfdfdf6d3a922898ae32e4b45a7f1aee",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a246a595959b920a5cc6af843ede42f9f11a9a652e752d794b52ad907129284a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "debe6f883360766833f5e543bb136af72be0fe1deacf33cf7ab8bf25b2a6508e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d56761d5ecc8cb303dfd09551b32b8d52706ca0f79d420314c4efbfa49ebd181",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "28ea520540ccb5265732cca2bbd099bbc82137b2c9ea8f716d0fe1b364f1b25e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6daf1d8e78668de16756ef8e70c3d34f17ecea8f4ceb961d0504515934e02efc",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a5ab4aa252c52bd058b48d477a60f0a5badaa33c84637217029655d16ca3dc9d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7e53decb39ec8b750f39fe6ede3eebb6360c9d2c38190d49b2782890330c6737",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "47a6a670a82b17a4e9e28decb774be74f91282a7d2118fdf9446ebd09cd390bf",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "18249072cfde9360fd9bf449e997a9be876fe8d58ee7da5d04820cae519e0f48",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2d3008960cd3685611e9671866834f119a4de87e45894f5693f09c325fecdd6b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "88dd33249d7fcde5929fa47eb5b553bbafdc9d4f1a415de656be87cc51f26bb0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1f29a35b844cba209a2d295ec7ab66d25b84fa0dc5fc9d039b89c196c117f7e9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "92005892afe2254f8e7683eb6148b7ade73cc2a11fd927da07ae4c6c52cc41eb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4ee03db719e989833fc2767ad6f5665f179aa48f7b303e0f6acc0f80acc72b49",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5fec7fd9a018a04c4ab3650231350131c4596a10255e954370c35049eb8422bb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "244d96e14ab63b49e1c00cb4f5d2fe770a9017dcb04f3aec0975d5a5593c7272",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3ca289c5c8a0efff2bf533ed7e037071f36ed37c6322168a57c598d8e87167ab",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cef32405ed83033d5046b8f059c89bc32d85b5ddf2583a53c77ba4ff24f14071",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6448ea980be3475e1c7544d08d2e6c588214de67dbb9a2a47da2084d085169db",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4cba88e50bc27fe56f762701bd9d44a673b7d577949f97dca5eeaf1cbe5f1e6d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "01df644092dc63699ff06506d63b1e3c2eaa26fcc4ab49baeb547841a1fea639",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9bb5688f9a4c5e69ff12f432407b6e40b42122e9327fa17712ef5928685f2f90",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f195dda6543e7c6d27aa0916864b7a4d34e64ee3fd46e044702b898be8a8c38a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "47c338f2be700d58b80f1bbbc39ae8dc0ca314f28e29a63101b70a7ba7540b7a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a66b9235d5c8b21bf37328de02e7cb17a79747a53da4a1cf1811d6b49cf8a944",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d10fca3ae5d80011dce807b853dae831d435d95f7efa1d07a197cf2d4a7c273f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7f4a364e623fb00db3f54bca1e2c882c4647dda25bfceeb364f0720c1c067545",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "32016a8915a4bf199ade4d2376f2284cd156576989e1842b53c4ce0cbfa39942",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e5e4175144051b7e0c30fcfc6383f15e65789e62e3d823c30e225509be3889b8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "de84f35714891ff621049b4b87fc73ca0a806db842b951b7aa317c02d3d06b21",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5d47770bce5cb1bf0f98afc185362740db531150bddf2e1ab7cab3414a369193",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7f555703767c069bfd7ed2db269cf6dc377b7cab94990a1a94a135b7fbdd854b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5516a2a28f12fb2ccd9e2e67a3f39c85bb72afcc5b2c672226c11a9a25c9c2ff",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "82115d639f0b42ee9d27475b6ec4894efecd8272aa8c6f6b6493a97c2e9a930e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fe19b86688cab3b69c2ff80c4027765b2a50e5cca8bde611fdee783dc49d88d2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1a41145f779061a2dd4c9b005c5e2601ec351adcd4c3ce14667e7a65a7c6ce4e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "547d6fedf3cfe1544b7641f5531bae9e46b9c4bd8d9e26c3eea267200aeab15f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7b847d5c8eee0a642d95ecc25b1eebcb9492eec87ad90310552c561c34536577",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "aeab423d3c6b6297763d8184f1d20f83d6721cd976cdcee6af47873fde44dd1b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "66c1e119163b484314c3de710231c8d967e16deb1df7c5c8c54bbd52e15fc434",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "764062e95c4fd7c36d1331770f1dc2816c9af1b30aa12179cf1089fb595e6dd8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e90f00c5636b62f5f541e11994c713a9a2a62ad5e74a7c7f7aa5fc25d8d7984c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e17934bf8be093eb31aa9512e3748db1c6589bbc90d785678c37cee67d464725",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "619bddf169dc027441e435574da8f08e3c1af4e5afb40398f5655ebc8fb565ed",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ed8b5c723c3a5e1f9b4d16a6cdd3afe254b11be0df86d38894ef4e6c12bbe68e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0dae4f179d54da9768f748a96f4ab943c79411121f244e2e8a1e731ac242d40b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d791a6264dc3e09ce284008f09b1eb0f4085506b5e40c94d8561da1f634fafd9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "814293dcb3e4423e3158578ec04b4f014d295b9ad5abfb6c62dcb592073d3bd3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "eee5ade2bd59c6bd88bd586f952b53adf10ee8820344e5f01e558dfc2add20e2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ccf83a9be51e7e5687030dc78aba7a674c929eb75d3c947207483eaa20a17be0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "168933f2e13e34058f991eb368def488db9751f8ebc9b38bc751e28fe0fd8084",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9c2a5e9e0eeb0a1f6eb1840c1eae0c6c3d1fb1b435e1976c5191c108793c5374",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "dc4ef50e00794177ee21e9808e84683a6d91a87c67a98297f19d7c474b1ca7cb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e461f8a1df4e74dcbc9b732f7f6c287ab6eb0d33698693c0386249c753675633",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c5bd129492bd93714451f37190809fbc5405bc0db9e736029d1cd5646bd5f85a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "470aa165c0bb931eed6b905226054b1aedb5c8ea8f444e890d0c0d1a42e26293",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1f4ca493ec17c626753b871cc3edbc9153b0d253c01831bd42413a40928864a1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9b7ef2365152e1b07a88c816fe36ca12c454ba6c668eb49535d64d8f6ea0a6a2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0c7b15a9bfb36ae297d3efe54f7099ab27fcda1586743bf1bed370b5cafb1415",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "404818bc6d67d0c57bee0c1dc221caa873c1a4b495d2606ed229724dc370303e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b7a2e40342983688d973512c44b65986e6224149e7fc920fc678251122d2815e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e15367ac3243a06c9560a79ffa198f03af5c5d1f94854a4dddaa185702bbf86e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0dfb470da7c1d7972d76fa5f9e5cd3346f4a6d6d109415e8099e531211c54f38",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6026a0ec3f7bdc13cf3bc237a1fa36d7e928892651544ec869a4779a800fb894",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d1f2200d0cb32250812aaa8bc1bbb9c465ba46afa55a6df8a2771dd9bcee5334",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "13b7fdbf99c21c45d1ac1f8a5d951616c8d915e1000b782000e195c815206941",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6f92c0569be42789ea790724cd6a42eb419783899834c352623b721dc4963df7",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "86decd286c86593d7d731cb34c279e35ca9c9bf2724165f8aff1309ae0661df1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3a5327141034b62ba41602fdbf88388d98d7a2d8a27b9a542d1f8a1fa44feb05",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3b8c126f9bb1344f272ff128e01d0dcb341276fd143b925c4cb7fcfd1d377338",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cd9dce18fc794ac7256f5d6dd376de47f17c3dc8eb2209403514b7987c0c844b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7b26a2f87deac7633ba0bf0cc73689c886415d1d25da094958746797fd55a005",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "38af604f4367924978150fdb24bfc5d37ba64dd4e5bbb0eeb4fca2e528d89867",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ff96e4138d22ff3cc17b45eecbbf7abae17d87880d4ac9a2f9c9b0ef077a6680",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9cbffc01ec59cc8bf0482d8fa710b16051727a48d21182c05a8f4e5c603d3332",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "685300457e5e56dc2ba38c4cb8d76b9248ea9dd02c7433dca0de6a9a93cf6f67",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ef57811f922b7688d5cf80f5338d0b5a25094a33d4bdcb972546d2fa753ab8f6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2e5965deb1439d8104b561c30d8fabd466889c3fce4a03d06a203e12f666ab84",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fcb11541ea09ddc01be8286c17551868ca1ce0d6e32b8de910069bb1c3d7cacf",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "debf05bbb7bb53bf6c2c9f1495b67c351628eb148a46778d253b05c36cc6201b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "08abe5ee960d7dea29e109d7e2271b2f2a2e920581072b5cf2b578b92dc5d0d9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3a64295a93626a8d21a317833696e140aaa85c5ebc0f6c6c89485e9a19155480",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f976e5a08178bab2ccd12b3c93b28f33e625070ee8d7e72223dc08e5e23e5125",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "83651f646c1891ef609ce0f1edcf5a8c9ba4588c78043ee921c2f96bdc62b19b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f64e58787202d62c2587689f75563fbf1c38a20378c1f5b3fc4f05a389a64654",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "03d8580c9e7afe2c6d7856f05a84a9ded20caa1d1770081cf060cb8e6ae3ade0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "450171de56757484343bf4730eae29b8bd8442d1ba5964c1da5eb5282c0d4792",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8eed385b86b46fba31eb9a6dc186b1dacdab39f387cf7c4ae68d739b263dc8c9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0d1a6da7e588885e599511864bd602cc90913d10c439d3734f80e666f1afeee5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d57bb15e09dbfee3a36f1b84ca283327efdb67a814577fb196d3c79d5dd69340",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8957aceeb468a1c6f22161bc5d54a632bc87cc8e6b3ff926aff4d7625c5b59f6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "79ea6f143d8227ed4a198d9572e70600996fc1730307ddd731ac19cb9e0e234f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cf9a6ac106d0fb0ba95c050f20b356cb9c75295d39a47a525a596fff93fa251d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "15af8b0263e9578f0253d324aace851f6deea8a55724ee7f1a48113d0eb76cc9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2503cfccd2a73edd717e6739605078391a5c514ad4e286a90baa8c3e1db0c37f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f1331b3249aaaf391290ea6b43df37aac5fff8bcd2bf6f99d69ad55bce035bfa",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b4e2c1793c659acf97787dee12bfd2e468adce84271d7c8076debb29be2ebc0a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "aa183b3113794dd2b6e4bd09703a9863761a2457cdd32d888ca4730b09612001",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b439f9706c2c35e7cb61fe2319513f9f5bc80cbb84c7e7b504b531f8b575eccd",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2f5bcebcb61129a950cdce8f3f5e9f97e142cbc0ce99a8d446a97da26531674b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c0be7643757b45471881ed02d00c08020a31c120abc4b2fa37f54005c176e7a3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a963926d67aeb41d384483f8592964cd2ac810861068d69861b727c98912f924",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0c7feb255868c14092718c362998f300e9e2c5545381369b74a585e931aa943b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "64963a86445791cc0373bc44035d652f3f6f6cbe4ce52d8ce9c7468acd2fe692",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a9ea1c3582959c5a37c08df982816ef8ddd23bd6e2a50f16bd79b02aeccc42b2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b0a305a7c5832ade5ed8c4e253d44b6188378c4698fa8a0607eb78a6360f8dfb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "07935e28f4525dca8ade1bde1cab2eb1206ca01e40e58f5bbdb6bee491f9473a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "27b5745c9afd1e118ac960b1c43ebcf72cc2482a6503b7f591356c2b5ac277fa",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "16c95276d77f11094a881d40fa6571589c4182da6253cdbc267652e2aace81eb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b07943c290154fbff6598fa83c942ae03d4ce9044cee83e95c42c7f391ba6e47",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5b5eaa043dca00269bfcc2101f39613019959030a3a313e3dce5fe859f721769",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1b3874eb6f8bad8a3684f58775371ae742869f810b8f370b88b72fa2982f8c5f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ae742f3b37b1085fe3cc76a9b212d311c3ca532c0695e9b1e7517a65d1a5d984",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "78623cb9e2a4887428d9701d89347dde342548fa6983932f1d829306dab9a0b2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "74408c719c1e7f305068bc197e6ea0f659a5a62da6de714761b03e0dcc4aab66",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e64f1237f87f36139c2383c9ab5a069ada3de414dad2bd7e26ceb19a64df6074",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3039e7d7a20d48c3dd1c139e05a5d4cdf3181d2f78842ae51023da6270fd251a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "446f15c5a467cf05dab035157160036d82bde967885b53aa618fe634edf687c5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "74f0d0de03ee764fbb6a6d3ac1c0f64beed42ec2c0ebcad1bf6e4d302a76aefd",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7089fb882cf80e5470305c8ce232cb3fea71fb00039082b3074902811f03e9d0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0d1881111ac72dcb4fd6aa9254cb2a4dac6cda2061bfc7443c7597501ced69ab",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ebfc0f8d03cc5382f9107c8087d490219ceff42ee0bef74aa0f4b2b72fd96890",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6ccc0a406dfdde722de0901a1af63851759184febebe62ce50eb4dfcf088d458",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "15e428898229e9f032244d116e16f6bbf7cc3acbc50ffc8251d15655f13d7b6d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6dc6b15ebc449e520a8e387f679cfb596dc76d0202533c99061da7dd5222adc7",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bcf6b633f4b44dd82a49c0755c11aaa5aeee3af6148b731f0b4ded9eb4e02926",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e47ba20502cacefa333bc270b67ddc36365ef6ca7a4b1531d3b0692637524445",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b14ac9f3c15fec23d8439d60f03eb0508d35f105fbb45f05119ec4375224ea4d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e20c1da01c6728918ca8eb66059020d4fc49a338cdf2d6a27f5c9cc91c12933f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "346495a088d0ccac4593adede9b5104a5fd79c92cb8534bc5054165ad9b8fff8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e0a5f6ef1b33b706d7dd05a933aa96df9ad7c3ca5ed10f561cc1e855ea389707",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7ec4f33faa09df61ad501b1d3b8ff79d8eb1dd94bf8d40b647159ae23ace489c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5ae6affa9de50dc0a046387f34540736e36ab50ba913531b158614c1d121b71c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "66bb27773ab6e8050f67cd40cf163f268668f6fa197f11092951ff04e17a0251",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "abde510b012ccfb201e2a9d1b93104b4c5a1bedaf0b50f42e6ff41e3518ac3de",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c53b2d03192dd341133f38db2c9c087826df2d302c998a65227e442575014ef0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f222b98b745b9f63273c46ac3f0897bad0222d109d0ca2370173774bc4a3e6f0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ecaeee6b594803689447060c88aabf5dcad7b273090e8ad741340bd14ecf69fb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e602d5cd385fafe975d8bf6afe6a5e92570b5cc8946fa7ef8d0247b382a89fd1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d3480a616bae942c2ec58e1206210e6f1b03f484bc27179442d4cd4531924520",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "dbc44d18c348eb4b758f03a273a3d4863af721516fa64e1003044450eb568c90",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0e4f13d1fdb2c16d4b6e78b8aa16cd0b4bab482aad4cc1a9ae14584bd3764d8b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fc000bf405fb012ad595ecc8ee67b7444cf72da96efa20ce727bed08b439a2d8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "316ea19fc56c496f179f8466849e581092740cb7aa87fa7fd78e8327591fd351",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7477256533584c9fe10aca27eedc824b4df5f90841087e75eade05b48eed954a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1c043cb756c1324ef11e2a71239ab8a11f2ca26b12bb8ea4431cf94230c7f91a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fb0b21d509c213a96702f5278e0a11974b550e8124046484c0ddc5a56aaff8b3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c7fc614d1ef2f3fb77b353a4265466b29e3ace8cbd21049e07320550595a9562",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4c299aa5a023ac42963d37837a87f57107ca2659b4350cab8f8545d82f80fe7f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7028b0fe89644a52ca3ee6790b394107a5aa5c3ed764aae3ba3330f904cc5489",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "53a294ab5dda6c12a08c087ac83a187c7a384481a8f97e97a3681d8316ed88a2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2d40d7ccb97c797d0ab1e1efbb75f77d7f47328d1994c8bd39b547b219d38c96",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7d5e57f446bcd19ee23ab20f8152ff58affcafedf581d51e3b1e667129912fc1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "af1b8d863ce3c23b30194180e758a8e606c061ddba68f6c940ddb016b8e4a302",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a47f2814d70d0e55bc5775d750666fd12a464e5f5ef7acee0b49b0e743fb4852",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c6363b4ea4b162b9cbb60795cb1f67aae84c722d94915cb0138377faff0bd5f6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "16b3812d987f15e4233579d8e1680f1dfc9882d7f02b28e387821debab776be1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4c12556e88bc78a6cdf935814f6a32ea036918cd4387a513c469445140a475a5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fd20faa8398ea79d0b2670d084638a3fd4622a0f2578c0c5a9e5aa9de93f4641",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1866aded0e1314154fd5adbca486045a7d96a4274070f83206aee59f1907a6fe",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ed61c69333a7f3b20296a45655cfe33f6ec1f4703687f622a84b74fa334dd0a6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ec88ddeb5cdeeace2976cf2feee6628cfe92fc93784f8f3388a9fa6333f6478a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "446c99937d540f0624dadb11d447817bd84fd085f021ca0b0a093f899c589c0d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6fc2cf965e633e1e9d9c46a84a2887ab1ec069dd888c8f8e069e14d6f1c3a783",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "93d9c8f53a0c8c75ecaeb6d05493f3ecfa75f78dc46696c5822779cb7c996de6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fa5429ee71d16656a3ee1a30899111729aa1c5f85a97823754c56a4adb2ea021",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "44ec45356f53238033b55950cc464f3b49980434afce6357434c7a9ba6901bdc",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "25dfcecd72c85d92159ef9e4204b3d1801c948966877afd4099e99067039beef",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "09b43cf02a1b1b19d407edbce05e1ee10a4e828c71d9e5573d5f819540284901",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0a611836c985a1c1b317f7c8251e39b88880390bcdd3bfc1df7edd0f9fbacc17",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9838485ec2981a72efacbc5e72564243be040067b576995006d5c71ceff83266",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f826060f3fb5939e3790923a3a9c17658c6bacc385968db8923105ff0c081e1a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fdee3468398a37db1b6c8ee88b93cd6c767a601d70dc005ceefbb2d6637abdb8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3bdb6d4033363539b364aa25be11c3b102371f339cc0db776cb584b39f1b44c6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6e4059017a182cf48140309f1e27839f99a87443acde07baf4d3bfcd6bd4e166",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c3b31278448cfb5b7aed70d0a2c6fe1a88a53d7e731b060a474292d1bf633e4c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0247785f4fa4f7deea981308358a0e0eec66df8ca353e6c59bccf891243fa50e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2ab8a19e1622c72968baf73eb624f199319baa30957b3c465f6e9235d7ef6cc1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6cb439e86be23226a2e7b12b33dd212a1bd21bcdd947b58bb555ece0e0e8e255",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4891464d715597f6588a8b5ade10a92b2f8e7c0504e5d4f20f22d71659d909e6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "55913d3538f9c7971a146aef752ea7f16bc194b67ebd728457b4fc0a2b1cab02",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "37663f53573b11074afc9a3eb43d45bccb1f93880efa2fd7422f08f0379ebab0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c854b7937ab2c0cfc6b291280e898692639b257cc6896c0e93c674e288f53862",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5d3848b140677b34a47b38ef11c5cef8ca2f41c07a463ca4ddee74794ffcdd2c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b730aba1fbcf66676e3683921f8574e4f724d90a8c083c61dc58edbce5c85ab2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d0972bb5bb5289b955f66225aa9355dce38b42637c63f393b0777db808a32725",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "60cb2887e05450b9012b7e668328f200a439915396853a75777c0c088e76e32f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "64f32ec917eec8898e35d3ebb0ffa3510672ff4c50a7936574bc9eafe7974e65",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "539087b14169a775af5a2d3a368b143d662a15713b7073ade155c0ec58b041f5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7bcb73511fe755e99ff5389c176a4ac0efe57d56857774dc2722ac94e47b8c5d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "dc4f223186b63d3392665039f68a60a32e3630840858414093e9bda108a5a6bb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "81b21c2b0b9318e7944a894626547407440b2eabfb9b01cd12414a2786e8f86e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "e31e789160785f6f802407d1fb8eadfdab2ca24259c571b271a42879ae516f9f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6cf2923a239b605ec48187f1bb3a658d4d5de4f40e3db869b1694970bd054e90",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "14dc0fc734fa7a3f76046d837b62c06d4ae3c1badf757c2b70b979b0a85b5ee8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "208ffc1088989c2beba4c8d6a2e20872a7ce7798ac88a54e1908275a2beb1ef8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b5c22ce84e40429d0e165eb87d08a6a07d47700ef4a6fab6a233fe1616735e35",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "eecf3409f371985c898fc4b9fbe7c467eb6b7a5c970551783379f12ed88a60f2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fbff419b13cbe03e31560c430f1d1ab62c62a2a6fe72d4060f32af57dc63979b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1a05d75260b36e5ebb69ec7709f6390d166681b7b3f46a037142a60809c740e1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a09d0b097c2dbae3db7c55425383c562a986017516950a54cdcd4a98acfed2dd",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "32d39ed565500c27a76a4414b1a4723d2b6812cad6806209d7ece4bf2308cb62",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "62f727626416ee1f36cd02a666097afb62f3ca88a10f2181e7ef9a2ab531e98e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1fecee80e6caf603b16ab02243b2cd49689dffc0859c60bab0d07c579dfa6cde",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "358aa59419951bad1ce8c2758fe5ea32a051c5b8a77cc3f0f8727afb1becc715",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "eb2704f373c9ea0bf69ad9ebf01f75bb29ccf42fa0cda62112835e77606c3006",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9782f609af8fad81cb1b9dd743f66682f1d19c1548cb44e059bcc110a716604c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0eb90c755bba7c8f14212342d971c10f471224204f6f2c11ddd3f9c984369e02",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6eb32b94f28039c9a086fc9cc0922dfcb4311df9f911a3837d0df4b736d7efd2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a3d12b7fbed7382b3c849b3736e344d550e62a75413d76537bf2776b4c9e2b59",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ce0adcf34687015d370048a135009b539434db9a90d99fc80d25e639491d94a2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c34d6823a23e9059731382f5c9e5b248df203a4a7c842776e5918c9cd3769a12",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "759b1757689cd88d5836cad8a712d502ee48e6385ffde325f2ea7d2b828bf585",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5a6fadbc99d546a3f78be31a44ccf5415e8e2b24fabe0ce22be067396fb1376d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "84682ce78bc3bfba18b55acfd7211d5836bca1d0e001bd9ca4c07854617d8faf",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1bde3c846214ecc3a30d963965a594c95560feba8a52635ebb600ace52548736",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "64393a947f616bcb67a5771275cc48b1e578f341ad008d4d1ddb8f361a15980c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "14244dba54fb3c5484cd987941743810b67698bf9cb6281449fc7aa92ee2cb24",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5226e5e4eed26026a6af0090f986dc5691f089fd0041e82c55416d4cd89d5a86",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2e8458d28eefcf3f3bac1a744e8adadbd2583e2d5ae3219c78ddfbe8440bc3e8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "338a06dcf7cbf5fb343225fe7998e5bbd15b41325b19ebc1f00259a635cbd2f5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9e47650a3fe467a8f6a12ef5c3561338453ddcf513f414257ca660b8dac99ff0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c5cdf9effaf5b43aa35c9830202d63b46455d68c59ef22eaae2414050fc7cfbb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "70e89ff4af29d9803a62aa655d1f4e477546cfee740ac957f6a6c89f48e4e0e4",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "36e0cfc217dae57d1ec72bf62edd44b7d09083518f634880824cca945a3150af",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a9f289269111e917d20e84c8aa7e8660924b18990e5eae307062b69a7c777a1e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b3405d91fac45e3e47b1f14390789aa56773f73c83d0c4e696bfca4aea2f9533",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "965284b1bb29644e35f1b5d814eadf964dbe6def5c9f71e6de6f9ed22cb5b15a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f58a82b671a00ef67e41dad1e841b1e0b771be6d48418468efaa476f7964f0d1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "49937c461ff4f2e25c2796d3ecea9d8f7f7ac880027839d8e4e722d1be9581a1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "06aa6fefc0a65ea8f28ea866401ba4e10387e4d1c0881019c65335e960fc644a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2674135745f28d6087750b3ea6da76f8b76c6b69e216c7d1a3b2e6dc9614be07",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "49897b9dbe236d250136791815f8b9f9b61506f986b3518c8639b74da8cd2a24",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1ab25eb44c91b6fa4f5c747dbde36d7c7d0b64553df20b28ff14c2ae0ce94851",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f4ce6d8e9e4780c5dd7cdd3d8b2c40ca957f658f8115951321f0c3964a8507b3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "758ebc11363ce24e2125f4af4463d6c5670628bfaba65b0231b10d0dd0f5e5f2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f710496c22958ec2400631ad5dfc6f964aa9dfa90251bc791aa3f5a19debf245",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "37d1af86aaaf8b1c3ba9b7af62afbc7072bd6a351a8352c6540d7dc2e9a00236",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4291166bfd936c339c6522726e286fe165bd558d1067aa9cb4898921cb727bb2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1927f2551b1586dd97c3d38ebe68b0c8b0dfc9cdcbb0d95cfcb00756a934e713",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "aa4fdb03e7ada8d5d52d748c4fe93ae996c05fa1a749dd2e755cd7cbc19f0a87",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d90c89f094075de912f0be2bcc27e3ed0c91e7a99145cfeb2056f86531af12a5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f4b2bd4f0c40ea43433c5fbb4b2ad8851f56805d8fdbcd38949cd06996b2eaa3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cf2d5884655135eef080c4afb1b938034dbb0c92254cb96c9c70f99ca9c3d814",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "fa6c0fa9bda3cf5acb2b03cbd57e7e7cbf51f3076591f18114d514a611ba861a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f81785bf472c8554ad8be93f6e2cad2c36e49eda8312eec457150696272b2a4f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "24e9ad900d7a923c767d2f83b32811b36b153097311f6c4b7a46cbfd85845bc4",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2cf77659af2e818cef0935a6ad4ff623bc51ed6cd6183384c563058234ac3a36",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "8307c0ebdf2648b9be94384cbfcad74413d33708cdf919441bba95b4cce11c77",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "147a9c91f398d81caf8ed5649206c5518c44ae98271c26b334e1841a55823833",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b2eebaf03d9acc0058eccae3428fd3ddb01998852b87786cf28edbf225fdc553",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bf3681a71011725d90f1a22d2fcb7bfad003ff177d59df5515f070ae5d84b760",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "af9c7fc89d57b088419dbfa099f11af745d74fe3b9db151d5be11fad17d9c7e3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1a687eed29e3d2d937fe1ed6b6a6c817d1e786db81b514b1ee6f91cd34f089b8",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "aae4b5b549650706b6f2e1c0d42703828e1c519c6e79489f99aed3d5d04e05e9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d215559d4f90d4062a129ec5cdae586f29631e2e6a06bfcecc6a0904a0aca219",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9151ae35641a05dc8a91e3378ce52363c39a59282b9350cf64ea6ba8871ca803",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d10f92454f7dac3f596c1df4da6334ef68b475f9550868bf89c0644fb79296b5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "857e4eb91b37e1f6efd617ef31dd47568194dc2718e48f4211f5083dd5304341",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7e2d4c164a7a0f1e9ff3bc8e2660a02526b74f9153d3ee9e4c11ba19f1ef8740",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c3a1e7e7aa72e5289fee7b6740795e429dc050ccd521906b05878118bd042b86",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3d87781199021a459ccdea4af656a11cc1d95ce9411e5c9d2a8b7bd8a5a6d187",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2556127e9d3a89f86da72872e24303bcb701b20617b9416499b3beefdd99462c",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "01104a85f43acaf13e1c5098fcad4735e734973b98afa82876fadf1e7d36cc83",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "dfe14764b386e791da6e51d49efac027b0a1989218939304830ecdc41fc91ef5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "24d81586058aa43085789db00bc5a371c9c09d9576367c1a56afa1af7cb52725",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3fb0d52fd48ab8c5ad1add9318bdecb3159bc622d31a6e7f5efb8278e9aff658",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "72fc8dc09841d5e6a7ab207bd9aedda3f3a04473eaab3e900ff73186f7d39219",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c35fc773bb5c162828422fe6089d6468030e25e801d01003276d9114dcf6b31a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2ced44b1dd05d8a610d5f029fffc7c069e62f6919e5e8b706802665502ffe81f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "de7efa9120588e5a82b934679d7d42e28804ef04194275248f35b957c70e955a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b59dccfc46763519a6bfba0285c9b4e3c85e624a732f2c7f69c6c36b3ac27599",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b5c6bd66577e263b5ef1c179a9bf454457e3fa4985a2c3447dcb0f19877e8d50",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d518d371c2768ea3482f6e547d00ba230baa1455f99b22a2e15b1c0108de7821",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "504a86853c0b5cb687913a366c91abd527e434a9cb6d3f01031737227e2752c6",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "99b2c4caeba962c674fa2ef5cc27bac0e837fde765e84cab2a74ef5c34bc5fac",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "12aeb8e6bf0476eb02f99b458ee4a8510898c6fa46365d23251c639f30b8cb27",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b729fa3a428364da22554da79f9541596915b39704c7cc37169c95646f7a2170",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "161620f7bb9d15bbd156cedc86de4c916bb5bbabb92b83299507f086d1dee7de",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "46423bfc1d5f954c7efb896062db2875a642122cc75f7cf40129c4048e17d939",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4e1b1bf0e3ef2c7b2bdfbd8d8db7ad7322f0b7df6073cf0e06029c44fcf58999",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3fcac20651617235181ec9aa7f44d7da9e995540bb715cc8e1acad2d175efc2d",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "dec70d3f81d00ec10100e132724716abf536f887302627bb70ecbc8dfd789b5b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b06bd5217aa09e12a0d8c0fcb97f3c021fdf135728727b5a9de9a2b478ba63a0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f4c2fe1cba126d575e863c66a92a2e8ad7777637e7411cb9ace114d807dd27f4",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "72510e4d5ed1d7d3a81a89d433779917073559cd2512c0238aa9c70e3d59a869",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3a0a3ddb9b81a99c47cce94472c75bbff0764226239b31e1cbac545c4747f3f9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "2edb3c59a1b6e5ddb7081953889efb67ee7bfd6f39b46c8a2ae476eeff6b7810",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "48726e1123dda8397bd379ac1c4b0fc64ee90f8ffda93d1bb85e156cacf965cb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "061ce72b3131996eedc17c08ec160bd108cdce10415eef4632d7694df7915d13",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "4a6e7e51a05279864008c817e2fc428a740ba27d88bac617dd00bf0af0dca6df",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3b240d7706c66835db5558c7536203aad2ee01f7c04c727bcc5c9c0164857065",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c4230c800b0a53cbae68059768859c29a4296613b3eda27c044080678534fb19",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "71331c88e4f7ab95b9f3a766d3359092001fb7520c714d605e905301c797d33a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6bf0972a432664e632fb1629a9fdab8ba6ff8b6252b5a691cfecd2a04874b63f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c6ec9906286b5d776ade2d82e0be82c3b4cc4918e1e6899d7365c49fb13b8e17",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6add314c5702a54c448ddf02c791123e976d8c23e1f198159a8ba63672e51d71",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ff9c85131c70ee77970c852df90a7ee9ef8d0461b131ac7bbe6e25b8eddb749f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1a1b14437f2fb78190d19d0ed7d86dfbe24e6cfe97422546bfbc97f6c71f9078",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b9d072161c4f5ba37e9f72d68493ab6b5685bcf1d32a4ad5a38e0eadf9c748dd",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "889fdc03d3912e172ec63a74cf8eaabc701dd18796a929f43645a19ee5c6648e",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "b0236a182de9c0f5c290bd5a5b70153a0d6df30f92484eb2c016496ac7bbaa80",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0cc2f9fc5aa1bde906ddb3b31fd33545149ed37d1cfebd69d4a52b94ba3e4f97",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "151e84d7d72797097ba87b77fcc964ee72e065245df22d71974d4a313df5eeca",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "44f62d802bb213cccded42ec26dbf2882cb168ff0f667cf084c1915f727b8bd4",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "28fc71fedcf4b0fa1d94acd3914290af0fce766a650e5c76ff64bceaefe59937",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "219b67392aa042aed8aeaa6a9451c671d69689b879f3f40b981e7224a8f65fc0",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d75cc11b482a01d6e6ab5e7d1088f967fdbd612b559d127251c78bc8e74054b5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c9e27fbf5effa8693e6f7d404263d51c835e9f9c2c860c52e80a54daa1ef6afa",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cbf4e10319d38524942282c2b8c2d7e150b5f32904bec0ed943f254e879e8430",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "203577625ce608f114e876e1f539b2a9a310c2577c75b6baf9dee1e80cb90e6b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "770c7b0e92fa7199fe50c119a8a00f2e91acbbeab0027d4ca1886dcd40626386",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c129011b2e8d3eaf94058575232cf72d8bf6af084d2c331d1b476c406c0eefda",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "76b022c6b819daa7a63fb1f3f405883e8928591ad7d40fa06298e7a90dfac5e4",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f65c9386116db366d867a684da4c9491414fd1ca00e9e34326d4a9cc642d33b9",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "46e95ac8f378a7be0188efef274a367c703c9fa7a92fd88214e11874a4ed5436",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "429293dbeb452bc5f259ed95e3de385dee5fefbc42f9d7eb07234b1e3bb535bb",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "7b2266781945ce8b93285bafe73894f66f380e53154a1fcb48d1add3e641346f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6df8888044712319e8062f38bb6a5183d616c3c2ac425cab635a207928198d00",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6c2633d39f474a25bf97753fed17efeb12fdc807d688c7b0ef37cc12ee487240",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3d18e23e5ac3ea764cae9f0368ae4eeadf73e4fba8d4aafb56e3e0ae87d302d5",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a23cab4fb1a8b6a1583c593063ae7b922fb2ba1e771f995041d422ecc8f46a8a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "035b358eda873fab30fb3253977191cfe86a0938e7e5974e8dc8397ebdcd1112",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "f03a9949e7c02f70ef1615e32460fa4d5e40692375502debc0ab2afd8398cb98",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "879fdbc61429b80f90253fa24269cc29a6fa77d6e32b8db8dd0c3c92d3d3cdf3",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "a6ed8e680a19a13ffe1b26c8f9772d03defc5b94a8038625d3cb1f9370c86788",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6b3ebb523829869d27914beb3e2f182dd1e600e9a83bc7e42a57ebe1b414028a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "5bb3dc92612274498dac35c60c04f78d4d4914ff4aa9be8871128a9f42e0295f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6375f227c571e0d0f5b068442f9e9b36c44ff58e71d7b01ce58ab7ddb0af68a7",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "925ff68e1b5f3df4026b7f9b0968cd5fceb036e5de07dfe93f56d9494e6b29fd",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "64493b09c1c0bc04faed527528fc10db8de811d521bcfe6fb6f54cd2164bfae4",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0049df12ff07ebca47bd7d6a5eb7168c37c2de877ce9ab188a1c19fc8ae1f4de",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "84da167b2d5bbb1d79ea1b2212997acbe35e78eaac805f13e1f2e318cb6bacb1",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d244a793d9e0ec744af9a2e25e3a7e74bf13d182326b06e3d1e2ba8d44a9dab7",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "cf30df1789ec80033da469df665cf467be844079148311d49435e2fab1b260d2",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "bba675508557f8c84c56cd2e286ba23418190f8adc8d0e58a344a4e405818c78",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "6241ac13f54aa7e31e871c83d361c1fd564d1ab56485e9a0667e57e86ed464ff",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "3fa07c335e1c56ed73df60b0f4ee68c61172d26e34caf670d50c5ec05909cd4b",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "c3a6a1422d1118848d3d9dc6e6f0eea808e709207542983ab0882025dd354037",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9648ad2d9b89406e63fc0b32d1b52b796117800a27cdc102a0d496fb98fa2687",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "22629071b7a04523b802d43b2c8b0c58ae01a1118544ea7bd639993941f4cd60",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "819814b8b07210c2d198312c49c42771ee3429a70e7218ea37403d9aab506415",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "d33f597a86b9ea559378fb4e4ab41cdf420c765332c1bdb51635825f3378a49f",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "ec31770e700917ea6c6c74ba043a637bcec7739c09028627307163ad1de42c7a",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "0f0a4334aa37e1d4b47e8f513832ca6a36e6effc555ab47a99bfa1f666d8e999",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "9ac82f4f892e63da88b09c922891beff40be4931312856fc95bde9d37786f534",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "1bee6d982f84fb9e9a1b1fc38c7a6f61c71a38102f129ddc21b049ddb3e36987",
+          "reason": "no_official_nba_event_mapping"
+        },
+        {
+          "raw_id": "94ff3cbc24153a0c1d612dc54c007140ae05fea527eba8ae4baa7851840a17bb",
+          "reason": "no_official_nba_event_mapping"
+        }
+      ],
+      "activity_counts": {
+        "TRADE": 669,
+        "REDEEM": 4
+      },
+      "income": [],
+      "all_trade_rows": 669,
+      "duplicate_canonical_activity_rows": 0,
+      "identity_limit": "canonical-row observations deduped; identical true fills may be indistinguishable; transaction hash is not order ID",
+      "inventory_window_delta": "not computed without verified transfer/conversion semantics; full inventory UNKNOWN",
+      "http_pages": 5
+    },
+    {
+      "input_address": "0x0979bad57d7a1403db89cbcd9c52bf43f2138d9b",
+      "window_start_s": 1792052045,
+      "window_end_s": 1792055645,
+      "status": "COMPLETE_WINDOW",
+      "complete_window": true,
+      "nba_statistics": {
+        "sample_count": 0,
+        "median_dollars": null,
+        "p90_dollars": null,
+        "le_5_count_fraction": null,
+        "le_10_count_fraction": null,
+        "le_5_amount_fraction": null,
+        "le_10_amount_fraction": null
+      },
+      "role_known_coverage": null,
+      "known_maker_fraction": null,
+      "inventory_reconstruction": "UNKNOWN: opening balances and share transfers unavailable",
+      "round_trip_evidence": "UNKNOWN",
+      "missing": [
+        "maker/taker proof",
+        "original order IDs and sizes",
+        "historical books/queues",
+        "opening inventory",
+        "share transfer history"
+      ],
+      "api_version": "v1 (legacy, explicitly verified docs); no v2 fields used",
+      "not_copy_trading": true,
+      "proxy_wallet": "0x0979bad57d7a1403db89cbcd9c52bf43f2138d9b",
+      "identity_evidence": {
+        "source": "Gamma /public-profile",
+        "input": "0x0979bad57d7a1403db89cbcd9c52bf43f2138d9b",
+        "proxy": "0x0979bad57d7a1403db89cbcd9c52bf43f2138d9b",
+        "name": "askilika",
+        "substitution_explicit": false
+      },
+      "season_cohorts": {},
+      "nba_samples": 0,
+      "unmatched": [],
+      "activity_counts": {},
+      "income": [],
+      "all_trade_rows": 0,
+      "duplicate_canonical_activity_rows": 0,
+      "identity_limit": "canonical-row observations deduped; identical true fills may be indistinguishable; transaction hash is not order ID",
+      "inventory_window_delta": "not computed without verified transfer/conversion semantics; full inventory UNKNOWN",
+      "http_pages": 4
+    }
+  ]
+}

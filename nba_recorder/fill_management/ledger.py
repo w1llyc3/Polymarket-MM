@@ -44,6 +44,19 @@ def close_lots(state, asset, qty, price, event, exit_fair=None, kind="SELL"):
                                    definition="entry reference edge + fair-value movement + exit premium to fair; fees excluded", decimal_precision=PRECISION*3)
                 if sum(decimal(attribution[k]) for k in ("entry_edge", "directional_residual", "spread_capture")) != pnl:
                     raise ValueError("attribution reconciliation failed")
+        entry_mid = lot.get("context", {}).get("reference_mid")
+        exit_mid = event.get("payload", {}).get("context", {}).get("reference_mid")
+        if lot.get("context", {}).get("strategy_mode") == "BOOK_DRIVEN" and cost is not None and entry_mid is not None and exit_mid is not None:
+            with localcontext() as book_context:
+                book_context.prec = PRECISION*3
+                attribution["book_decomposition"] = {
+                    "entry_quote_premium": str((decimal(entry_mid)-decimal(lot["price"]))*take),
+                    "mid_drift": str((decimal(exit_mid)-decimal(entry_mid))*take),
+                    "exit_quote_premium": str((price-decimal(exit_mid))*take),
+                    "reference": "observed mid, not fair probability"}
+                if sum(decimal(attribution["book_decomposition"][k]) for k in ("entry_quote_premium", "mid_drift", "exit_quote_premium")) != pnl:
+                    raise ValueError("book realized-PnL decomposition failed")
+                attribution["book_additive_reconciliation"] = True
         closure = {"id": f"{event['id']}:{lot['id']}", "lot_id": lot["id"], "asset_id": asset, "market_id": lot["market_id"], "quantity": str(take),
                    "cost": str(cost) if cost is not None else None, "proceeds": str(price*take), "gross_pnl": str(pnl) if pnl is not None else None,
                    "entry_ms": lot["time_ms"], "exit_ms": event["time_ms"], "exit_kind": kind, "attribution": attribution}
@@ -121,6 +134,12 @@ def reduce_event(state, event):
         if not lot or qty <= 0 or qty > decimal(lot["remaining"]) or state["assets"][lot["asset_id"]].get("complement") != p["asset_id"]:
             raise ValueError("invalid bounded paper hedge intent")
         state["hedge_intents"][event["id"]] = {**p, "filled": "0", "time_ms": at, "research_only": True}
+    elif kind == "COST":
+        amount = decimal(p["amount"])
+        if amount < 0 or not p.get("evidence") or not 0 <= p["evidence"].get("observed_ms", at+1) <= at:
+            raise ValueError("paper cost requires as-of evidence")
+        state["fees"] = str(decimal(state["fees"])+amount)
+        state["cash"] = str(decimal(state["cash"])-amount)
     elif kind == "REWARD":
         amount = decimal(p["amount"])
         if amount < 0 or not p.get("evidence") or not 0 <= p["evidence"].get("observed_ms", at+1) <= at:

@@ -1,0 +1,43 @@
+{
+  "venue": "polymarket.com",
+  "sqlite_integrity": "ok",
+  "sessions": [
+    {
+      "session_id": "a8ce3a90-736b-41da-89ca-6541ea3f8ff3",
+      "started_china_time": "2026-10-15T17:23:08.108000+08:00",
+      "stopped_china_time": "2026-10-15T17:23:40.414000+08:00",
+      "duration_seconds": 32.306,
+      "connections": 3,
+      "verified_snapshots": 6,
+      "verified_span_seconds": 29.719
+    }
+  ],
+  "event_counts": {
+    "book": 2,
+    "new_market": 9,
+    "rest_snapshot": 2
+  },
+  "normalized_snapshots": 4,
+  "assets": 2,
+  "duplicate_primary_keys": 0,
+  "duplicate_identifiable_payloads": 0,
+  "duplicates_skipped": 2,
+  "bbo": {
+    "crossed": 0,
+    "locked": 0,
+    "empty": 0,
+    "unmarked_anomalies": 0
+  },
+  "disconnects": [
+    {
+      "session_id": "a8ce3a90-736b-41da-89ca-6541ea3f8ff3",
+      "local_timestamp": 1792056201722,
+      "detail": "ResyncRequired: forced_reconnect_test"
+    },
+    {
+      "session_id": "a8ce3a90-736b-41da-89ca-6541ea3f8ff3",
+      "local_timestamp": 1792056216065,
+      "detail": "ResyncRequired: forced_reconnect_test"
+    }
+  ]
+}

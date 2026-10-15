@@ -1,5 +1,7 @@
 # NBA MM 开发对齐 — 2026-10-14
 
+**2026-10-15 v2 更新：** 主线已改为独立 BOOK_DRIVEN 赛中 Paper 研究，新增统一异步 OMS/FIFO、阶段锁定、显式整场采集与只读公开账户核验。183项测试通过。外部赔率不再阻塞 BOOK_DRIVEN；真实体育状态契约及整场长时间验收仍未完成，Live NO-GO。最新范围与证据见 [INPLAY_BOOK_DRIVEN_ACCEPTANCE.md](INPLAY_BOOK_DRIVEN_ACCEPTANCE.md)，下文仅保留历史基线。
+
 Lesson 7 已新增确定性故障矩阵、五态风险控制、提交边界最新参考检查与独立 Paper 成交账 reducer；完整测试更新为 **155 通过、0 失败**。当前验收与未解决 P0 以 [MVP_ACCEPTANCE_REPORT.md](MVP_ACCEPTANCE_REPORT.md) 为准。下文保留 Lesson 2–6 基线说明。
 
 ## 当前阶段

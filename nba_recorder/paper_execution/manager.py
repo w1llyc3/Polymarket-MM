@@ -26,6 +26,8 @@ class OrderManager:
     real_submission_calls = 0
 
     def __init__(self, store, policy=ExecutionPolicy(), start_ms=0):
+        if policy.strategy_mode == "BOOK_DRIVEN" and not getattr(self, "supports_book_driven", False):
+            raise ValueError("BOOK_DRIVEN requires unified manager and persisted phase authority")
         self.store, self.db, self.policy = store, store.db, policy
         self.adapter = PaperExchangeAdapter(self.db)
         with self.db:
@@ -35,7 +37,9 @@ class OrderManager:
                 self.db.execute("INSERT INTO pe_control VALUES(1,'PAPER','ACTIVE',?,?,?)", (start_ms, encode(asdict(policy)), encode(account)))
                 self._log("INITIALIZED", None, {"mode": "PAPER"})
             else:
-                if json.loads(row["config"]) != asdict(policy):
+                stored_policy = json.loads(row["config"])
+                stored_policy.setdefault("strategy_mode", "EXTERNAL_FAIR")
+                if stored_policy != asdict(policy):
                     raise ValueError("policy is immutable across restarts")
                 self._restore()
                 for order in self.orders():
@@ -59,7 +63,8 @@ class OrderManager:
 
     def pause(self, reason="operator_pause"):
         with self.db:
-            self.db.execute("BEGIN IMMEDIATE")
+            if not self.db.in_transaction:
+                self.db.execute("BEGIN IMMEDIATE")
             if self.risk_state != "ACTIVE":
                 return False
             self._kill(reason)
@@ -122,7 +127,8 @@ class OrderManager:
         order_id = digest(["paper-intent", request_id])
         with self.db, localcontext() as ctx:
             ctx.prec = PRECISION
-            self.db.execute("BEGIN IMMEDIATE")
+            if not self.db.in_transaction:
+                self.db.execute("BEGIN IMMEDIATE")
             existing = self.db.execute("SELECT payload FROM pe_orders WHERE id=?", (order_id,)).fetchone()
             if existing:
                 old = json.loads(existing[0])
@@ -146,7 +152,8 @@ class OrderManager:
 
     def dispatch(self, response_ms=None, drop_response=False, accepted=True):
         with self.db:
-            self.db.execute("BEGIN IMMEDIATE")
+            if not self.db.in_transaction:
+                self.db.execute("BEGIN IMMEDIATE")
             if self.halted:
                 return 0
             count = 0
@@ -158,6 +165,7 @@ class OrderManager:
                 current = json.loads(latest[0]) if latest else order["frame"]
                 if current["time_ms"] < order["frame"]["time_ms"]:
                     current = order["frame"]
+                current = self.prepare_submission_frame(order, current)
                 reasons = order_risk(order, current, self.account(), others, self.policy, self.now)
                 if reasons:
                     order["state"] = "REJECTED"
@@ -170,6 +178,9 @@ class OrderManager:
                 self.adapter.submit(order, self.now, self.policy.submit_ack_ms if response_ms is None else response_ms, accepted, drop_response)
                 count += 1
             return count
+
+    def prepare_submission_frame(self, order, frame):
+        return frame
 
     def _cancel(self, order, drop_response=False):
         if order["state"] == "RECONCILED" and order.get("confirmed_state") in TERMINAL:
@@ -205,7 +216,8 @@ class OrderManager:
 
     def kill(self, reason):
         with self.db:
-            self.db.execute("BEGIN IMMEDIATE")
+            if not self.db.in_transaction:
+                self.db.execute("BEGIN IMMEDIATE")
             self._kill(reason)
 
     def _report(self, order_id, payload, reconciled=False):
@@ -405,6 +417,8 @@ class OrderManager:
             self.db.execute("INSERT INTO pe_orders VALUES(?,?,?) ON CONFLICT(id) DO UPDATE SET state=excluded.state,payload=excluded.payload", (order["id"], order["state"], encode(order)))
 
     def risk_check(self, frame, previous_mid=None):
+        if self.policy.strategy_mode == "BOOK_DRIVEN":
+            return self.book_risk_check(frame, previous_mid)
         start = self.now
         self.advance(start+self.policy.risk_detection_ms)
         with self.db:
@@ -449,7 +463,8 @@ class OrderManager:
         with self.db:
             account, marks = self.account(), {}
             for f in frames:
-                if not hard_risk(f, self.policy) and 0 <= self.now-f["time_ms"] <= f["signal"]["config"]["book_max_age_ms"]:
+                age_limit = self.policy.book_max_age_ms if self.policy.strategy_mode == "BOOK_DRIVEN" else f.get("signal", {}).get("config", {}).get("book_max_age_ms", 0)
+                if not hard_risk(f, self.policy) and 0 <= self.now-f["time_ms"] <= age_limit:
                     marks[f["asset_id"]] = (decimal(f["book"]["bid"])+decimal(f["book"]["ask"]))/2
             held = {a for a, q in account["positions"].items() if decimal(q) != 0}
             if not held <= marks.keys():

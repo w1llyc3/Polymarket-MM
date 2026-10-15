@@ -1,16 +1,58 @@
-# Polymarket NBA MM — Record-only / Paper MVP
+# Polymarket NBA MM v2 — In-play BOOK_DRIVEN / Paper
 
-在同一 Python 项目中实现 NBA 赛前 Moneyline 的公开数据采集、参考公允概率、目标报价、Paper 订单管理、模拟成交、库存账本及研究报告。
+主路线调整为 **Polymarket.com NBA 全场 Moneyline、赛中、盘口驱动、小额及库存受限的做市研究**。使用盘口中点作为可观察参考，不把它解释为最终胜率；研究价差、可核实返佣、不利成交和风险退出成本。原赛前 EXTERNAL_FAIR 保留。
 
-**当前阶段：Lesson 2–7，禁止真实交易。** 本项目没有真实订单提交适配器，不读取钱包私钥、不签名、不修改真实账户资金，也没有 Live 解锁配置。仅支持 **Polymarket.com**，不混用 Polymarket US 的 API、市场、账户或 SDK。
+**新主线 BOOK_DRIVEN 不需要博彩赔率 key 或两个外部来源。** 它要求有效盘口、可信比赛阶段与时钟语义、时效、资金/库存及提交边界风控；缺失时 NO_QUOTE，不静默回退至另一模式。
 
-README 更新：2026-10-15（Asia/Shanghai）。最近完整验收发生于 2026-10-14：**155 项测试通过、0 失败；16 个确定性故障场景通过**。这些是已有运行证据，不表示当前真实市场或赔率持续可用。
+v2 实际改动及验收以 [INPLAY_BOOK_DRIVEN_ACCEPTANCE.md](INPLAY_BOOK_DRIVEN_ACCEPTANCE.md) 为准。下方 Lesson 2–7 记录是保留的历史基线。
+
+## v2 入口
+
+```powershell
+# 采集范围与报价权限分离。显式指定一场真实市场，允许继续记录赛中/末段/加时。
+.\.venv\Scripts\python.exe -m nba_recorder scan --scope full-game
+.\.venv\Scripts\python.exe -m nba_recorder record --scope full-game --market-id 5676016 --db data/full-game.sqlite --minutes 30 --limit 1 --stale 3 --resync 2
+# 上述 ID 为曾经验证的样例；运行时以 scan 当时结果为准。
+.\.venv\Scripts\python.exe -m nba_recorder.inplay sports-record --db data/sports.sqlite --seconds 60
+# A/B × L0/L1/L2 × 两组虚拟延迟，同资金、同一封存流；输出 JSON/CSV。
+.\.venv\Scripts\python.exe -m nba_recorder.inplay demo --out data/v2-new-demo
+.\.venv\Scripts\python.exe -m nba_recorder.inplay show --db data/v2-new-demo/B-L2-2ms.sqlite
+.\.venv\Scripts\python.exe scripts/validate_inplay.py --db data/v2-new-demo/B-L2-2ms.sqlite --out data/v2-audit.json
+```
+
+`--out` 演示目录必须全新。A 为固定距离/库存限制基线；B 增加异常暂停、库存偏移和更早 REDUCE_ONLY。三模型的模拟 fill 均经异步 Paper OMS 更新同一 FIFO 账本；不混用旧即时撤单回放结果。默认现金初始化、零份额；演示显式用 $5 抵押现金换两资产各5份，资本贡献不变。
+
+比赛阶段为 PRE_GAME_OBSERVE / SYNCING / ACTIVE_MM / REDUCE_ONLY / MM_CLOSED / UNKNOWN。MM_CLOSED 持久锁定，加时/重启不能自动开放。REDUCE_ONLY 按组合不平衡与活动承诺限量，禁止拆坏完整对冲或制造反向敞口。风险退出有独立距离/规模预算，仍遵守 post-only 和账户限制。
+
+官方 sports 原始流可记录，但 `elapsed`、上游更新时间、暂停语义和 game→market 关系必须逐项核验；默认 **UNKNOWN，不开放真实赛中 Paper 报价**。不通过墙钟推算比赛剩余时间。时钟修正、冲突或失效只会更保守。读盘口构建封存流无需赔率：
+
+```powershell
+.\.venv\Scripts\python.exe -m nba_recorder.inplay freeze-book --source data/full-game.sqlite --db data/book-tape.sqlite --start-ms <UTC毫秒起点> --end-ms <UTC毫秒终点> --sports-source data/sports.sqlite
+# 使用输出 tape ID；没有经核验的 sports contract 时预期 NO_QUOTE。
+.\.venv\Scripts\python.exe -m nba_recorder.inplay replay --db data/book-paper.sqlite --tape-db data/book-tape.sqlite --tape <输出的tapeID> --model L2 --strategy B
+```
+
+`freeze-book --contracts` 接受经核验的显式字段/身份契约；不提供可直接用于真实比赛的假契约。旧记录缺少处理延迟证据时 backlog 为 UNKNOWN，不能授权报价。BOOK_DRIVEN 输出 reference_mid / quote_center / quote_distance；Markout 为成交后1/3/5/10/30秒的事后 signed 诊断。预计返佣、确认返佣和到账现金分层，未归属奖励保持 unallocated，不算 NBA 收益。
+
+公开账户研究独立于报价路径：
+
+```powershell
+.\.venv\Scripts\python.exe -m nba_recorder.wallet_research --address 0x216050de6080fac3926226b2b8ce3d5544784c78 --out data/wallet-new
+```
+
+默认只采固定一小时窗口，保留 profile/proxy、完整请求参数、HTTP 状态、原始响应及摘要；分页超限拆分时间窗，同秒超限/请求预算耗尽显式 TRUNCATED。`takerOnly=false` 明确请求包含 Maker 的全成交，绝不把 BUY/SELL 当角色；无法核实则 UNKNOWN。没有完整窗口不生成金额统计。本轮两账户的一小时窗口均无符合 NBA 样本，不能称为已验证的“几美元 NBA Maker”。
+
+v2 新代码：`nba_recorder/inplay/`（阶段、盘口参考、统一 OMS/账本、单写者、成交代理、报告、体育流及无赔率封存流）；`nba_recorder/wallet_research/`（只读证据）。仍无自动逆转策略、跟单、方向分账或真实执行接口。
+
+**当前阶段：v2 盘口驱动 Paper，保留 Lesson 2–7；禁止真实交易。** 本项目没有真实订单提交适配器，不读取钱包私钥、不签名、不修改真实账户资金，也没有 Live 解锁配置。仅支持 **Polymarket.com**，不混用 Polymarket US 的 API、市场、账户或 SDK。
+
+README 更新：2026-10-15（Asia/Shanghai）。v2 完整回归 **183 项通过、0 失败**，包含全部原有155项及新增28项；原 Lesson 7 的16个故障场景保留。这些证据不表示当前真实比赛阶段、盘口或赔率持续可用。
 
 ## 当前可以用来做什么
 
 - **Data GO**：扫描 NBA 2026–27 常规赛赛前全场 Moneyline，记录真实公开盘口，查看 BBO、深度和数据新鲜度。
 - **受控离线 Paper GO**：在同一封存事件流上比较 1¢ / 2¢ / 3¢ 阈值及三种模拟成交模型，测试撤单竞态、风险熔断、恢复核对，生成账本及报告。
-- **无人值守整体 Paper NO-GO**：真实赔率授权与规则核验、统一持续运行链路、跨进程恢复仍有 P0 缺口。
+- **无人值守整体 Paper NO-GO**：BOOK_DRIVEN 的真实比赛身份/时钟/暂停/上游新鲜度、完整比赛和长时间故障验收仍有缺口。外部赔率仅阻塞 EXTERNAL_FAIR，不再阻塞 BOOK_DRIVEN。
 - **Limited Live NO-GO**：当前不具备实盘做市验收证据，也没有实盘授权。模拟 Edge、Markout、成交或 PnL 均不得解释为真实收益。
 
 完整证据、12 项模块状态及 P0/P1/P2 清单见 [MVP_ACCEPTANCE_REPORT.md](MVP_ACCEPTANCE_REPORT.md)。截至当前代码，开幕比赛期间可运行公开采集与受控模拟研究，不能承诺自动实盘做市。
@@ -26,7 +68,7 @@ README 更新：2026-10-15（Asia/Shanghai）。最近完整验收发生于 2026
 
 风险控制支持 ACTIVE、PAUSED、HALTED、RECONCILING、READY_FOR_MANUAL_RESET。仅 ACTIVE 可提交新的 Paper 风险订单；核对失败保持 HALTED，严重熔断不自动恢复，UNKNOWN 不视为已取消。核对通过后仍需显式人工复位。
 
-**集成边界：** Lesson 5 的异步 OMS 与 Lesson 6 的即时撤单研究回放仍是两条显式路径，通过只读 Paper 导入连接；尚未成为一个持续运行的统一服务。Paper authority 与 OMS 当前同进程、同 SQLite。
+**集成边界：** 保留的 Lesson 5/6 旧路径仍是异步 OMS 与即时撤单回放两套研究工具。v2 新 `inplay` 路径已经统一 OMS 与 FIFO，事件事务原子化，拥有跨进程排他写锁和子进程异常退出测试；Paper authority 仍与 OMS 同进程、同 SQLite，不能声称独立服务故障域已验收。
 
 ## 快速开始
 
@@ -156,7 +198,7 @@ examples/                      不含凭证的配置/合成输入
 
 已有九实验样本只有 **350 秒、706 asset frames、2 个合成 public prints、14 个代理成交事件**；窗口有效率约 99.43%，不代表全天覆盖或可信策略收益。真实封存盘口在缺少有效赔率时得到 72 NO_QUOTE、0 订单。
 
-后续优先补齐授权真实赔率与兼容规则、统一异步 OMS/成交账本链路、跨进程单写者及强杀恢复，再扩充多场长时间压力测试、共享退出深度/资金预算和模型敏感性。P0 未解决不能解除 Live NO-GO。
+v2 后续优先核验真实比赛阶段/时钟来源，完成整场数据及长时间 Paper 验收，校准队列/延迟、退出预算与返佣证据。原 EXTERNAL_FAIR 单独保留授权赔率/规则依赖。P0 未解决不能解除 Live NO-GO。
 
 ## 给 ChatGPT / 代码审阅者
 
