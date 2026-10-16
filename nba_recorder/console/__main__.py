@@ -5,6 +5,7 @@ import hmac
 import json
 import secrets
 import signal
+import sqlite3
 import threading
 import urllib.request
 import webbrowser
@@ -65,6 +66,23 @@ def make_server(service, port=8765):
                 self.send(200, {"app": APP, "token": token, "real_trading_permission": False})
             elif path == "/api/state":
                 self.send(200, service.read())
+            elif path == "/api/chart-event":
+                from urllib.parse import urlparse, parse_qs
+                try:
+                    params=parse_qs(urlparse(self.path).query,strict_parsing=True)
+                    if set(params)!={'session_id','seq'} or any(len(v)!=1 for v in params.values()):raise ValueError('event reference')
+                    self.send(200,service.chart_event(params['session_id'][0],params['seq'][0]))
+                except (ValueError,KeyError,OSError,sqlite3.Error):
+                    self.send(400,{'error':'当前会话事件引用无效'})
+            elif path == "/api/chart":
+                from urllib.parse import urlparse, parse_qs
+                try:
+                    params=parse_qs(urlparse(self.path).query,strict_parsing=True)
+                    if any(len(v)!=1 for v in params.values()) or set(params)-{'session_id','asset_id','from','to','input','journal','phase','game'}:
+                        raise ValueError('chart params')
+                    self.send(200,service.chart_query({k:v[0] for k,v in params.items()}))
+                except (ValueError,KeyError,OSError,sqlite3.Error):
+                    self.send(400,{"error":"有界当前会话图表查询无效"})
             elif path.startswith("/api/receipt/"):
                 receipt = service.receipt(path.rsplit("/", 1)[1])
                 self.send(200 if receipt else 404, receipt or {"error": "回执不存在"})
@@ -75,8 +93,8 @@ def make_server(service, port=8765):
                     self.send(200, file.read_bytes(), filename="nba-paper-report.json")
                 else:
                     self.send(404, {"error": "导出不存在，请重新导出"})
-            elif path in {"/", "/app.js", "/style.css"}:
-                name, mime = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/style.css": ("style.css", "text/css")}[path]
+            elif path in {"/", "/app.js", "/style.css", "/chart.js"}:
+                name, mime = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/style.css": ("style.css", "text/css"), "/chart.js": ("chart.js", "text/javascript")}[path]
                 self.send(200, (STATIC/name).read_bytes(), mime+"; charset=utf-8")
             else:
                 self.send(404, {"error": "页面不存在"})

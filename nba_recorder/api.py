@@ -126,7 +126,7 @@ class PublicAPI:
         await self.client.aclose()
 
     async def get(self, host, path, params=None):
-        event_detail = host == GAMMA and re.fullmatch(r"/events/slug/nba-[a-z0-9]+-[a-z0-9]+-\d{4}-\d{2}-\d{2}", path)
+        event_detail = host == GAMMA and re.fullmatch(r"/events/slug/[a-zA-Z0-9-]{1,160}", path)
         if (host, path) not in {(GAMMA, "/sports"), (GAMMA, "/events"), (CLOB, "/book")} and not event_detail:
             raise ValueError("Only allowlisted public GET routes permitted")
         for attempt in range(4):

@@ -32,6 +32,7 @@ class UnifiedPaperManager(OrderManager):
         store.db.executescript("""
         CREATE TABLE IF NOT EXISTS ip_receipts(id TEXT PRIMARY KEY,order_id TEXT,filled TEXT,payload TEXT);
         CREATE TABLE IF NOT EXISTS ip_income(id TEXT PRIMARY KEY,time_ms INTEGER,kind TEXT,stage TEXT,amount TEXT,market_id TEXT,evidence TEXT);
+        CREATE TABLE IF NOT EXISTS ip_game_observations(id INTEGER PRIMARY KEY,time_ms INTEGER,payload TEXT);
         CREATE TABLE IF NOT EXISTS ip_inputs(id TEXT PRIMARY KEY,time_ms INTEGER,payload TEXT);
         CREATE TRIGGER IF NOT EXISTS ip_inputs_u BEFORE UPDATE ON ip_inputs BEGIN SELECT RAISE(ABORT,'immutable input'); END;
         CREATE TRIGGER IF NOT EXISTS ip_inputs_d BEFORE DELETE ON ip_inputs BEGIN SELECT RAISE(ABORT,'immutable input'); END;
@@ -214,7 +215,7 @@ class UnifiedPaperManager(OrderManager):
             pnl = equity-decimal(daily["baseline"])
             daily.update(equity=str(equity), paper_pnl=str(pnl), observed_ms=self.now)
             self._account(account)
-            self._log("BOOK_PAPER_EQUITY", detail={"marks": {a: str(v) for a, v in marks.items()}, "paper_pnl": str(pnl)})
+            self._log("BOOK_PAPER_EQUITY", detail={"marks": {a: str(v) for a, v in marks.items()}, "paper_pnl": str(pnl), "ledger_valuation": valuation(self.ledger.state(), {a:str(v) for a,v in marks.items()}, self.orders())})
             if pnl <= -decimal(self.policy.max_daily_loss):
                 self._kill("daily_paper_loss_circuit_breaker")
             return str(pnl)

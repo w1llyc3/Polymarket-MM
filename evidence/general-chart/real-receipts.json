@@ -1,0 +1,35 @@
+[
+  {
+    "time_ms": 1792159391096,
+    "request_id": "6047edea-fd5c-4591-bb7d-7db88b357556",
+    "session_id": "2537ddedc47c40e6bcf222cb9aba90b4",
+    "action": "start",
+    "status": "APPLIED",
+    "result": {
+      "message": "会话已分配，等待后台状态",
+      "session_id": "2537ddedc47c40e6bcf222cb9aba90b4"
+    }
+  },
+  {
+    "time_ms": 1792159452526,
+    "request_id": "a117f765-f922-4abc-b137-622ededdfb6c",
+    "session_id": "2537ddedc47c40e6bcf222cb9aba90b4",
+    "action": "stop",
+    "status": "REJECTED",
+    "result": {
+      "message": "会话正在停止或异常；禁止在清理期间恢复/修改账户"
+    }
+  },
+  {
+    "time_ms": 1792159464452,
+    "request_id": "9c50a247-064d-4a6e-b68c-1f3e8d07f37b",
+    "session_id": "2537ddedc47c40e6bcf222cb9aba90b4",
+    "action": "export",
+    "status": "APPLIED",
+    "result": {
+      "message": "报告已保存",
+      "download": "/api/export/1fc43208e40f4fcd842dcfefdc198ee3",
+      "session_id": "2537ddedc47c40e6bcf222cb9aba90b4"
+    }
+  }
+]

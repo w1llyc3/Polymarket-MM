@@ -1,0 +1,17 @@
+{
+  "session_id": "4528d8d5216848ee940ccecb8968ec9d",
+  "counts": {
+    "prices": 464,
+    "orders": 98,
+    "public_trades": 3,
+    "paper_fills": 1,
+    "events": 551,
+    "accounts": 516
+  },
+  "pages": 6,
+  "complete_pagination": true,
+  "capital_events": 1,
+  "submissions": 24,
+  "risk_state": "HALTED",
+  "real_submission_calls": 0
+}

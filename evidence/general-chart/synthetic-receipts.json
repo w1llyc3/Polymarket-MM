@@ -1,0 +1,25 @@
+[
+  {
+    "time_ms": 1792158222155,
+    "request_id": "c420c955-948c-4dc5-8654-8bb072db8a6c",
+    "session_id": "4528d8d5216848ee940ccecb8968ec9d",
+    "action": "start",
+    "status": "APPLIED",
+    "result": {
+      "message": "会话已分配，等待后台状态",
+      "session_id": "4528d8d5216848ee940ccecb8968ec9d"
+    }
+  },
+  {
+    "time_ms": 1792158525374,
+    "request_id": "fd86c0a4-c237-4ff4-9ccd-023f1f2596f5",
+    "session_id": "4528d8d5216848ee940ccecb8968ec9d",
+    "action": "export",
+    "status": "APPLIED",
+    "result": {
+      "message": "报告已保存",
+      "download": "/api/export/e41862bf5eb840e681d1fdc463bf9bd3",
+      "session_id": "4528d8d5216848ee940ccecb8968ec9d"
+    }
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "evidence/general-chart/before-legacy-clock-fix.txt": "d1310188c21da4e85eae74c5de0e37ef192c7b5a3369a9b7dbd252b52bbc4dea",
+  "evidence/general-chart/fault-fixture-before-correction.txt": "c2a6cbcc64f2ba93f5795a60721e9dcf716fa6702987c37899953813e1a1f34b",
+  "evidence/general-chart/final-real-chart.jpg": "bd6131855f29258b6497391cc449ad941cd5cd873dff34aeaba80917c5daf86d",
+  "evidence/general-chart/final-real-stopped-chart.jpg": "85eabd3d90f74f03283279444b954f10a08496d5fe9f1071947c892c1cced75a",
+  "evidence/general-chart/first-real-receipts.json": "25cd7a3921d11b5aa019965c9fbb3feda8c5ec227f04bea1bc652820ee38b229",
+  "evidence/general-chart/full-tests.txt": "cd75ac45c38e1cf91bfac8771aae5a16fe2996fdfc5bf85a3f500d29ee543eb7",
+  "evidence/general-chart/real-chart.jpg": "c9968e6dcae583fca8f2204a5cffbfd0bf03554d57831724b7c5272b3331e03d",
+  "evidence/general-chart/real-complete-chart.json": "cecf6660f3432dbaf0254d7a5d5815bd52a72e8b40d449a4d82897390d73892d",
+  "evidence/general-chart/real-discovery.json": "e67ef4b413cbebee7fa4541f8014c520a620ba924cc43b4a452cd67067591446",
+  "evidence/general-chart/real-ledger-audit.json": "dd43076ce4b7cf4cfd34e7c0dc7e31f8e36abaf5bff66b2d8297a9deefd9cf3a",
+  "evidence/general-chart/real-receipts.json": "e5c5f2f6d59a7c6ddc06285f3368e86c50d81cde8dd18dbac75d4dcff196b8ff",
+  "evidence/general-chart/real-session-export.json": "a990da218b5ae9bfba807769388f93cb64b981272defbd29d8aeccfb737ec312",
+  "evidence/general-chart/real-summary.json": "aa76d7384de8502c9b8b520935228b8ca4669d6649d3f32f8790e36094345f54",
+  "evidence/general-chart/real-trend.jpg": "cd786aa14b413e2fa5c270f25031b5af68a839c4cfa2ea7c3a54a854f0cbf3a4",
+  "evidence/general-chart/synthetic-chart.jpg": "c694a765a7f51b3f6ec6b6cd8a0a3c841926abc2b13a65ec288751f4757f8feb",
+  "evidence/general-chart/synthetic-complete-chart.json": "b6d7f2a7ca9b3fe099514068c10605494118f39d402c3cf5262198f985c319ee",
+  "evidence/general-chart/synthetic-ledger-audit.json": "b23fd77146536580b2cd47ec42ac1668fade963ba1975165b5f874ea92ba70bc",
+  "evidence/general-chart/synthetic-receipts.json": "bc9d8a878e2470bf2162f8355ddb318376245416d541461b7e06e4418bbf2bd6",
+  "evidence/general-chart/synthetic-session-export.json": "ae1f7cc7cfc91b04770e09190599a923103151a05b5d02243b2311d02f2e1c18",
+  "evidence/general-chart/synthetic-summary.json": "01d902666f30cb63d5c482d4ed00329ff4aefb99fd7757b177d417d35da2d3f2"
+}

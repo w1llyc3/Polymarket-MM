@@ -53,6 +53,10 @@ class PaperRunner:
             self.om.kill(reason)
 
     def observe_game_information(self, info, window, at):
+        if getattr(self, '_last_chart_game', None) != info:
+            with self.om.db:
+                self.om.db.execute("INSERT INTO ip_game_observations(time_ms,payload) VALUES(?,?)", (at, encode({**info,"observer_available_ms":at})))
+            self._last_chart_game = info
         self.game_information = info
         window.observe(info, at)
         if window.finished_ms is not None and not self.paper_stopped:
@@ -147,7 +151,7 @@ class PaperRunner:
                 pass
 
 
-async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, interval=1, model="L2", manual_file=None, contracts=None, operator_reset=False, control=None, research=False, postgame_s=600):
+async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, interval=1, model="L2", manual_file=None, contracts=None, operator_reset=False, control=None, research=False, postgame_s=600, initial_market=None):
     if seconds <= 0 or seconds > 14400 or interval <= 0 or Path(db_path).resolve() == Path(source_path).resolve():
         raise ValueError("bounded duration, positive interval and distinct source/paper paths required")
     api = PublicAPI()
@@ -202,7 +206,11 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                 nba = next(s for s in sports if s.get("sport") == "nba")
                 event = await api.get(GAMMA, "/events/slug/"+event_slug)
                 raw = next(m for m in event["markets"] if str(m.get("id")) == str(market_id))
-                selected, reason = select_market(event, raw, str(nba["series"]), utc_ms(), nba.get("ordering"), scope="full-game", research=research)
+                if initial_market and initial_market.get("discovery_schema"):
+                    from ..discovery import normalize_market
+                    selected, reason = normalize_market(event, raw, nba, utc_ms(), initial_market.get("official_game"))
+                else:
+                    selected, reason = select_market(event, raw, str(nba["series"]), utc_ms(), nba.get("ordering"), scope="full-game", research=research)
                 if not selected or not selected.get("home_away_evidence"):
                     raise ValueError("market identity/type/season/roles failed: "+reason)
                 at = utc_ms()

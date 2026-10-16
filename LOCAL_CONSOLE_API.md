@@ -58,3 +58,14 @@ stop_paper需要confirmed=true，持久化停止意图、禁止本会话再报�
 state新增game_information、bound_market、collection：比分、节次、原始时钟、来源、接收/处理/可用时间、是否身份匹配、game_finished、冲突与局限。display_eligible不是quote_authorized；不补上游时间/paused/剩余时钟，未合格体育源继续NO_QUOTE。实时体育源不与元数据心跳混为新比分。
 
 停止导出包含已有策略报告、pilot研究计数和NOT_COMPLETE覆盖状态，database_files指向本机会话文件。输入流可由scripts/freeze_pilot_session.py封存后通过原replay命令离线回放；同毫秒保留本地顺序、不伪造交易所顺序。只有观测到匹配比赛结束且完成尾段后，才在本机写<session>.sqlite-REAL_GAME_SESSION_REPORT.json；即使生成也不自动认证整场覆盖或实盘许可。
+
+
+## 通用发现与单图
+
+网页scan走discovery.discover：season_type=ALL/PRESEASON/REGULAR_SEASON/PLAY_IN/PLAYOFFS，day_filter=TODAY/TOMORROW/NEXT7/CUSTOM；CUSTOM带custom_start/custom_end（UTC+8日历日期、含首尾1至8天）。缓存30秒/8窗口，缓存不刷新来源时间。旧scan函数默认调用兼容旧接口，仅新版网页显式走通用路径。发现结果独立携带discovery_status、schedule_only、evidence、season/season_type/competition_round/game_phase/规则证据。未知类别身份明确可OBSERVATION，Paper依然拒绝；比赛选择不是报价授权。
+
+GET /api/chart限制当前会话、已知asset、最长4小时加60秒清理裕量；input/journal/phase/game为独立增量游标。每流每页600条，返回has_more；无订单或风险事件静默丢弃。返回prices、orders、public_trades、paper_fills、accounts、events和独立data_source/execution_source。价格raw steps在浏览器按像素保留首尾/极值/gap，事件可合并标记但保留原ID与数量。历史持仓来自当时OMS控制快照，历史PnL仅用当时FIFO估值，缺失留空。撤单请求不视为终点，UNKNOWN继续画不确定样式；尾部边界不是取消确认。
+
+GET /api/chart-event?session_id=...&seq=...只读取一条pe_journal原文；超过64KiB提示保留完整SQLite，不伪称已完整返回。两条图表接口沿用Host/Origin检查，不能指定任意路径或其他会话；不构造OMS或写SQLite，磁盘读取在HTTP线程执行。
+
+单图显示预设、结果/窗口/缩放/标注不调用POST命令端点。标注仅浏览器localStorage，按会话/结果/市场分隔；本地注释与已加载图表需单独导出。服务失联图表置灰并提示旧值。新增加的ip_game_observations和权益日志ledger_valuation由原owner写入；旧日志历史估值未知，不追填。

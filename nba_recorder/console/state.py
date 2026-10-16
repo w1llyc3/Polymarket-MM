@@ -6,6 +6,8 @@ from ..fill_management.ledger import valuation
 from ..inplay.report import execution_evidence
 
 REASONS = {
+    "competition_paper_scope_not_approved": "该比赛类别/赛季尚未独立验收，仅允许记录",
+    "season_or_rules_unverified": "赛季类别或全场规则未核验，仅允许记录",
     "operator_quotes_disabled": "操作员暂停新增报价；不代表断线或库存清空",
     "disconnected": "当前连接不可用，禁止新增报价", "unreliable_sports_state": "体育阶段字段未通过核验",
     "sports_stale_or_future": "体育源时间缺失、过期或来自未来", "invalid_clock": "比赛时钟未知或无效",

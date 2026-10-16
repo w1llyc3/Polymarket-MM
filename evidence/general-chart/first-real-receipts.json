@@ -1,0 +1,24 @@
+[
+  {
+    "time_ms": 1792157953508,
+    "request_id": "9e8fddde-6faf-48d4-b063-0a8f3e54aa3b",
+    "session_id": "00ca9b591df24b0bb81ed452cea4a58b",
+    "action": "start",
+    "status": "APPLIED",
+    "result": {
+      "message": "会话已分配，等待后台状态",
+      "session_id": "00ca9b591df24b0bb81ed452cea4a58b"
+    }
+  },
+  {
+    "time_ms": 1792158008991,
+    "request_id": "71e03617-647a-4fd0-a924-0496108d84a4",
+    "session_id": "00ca9b591df24b0bb81ed452cea4a58b",
+    "action": "stop",
+    "status": "APPLIED",
+    "result": {
+      "message": "撤单请求已生效，等待回报和核对；尚未宣称清仓",
+      "stop_request_applied": true
+    }
+  }
+]
