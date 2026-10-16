@@ -93,6 +93,7 @@ def select_market(event, market, series_id, now, ordering=None, scope="pregame")
               "away_team": roles.get("away"), "home_team": roles.get("home"),
               "home_away_evidence": "event_teams" if len(roles) == 2 else None, "event_teams": event.get("teams", []),
               "event_live": event.get("live"), "event_ended": event.get("ended"),
+              "event_status": {k: event.get(k) for k in ("active", "closed", "archived")},
               "yes_asset_id": next((str(t) for l, t in zip(outcomes, tokens) if l.lower() == "yes"), None),
               "no_asset_id": next((str(t) for l, t in zip(outcomes, tokens) if l.lower() == "no"), None),
               "tick_size": str(market.get("orderPriceMinTickSize")), "minimum_order_size": str(market.get("orderMinSize")),
@@ -123,9 +124,12 @@ class PublicAPI:
                     raise
                 await asyncio.sleep(2 ** attempt)
 
-    async def scan(self, scope="pregame"):
+    async def scan(self, scope="pregame", *, start_ms=None, end_ms=None):
         if scope not in {"pregame", "full-game"}:
             raise ValueError("unsupported collection scope")
+        bounded = start_ms is not None or end_ms is not None
+        if bounded and (type(start_ms) is not int or type(end_ms) is not int or not 0 < end_ms-start_ms <= 8*86400000):
+            raise ValueError("scan requires an explicit window of at most 8 days")
         sports = await self.get(GAMMA, "/sports")
         nba = next((x for x in sports if x.get("sport") == "nba"), None)
         if not nba or not nba.get("series"):
@@ -134,6 +138,9 @@ class PublicAPI:
         now = utc_ms()
         while True:
             params = {"series_id": str(nba["series"]), "limit": 100, "offset": offset, "order": "id", "ascending": "true"}
+            if bounded:
+                params.update(start_time_min=datetime.fromtimestamp(start_ms/1000, timezone.utc).isoformat(),
+                              start_time_max=datetime.fromtimestamp(end_ms/1000, timezone.utc).isoformat())
             if scope == "pregame":
                 params["closed"] = "false"
             events = await self.get(GAMMA, "/events", params)
@@ -154,12 +161,12 @@ class PublicAPI:
                         else:
                             item, reason = None, "event_detail_missing_market"
                     counts[reason] += 1
-                    if item:
+                    if item and (not bounded or start_ms <= item["game_start_ms"] <= end_ms):
                         selected[item["market_id"]] = item
             if len(events) < 100:
                 break
             offset += 100
-            if offset > 10000:
+            if offset >= (500 if bounded else 10100):
                 raise ValueError("Scan incomplete: pagination safety limit")
         return {"venue": "polymarket.com", "scanned_at_ms": now, "series_id": str(nba["series"]), "reasons": dict(counts), "markets": sorted(selected.values(), key=lambda x: x["game_start_ms"]), "status": "ok" if selected else "no_matching_markets"}
 

@@ -1,0 +1,33 @@
+test_bounded_catalog_and_start_chain (tests.test_v221_console.Discovery.test_bounded_catalog_and_start_chain) ... Executing <Task finished name='Task-2' coro=<Discovery.test_bounded_catalog_and_start_chain() done, defined at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:109> exception=AssertionError("Items in the second set but not the first:\n'live'") created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.484 seconds
+FAIL
+test_pause_keeps_causal_late_partial_fill_and_cash (tests.test_v221_console.PauseLifecycle.test_pause_keeps_causal_late_partial_fill_and_cash) ... ok
+test_pause_ticks_real_reconcile_ticks_explicit_resume_with_inventory (tests.test_v221_console.PauseLifecycle.test_pause_ticks_real_reconcile_ticks_explicit_resume_with_inventory) ... FAIL
+test_resume_rejects_independent_faults_without_opening_switch (tests.test_v221_console.PauseLifecycle.test_resume_rejects_independent_faults_without_opening_switch) ... ok
+
+======================================================================
+FAIL: test_bounded_catalog_and_start_chain (tests.test_v221_console.Discovery.test_bounded_catalog_and_start_chain)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "D:\vibe coding\polymarket\nba\tests\test_v221_console.py", line 129, in test_bounded_catalog_and_start_chain
+    self.assertEqual({m['market_id'] for m in service.catalog['markets']}, {'scheduled', 'live'})
+AssertionError: Items in the second set but not the first:
+'live'
+
+======================================================================
+FAIL: test_pause_ticks_real_reconcile_ticks_explicit_resume_with_inventory (tests.test_v221_console.PauseLifecycle.test_pause_ticks_real_reconcile_ticks_explicit_resume_with_inventory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_v221_console.py", line 54, in test_pause_ticks_real_reconcile_ticks_explicit_resume_with_inventory
+    self.assertIsNotNone(self.om.mark_equity(list(self.runner.latest.values())))
+AssertionError: unexpectedly None
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.699s
+
+FAILED (failures=2)

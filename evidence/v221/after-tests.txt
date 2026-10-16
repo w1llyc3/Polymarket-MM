@@ -1,0 +1,15 @@
+test_bounded_catalog_and_start_chain (tests.test_v221_console.Discovery.test_bounded_catalog_and_start_chain) ... Executing <Task pending name='Task-2' coro=<Discovery.test_bounded_catalog_and_start_chain() running at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:159> wait_for=<Task pending name='Task-3' coro=<Discovery.test_bounded_catalog_and_start_chain.<locals>.session() running at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:155> cb=[Task.task_wakeup()] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py:420> cb=[_run_until_complete_cb() at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py:181] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.437 seconds
+Executing <Task finished name='Task-2' coro=<Discovery.test_bounded_catalog_and_start_chain() done, defined at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:129> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.360 seconds
+ok
+test_operator_pause_rechecked_at_final_dispatch (tests.test_v221_console.PauseLifecycle.test_operator_pause_rechecked_at_final_dispatch) ... ok
+test_pause_keeps_causal_late_partial_fill_and_cash (tests.test_v221_console.PauseLifecycle.test_pause_keeps_causal_late_partial_fill_and_cash) ... ok
+test_pause_ticks_real_reconcile_ticks_explicit_resume_with_inventory (tests.test_v221_console.PauseLifecycle.test_pause_ticks_real_reconcile_ticks_explicit_resume_with_inventory) ... ok
+test_resume_rejects_closed_phase (tests.test_v221_console.PauseLifecycle.test_resume_rejects_closed_phase) ... ok
+test_resume_rejects_physical_disconnect (tests.test_v221_console.PauseLifecycle.test_resume_rejects_physical_disconnect) ... ok
+test_resume_rejects_stale_book (tests.test_v221_console.PauseLifecycle.test_resume_rejects_stale_book) ... ok
+test_resume_rejects_unknown_order (tests.test_v221_console.PauseLifecycle.test_resume_rejects_unknown_order) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.316s
+
+OK

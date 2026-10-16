@@ -46,12 +46,15 @@ class PaperRunner:
         source_epoch = frame.get("connection_epoch")
         watchdog_age = time.monotonic()-self.last_watchdog_tick_mono if self.last_watchdog_tick_mono is not None else None
         healthy = self.watchdog_task is None or (not self.watchdog_task.done() and watchdog_age is not None and watchdog_age <= max(1, 3*self.watchdog_ms/1000))
-        connected = bool(observed and healthy and self.quotes_enabled and
+        connected = bool(observed and healthy and
                          (self.connection_guard is None or self.connection_guard()) and
                          (epoch is None or source_epoch == epoch) and
                          (frame.get("message_epoch", epoch) == epoch))
         return {**frame, "observed_connected": observed, "connected": connected,
                 "runtime_permission": {"transport_now": self.connection_guard() if self.connection_guard else None,
+                                       "physical_connected": bool(observed and (self.connection_guard is None or self.connection_guard())),
+                                       "epoch_matches": (epoch is None or source_epoch == epoch) and frame.get("message_epoch", epoch) == epoch,
+                                       "account_new_risk": not self.om.halted,
                                        "epoch_now": epoch, "source_epoch": source_epoch,
                                        "watchdog_alive": healthy, "watchdog_age_ms": int(watchdog_age*1000) if watchdog_age is not None else None, "quotes_enabled": self.quotes_enabled}}
 

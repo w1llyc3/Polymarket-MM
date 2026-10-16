@@ -6,8 +6,7 @@ from ..paper_execution.risk import ACTIVE, commitments
 
 
 def observed_mid(frame, policy, at):
-    permission_only = {"phase_not_permitted", "late_close_threshold", "late_reduce_boundary", "unreliable_sports_state", "sports_stale_or_future", "invalid_clock"}
-    if set(book_risk(frame, policy, at))-permission_only:
+    if book_data_risk(frame, policy, at):
         return None
     try:
         return str((decimal(frame["book"]["bid"])+decimal(frame["book"]["ask"]))/2)
@@ -15,7 +14,8 @@ def observed_mid(frame, policy, at):
         return None
 
 
-def book_risk(frame, policy, at=None):
+def book_data_risk(frame, policy, at=None):
+    """Fresh book/identity/transport proof, independent of quote permission."""
     reasons = []
     at = frame.get("time_ms", -1) if at is None else at
     try:
@@ -51,6 +51,18 @@ def book_risk(frame, policy, at=None):
             if policy.enhanced and decimal(levels[0]["size"]) < decimal(policy.min_top_depth):
                 reasons.append("depth_drained")
         reasons.extend(b.get("flags", []))
+    except (KeyError, ValueError, TypeError, ArithmeticError, AttributeError):
+        reasons.append("missing_or_invalid_book_reference")
+    return sorted(set(reasons))
+
+
+def book_risk(frame, policy, at=None, *, check_operator=True):
+    reasons = book_data_risk(frame, policy, at)
+    at = frame.get("time_ms", -1) if at is None else at
+    if check_operator and frame.get("runtime_permission", {}).get("quotes_enabled") is False:
+        reasons.append("operator_quotes_disabled")
+    try:
+        m = frame["market"]
         if frame.get("phase") not in {"ACTIVE_MM", "REDUCE_ONLY"}:
             reasons.append("phase_not_permitted")
         if policy.allow_manual_phase:

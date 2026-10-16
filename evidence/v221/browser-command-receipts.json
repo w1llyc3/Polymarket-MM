@@ -1,0 +1,89 @@
+[
+  {
+    "time_ms": 1792125831334,
+    "request_id": "ee547420-43e8-4d4a-9795-f87ddd5af628",
+    "session_id": "3233a95a06ee47a382e629ac032c345d",
+    "action": "start",
+    "status": "APPLIED",
+    "result": {
+      "message": "会话已分配，等待后台状态",
+      "session_id": "3233a95a06ee47a382e629ac032c345d"
+    }
+  },
+  {
+    "time_ms": 1792125835313,
+    "request_id": "9a9f324e-7a88-4923-8ce1-e2eda5617a90",
+    "session_id": "3233a95a06ee47a382e629ac032c345d",
+    "action": "pause",
+    "status": "APPLIED",
+    "result": {
+      "message": "已暂停新增报价并请求撤销活动单；库存未清空",
+      "risk_state": "PAUSED"
+    }
+  },
+  {
+    "time_ms": 1792125839774,
+    "request_id": "925af326-5b6f-418a-90cc-139e1a84a445",
+    "session_id": "3233a95a06ee47a382e629ac032c345d",
+    "action": "reconcile",
+    "status": "APPLIED",
+    "result": {
+      "message": "已执行权威 Paper 核对；未自动恢复",
+      "consistent": true,
+      "risk_state": "READY_FOR_MANUAL_RESET"
+    }
+  },
+  {
+    "time_ms": 1792125844466,
+    "request_id": "9ee0df0d-686b-437b-887b-f1ae8cd1e57f",
+    "session_id": "3233a95a06ee47a382e629ac032c345d",
+    "action": "resume",
+    "status": "APPLIED",
+    "result": {
+      "message": "后台风险检查通过，允许受控 Paper；不代表清仓或实盘许可"
+    }
+  },
+  {
+    "time_ms": 1792125849101,
+    "request_id": "fbdeb4aa-1f3f-44f2-a4d5-1df0ba6252f5",
+    "session_id": "3233a95a06ee47a382e629ac032c345d",
+    "action": "stop",
+    "status": "APPLIED",
+    "result": {
+      "message": "撤单请求已生效，等待回报和核对；尚未宣称清仓",
+      "stop_request_applied": true
+    }
+  },
+  {
+    "time_ms": 1792125854117,
+    "request_id": "ce20ee64-c249-483f-aca1-a24dbf153492",
+    "session_id": "3233a95a06ee47a382e629ac032c345d",
+    "action": "export",
+    "status": "APPLIED",
+    "result": {
+      "message": "报告已保存",
+      "download": "/api/export/122649ede3e04672a75eb7db8b1a1c7c",
+      "session_id": "3233a95a06ee47a382e629ac032c345d"
+    }
+  },
+  {
+    "time_ms": 1792125854483,
+    "request_id": "a6739296-226f-4c7b-94f2-c82f91133d29",
+    "session_id": "3233a95a06ee47a382e629ac032c345d",
+    "action": "scan",
+    "status": "APPLIED",
+    "result": {
+      "message": "已开始真实扫描，等待列表结果"
+    }
+  },
+  {
+    "time_ms": 1792125908018,
+    "request_id": "d237c1cd-fee4-4a6a-b7cf-d864a4ded5f9",
+    "session_id": "3233a95a06ee47a382e629ac032c345d",
+    "action": "scan",
+    "status": "APPLIED",
+    "result": {
+      "message": "已开始真实扫描，等待列表结果"
+    }
+  }
+]

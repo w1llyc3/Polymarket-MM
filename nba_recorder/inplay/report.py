@@ -2,7 +2,7 @@ import json
 from ..fair_value.engine import table_exists
 from ..fair_value.maths import decimal
 from ..fill_management.ledger import valuation
-from .reference import book_risk
+from .reference import book_data_risk
 
 
 def execution_evidence(om):
@@ -46,8 +46,7 @@ def report(manager):
         # Final marks only from fresh books with consistent identities; phase
         # gate affects quoting, not whether the last valid mid was observed.
         candidate = {**f, "phase": "ACTIVE_MM"}
-        permission = {"late_close_threshold", "late_reduce_boundary", "phase_not_permitted", "unreliable_sports_state", "sports_stale_or_future", "invalid_clock"}
-        if not set(book_risk(candidate, om.policy, om.now))-permission:
+        if not book_data_risk(candidate, om.policy, om.now):
             marks[f["asset_id"]] = str((decimal(f["book"]["bid"])+decimal(f["book"]["ask"]))/2)
     state = om.ledger.state()
     account = valuation(state, marks, om.orders())
@@ -66,7 +65,7 @@ def report(manager):
             value, status = None, "RIGHT_CENSORED" if not inputs or due > inputs[-1]["time_ms"] else "UNAVAILABLE"
             if future:
                 candidate = {**future, "phase": "ACTIVE_MM"}
-                if not set(book_risk(candidate, om.policy, future["time_ms"] ))-{"late_close_threshold", "late_reduce_boundary", "phase_not_permitted"}:
+                if not book_data_risk(candidate, om.policy, future["time_ms"]):
                     mid = (decimal(future["book"]["bid"])+decimal(future["book"]["ask"]))/2
                     value = str((mid-decimal(fill["price"]))* (1 if fill["side"] == "BUY" else -1))
                     status = "OBSERVED"

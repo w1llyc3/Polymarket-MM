@@ -10,7 +10,7 @@ from ..paper_execution.risk import ACTIVE, commitments
 from ..storage import encode
 from .policy import BookPolicy
 from .phase import PhaseController, install
-from .reference import book_risk
+from .reference import book_risk, book_data_risk
 
 
 class UnifiedPaperManager(OrderManager):
@@ -186,7 +186,7 @@ class UnifiedPaperManager(OrderManager):
             # Phase is a permission gate, not a requirement to permanently kill
             # an otherwise clean pre-game observer. Live data faults with active
             # risk are severe and require reconciliation/manual reset.
-            severe = [r for r in reasons if r != "phase_not_permitted"]
+            severe = [r for r in reasons if r not in {"phase_not_permitted", "operator_quotes_disabled"}]
             for reason in reasons:
                 self._risk(reason, evidence={"frame": frame})
             if not self.policy.enhanced:
@@ -201,9 +201,8 @@ class UnifiedPaperManager(OrderManager):
     def mark_equity(self, frames):
         """Valuation quality is independent of quote phase permission."""
         marks = {}
-        permission_only = {"phase_not_permitted", "late_close_threshold", "late_reduce_boundary", "unreliable_sports_state", "sports_stale_or_future", "invalid_clock"}
         for f in frames:
-            if not set(book_risk(f, self.policy, self.now))-permission_only:
+            if not book_data_risk(f, self.policy, self.now):
                 marks[f["asset_id"]] = (decimal(f["book"]["bid"])+decimal(f["book"]["ask"]))/2
         with self.db:
             account = self.account()

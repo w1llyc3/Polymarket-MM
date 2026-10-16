@@ -1,0 +1,31 @@
+{
+  "base": "66b4ebd72e3e7b33a7a5973f604cbf9c790cf65a",
+  "results": [
+    {
+      "symbol": "authorize",
+      "ast_equivalent": true
+    },
+    {
+      "symbol": "book_risk",
+      "ast_equivalent": true
+    },
+    {
+      "symbol": "mark_equity",
+      "ast_equivalent": true
+    },
+    {
+      "symbol": "scan",
+      "ast_equivalent": true
+    }
+  ],
+  "artifact_sha256_verified": {
+    "README.md": true,
+    "reproduce.py": true,
+    "results.json": true,
+    "verify_against_checkout.py": true,
+    "snippets/scan.py": true,
+    "snippets/mark_equity.py": true,
+    "snippets/book_risk.py": true,
+    "snippets/authorize.py": true
+  }
+}

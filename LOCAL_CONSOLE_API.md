@@ -1,4 +1,4 @@
-# v2.2 本地操作台 API 与单写者边界
+# v2.2.1 本地操作台 API 与单写者边界
 
 默认 `http://127.0.0.1:8765`，只监听 IPv4 回环。没有 Live 模式、钱包字段或交易凭证。HTTP处理线程不打开账户数据库，不创建 OMS；只有一个 asyncio owner 操作当前 Runner / OMS / FIFO。
 
@@ -26,6 +26,8 @@
 }
 ```
 
+scan 可带 discovery_scope=CURRENT（默认过去1天至未来7天，赛前与进行中）或 HISTORY（过去7天，只读）。上游 start_time_min/max 与本地 game_start_ms 双重过滤，最多500条分页；扫描失败不回退到无界历史。结束/无效市场不能新启动；catalog变化不切换已绑定会话或重建资本。发现不是阶段授权。
+
 允许 action：scan、start、pause、stop、reconcile、resume、export。start另带 mode、market_id；mode仅 OBSERVATION / REAL_PAPER / SYNTHETIC_DEMO。比赛必须来自60秒内真实 scanner 结果，不能由HTTP提供盘口或伪造市场结构。离线回放首版网页显式禁用，保留原CLI。
 
 所有命令经过同一个有界串行队列，带预期会话与状态版本。相同request_id/相同payload只作用一次；同ID不同内容拒绝。两个不同ID的重复启动也不会创建第二个Runner。请求记录与结果写 `commands.jsonl`，运行中的控制结果还进入 `pe_journal`。幂等回执缓存只在当前服务进程有效；重启后令牌改变，旧请求不得自动重发，历史命令日志保留审计用途。
@@ -36,8 +38,10 @@ pause：禁止新增并请求撤单，状态按原风控进入PAUSED或保持更
 
 ## 传输与故障边界
 
-feed、watchdog和最终dispatch共用实时授权：保留observed_connected和原始raw，connected是当前许可；连接epoch不匹配、排队旧会话消息、watchdog退出/取消/心跳停滞均不能重新授权。迟到公开成交仍按原exchange时点判断原挂单，不为保持零库存丢弃成交。
+feed、watchdog和最终dispatch共用实时授权：保留observed_connected和原始raw，connected是结合epoch/watchdog的有效数据通道，不包含操作员开关；runtime_permission独立列出physical_connected、epoch_matches、watchdog_alive、quotes_enabled、account_new_risk。book_data_risk控制估值质量，book_risk另加阶段和操作员许可；连接epoch不匹配、排队旧会话消息、watchdog退出/取消/心跳停滞均不能重新授权。迟到公开成交仍按原exchange时点判断原挂单，不为保持零库存丢弃成交。
 
 前端每秒读取展示投影，后端行情/成交/订单事件不合并丢弃。页面关闭/刷新不影响owner的watchdog。HTTP失败或owner心跳超过4秒，旧盘口变灰、显示离线并禁用命令；失联不等于已经撤单。异常重启不自动恢复账户写者，Paper账户原日志保留，需要独立核对；本版UI不提供旧会话恢复向导。
 
 跨端口实例也受仓库级操作台文件锁保护，每个Paper DB继续保留原有跨进程写锁。重复双击默认入口只打开已存在且健康的同仓库服务；端口被别的应用占用、owner不健康、目录不可写时给中文错误，不启动第二个写者。
+
+真实会话 runtime.limit_s=1800、deadline_ms 和 expiry_action 只读展示；到时按原Runner停止/撤单/核对/保持HALTED，不自动续期或平库存。暂停不使connected变假，核对不会自动恢复；resume在owner同步检查双资产、数据通道、阶段和账户后才开启开关，无临时放行。

@@ -4,7 +4,7 @@ from ..fair_value.maths import decimal
 from ..fair_value.store import digest
 from ..paper_execution.risk import ACTIVE
 from ..storage import encode
-from .reference import book_targets, book_risk, observed_mid
+from .reference import book_targets, book_risk, observed_mid, book_data_risk
 
 
 class BookSession:
@@ -151,8 +151,7 @@ class BookSession:
                     f = by_asset.get(order["asset_id"])
                     if not authority or authority["state"] not in {"OPEN", "PARTIALLY_FILLED"} or not f or not isinstance(f.get("book"), dict) or not f.get("connected") or f["book"].get("flags") or order.get("submit_ms", om.now) >= f["time_ms"]:
                         continue
-                    permitted_quality_reasons = {"phase_not_permitted", "late_close_threshold", "late_reduce_boundary", "unreliable_sports_state", "sports_stale_or_future", "invalid_clock"}
-                    if set(book_risk(f, om.policy, om.now))-permitted_quality_reasons or f["market_id"] != order["market_id"]:
+                    if book_data_risk(f, om.policy, om.now) or f["market_id"] != order["market_id"]:
                         continue
                     try:
                         levels = f["book"]["asks" if order["side"] == "BUY" else "bids"]

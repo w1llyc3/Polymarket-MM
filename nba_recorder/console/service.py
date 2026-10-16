@@ -44,6 +44,7 @@ class ConsoleService:
         self.scan_task = None
         self.session_id = None
         self.mode = None
+        self.session_deadline_ms = None
         self.lifecycle = "IDLE"
         self.version = 0
         self.catalog = {"status": "EMPTY", "markets": [], "last_success_ms": None, "error": None}
@@ -84,7 +85,7 @@ class ConsoleService:
             return copy.deepcopy(self.view)
 
     def submit(self, command):
-        allowed = {"request_id", "session_id", "expected_version", "action", "mode", "market_id", "confirmed"}
+        allowed = {"request_id", "session_id", "expected_version", "action", "mode", "market_id", "confirmed", "discovery_scope"}
         if not isinstance(command, dict) or set(command)-allowed or not isinstance(command.get("request_id"), str) or not 1 <= len(command["request_id"]) <= 100:
             raise ValueError("命令格式错误")
         identity = command["request_id"]
@@ -141,20 +142,45 @@ class ConsoleService:
         value = {"app": "NBA_MM_LOCAL_CONSOLE_V2_2", "version": self.version, "session_id": self.session_id,
                  "lifecycle": self.lifecycle, "mode": self.mode, "commit": self.commit, "config_version": "BookPolicy-v2.2",
                  "working_tree_dirty_at_start": self.dirty,
-                 "server_ms": utc_ms(), "catalog": self.catalog, "state": self.last_snapshot,
+                 "server_ms": utc_ms(), "catalog": self.catalog,
+                 "runtime": {"limit_s": 1800, "deadline_ms": self.session_deadline_ms,
+                             "expiry_action": "停止采集、请求撤单、核对并保持 HALTED；剩余库存保留旧账本，不自动平仓",
+                             "synthetic": self.mode == "SYNTHETIC_DEMO"}, "state": self.last_snapshot,
                  "live_permission": False, "manual_confirmation": "只读；本版不在网页续期或写入人工授权",
                  "acceptance": {"Data": "BOUNDED_ONLY", "Offline_Paper": "CONTROLLED", "Real_input_Observation": "CONTROLLED", "Quoting": "NOT_VERIFIED", "Unattended": "NO_GO", "Live": "NO_GO"}}
         with self.lock:
             self.view = copy.deepcopy(value)
         self.last_publish = time.monotonic()
 
-    async def scan(self):
+    @staticmethod
+    def runnable(market):
+        status = market.get("status", {})
+        event_status = market.get("event_status", {})
+        return (event_status.get("active") is not False and not any(event_status.get(k) for k in ("closed", "archived"))
+                and not market.get("event_ended") and all(status.get(k) for k in ("active", "enableOrderBook", "acceptingOrders"))
+                and not any(status.get(k) for k in ("closed", "archived", "tracking_state")))
+
+    async def scan(self, discovery_scope="CURRENT"):
+        if discovery_scope not in {"CURRENT", "HISTORY"}:
+            raise ValueError("unsupported discovery scope")
+        now = utc_ms()
+        start, end = (now-86400000, now+7*86400000) if discovery_scope == "CURRENT" else (now-7*86400000, now)
+
         self.catalog = {**self.catalog, "status": "LOADING", "error": None}
         self.publish(force=True)
         api = PublicAPI()
         try:
-            result = await asyncio.wait_for(api.scan(scope="pregame"), 60)
-            self.catalog = {"status": "READY", "markets": result["markets"], "last_success_ms": utc_ms(), "error": None}
+            result = await asyncio.wait_for(api.scan(scope="full-game", start_ms=start, end_ms=end), 60)
+            markets = []
+            for m in result["markets"]:
+                ended = bool(m.get("event_ended") or m["status"].get("closed") or m["status"].get("archived"))
+                state = "ENDED" if ended else "LIVE" if m.get("event_live") else "SCHEDULED" if m["game_start_ms"] > now else "UNKNOWN"
+                if discovery_scope == "CURRENT" and not self.runnable(m):
+                    continue
+                markets.append({**m, "discovery_state": state, "discovered_ms": utc_ms(),
+                                "read_only": discovery_scope == "HISTORY" or not self.runnable(m)})
+            self.catalog = {"status": "READY", "markets": markets, "last_success_ms": utc_ms(), "error": None,
+                            "discovery_scope": discovery_scope, "window_start_ms": start, "window_end_ms": end}
         except Exception as error:
             self.catalog = {**self.catalog, "status": "ERROR", "error": "真实扫描失败："+type(error).__name__+"；检查网络后重试，旧列表不代表实时"}
         finally:
@@ -166,9 +192,11 @@ class ConsoleService:
             raise ValueError("会话或状态版本已变化，请刷新状态后重新确认")
         action = cmd.get("action")
         if action == "scan":
+            if cmd.get("discovery_scope", "CURRENT") not in {"CURRENT", "HISTORY"}:
+                raise ValueError("unsupported discovery scope")
             if self.scan_task and not self.scan_task.done():
                 return {"message": "扫描已在进行"}
-            self.scan_task = asyncio.create_task(self.scan())
+            self.scan_task = asyncio.create_task(self.scan(cmd.get("discovery_scope", "CURRENT")))
             return {"message": "已开始真实扫描，等待列表结果"}
         if action == "start":
             if self.task and not self.task.done():
@@ -185,6 +213,9 @@ class ConsoleService:
                 market = next((m for m in self.catalog["markets"] if m["market_id"] == cmd.get("market_id")), None)
                 if not market:
                     raise ValueError("比赛不在当前真实扫描结果中")
+                if market.get("read_only") or not self.runnable(market):
+                    raise ValueError("历史或结束/无效市场只读，禁止新启动")
+            self.session_deadline_ms = utc_ms()+1800000 if mode != "SYNTHETIC_DEMO" else None
             self.session_id = uuid.uuid4().hex
             self.mode, self.lifecycle = mode, "STARTING"
             self.runner, self.final_report, self.last_snapshot = None, None, {}
@@ -221,16 +252,16 @@ class ConsoleService:
                 raise ValueError("观察模式不能升级为报价模式")
             if not self.runner.latest:
                 raise ValueError("缺少有效行情")
+            assets = {f["asset_id"] for f in self.runner.latest.values()}
+            required = {o["asset_id"] for f in self.runner.latest.values() for o in f["market"]["outcomes"]}
+            if assets != required:
+                raise ValueError("需要双资产完整新鲜行情后才能恢复")
             from ..inplay.reference import book_risk
-            previous = self.runner.quotes_enabled
-            try:
-                self.runner.quotes_enabled = True
-                for frame in self.runner.latest.values():
-                    candidate = {**self.runner.authorize(frame), "phase": om.phases.boundary(frame, om.now)}
-                    if book_risk(candidate, om.policy, om.now):
-                        raise ValueError("阶段、数据或市场安全门未通过；不能人工跳过 UNKNOWN/MM_CLOSED")
-            finally:
-                self.runner.quotes_enabled = previous
+            # Atomic on the owner loop: never temporarily enable submission.
+            for frame in self.runner.latest.values():
+                candidate = {**self.runner.authorize(frame), "phase": om.phases.boundary(frame, om.now)}
+                if book_risk(candidate, om.policy, om.now, check_operator=False):
+                    raise ValueError("阶段、数据或市场安全门未通过；不能人工跳过 UNKNOWN/MM_CLOSED")
             if not om.resume():
                 raise ValueError("恢复被原有账户风控拒绝，请先核对")
             self.runner.quotes_enabled = True
@@ -296,7 +327,7 @@ class ConsoleService:
                     runner.session.on_event({**event, "frames": frames})
                     runner.events += 1
                     self.publish(force=True)
-                    await asyncio.sleep(.35)
+                    await asyncio.sleep(1)
             finally:
                 self.begin_stop()
                 runner.stopping.set()

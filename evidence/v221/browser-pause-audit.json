@@ -1,0 +1,54 @@
+{
+  "session_id": "3233a95a06ee47a382e629ac032c345d",
+  "source": "SYNTHETIC_DEMO, not a real game",
+  "paper_submissions_during_pause": 0,
+  "watchdog_ticks_during_pause": 84,
+  "equity_marks_during_pause": 93,
+  "hard_halts_during_pause": 0,
+  "receipt_actions": [
+    {
+      "action": "pause",
+      "expected_version": 7,
+      "request_id": "9a9f324e-7a88-4923-8ce1-e2eda5617a90",
+      "result": {
+        "message": "已暂停新增报价并请求撤销活动单；库存未清空",
+        "risk_state": "PAUSED"
+      },
+      "session_id": "3233a95a06ee47a382e629ac032c345d",
+      "status": "APPLIED"
+    },
+    {
+      "action": "reconcile",
+      "expected_version": 9,
+      "request_id": "925af326-5b6f-418a-90cc-139e1a84a445",
+      "result": {
+        "consistent": true,
+        "message": "已执行权威 Paper 核对；未自动恢复",
+        "risk_state": "READY_FOR_MANUAL_RESET"
+      },
+      "session_id": "3233a95a06ee47a382e629ac032c345d",
+      "status": "APPLIED"
+    },
+    {
+      "action": "resume",
+      "expected_version": 11,
+      "request_id": "9ee0df0d-686b-437b-887b-f1ae8cd1e57f",
+      "result": {
+        "message": "后台风险检查通过，允许受控 Paper；不代表清仓或实盘许可"
+      },
+      "session_id": "3233a95a06ee47a382e629ac032c345d",
+      "status": "APPLIED"
+    },
+    {
+      "action": "stop",
+      "expected_version": 13,
+      "request_id": "fbdeb4aa-1f3f-44f2-a4d5-1df0ba6252f5",
+      "result": {
+        "message": "撤单请求已生效，等待回报和核对；尚未宣称清仓",
+        "stop_request_applied": true
+      },
+      "session_id": "3233a95a06ee47a382e629ac032c345d",
+      "status": "APPLIED"
+    }
+  ]
+}

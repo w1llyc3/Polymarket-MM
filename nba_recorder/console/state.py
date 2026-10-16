@@ -6,6 +6,7 @@ from ..fill_management.ledger import valuation
 from ..inplay.report import execution_evidence
 
 REASONS = {
+    "operator_quotes_disabled": "操作员暂停新增报价；不代表断线或库存清空",
     "disconnected": "当前连接不可用，禁止新增报价", "unreliable_sports_state": "体育阶段字段未通过核验",
     "sports_stale_or_future": "体育源时间缺失、过期或来自未来", "invalid_clock": "比赛时钟未知或无效",
     "phase_not_permitted": "当前阶段不允许报价", "stale_or_future_data": "盘口或元数据已过期",
