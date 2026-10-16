@@ -34,17 +34,20 @@ def array(value):
     return json.loads(value) if isinstance(value, str) else value
 
 
-def select_market(event, market, series_id, now, ordering=None, scope="pregame"):
+def select_market(event, market, series_id, now, ordering=None, scope="pregame", research=False):
     """Fail closed on missing identity/type/time. Never infer time from listing date."""
     slug = event.get("slug", "")
     match = re.fullmatch(r"nba-([a-z0-9]+)-([a-z0-9]+)-(\d{4}-\d{2}-\d{2})", slug)
-    if not match or not any(str(s.get("id")) == series_id for s in event.get("series", [])):
+    nba_identity = (research and event.get("sport", {}).get("sport") == "nba") or any(str(s.get("id")) == series_id for s in event.get("series", []))
+    if not match or not nba_identity:
         return None, "not_nba_game"
     if match[1] not in TEAMS or match[2] not in TEAMS or match[1] == match[2]:
         return None, "not_nba_teams"
     date = match[3]
     text = (event.get("title", "") + " " + market.get("question", "") + " " + event.get("description", "")).lower()
-    if not SEASON_START <= date <= SEASON_END or date in EXCLUDED_DATES or any(s in text for s in ("preseason", "pre-season", "summer league", "all-star", "cup final", "cup championship", "play-in")):
+    excluded = any(s in text for s in ("summer league", "all-star", "cup final", "cup championship", "play-in"))
+    preseason_text = "preseason" in text or "pre-season" in text
+    if excluded or (not research and (not SEASON_START <= date <= SEASON_END or date in EXCLUDED_DATES or preseason_text)):
         return None, "not_regular_season"
     if market.get("sportsMarketType") != "moneyline" or market.get("slug") != slug:
         return None, "not_full_game_moneyline"
@@ -52,7 +55,7 @@ def select_market(event, market, series_id, now, ordering=None, scope="pregame")
         start = market.get("gameStartTime") or event["startTime"]
         start_ms = parse_time(start)
         start_date = datetime.fromtimestamp(start_ms / 1000, timezone.utc).date().isoformat()
-        if not SEASON_START <= start_date <= "2027-04-12":
+        if not research and not SEASON_START <= start_date <= "2027-04-12":
             return None, "start_outside_season"
         version = market.get("version", "v1")
         if version not in ("v1", "v2"):
@@ -84,7 +87,21 @@ def select_market(event, market, series_id, now, ordering=None, scope="pregame")
             roles[role] = abbreviation or name
     if set(roles.values()) != {match[1], match[2]}:
         roles = {}
-    result = {"venue": "polymarket.com", "season": "2026-27", "calendar_source": CALENDAR_SOURCE,
+    from .game_state import schedule_match
+    schedule = schedule_match(roles.get("away"), roles.get("home"), start_ms)
+    regular = SEASON_START <= date <= SEASON_END and date not in EXCLUDED_DATES and SEASON_START <= start_date <= "2027-04-12" and not preseason_text
+    season_type = "PRESEASON" if schedule or preseason_text else "REGULAR_SEASON" if regular else "UNKNOWN"
+    if schedule and regular:
+        season_type = "UNKNOWN"  # contradictory classification evidence
+    rule_text = market.get("description", "")
+    rules_verified = all(t in rule_text.lower() for t in ("including any overtime", "postponed", "canceled", "50-50"))
+    if research and {team_code(o) for o in outcomes} != set(roles.values()):
+        return None, "ambiguous_outcome_team_mapping"
+    result = {"venue": "polymarket.com", "season": "2026-27", "season_type": season_type,
+              "season_evidence": schedule or {"source": "Gamma explicit preseason text" if preseason_text else CALENDAR_SOURCE if regular else None, "verified": season_type != "UNKNOWN"},
+              "nba_game_id": schedule.get("nba_game_id") if schedule else None, "polymarket_game_id": event.get("gameId"),
+              "game_phase": "ENDED" if event.get("ended") else "LIVE" if event.get("live") else "SCHEDULED" if start_ms > now else "UNKNOWN",
+              "rules_verified": rules_verified, "rules_evidence": {"source": GAMMA+"/events/slug/"+slug, "description": rule_text, "resolution_source": market.get("resolutionSource"), "includes_overtime": True if rules_verified else None, "postponement_and_cancellation_verified": rules_verified}, "calendar_source": CALENDAR_SOURCE,
               "event_id": str(event["id"]), "market_id": str(market["id"]), "condition_id": market["conditionId"],
               "slug": slug, "question": market["question"], "game_start": start, "game_start_ms": start_ms,
               "version": market.get("version", "v1"), "outcomes": [{"label": label, "asset_id": str(token)} for label, token in zip(outcomes, tokens)],
@@ -124,12 +141,16 @@ class PublicAPI:
                     raise
                 await asyncio.sleep(2 ** attempt)
 
-    async def scan(self, scope="pregame", *, start_ms=None, end_ms=None):
+    async def scan(self, scope="pregame", *, start_ms=None, end_ms=None, season_type="REGULAR_SEASON"):
         if scope not in {"pregame", "full-game"}:
             raise ValueError("unsupported collection scope")
+        if season_type not in {"REGULAR_SEASON", "PRESEASON"}:
+            raise ValueError("explicit season type required")
         bounded = start_ms is not None or end_ms is not None
         if bounded and (type(start_ms) is not int or type(end_ms) is not int or not 0 < end_ms-start_ms <= 8*86400000):
             raise ValueError("scan requires an explicit window of at most 8 days")
+        if season_type == "PRESEASON" and not bounded:
+            raise ValueError("preseason research must be date bounded")
         sports = await self.get(GAMMA, "/sports")
         nba = next((x for x in sports if x.get("sport") == "nba"), None)
         if not nba or not nba.get("series"):
@@ -138,6 +159,11 @@ class PublicAPI:
         now = utc_ms()
         while True:
             params = {"series_id": str(nba["series"]), "limit": 100, "offset": offset, "order": "id", "ascending": "true"}
+            if season_type == "PRESEASON":
+                if not nba.get("primaryTagId"):
+                    raise ValueError("NBA discovery tag unavailable")
+                params.pop("series_id")
+                params["tag_id"] = str(nba["primaryTagId"])
             if bounded:
                 params.update(start_time_min=datetime.fromtimestamp(start_ms/1000, timezone.utc).isoformat(),
                               start_time_max=datetime.fromtimestamp(end_ms/1000, timezone.utc).isoformat())
@@ -149,7 +175,7 @@ class PublicAPI:
             for event in events:
                 detail = None
                 for market in event.get("markets", []):
-                    item, reason = select_market(event, market, str(nba["series"]), now, nba.get("ordering"), scope)
+                    item, reason = select_market(event, market, str(nba["series"]), now, nba.get("ordering"), scope, research=season_type == "PRESEASON")
                     if item and not item.get("home_away_evidence"):
                         if detail is None:
                             detail = await self.get(GAMMA, "/events/slug/" + event["slug"])
@@ -157,7 +183,7 @@ class PublicAPI:
                                 raise ValueError("Unexpected Gamma event detail schema")
                         current = next((m for m in detail.get("markets", []) if str(m.get("id")) == str(market["id"])), None)
                         if current:
-                            item, reason = select_market(detail, current, str(nba["series"]), utc_ms(), nba.get("ordering"), scope)
+                            item, reason = select_market(detail, current, str(nba["series"]), utc_ms(), nba.get("ordering"), scope, research=season_type == "PRESEASON")
                         else:
                             item, reason = None, "event_detail_missing_market"
                     counts[reason] += 1
@@ -168,7 +194,7 @@ class PublicAPI:
             offset += 100
             if offset >= (500 if bounded else 10100):
                 raise ValueError("Scan incomplete: pagination safety limit")
-        return {"venue": "polymarket.com", "scanned_at_ms": now, "series_id": str(nba["series"]), "reasons": dict(counts), "markets": sorted(selected.values(), key=lambda x: x["game_start_ms"]), "status": "ok" if selected else "no_matching_markets"}
+        return {"venue": "polymarket.com", "scanned_at_ms": now, "series_id": str(nba["series"]), "reasons": dict(counts), "unclassified_markets": [m for m in selected.values() if m["season_type"] == "UNKNOWN"], "markets": sorted((m for m in selected.values() if m["season_type"] == season_type), key=lambda x: x["game_start_ms"]), "status": "ok" if any(m["season_type"] == season_type for m in selected.values()) else "no_matching_markets"}
 
     async def book(self, asset):
         return await self.get(CLOB, "/book", {"token_id": asset})

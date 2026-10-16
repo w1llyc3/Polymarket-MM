@@ -1,0 +1,35 @@
+[
+  {
+    "time_ms": 1792127385155,
+    "request_id": "418bb31f-add1-47ff-b1c5-4f46f97f4c43",
+    "session_id": "31af7e6155734dd9b0aa690b0aba59f5",
+    "action": "start",
+    "status": "APPLIED",
+    "result": {
+      "message": "会话已分配，等待后台状态",
+      "session_id": "31af7e6155734dd9b0aa690b0aba59f5"
+    }
+  },
+  {
+    "time_ms": 1792127427743,
+    "request_id": "fc711052-13e9-4b6e-b59f-80e9cb6da2cb",
+    "session_id": "31af7e6155734dd9b0aa690b0aba59f5",
+    "action": "stop_paper",
+    "status": "APPLIED",
+    "result": {
+      "message": "Paper已停止并请求撤单；公开采集继续，库存保留，本会话不再恢复报价"
+    }
+  },
+  {
+    "time_ms": 1792127494479,
+    "request_id": "e49e863d-486a-4217-91a8-5519aeafd28e",
+    "session_id": "31af7e6155734dd9b0aa690b0aba59f5",
+    "action": "export",
+    "status": "APPLIED",
+    "result": {
+      "message": "报告已保存",
+      "download": "/api/export/90edd9dc6e9b403384cc4d329b1aa8bd",
+      "session_id": "31af7e6155734dd9b0aa690b0aba59f5"
+    }
+  }
+]

@@ -45,6 +45,10 @@ class ConsoleService:
         self.session_id = None
         self.mode = None
         self.session_deadline_ms = None
+        self.session_started_ms = None
+        self.limit_s = 14400
+        self.postgame_s = 600
+        self.bound_market = None
         self.lifecycle = "IDLE"
         self.version = 0
         self.catalog = {"status": "EMPTY", "markets": [], "last_success_ms": None, "error": None}
@@ -85,7 +89,7 @@ class ConsoleService:
             return copy.deepcopy(self.view)
 
     def submit(self, command):
-        allowed = {"request_id", "session_id", "expected_version", "action", "mode", "market_id", "confirmed", "discovery_scope"}
+        allowed = {"request_id", "session_id", "expected_version", "action", "mode", "market_id", "confirmed", "discovery_scope", "season_type", "day_filter", "limit_s", "postgame_s"}
         if not isinstance(command, dict) or set(command)-allowed or not isinstance(command.get("request_id"), str) or not 1 <= len(command["request_id"]) <= 100:
             raise ValueError("命令格式错误")
         identity = command["request_id"]
@@ -143,7 +147,7 @@ class ConsoleService:
                  "lifecycle": self.lifecycle, "mode": self.mode, "commit": self.commit, "config_version": "BookPolicy-v2.2",
                  "working_tree_dirty_at_start": self.dirty,
                  "server_ms": utc_ms(), "catalog": self.catalog,
-                 "runtime": {"limit_s": 1800, "deadline_ms": self.session_deadline_ms,
+                 "runtime": {"limit_s": self.limit_s, "started_ms": self.session_started_ms, "deadline_ms": self.session_deadline_ms, "postgame_s": self.postgame_s,
                              "expiry_action": "停止采集、请求撤单、核对并保持 HALTED；剩余库存保留旧账本，不自动平仓",
                              "synthetic": self.mode == "SYNTHETIC_DEMO"}, "state": self.last_snapshot,
                  "live_permission": False, "manual_confirmation": "只读；本版不在网页续期或写入人工授权",
@@ -160,17 +164,26 @@ class ConsoleService:
                 and not market.get("event_ended") and all(status.get(k) for k in ("active", "enableOrderBook", "acceptingOrders"))
                 and not any(status.get(k) for k in ("closed", "archived", "tracking_state")))
 
-    async def scan(self, discovery_scope="CURRENT"):
+    async def scan(self, discovery_scope="CURRENT", season_type="REGULAR_SEASON", day_filter="WINDOW"):
         if discovery_scope not in {"CURRENT", "HISTORY"}:
             raise ValueError("unsupported discovery scope")
         now = utc_ms()
         start, end = (now-86400000, now+7*86400000) if discovery_scope == "CURRENT" else (now-7*86400000, now)
 
+        if day_filter in {"TODAY", "TOMORROW"}:
+            # UTC+8 local calendar boundaries, never exchange slug dates.
+            local_day = (now+8*3600000)//86400000 + (day_filter == "TOMORROW")
+            start, end = local_day*86400000-8*3600000, (local_day+1)*86400000-8*3600000
+        elif day_filter != "WINDOW":
+            raise ValueError("unsupported day filter")
         self.catalog = {**self.catalog, "status": "LOADING", "error": None}
         self.publish(force=True)
         api = PublicAPI()
         try:
-            result = await asyncio.wait_for(api.scan(scope="full-game", start_ms=start, end_ms=end), 60)
+            kwargs = {"scope": "full-game", "start_ms": start, "end_ms": end}
+            if season_type != "REGULAR_SEASON":
+                kwargs["season_type"] = season_type
+            result = await asyncio.wait_for(api.scan(**kwargs), 60)
             markets = []
             for m in result["markets"]:
                 ended = bool(m.get("event_ended") or m["status"].get("closed") or m["status"].get("archived"))
@@ -180,7 +193,7 @@ class ConsoleService:
                 markets.append({**m, "discovery_state": state, "discovered_ms": utc_ms(),
                                 "read_only": discovery_scope == "HISTORY" or not self.runnable(m)})
             self.catalog = {"status": "READY", "markets": markets, "last_success_ms": utc_ms(), "error": None,
-                            "discovery_scope": discovery_scope, "window_start_ms": start, "window_end_ms": end}
+                            "discovery_scope": discovery_scope, "season_type": season_type, "day_filter": day_filter, "unclassified_markets": result.get("unclassified_markets", []), "window_start_ms": start, "window_end_ms": end}
         except Exception as error:
             self.catalog = {**self.catalog, "status": "ERROR", "error": "真实扫描失败："+type(error).__name__+"；检查网络后重试，旧列表不代表实时"}
         finally:
@@ -192,11 +205,13 @@ class ConsoleService:
             raise ValueError("会话或状态版本已变化，请刷新状态后重新确认")
         action = cmd.get("action")
         if action == "scan":
+            if cmd.get("season_type", "REGULAR_SEASON") not in {"REGULAR_SEASON", "PRESEASON"} or cmd.get("day_filter", "WINDOW") not in {"WINDOW", "TODAY", "TOMORROW"}:
+                raise ValueError("unsupported season/date filter")
             if cmd.get("discovery_scope", "CURRENT") not in {"CURRENT", "HISTORY"}:
                 raise ValueError("unsupported discovery scope")
             if self.scan_task and not self.scan_task.done():
                 return {"message": "扫描已在进行"}
-            self.scan_task = asyncio.create_task(self.scan(cmd.get("discovery_scope", "CURRENT")))
+            self.scan_task = asyncio.create_task(self.scan(cmd.get("discovery_scope", "CURRENT"), cmd.get("season_type", "REGULAR_SEASON"), cmd.get("day_filter", "WINDOW")))
             return {"message": "已开始真实扫描，等待列表结果"}
         if action == "start":
             if self.task and not self.task.done():
@@ -215,7 +230,12 @@ class ConsoleService:
                     raise ValueError("比赛不在当前真实扫描结果中")
                 if market.get("read_only") or not self.runnable(market):
                     raise ValueError("历史或结束/无效市场只读，禁止新启动")
-            self.session_deadline_ms = utc_ms()+1800000 if mode != "SYNTHETIC_DEMO" else None
+            from ..pilot import PilotWindow
+            limit_s, postgame_s = cmd.get("limit_s", 14400), cmd.get("postgame_s", 600)
+            PilotWindow(utc_ms(), limit_s, postgame_s)  # validate before allocating any capital
+            self.limit_s, self.postgame_s, self.bound_market = limit_s, postgame_s, market
+            self.session_started_ms = utc_ms()
+            self.session_deadline_ms = self.session_started_ms+limit_s*1000 if mode != "SYNTHETIC_DEMO" else None
             self.session_id = uuid.uuid4().hex
             self.mode, self.lifecycle = mode, "STARTING"
             self.runner, self.final_report, self.last_snapshot = None, None, {}
@@ -229,8 +249,12 @@ class ConsoleService:
         om = self.runner.om
         if self.lifecycle != "RUNNING" and action != "export":
             raise ValueError("会话正在停止或异常；禁止在清理期间恢复/修改账户")
-        if action in {"pause", "stop", "reconcile", "resume"} and cmd.get("confirmed") is not True:
+        if action in {"pause", "stop", "reconcile", "resume", "stop_paper"} and cmd.get("confirmed") is not True:
             raise ValueError("此操作需要明确确认")
+        if action == "stop_paper":
+            self.runner.stop_paper("console_operator_stop_paper_keep_recording")
+            self.version += 1
+            return {"message": "Paper已停止并请求撤单；公开采集继续，库存保留，本会话不再恢复报价"}
         if action == "pause":
             self.runner.quotes_enabled = False
             om.pause("console_operator_pause")
@@ -248,6 +272,10 @@ class ConsoleService:
             self.version += 1
             return {"message": "已执行权威 Paper 核对；未自动恢复", "consistent": result, "risk_state": om.risk_state}
         if action == "resume":
+            if self.runner.paper_stopped:
+                raise ValueError("本会话Paper已明确停止；公开采集继续，不恢复报价")
+            if self.runner.game_information and self.runner.game_information.get("game_finished"):
+                raise ValueError("比赛结束后仅继续采集，不恢复报价")
             if self.mode == "OBSERVATION":
                 raise ValueError("观察模式不能升级为报价模式")
             if not self.runner.latest:
@@ -275,7 +303,7 @@ class ConsoleService:
         self.publish(force=True)
         identity = uuid.uuid4().hex
         bundle = {"session_id": self.session_id, "commit": self.commit, "exported_ms": utc_ms(), "view": self.read(),
-                  "completed_report": self.final_report, "scope": "completed report" if self.final_report else "partial live projection; bounded log tail", "real_submission_calls": 0}
+                  "completed_report": self.final_report, "scope": "completed report" if self.final_report else "partial live projection; bounded log tail", "real_submission_calls": 0, "database_files": {"paper": self.session_id+".sqlite", "public_source": self.session_id+"-source.sqlite"}}
         path = self.data/(self.session_id+"-"+identity+".json")
         path.write_text(json.dumps(bundle, ensure_ascii=False, indent=2), encoding="utf-8")
         with self.lock:
@@ -288,7 +316,7 @@ class ConsoleService:
             if self.mode == "SYNTHETIC_DEMO":
                 await self.demo(path)
             else:
-                result = await run_paper(str(path)+".sqlite", str(path)+"-source.sqlite", market["slug"], market["market_id"], seconds=1800, control=self)
+                result = await run_paper(str(path)+".sqlite", str(path)+"-source.sqlite", market["slug"], market["market_id"], seconds=self.limit_s, control=self, research=market.get("season_type") == "PRESEASON", postgame_s=self.postgame_s)
                 self.final_report = result
             self.lifecycle = "STOPPED"
         except Exception as error:

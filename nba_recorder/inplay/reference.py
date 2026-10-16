@@ -63,6 +63,8 @@ def book_risk(frame, policy, at=None, *, check_operator=True):
         reasons.append("operator_quotes_disabled")
     try:
         m = frame["market"]
+        if m.get("season_type") == "UNKNOWN" or (m.get("season_type") == "PRESEASON" and not m.get("rules_verified")):
+            reasons.append("season_or_rules_unverified")
         if frame.get("phase") not in {"ACTIVE_MM", "REDUCE_ONLY"}:
             reasons.append("phase_not_permitted")
         if policy.allow_manual_phase:

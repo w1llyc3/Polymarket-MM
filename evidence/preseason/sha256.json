@@ -1,0 +1,15 @@
+{
+  "evidence/preseason/browser-receipts.json": "8d2af968c878d3bf95a0ed3ce85ea91a57d08c48e839b2b5f0f1399396264b77",
+  "evidence/preseason/final-browser-receipts.json": "25f42211ecead3d42637f7e643e482784a5cda16a4a0bc2ab35792cd3306c208",
+  "evidence/preseason/final-ledger-audit.json": "8c45a7986793786aeea3e5806b19e34b16f793ddcdebbbc90b3c667e0853ef79",
+  "evidence/preseason/final-real-books.jpg": "1206d4a6d71d94819485c21cda91de383843fcfdba6d46b7dc4c9d128ee98c46",
+  "evidence/preseason/final-real-short-window-export.json": "1a102d903356c8ccd9d7e61a1ae231ee79b347828ab0714921a79f8571ae8c3f",
+  "evidence/preseason/final-source-audit.json": "28e7e0c820353adff9783895bde5e62b69179e8a140dc3234b3ba9c6a1dc4678",
+  "evidence/preseason/full-tests.txt": "95cddb1ae5d9a4cd2dfbe3f3960abe0c3ecfa95f1222e6d2ff1c0cd929b17b99",
+  "evidence/preseason/ledger-audit.json": "8f90ab34411fb852aa75dfda4da97a7c754bf5008f9d51ac6cf54ec97bee6c61",
+  "evidence/preseason/offline-replay.json": "17a82a87ef6c55a675a2ecf4e33b163368906aa0123d3d23b9ca8e884d9b5f12",
+  "evidence/preseason/real-books.jpg": "4111b4c403f4a6c4e539b320d73693fb564e9b31b330e18b4cc4a6324c81e036",
+  "evidence/preseason/real-short-window-export.json": "cf6a17cbd7d476f4d4a95e9527bc4fb7f25f4bc865ca3f6213f1fe2178eb3e3f",
+  "evidence/preseason/stopped-last-snapshot.jpg": "43684483f130ea6cb52b9118c28ebad1967b3e5a6b2d9229b2efd00edb87c0e0",
+  "PRESEASON_PREFLIGHT.json": "416e73293bcfb717e4138b9595a987dc94d8e52473d1a1244893c6d3609662bc"
+}

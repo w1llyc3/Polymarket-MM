@@ -56,10 +56,12 @@ def snapshot(control):
         payload = json.loads(r[4])
         kind = r[2]
         logs.append({"seq": r[0], "time_ms": r[1], "kind": kind, "order_id": r[3], "detail": payload.get("detail"),
-                     "severity": "ERROR" if kind in {"KILL_SWITCH", "SERVICE_RESTART_UNKNOWN"} else "WARN" if kind in {"RISK", "LOCAL_REJECTION", "DISPATCH_RISK_REJECTED"} else "INFO"})
+                     "severity": "ERROR" if kind in {"KILL_SWITCH", "SERVICE_RESTART_UNKNOWN"} and not (kind == "KILL_SWITCH" and any(x in str(payload.get("detail")) for x in ("console_operator", "runner_window_ended", "runner_stopped_keep_halted", "console_demo", "observed_game_finished_keep_recording_tail"))) else "WARN" if kind in {"RISK", "LOCAL_REJECTION", "DISPATCH_RISK_REJECTED"} else "INFO"})
     phases = [json.loads(r[0]) for r in om.db.execute("SELECT payload FROM ip_phase")]
     incomes = [dict(r) for r in om.db.execute("SELECT kind,stage,amount,market_id FROM ip_income ORDER BY rowid")]
     return {"generated_ms": utc_ms(), "paper_clock_ms": om.now, "risk_state": om.risk_state, "account": account,
+            "game_information": runner.game_information, "bound_market": runner.bound_market or control.bound_market,
+            "collection": {"running": control.lifecycle == "RUNNING", "book_mode": "REST periodic snapshots; WS raw events/trades, no increment continuity claim", "quotes_enabled": runner.quotes_enabled},
             "books": books, "orders": [{**o, "remaining": str(Decimal(o["size"])-Decimal(o["filled"]))} for o in om.orders()],
             "phases": phases, "decisions": decisions, "logs": logs, "income_stages": incomes,
             "inventory_ages": [{"asset_id": l["asset_id"], "remaining": l["remaining"], "age_ms": om.now-l["time_ms"]} for l in state["lots"] if Decimal(l["remaining"]) > 0],

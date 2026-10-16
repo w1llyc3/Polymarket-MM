@@ -39,6 +39,8 @@ def main():
     live.add_argument("--seconds", type=float, default=30)
     live.add_argument("--interval", type=float, default=1)
     live.add_argument("--model", choices=("L0", "L1", "L2"), default="L2")
+    live.add_argument("--research-preseason", action="store_true", help="Explicit verified preseason research only; phase gates unchanged")
+    live.add_argument("--postgame-s", type=int, default=600)
     live.add_argument("--manual-file")
     live.add_argument("--contracts")
     live.add_argument("--operator-reset", action="store_true", help="Explicit operator request to reconcile and try reset; never automatic")
@@ -64,7 +66,7 @@ def main():
     if args.command == "run-paper":
         from .runner import run_paper
         contracts = json.loads(Path(args.contracts).read_text(encoding="utf-8")) if args.contracts else None
-        result = asyncio.run(run_paper(args.db, args.source_db, args.event_slug, args.market_id, args.seconds, args.interval, args.model, args.manual_file, contracts, args.operator_reset))
+        result = asyncio.run(run_paper(args.db, args.source_db, args.event_slug, args.market_id, args.seconds, args.interval, args.model, args.manual_file, contracts, args.operator_reset, research=args.research_preseason, postgame_s=args.postgame_s))
         print(json.dumps(result, indent=2))
         return
     if args.command == "confirm-phase":
@@ -177,7 +179,14 @@ def main():
                     om.db.execute("INSERT OR IGNORE INTO ip_session_config VALUES('tape',?)", (args.tape,))
                 session = BookSession(om, args.model)
                 for row in tape_store.db.execute("SELECT payload FROM qe_input WHERE tape_id=? ORDER BY seq", (args.tape,)):
-                    session.on_event(json.loads(row[0]))
+                    event = json.loads(row[0])
+                    if manifest.get('bucketed_recorded_events'):
+                        for recorded in event['recorded_events']:
+                            if recorded['time_ms'] != event['time_ms']:
+                                raise ValueError('recorded event outside sealed time bucket')
+                            session.on_event(recorded)
+                    else:
+                        session.on_event(event)
             finally:
                 tape_store.close()
         result = report(om)

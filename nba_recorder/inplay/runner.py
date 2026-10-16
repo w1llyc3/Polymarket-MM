@@ -38,7 +38,25 @@ class PaperRunner:
         self.watchdog_task = None
         self.last_watchdog_tick_mono = None
         self.quotes_enabled = True
+        self.game_information = None
+        self.bound_market = None
+        self.paper_stopped = self.om.db.execute("SELECT 1 FROM ip_session_config WHERE id='pilot_paper_stopped'").fetchone() is not None
+        if self.paper_stopped:
+            self.quotes_enabled = False
         self.om.runtime_guard = self.authorize
+
+    def stop_paper(self, reason):
+        with self.om.db:
+            self.om.db.execute("INSERT OR IGNORE INTO ip_session_config VALUES('pilot_paper_stopped',?)", (encode({"reason": reason, "time_ms": self.om.now}),))
+            self.paper_stopped = True
+            self.quotes_enabled = False
+            self.om.kill(reason)
+
+    def observe_game_information(self, info, window, at):
+        self.game_information = info
+        window.observe(info, at)
+        if window.finished_ms is not None and not self.paper_stopped:
+            self.stop_paper("observed_game_finished_keep_recording_tail")
 
     def authorize(self, frame):
         observed = frame.get("observed_connected", frame.get("connected"))
@@ -129,8 +147,8 @@ class PaperRunner:
                 pass
 
 
-async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, interval=1, model="L2", manual_file=None, contracts=None, operator_reset=False, control=None):
-    if seconds <= 0 or interval <= 0 or Path(db_path).resolve() == Path(source_path).resolve():
+async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, interval=1, model="L2", manual_file=None, contracts=None, operator_reset=False, control=None, research=False, postgame_s=600):
+    if seconds <= 0 or seconds > 14400 or interval <= 0 or Path(db_path).resolve() == Path(source_path).resolve():
         raise ValueError("bounded duration, positive interval and distinct source/paper paths required")
     api = PublicAPI()
     store = SingleWriterStore(db_path)
@@ -156,7 +174,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
         om.db.execute("INSERT OR IGNORE INTO ip_session_config VALUES('runner_game',?)", (binding,))
     runner = PaperRunner(om, model, manual_file=manual_file)
     if control:
-        runner.quotes_enabled = control.mode != "OBSERVATION"
+        runner.quotes_enabled = control.mode != "OBSERVATION" and not runner.paper_stopped
         control.attach(runner)
     runner.issues.append("AUTO_SPORTS_CONTRACT_UNVERIFIED" if not manual_file else "MANUAL_CONFIRMED_NOT_UNATTENDED")
     if operator_reset:
@@ -165,6 +183,12 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
     queue = asyncio.Queue(maxsize=8)
     market_state = {}
     sports_state = {}
+    from ..pilot import PilotWindow
+    from ..game_state import information
+    window = PilotWindow(now, max(60, min(14400, int(seconds))), postgame_s)
+    stop_reason = "HARD_LIMIT_NOT_COMPLETE"
+    with source.db:
+        source.db.executescript("CREATE TABLE IF NOT EXISTS game_information(id INTEGER PRIMARY KEY,received_ms INTEGER,processed_ms INTEGER,payload TEXT); CREATE TABLE IF NOT EXISTS public_metadata(id INTEGER PRIMARY KEY,received_ms INTEGER,payload TEXT);")
     health = {"rest_batches": 0, "sports_updates": 0, "metadata_updates": 0, "rest_errors": 0, "sports_connections": 0, "market_ws_connections": 0, "public_trades": 0}
     market_connection = {"connected": False, "epoch": 0}
     runner.connection_guard = lambda: market_connection["connected"]
@@ -178,10 +202,22 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                 nba = next(s for s in sports if s.get("sport") == "nba")
                 event = await api.get(GAMMA, "/events/slug/"+event_slug)
                 raw = next(m for m in event["markets"] if str(m.get("id")) == str(market_id))
-                selected, reason = select_market(event, raw, str(nba["series"]), utc_ms(), nba.get("ordering"), scope="full-game")
+                selected, reason = select_market(event, raw, str(nba["series"]), utc_ms(), nba.get("ordering"), scope="full-game", research=research)
                 if not selected or not selected.get("home_away_evidence"):
                     raise ValueError("market identity/type/season/roles failed: "+reason)
                 at = utc_ms()
+                if market_state.get("resolved"):
+                    selected["status"]["closed"] = True
+                runner.bound_market = selected
+                with source.db:
+                    source.db.execute("INSERT INTO public_metadata(received_ms,payload) VALUES(?,?)", (at, encode(event)))
+                if runner.game_information is None:
+                    info = information({"gameId": event.get("gameId"), "leagueAbbreviation": "NBA",
+                                        "homeTeam": selected.get("home_team"), "awayTeam": selected.get("away_team"),
+                                        "score": event.get("score"), "period": event.get("period"),
+                                        "elapsed": event.get("elapsed"), "status": event.get("status"), "ended": event.get("ended")}, selected, at, at)
+                    info.update(source=GAMMA+"/events/slug/"+event_slug, identity_evidence="Gamma event team roles; metadata only", game_finished=False)
+                    runner.game_information = info
                 source.markets([selected], at, processed_ms=at)
                 market_state.update(market=selected, received_ms=at, processed_ms=at)
                 health["metadata_updates"] += 1
@@ -246,6 +282,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                     market_connection["epoch"] += 1
                     ws_epoch = market_connection["epoch"]
                     health["market_ws_connections"] += 1
+                    source.health(utc_ms(), "connected", "market_ws_epoch_"+str(ws_epoch))
                     last_pong = time.monotonic()
                     next_ping = last_pong+10
                     while time.monotonic() < deadline:
@@ -281,6 +318,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                                 await queue.put({"trade": trade, "connection_epoch": ws_epoch})
                                 health["public_trades"] += 1
                             elif msg.get("event_type") == "market_resolved":
+                                market_state["resolved"] = True
                                 market_state["market"]["status"]["closed"] = True
                                 source.markets([market_state["market"]], processed)
                                 om.kill("official_market_resolved")
@@ -300,6 +338,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
             try:
                 async with connect(SPORTS_WS, ping_interval=None, open_timeout=10, close_timeout=2) as ws:
                     health["sports_connections"] += 1
+                    source.health(utc_ms(), "connected", "sports_ws_information_only")
                     while time.monotonic() < deadline:
                         raw = await ws.recv()
                         received = utc_ms()
@@ -318,6 +357,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                 raise
             except Exception as error:
                 runner.issues.append("SPORTS_"+type(error).__name__)
+                source.health(utc_ms(), "disconnected", "sports_ws_gap")
                 await asyncio.sleep(1)
 
     tasks = [asyncio.create_task(runner.watchdog()), asyncio.create_task(metadata()), asyncio.create_task(books_loop()), asyncio.create_task(sports_loop()), asyncio.create_task(market_ws_loop())]
@@ -325,9 +365,23 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
     started = utc_ms()
     try:
         while time.monotonic() < deadline:
+            current = utc_ms()
+            if runner.bound_market:
+                game = sports_state.get(str(runner.bound_market.get("polymarket_game_id")))
+                if game:
+                    info = information(game[0], runner.bound_market, game[1], game[2])
+                    if runner.game_information != info:
+                        runner.game_information = info
+                        with source.db:
+                            source.db.execute("INSERT INTO game_information(received_ms,processed_ms,payload) VALUES(?,?,?)", (game[1], game[2], encode(info)))
+                    runner.observe_game_information(info, window, current)
+            if window.stop_reason(current):
+                stop_reason = window.stop_reason(current)
+                break
             if control:
                 await control.pump()
                 if runner.stopping.is_set():
+                    stop_reason = "OPERATOR_STOP_NOT_COMPLETE"
                     break
             if tasks[0].done():
                 tasks[0].result()  # never continue risk submission if watchdog died
@@ -355,6 +409,11 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                     f["sports"] = normalize(item[0], item[1], contract)
                     f["sports"].update(processed_ms=item[2], strategy_available_ms=item[2])
             runner.feed(rows, provenance="REAL_PUBLIC_REST_AND_SPORTS; no synthetic stage", reuse=reuse)
+    except BaseException as error:
+        stop_reason = "SERVICE_ERROR_"+type(error).__name__+"_NOT_COMPLETE"
+        runner.issues.append(stop_reason)
+        source.health(utc_ms(), "disconnected", stop_reason)
+        raise
     finally:
         if control:
             control.begin_stop()
@@ -368,6 +427,9 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
         om.reconcile()
         om.kill("runner_stopped_keep_halted")
         result = report(om)
+        result["recording_coverage"] = window.coverage(utc_ms(), stop_reason)
+        result["game_information"] = runner.game_information
+        result["bound_market"] = runner.bound_market
         result["runner"] = {"start_ms": started, "stop_ms": utc_ms(), "duration_requested_s": seconds, "market_id": str(market_id), "event_slug": event_slug,
                             "public_input_batches": runner.events, "wall_watchdog_ticks": runner.ticks, "health": health,
                             "issues": sorted(set(runner.issues)), "source_provenance": "real public GET/WS", "phase_authority": "MANUAL_CONFIRMED" if manual_file else "AUTOMATIC_UNVERIFIED_UNTIL_CONTRACT_PROVEN",
@@ -375,6 +437,10 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                             "reduce_s": policy.reduce_remaining_s, "close_s": policy.close_remaining_s, "parameters_calibrated": False,
                             "initial_inventory_source": "cash-only, no injected shares", "public_trades_consumed": health["public_trades"],
                             "fill_scope": "same asynchronous L0/L1/L2 proxies; zero prints is not proof of no real market trades"}
+        from ..pilot import research_report
+        result["pilot"] = research_report(result, source.db, om.db)
+        if stop_reason == "OBSERVED_GAME_END_PLUS_TAIL":
+            Path(str(db_path)+"-REAL_GAME_SESSION_REPORT.json").write_text(json.dumps(result["pilot"], ensure_ascii=False, indent=2), encoding="utf-8")
         from .__main__ import save_report
         save_report(om, result)
         if control:

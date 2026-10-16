@@ -1,4 +1,4 @@
-# v2.2.1 本地操作台 API 与单写者边界
+# 季前赛试点：本地操作台 API 与单写者边界
 
 默认 `http://127.0.0.1:8765`，只监听 IPv4 回环。没有 Live 模式、钱包字段或交易凭证。HTTP处理线程不打开账户数据库，不创建 OMS；只有一个 asyncio owner 操作当前 Runner / OMS / FIFO。
 
@@ -28,7 +28,7 @@
 
 scan 可带 discovery_scope=CURRENT（默认过去1天至未来7天，赛前与进行中）或 HISTORY（过去7天，只读）。上游 start_time_min/max 与本地 game_start_ms 双重过滤，最多500条分页；扫描失败不回退到无界历史。结束/无效市场不能新启动；catalog变化不切换已绑定会话或重建资本。发现不是阶段授权。
 
-允许 action：scan、start、pause、stop、reconcile、resume、export。start另带 mode、market_id；mode仅 OBSERVATION / REAL_PAPER / SYNTHETIC_DEMO。比赛必须来自60秒内真实 scanner 结果，不能由HTTP提供盘口或伪造市场结构。离线回放首版网页显式禁用，保留原CLI。
+允许 action：scan、start、pause、stop_paper、stop、reconcile、resume、export。start另带 mode、market_id；mode仅 OBSERVATION / REAL_PAPER / SYNTHETIC_DEMO。比赛必须来自60秒内真实 scanner 结果，不能由HTTP提供盘口或伪造市场结构。离线回放首版网页显式禁用，保留原CLI。
 
 所有命令经过同一个有界串行队列，带预期会话与状态版本。相同request_id/相同payload只作用一次；同ID不同内容拒绝。两个不同ID的重复启动也不会创建第二个Runner。请求记录与结果写 `commands.jsonl`，运行中的控制结果还进入 `pe_journal`。幂等回执缓存只在当前服务进程有效；重启后令牌改变，旧请求不得自动重发，历史命令日志保留审计用途。
 
@@ -45,3 +45,16 @@ feed、watchdog和最终dispatch共用实时授权：保留observed_connected和
 跨端口实例也受仓库级操作台文件锁保护，每个Paper DB继续保留原有跨进程写锁。重复双击默认入口只打开已存在且健康的同仓库服务；端口被别的应用占用、owner不健康、目录不可写时给中文错误，不启动第二个写者。
 
 真实会话 runtime.limit_s=1800、deadline_ms 和 expiry_action 只读展示；到时按原Runner停止/撤单/核对/保持HALTED，不自动续期或平库存。暂停不使connected变假，核对不会自动恢复；resume在owner同步检查双资产、数据通道、阶段和账户后才开启开关，无临时放行。
+
+
+## 季前赛试点扩展
+
+scan新增season_type=REGULAR_SEASON（默认）或PRESEASON（显式研究）、day_filter=WINDOW/TODAY/TOMORROW；日期按UTC+8转换查询窗口，不用于拼slug。PRESEASON用/sports实际NBA primaryTagId发现，类别须有独立赛程或明确元数据证据；未核验项在catalog.unclassified_markets只读，不授予报价。常规赛过滤保留。
+
+start新增limit_s（整数60..14400，默认14400）、postgame_s（整数0..1800，默认600）。上限在分配会话/资本前检查；runtime输出started_ms、deadline_ms、limit_s、postgame_s。运行中不因为30分钟到达而创建新账户。确认比赛结束才开始赛后尾段，延期或超限不推定完整覆盖。旧的固定1800秒说明仅是历史版本。
+
+stop_paper需要confirmed=true，持久化停止意图、禁止本会话再报价并请求撤单，但不停止公开采集；重新打开同一账本也保留该意图。pause仍为可经核对/人工恢复的暂停。stop结束全部采集并撤单；停止后resume由服务端拒绝且网页禁用。阶段HALTED不暗中停止数据源。
+
+state新增game_information、bound_market、collection：比分、节次、原始时钟、来源、接收/处理/可用时间、是否身份匹配、game_finished、冲突与局限。display_eligible不是quote_authorized；不补上游时间/paused/剩余时钟，未合格体育源继续NO_QUOTE。实时体育源不与元数据心跳混为新比分。
+
+停止导出包含已有策略报告、pilot研究计数和NOT_COMPLETE覆盖状态，database_files指向本机会话文件。输入流可由scripts/freeze_pilot_session.py封存后通过原replay命令离线回放；同毫秒保留本地顺序、不伪造交易所顺序。只有观测到匹配比赛结束且完成尾段后，才在本机写<session>.sqlite-REAL_GAME_SESSION_REPORT.json；即使生成也不自动认证整场覆盖或实盘许可。
