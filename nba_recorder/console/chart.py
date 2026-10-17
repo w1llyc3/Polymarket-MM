@@ -59,7 +59,7 @@ def query(path, asset, start, end, cursors=None, limit=600):
                     result['paper_fills'].append({'id':detail.get('report_id') or str(seq),'time_ms':at,'exchange_ms':detail.get('exchange_ms'),
                         'received_ms':at,'processed_ms':at,'timing_note':'Paper OMS receipt availability; separate upstream transport receipt not recorded here',
                         'price':o['price'],'quantity':detail['delta_fill'],'side':o['side'],'execution':'PAPER_EXECUTION','order_id':o['id']})
-            if kind in {'KILL_SWITCH','RISK','PAUSED','OPERATOR_RESUME','CONSOLE_COMMAND_RECEIPT','SERVICE_RESTART_UNKNOWN'}:
+            if kind in {'KILL_SWITCH','RISK','PAUSED','OPERATOR_RESUME','CONSOLE_COMMAND_RECEIPT','SERVICE_RESTART_UNKNOWN','EXECUTION_SEGMENT_START','MANUAL_RESEARCH_PHASE'}:
                 compact = {'reason':detail.get('reason'),'order_id':(o or {}).get('id'),'raw_journal_seq':seq} if kind=='RISK' else detail
                 result['events'].append({'id':'journal:'+str(seq),'time_ms':at,'kind':kind,'detail':compact,'raw_journal_seq':seq,'risk_state':p.get('control',{}).get('state')})
             if kind in {'BOOK_PAPER_EQUITY','EXECUTION_REPORT','RECONCILED','COLLATERAL_FUNDED_PAPER_SPLIT','VIRTUAL_ASSET_SEED'}:
