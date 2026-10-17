@@ -35,6 +35,16 @@ class PhaseController:
         if self.policy.research_phase:
             from .research_phase import permission
             chosen, errors = permission(frame, self.policy, at)
+            sport_clock=(sports.get('period'),sports.get('remaining_s'))
+            previous_clock=old.get('research_clock')
+            if not frame.get('research_phase_grant') and chosen in {'ACTIVE_MM','REDUCE_ONLY'} and sports.get('clock_evidence') and all(type(v) is int for v in sport_clock):
+                if previous_clock and (sport_clock[0]<previous_clock[0] or (sport_clock[0]==previous_clock[0] and sport_clock[1]>previous_clock[1])):
+                    chosen, errors='UNKNOWN',['clock_correction_review_new_observation_required']
+                    state['review_received_ms']=sports.get('received_ms')
+                elif old.get('review_received_ms') is not None and sports.get('received_ms',0)<=old['review_received_ms']:
+                    chosen,errors='UNKNOWN',['clock_correction_wait_new_observation']
+                else:state.pop('review_received_ms',None)
+                state['research_clock']=sport_clock
             if old['latched_closed']:
                 chosen = 'MM_CLOSED'
             elif old['state'] == 'REDUCE_ONLY' and chosen == 'ACTIVE_MM':

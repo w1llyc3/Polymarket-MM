@@ -46,6 +46,7 @@ def normalize_market(event, market, nba, now, official=None):
         if market.get('sportsMarketType') != 'moneyline':
             return None,'EXCLUDED_BY_FILTER'
         normalized_rule = ' '.join(market.get('description','').lower().replace('cancelled','canceled').split())
+        normalized_rule=normalized_rule.replace('including overtime','including any overtime').replace('50/50','50-50')
         full_rule='final score including any overtime' in normalized_rule
         if any(str(market.get(k,'')).lower() not in {'','none','full','full_game','game'} for k in ('gamePeriod','periodType')):
             return None,'EXCLUDED_BY_FILTER'

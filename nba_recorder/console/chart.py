@@ -13,7 +13,7 @@ def query(path, asset, start, end, cursors=None, limit=600):
     try:
         db.execute('BEGIN')
         policy=BookPolicy(**json.loads(db.execute('SELECT config FROM pe_control WHERE id=1').fetchone()[0]))
-        result={'prices':[],'public_trades':[],'orders':[],'paper_fills':[],'events':[],'accounts':[],
+        result={'prices':[],'public_trades':[],'orders':[],'paper_fills':[],'events':[],'accounts':[],'execution_segments':[],
                 'cursors':dict(cursors),'has_more':False,'time_basis':'strategy_available_ms / locally known time',
                 'execution_source':'PAPER_EXECUTION','data_source':'UNKNOWN','precision':'raw observed steps; paginated, no silent event thinning',
                 'public_side_semantics':'UNKNOWN aggressor; raw reported side retained, no mirrored-volume aggregation',
@@ -47,6 +47,9 @@ def query(path, asset, start, end, cursors=None, limit=600):
         for row in rows[:limit]:
             seq,at,kind,raw=tuple(row);result['cursors']['journal']=seq
             p=json.loads(raw);o=p.get('order');detail=p.get('detail') or {}
+            if kind=='EXECUTION_SEGMENT_START':
+                result['execution_segments'].append({'time_ms':at,'mode':'PAPER_EXECUTION'})
+                result['execution_source']='OBSERVATION_THEN_PAPER'
             if not isinstance(detail,dict):detail={'raw_detail':detail}
             if at<start:continue
             if o and o.get('asset_id')==asset:

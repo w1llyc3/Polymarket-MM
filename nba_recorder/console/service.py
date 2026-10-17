@@ -61,6 +61,11 @@ class ConsoleService:
         self.shutdown_requested = threading.Event()
         self.thread = None
         self.instance_lock = None
+        self.analysis_task = None
+        self.analysis_error = None
+        self.auto_q4_sessions = set()
+        self.paper_budget = '100'
+        self.paper_plan = 'SMALL'
         self.publish(force=True)
 
     def start(self):
@@ -91,7 +96,7 @@ class ConsoleService:
             return copy.deepcopy(self.view)
 
     def submit(self, command):
-        allowed = {"request_id", "session_id", "expected_version", "action", "mode", "market_id", "confirmed", "discovery_scope", "season_type", "day_filter", "limit_s", "postgame_s", "custom_start", "custom_end"}
+        allowed = {"request_id", "session_id", "expected_version", "action", "mode", "market_id", "confirmed", "discovery_scope", "season_type", "day_filter", "limit_s", "postgame_s", "custom_start", "custom_end", "period", "phase_state", "approve_unclassified", "paper_budget", "paper_plan", "asset_id", "exit_quantity", "exit_minimum", "fee_rate", "research_params"}
         if not isinstance(command, dict) or set(command)-allowed or not isinstance(command.get("request_id"), str) or not 1 <= len(command["request_id"]) <= 100:
             raise ValueError("命令格式错误")
         identity = command["request_id"]
@@ -127,9 +132,26 @@ class ConsoleService:
     async def pump(self):
         # Called by run_paper on its owning loop; never constructs a second OMS.
         self.publish()
+        if self.runner and self.session_id not in self.auto_q4_sessions:
+            phases=[self.runner.om.phases.get(f['market_id']) for f in self.runner.latest.values()]
+            if any(p.get('period') == 4 and p.get('state') in {'ACTIVE_MM','REDUCE_ONLY','MM_CLOSED'} for p in phases):
+                self.auto_q4_sessions.add(self.session_id)
+                self.schedule_report('Q4_AUTO',self.runner.om.now)
+
+    def schedule_report(self, kind, at=None):
+        sid=self.session_id
+        async def generate():
+            from .history import save_report
+            try:
+                await asyncio.to_thread(save_report,self.data,sid,kind,at)
+            except Exception as error:
+                # Analysis failure is surfaced, never changes OMS permissions.
+                self.analysis_error=type(error).__name__
+        self.analysis_task=asyncio.create_task(generate())
 
     def finished(self, result):
         self.final_report = result
+        self.schedule_report('POST_SESSION')
         self.publish(force=True)
 
     def begin_stop(self):
@@ -150,12 +172,12 @@ class ConsoleService:
             self.last_signature = signature
         value = {"app": "NBA_MM_LOCAL_CONSOLE_V2_2", "version": self.version, "session_id": self.session_id,
                  "lifecycle": self.lifecycle, "mode": self.mode, "commit": self.commit, "config_version": "BookPolicy-v2.2",
-                 "working_tree_dirty_at_start": self.dirty,
+                 "working_tree_dirty_at_start": self.dirty, "analysis_error": self.analysis_error,
                  "server_ms": utc_ms(), "catalog": self.catalog, "chart": {"start_ms": self.chart_start_ms, "end_ms": self.last_snapshot.get("paper_clock_ms")},
                  "runtime": {"limit_s": self.limit_s, "started_ms": self.session_started_ms, "deadline_ms": self.session_deadline_ms, "postgame_s": self.postgame_s,
                              "expiry_action": "停止采集、请求撤单、核对并保持 HALTED；剩余库存保留旧账本，不自动平仓",
                              "synthetic": self.mode == "SYNTHETIC_DEMO"}, "state": self.last_snapshot,
-                 "live_permission": False, "manual_confirmation": "只读；本版不在网页续期或写入人工授权",
+                 "live_permission": False, "manual_confirmation": "网页支持本场有界MANUAL_RESEARCH；不伪造自动时钟",
                  "acceptance": {"Data": "BOUNDED_ONLY", "Offline_Paper": "CONTROLLED", "Real_input_Observation": "CONTROLLED", "Quoting": "NOT_VERIFIED", "Unattended": "NO_GO", "Live": "NO_GO"}}
         with self.lock:
             self.view = copy.deepcopy(value)
@@ -219,7 +241,7 @@ class ConsoleService:
                 if not general and discovery_scope == "CURRENT" and not self.runnable(m):
                     continue
                 markets.append({**m, "discovery_state": state, "discovered_ms": result.get("scanned_at_ms", utc_ms()) if general else utc_ms(),
-                                "read_only": (not m.get("paper_scope_approved")) if general else discovery_scope == "HISTORY" or not self.runnable(m)})
+                                "read_only": (not m.get("research_eligible")) if general else discovery_scope == "HISTORY" or not self.runnable(m)})
             self.catalog = {"status": "READY", "markets": markets, "last_success_ms": result.get("scanned_at_ms", utc_ms()) if general else utc_ms(), "error": None,
                             "discovery_scope": discovery_scope, "season_type": season_type, "day_filter": day_filter, "discovery_status": result.get("status"), "schedule_only": result.get("schedule_only", []), "evidence":result.get("evidence", []), "unclassified_markets": result.get("unclassified_markets", []), "window_start_ms": start, "window_end_ms": end}
         except Exception as error:
@@ -232,9 +254,11 @@ class ConsoleService:
             self.publish(force=True)
 
     def handle(self, cmd):
-        if cmd.get("session_id") != self.session_id or type(cmd.get("expected_version")) is not int or cmd["expected_version"] != self.version:
+        if cmd.get("session_id") != self.session_id or type(cmd.get("expected_version")) is not int or (cmd["expected_version"] != self.version and cmd.get('action') not in {'pause','stop','stop_paper'}):
             raise ValueError("会话或状态版本已变化，请刷新状态后重新确认")
         action = cmd.get("action")
+        if action=='stop' and self.session_id and self.lifecycle in {'STOPPING','STOPPED'} and cmd.get('confirmed'):
+            return {'message':'该会话已在停止或已停止；未声明清仓','stop_request_applied':True}
         if action == "scan":
             if cmd.get("season_type", "REGULAR_SEASON") not in {"ALL", "REGULAR_SEASON", "PRESEASON", "PLAY_IN", "PLAYOFFS", "UNKNOWN"} or cmd.get("day_filter", "WINDOW") not in {"WINDOW", "TODAY", "TOMORROW", "NEXT7", "CUSTOM"}:
                 raise ValueError("unsupported season/date filter")
@@ -254,18 +278,28 @@ class ConsoleService:
             if self.task and not self.task.done():
                 raise ValueError("已有会话，禁止启动第二个 Runner")
             mode = cmd.get("mode")
+            from decimal import Decimal
+            budget=Decimal(str(cmd.get('paper_budget','100')))
+            plan=cmd.get('paper_plan','SMALL')
+            if not budget.is_finite() or not 1<=budget<=1000 or plan not in {'SMALL','WIDE'}:
+                raise ValueError('研究预算1至1000虚拟美元，方案SMALL/WIDE')
+            self.paper_budget,self.paper_plan=str(budget),plan
             if mode not in {"OBSERVATION", "REAL_PAPER", "SYNTHETIC_DEMO"}:
                 raise ValueError("模式不可用；离线回放请使用已有开发 CLI")
             if not cmd.get("confirmed"):
                 raise ValueError("启动需要明确确认数据与执行模式")
             market = None
             if mode != "SYNTHETIC_DEMO":
-                if self.catalog["status"] != "READY" or utc_ms()-(self.catalog["last_success_ms"] or 0) > 60000:
-                    raise ValueError("请先刷新真实比赛列表，列表有效期60秒")
+                if self.catalog["status"] != "READY":
+                    raise ValueError("请先发现真实比赛")
                 market = next((m for m in self.catalog["markets"] if m["market_id"] == cmd.get("market_id")), None)
                 if not market:
                     raise ValueError("比赛不在当前真实扫描结果中")
-                if (mode != "OBSERVATION" and market.get("read_only")) or (not market.get("discovery_schema") and not self.runnable(market)):
+                if mode != 'OBSERVATION' and market.get('season_type')=='UNKNOWN' and not cmd.get('approve_unclassified'):
+                    raise ValueError('未分类Paper研究需要明确批准')
+                if mode != 'OBSERVATION' and not market.get('rules_verified'):
+                    raise ValueError('全场规则尚未核实')
+                if not market.get("discovery_schema") and not self.runnable(market):
                     raise ValueError("该市场仅允许只读观察；Paper准入未通过")
                 if market.get("discovery_schema") and not market.get("collection_allowed"):
                     raise ValueError("身份或时间冲突，禁止采集会话")
@@ -273,6 +307,9 @@ class ConsoleService:
             limit_s, postgame_s = cmd.get("limit_s", 14400), cmd.get("postgame_s", 600)
             PilotWindow(utc_ms(), limit_s, postgame_s)  # validate before allocating any capital
             self.limit_s, self.postgame_s, self.bound_market = limit_s, postgame_s, market
+            if market and mode == 'REAL_PAPER':
+                market = {**market, 'research_authorized': True}
+                self.bound_market = market
             self.session_started_ms = utc_ms()
             self.session_deadline_ms = self.session_started_ms+limit_s*1000 if mode != "SYNTHETIC_DEMO" else None
             self.session_id = uuid.uuid4().hex
@@ -286,6 +323,43 @@ class ConsoleService:
                 return self.export()
             raise ValueError("当前无运行中的会话")
         om = self.runner.om
+        if action == 'update_plan':
+            if not cmd.get('confirmed'):raise ValueError('参数修改需要确认')
+            version=om.change_research_parameters(cmd.get('research_params'))
+            return {'message':'研究参数已版本化；预算、资金和末段锁定保持不变','parameter_version':version}
+        if action == 'bounded_exit':
+            if self.mode!='REAL_PAPER' or not cmd.get('confirmed') or self.runner.paper_stopped:
+                raise ValueError('需要本场Paper主动退出的明确确认')
+            source=self.runner.latest.get(cmd.get('asset_id'))
+            if not source:raise ValueError('结果资产不存在')
+            source=om.prepare_submission_frame(None,source)
+            from ..inplay.paper_exit import execute
+            result=execute(om,source,cmd.get('exit_quantity'),cmd.get('exit_minimum'),cmd['request_id'],cmd.get('fee_rate','.02'))
+            return {'message':'Paper深度模拟退出：'+result['status']+'；未成交份额继续留账',**result}
+        if action == 'start_paper':
+            market=self.runner.bound_market or self.bound_market
+            if self.mode!='OBSERVATION' or not cmd.get('confirmed') or self.runner.paper_stopped or not market or not market.get('rules_verified') or market.get('identity_conflict'):
+                raise ValueError('当前会话不能开始Paper研究')
+            if market.get('season_type')=='UNKNOWN' and not cmd.get('approve_unclassified'):
+                raise ValueError('请明确批准未分类Paper')
+            if not om.consistent() or om.halted:raise ValueError('账户需要核对及人工恢复')
+            with om.db:
+                om.db.execute("INSERT INTO ip_session_config VALUES('research_authorization',?)",(json.dumps({'confirmed_ms':om.now,'market_id':market['market_id']}),))
+                om._log('EXECUTION_SEGMENT_START',detail={'previous_mode':'OBSERVATION','mode':'PAPER_EXECUTION','start_ms':om.now})
+            self.mode='REAL_PAPER';self.runner.quotes_enabled=True;self.version+=1
+            return {'message':'同一记录和账户已开始Paper执行段；此前观察历史保留'}
+        if action == 'research_phase':
+            if not cmd.get('confirmed') or not om.policy.research_phase or self.mode != 'REAL_PAPER':
+                raise ValueError('需要本场Paper研究确认')
+            chosen, period = cmd.get('phase_state'), cmd.get('period')
+            if chosen not in {'ACTIVE_MM','REDUCE_ONLY','MM_CLOSED'} or type(period) is not int or not 1 <= period <= 20:
+                raise ValueError('阶段或节次无效')
+            grant={'market_id':self.bound_market['market_id'],'state':chosen,'period':period,'confirmed_ms':om.now,
+                   'expires_ms':self.session_deadline_ms,'source':'MANUAL_RESEARCH','exact_clock':None}
+            with om.db:
+                om.db.execute("INSERT INTO ip_session_config VALUES('research_phase_grant',?) ON CONFLICT(id) DO UPDATE SET payload=excluded.payload",(json.dumps(grant),))
+                om._log('MANUAL_RESEARCH_PHASE',detail=grant)
+            return {'message':'人工研究阶段已记录；不代表上游事实或精确倒计时'}
         if self.lifecycle != "RUNNING" and action != "export":
             raise ValueError("会话正在停止或异常；禁止在清理期间恢复/修改账户")
         if action in {"pause", "stop", "reconcile", "resume", "stop_paper"} and cmd.get("confirmed") is not True:
@@ -343,26 +417,25 @@ class ConsoleService:
         # Copy only tiny identity fields under the publication lock; no OMS
         # calls, full log copies, or disk reads on the engine owner.
         with self.lock:
-            current = self.view.get("session_id")
             state = self.view.get("state", {})
             market = state.get("bound_market") or {}
             assets = {o['asset_id'] for o in market.get('outcomes',[])} | {b['asset_id'] for b in state.get('books',[])}
-        if sid != current or not isinstance(sid,str) or len(sid)!=32 or not all(c in "0123456789abcdef" for c in sid):
-            raise ValueError("current session required")
+        from .history import resolve, view
+        path = resolve(self.data,sid)
+        assets = {b['asset_id'] for b in view(self.data,sid)['state']['books']}
         if params.get('asset_id') not in assets:
             raise ValueError("unknown outcome")
         from .chart import query
-        return query(self.data/(sid+".sqlite"), params['asset_id'],int(params['from']),int(params['to']),
+        return query(path, params['asset_id'],int(params['from']),int(params['to']),
                      {k:int(params.get(k,0)) for k in ('input','journal','phase','game')})
 
     def chart_event(self, sid, seq):
-        with self.lock:
-            if sid != self.view.get('session_id'):
-                raise ValueError('current session required')
+        from .history import resolve
+        path=resolve(self.data,sid)
         if not isinstance(sid,str) or len(sid)!=32 or not all(c in '0123456789abcdef' for c in sid) or not 0<int(seq):
             raise ValueError('invalid event reference')
         from ..fair_value.store import read_connection
-        db=read_connection(self.data/(sid+'.sqlite'))
+        db=read_connection(path)
         try:
             row=db.execute('SELECT seq,time_ms,kind,payload FROM pe_journal WHERE seq=?',(int(seq),)).fetchone()
             if not row:raise ValueError('unknown event')
@@ -426,7 +499,7 @@ class ConsoleService:
                     runner.latest.update({f["asset_id"]: f for f in frames})
                     runner.session.on_event({**event, "frames": frames})
                     runner.events += 1
-                    self.publish(force=True)
+                    await self.pump()
                     await asyncio.sleep(1)
             finally:
                 self.begin_stop()
@@ -477,6 +550,8 @@ class ConsoleService:
             if self.scan_task and not self.scan_task.done():
                 self.scan_task.cancel()
                 await asyncio.gather(self.scan_task, return_exceptions=True)
+            if self.analysis_task:
+                await asyncio.gather(self.analysis_task,return_exceptions=True)
 
     def close(self):
         self.shutdown_requested.set()

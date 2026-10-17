@@ -64,10 +64,11 @@ def exit_depth(account, frames, at, max_age=3000, fee_rate=None):
         qty=D(qty); frame=frames.get(asset)
         base={'asset_id':asset,'held':str(qty),'available':str(max(D(0),qty-D(reserved.get(asset,'0')))),
               'hold':{'future_value':None,'future_liquidity':'UNKNOWN'},'fee_assumption':fee_rate,'auto_execute':False}
-        if not frame or not frame.get('connected') or not 0<=at-frame['book_received_ms']<=max_age or frame['book'].get('flags'):
+        if not frame or not frame.get('connected') or not 0<=at-frame['book_received_ms']<=max_age or frame['book'].get('flags') or frame['market']['status'].get('closed'):
             result.append({**base,'status':'MANUAL_REVIEW','reason':'missing_or_stale_book'});continue
         available=D(base['available']); b=frame['book']
         direct=executable(b['bids'],available,False,fee_rate)
+        scenarios=[{'fee_rate':str(rate),'net_cash':str(D(executable(b['bids'],available,False,str(rate))['gross_cash'])-D(executable(b['bids'],available,False,str(rate))['fee'])),'basis':'research_assumption'} for rate in (D(0),D('.02'),D('.05'))]
         other=next((o['asset_id'] for o in frame['market']['outcomes'] if o['asset_id']!=asset),None)
         unpaired=max(D(0),qty-D(positions.get(other,'0'))-D(reserved.get(asset,'0')))
         hedge=None; opposite=frames.get(other)
@@ -79,6 +80,7 @@ def exit_depth(account, frames, at, max_age=3000, fee_rate=None):
                 levels.append({'price':str(p),'size':str(q)});cash-=q*(p+(D(fee_rate)*p*(1-p) if fee_rate is not None else D(0)))
             hedge=executable(levels,unpaired,True,fee_rate)
         result.append({**base,'status':'EXIT_CANDIDATE','direct':direct,'complement':hedge,
+                       'fee_sensitivity':scenarios,
                        'net_direct_cash':str(D(direct['gross_cash'])-D(direct['fee'])) if direct['fee'] is not None else None,
                        'conditional_pair_value_only':True,'alternatives_not_additive':True})
     return result
@@ -89,7 +91,9 @@ def analyze(path, as_of=None):
     try:
         db.execute('BEGIN')
         last=db.execute('SELECT max(time_ms),max(rowid) FROM ip_inputs').fetchone()
-        cutoff=min(as_of,last[0]) if as_of is not None and last[0] is not None else last[0]
+        journal_end=db.execute('SELECT max(time_ms) FROM pe_journal').fetchone()[0]
+        watermark=max((v for v in (last[0],journal_end) if v is not None),default=None)
+        cutoff=min(as_of,watermark) if as_of is not None and watermark is not None else watermark
         if cutoff is None:return {'as_of_ms':None,'coverage':'NO_DATA'}
         frames,prices,trades,fills={}, {}, [], []
         input_cursor=0
@@ -100,11 +104,12 @@ def analyze(path, as_of=None):
                 good=f.get('connected') and not b.get('flags') and b.get('bid') is not None and b.get('ask') is not None and 0<=at-f['book_received_ms']<=3000
                 prices.setdefault(asset,[]).append({'time_ms':at,'mid':str((D(b['bid'])+D(b['ask']))/2) if good else None,'valid_until_ms':f['book_received_ms']+3000})
             trades.extend({**t,'time_ms':at} for t in e.get('trades',[]))
-        account={};valuation={};journal_cursor=0;pending={};accepted_ms=0;previous=None;last_time=None;cancel_reasons={}
+        account={};valuation={};journal_cursor=0;pending={};resting=set();accepted_ms=0;previous=None;last_time=None;cancel_reasons={};segments=[]
         for row in db.execute('SELECT seq,time_ms,kind,payload FROM pe_journal WHERE time_ms<=? ORDER BY seq',(cutoff,)):
             seq,at,kind,raw=tuple(row);journal_cursor=seq;p=json.loads(raw);o=p.get('order');d=p.get('detail') or {}
             if not isinstance(d,dict):d={}
-            if last_time is not None and pending:accepted_ms+=max(0,at-last_time)
+            if kind=='EXECUTION_SEGMENT_START':segments.append({'time_ms':at,**d})
+            if last_time is not None and resting:accepted_ms+=max(0,at-last_time)
             last_time=at
             control=p.get('control',{});a=control.get('account')
             if a:account=json.loads(a) if isinstance(a,str) else a
@@ -112,15 +117,28 @@ def analyze(path, as_of=None):
                 if o['state'] in {'QUEUED','SUBMITTING','OPEN','PARTIALLY_FILLED','CANCEL_PENDING','UNKNOWN','TIMEOUT','RECONCILED'}:pending[o['id']]=o
                 elif o['state'] in {'CANCELLED','FILLED','REJECTED'}:pending.pop(o['id'],None)
                 authority=d.get('authority')
+                if authority and authority.get('state') in {'OPEN','PARTIALLY_FILLED'}:resting.add(o['id'])
+                if authority and authority.get('state') in {'FILLED','CANCELLED','REJECTED'}:resting.discard(o['id'])
                 if authority and D(str(d.get('delta_fill','0')))>0:
                     fills.append({'id':d.get('report_id') or str(seq),'asset_id':o['asset_id'],'side':o['side'],'price':o['price'],'quantity':str(d['delta_fill']),'time_ms':at})
             if kind=='BOOK_PAPER_EQUITY':valuation=d.get('ledger_valuation') or {};previous=at
             if kind in {'CANCEL_REQUEST','EXPIRY_DETECTED'}:cancel_reasons[kind]=cancel_reasons.get(kind,0)+1
         from ..paper_execution.risk import commitments
+        if last_time is not None and resting:accepted_ms+=max(0,cutoff-last_time)
         budget=commitments(account,list(pending.values())) if account else {}
         account['reserved_inventory']={k:str(v) for k,v in budget.get('reserved_sell',{}).items()}
         account['available_cash']=str(D(account.get('cash','0'))-budget.get('reserved_cash',D(0)))
         assets=list(frames);pos=account.get('positions',{})
+        from ..fill_management.ledger import empty, reduce_event, valuation as ledger_valuation
+        ledger=empty();ledger_cursor=0
+        for r in db.execute("SELECT seq,id,time_ms,kind,payload FROM l6_events WHERE lane='UNIFIED_PAPER' AND time_ms<=? ORDER BY seq",(cutoff,)):
+            ledger=reduce_event(ledger,{'id':r['id'],'time_ms':r['time_ms'],'kind':r['kind'],'payload':json.loads(r['payload'])});ledger_cursor=r['seq']
+        marks={a:ps[-1]['mid'] for a,ps in prices.items() if ps and ps[-1]['mid'] is not None and cutoff<=ps[-1]['valid_until_ms']}
+        valuation=ledger_valuation(ledger,marks,list(pending.values()));previous=cutoff
+        latencies={}
+        for r in db.execute('SELECT kind,duration_ms FROM pe_latency WHERE time_ms<=? ORDER BY duration_ms',(cutoff,)):
+            latencies.setdefault(r[0],[]).append(r[1])
+        latencies={k:{'count':len(v),**{label:v[min(len(v)-1,max(0,__import__('math').ceil(len(v)*q)-1))] for label,q in [('p50',.5),('p95',.95),('p99',.99)]},'basis':'synthetic_paper_clock_not_real_latency'} for k,v in latencies.items()}
         summaries={}
         for asset in assets:
             values=markouts([f for f in fills if f['asset_id']==asset],prices[asset],cutoff)
@@ -131,10 +149,22 @@ def analyze(path, as_of=None):
                     valid=[v for v in group if v['status']=='VALID'];qty=sum((D(v['quantity']) for v in valid),D(0))
                     weighted.append({'side':side,'seconds':seconds,'fills':len(group),'mature_valid':len(valid),'valid_shares':str(qty),
                                      'weighted_fill_markout_cents':str(sum((D(v['quantity'])*D(v['fill_markout_cents']) for v in valid),D(0))/qty) if qty else None})
-            summaries[asset]={'weighted_markouts':weighted}
+            recent=[p for p in prices[asset] if p['time_ms']>=cutoff-120000 and p['mid'] is not None]
+            mids=[D(p['mid']) for p in recent]
+            structure={'samples':len(mids),'window_ms':120000,'classification':'INSUFFICIENT_DATA'}
+            if len(mids)>=5:
+                delta=mids[-1]-mids[0]
+                structure.update(low=str(min(mids)),high=str(max(mids)),change_cents=str(100*delta),
+                                 classification='UP' if delta>=D('.02') else 'DOWN' if delta<=D('-.02') else 'RANGE',
+                                 rule='2-cent end-to-start threshold; descriptive, not predictive',
+                                 conditional_trigger_above=str(max(mids)),conditional_invalidation_below=str(min(mids)))
+            summaries[asset]={'weighted_markouts':weighted,'price_structure':structure}
         return {'as_of_ms':cutoff,'input_cursor':input_cursor,'journal_cursor':journal_cursor,'version':'research-v1',
                 'sources':{'public':'recorded public prints only','fills':'PAPER_EXECUTION'},'real_submission_calls':0,
-                'account':account,'valuation':valuation,'valuation_as_of_ms':previous,'accepted_order_time_ms':accepted_ms,'cancel_reasons':cancel_reasons,
+                'execution_segments':segments,
+                'account':account,'valuation':valuation,'valuation_as_of_ms':previous,'ledger_cursor':ledger_cursor,
+                'inventory_lots':[{'asset_id':l['asset_id'],'remaining':l['remaining'],'cost_per_share':l.get('price'),'age_ms':cutoff-l['time_ms']} for l in ledger['lots'] if D(l['remaining'])>0],
+                'latency':latencies,'accepted_order_time_ms':accepted_ms,'cancel_reasons':cancel_reasons,
                 'paired_shares':str(min((D(pos.get(a,'0')) for a in assets),default=D(0))),
                 'direction_order':assets,'net_directional_shares':str(D(pos.get(assets[0],'0'))-D(pos.get(assets[1],'0'))) if len(assets)==2 else None,
                 'exit_candidates':exit_depth(account,frames,cutoff),

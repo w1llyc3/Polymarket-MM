@@ -63,6 +63,9 @@ class PaperRunner:
             self.stop_paper("observed_game_finished_keep_recording_tail")
 
     def authorize(self, frame):
+        authorized=self.om.db.execute("SELECT 1 FROM ip_session_config WHERE id='research_authorization'").fetchone()
+        if authorized:
+            frame={**frame,'market':{**frame['market'],'research_authorized':True}}
         observed = frame.get("observed_connected", frame.get("connected"))
         epoch = self.connection_epoch() if self.connection_epoch else None
         source_epoch = frame.get("connection_epoch")
@@ -159,7 +162,8 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
     source = Store(source_path)
     now = utc_ms()
     saved = store.db.execute("SELECT config FROM pe_control WHERE id=1").fetchone()
-    policy = BookPolicy(**json.loads(saved[0])) if saved else BookPolicy(allow_manual_phase=manual_file is not None, research_phase=control is not None)
+    policy = BookPolicy(**json.loads(saved[0])) if saved else BookPolicy(allow_manual_phase=manual_file is not None, research_phase=control is not None,
+                initial_cash=getattr(control,'paper_budget','100'),quote_distance='.03' if getattr(control,'paper_plan','SMALL')=='WIDE' else '.02')
     if policy.allow_manual_phase != (manual_file is not None):
         source.close()
         store.close()

@@ -66,6 +66,23 @@ def make_server(service, port=8765):
                 self.send(200, {"app": APP, "token": token, "real_trading_permission": False})
             elif path == "/api/state":
                 self.send(200, service.read())
+            elif path in {'/api/sessions','/api/history','/api/research','/api/reports'}:
+                from urllib.parse import urlparse, parse_qs
+                from . import history
+                try:
+                    params=parse_qs(urlparse(self.path).query,strict_parsing=True)
+                    if any(len(v)!=1 for v in params.values()) or set(params)-{'session_id'}:raise ValueError('query')
+                    sid=params.get('session_id',[None])[0]
+                    if path=='/api/sessions':value=history.index(service.data)
+                    elif path=='/api/history':value=history.view(service.data,sid)
+                    elif path=='/api/research':
+                        from .research import analyze
+                        value=analyze(history.resolve(service.data,sid))
+                    else:
+                        history.resolve(service.data,sid)
+                        value=[json.loads(p.read_text(encoding='utf-8')) for p in sorted(service.data.glob(sid+'-report-*.json'))]
+                    self.send(200,value)
+                except (ValueError,KeyError,OSError,sqlite3.Error):self.send(400,{'error':'研究会话不可用'})
             elif path == "/api/chart-event":
                 from urllib.parse import urlparse, parse_qs
                 try:
@@ -93,8 +110,8 @@ def make_server(service, port=8765):
                     self.send(200, file.read_bytes(), filename="nba-paper-report.json")
                 else:
                     self.send(404, {"error": "导出不存在，请重新导出"})
-            elif path in {"/", "/app.js", "/style.css", "/chart.js"}:
-                name, mime = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/style.css": ("style.css", "text/css"), "/chart.js": ("chart.js", "text/javascript")}[path]
+            elif path in {"/", "/app.js", "/style.css", "/chart.js", "/workbench.js"}:
+                name, mime = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/style.css": ("style.css", "text/css"), "/chart.js": ("chart.js", "text/javascript"), "/workbench.js": ("workbench.js", "text/javascript")}[path]
                 self.send(200, (STATIC/name).read_bytes(), mime+"; charset=utf-8")
             else:
                 self.send(404, {"error": "页面不存在"})
@@ -103,7 +120,7 @@ def make_server(service, port=8765):
             if not self.trusted(writing=True):
                 self.send(403, {"error": "来源或会话令牌无效，请从本地页面重试"})
                 return
-            if self.path != "/api/command":
+            if self.path not in {"/api/command", "/api/reports"}:
                 self.send(404, {"error": "接口不存在"})
                 return
             try:
@@ -111,6 +128,12 @@ def make_server(service, port=8765):
                 if not 0 < length <= 32768 or self.headers.get("Transfer-Encoding") or self.headers.get("Content-Type", "").split(";")[0] != "application/json":
                     raise ValueError("仅支持有界 JSON 命令")
                 command = json.loads(self.rfile.read(length))
+                if self.path == '/api/reports':
+                    from .history import save_report
+                    if set(command)-{'session_id','kind','as_of_ms','note'}:raise ValueError('report fields')
+                    result=save_report(service.data,command['session_id'],command['kind'],command.get('as_of_ms'),command.get('note',''))
+                    self.send(201,result)
+                    return
                 result = service.submit(command)
                 self.send(202, result)
             except (ValueError, TypeError, UnicodeError):

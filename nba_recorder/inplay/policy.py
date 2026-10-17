@@ -45,3 +45,5 @@ class BookPolicy(ExecutionPolicy):
             raise ValueError("invalid distance or share cap")
         if not 0 < self.manual_max_age_ms <= 15000:
             raise ValueError("manual authority must expire within 15 seconds")
+        if not 1000 <= self.max_order_lifetime_ms <= 3600000 or not 1000 <= self.research_phase_age_ms <= 600000:
+            raise ValueError('bounded research order/phase lifetime required')

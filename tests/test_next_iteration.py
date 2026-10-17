@@ -97,3 +97,57 @@ class ResearchTests(unittest.TestCase):
         self.feed();before=analyze(self.path,AT);self.feed(AT+1000)
         after=analyze(self.path,AT)
         self.assertEqual(before,after)
+
+    def test_bounded_paper_exit_updates_same_fifo_and_fee_cashflow(self):
+        from nba_recorder.inplay.paper_exit import execute
+        fs=self.feed();self.om.advance(AT+10)
+        buy=next(o for o in self.om.orders() if o['asset_id']=='a' and o['side']=='BUY' and o['state']=='OPEN')
+        self.om.adapter.fill(buy['id'],'5',self.om.now,'explicit-test-buy');self.om.advance(AT+20)
+        for o in self.om.orders():self.om.cancel(o['id'])
+        self.om.advance(AT+40)
+        f=self.om.prepare_submission_frame(None,fs[0]);before=self.om.account()['cash']
+        result=execute(self.om,f,'5','.45','exit-test','.02')
+        self.assertEqual(float(result['filled']),5);self.assertEqual(float(self.om.account()['positions']['a']),0)
+        self.assertGreater(float(self.om.account()['cash']),float(before));self.assertTrue(self.om.consistent())
+        self.assertEqual(self.om.real_submission_calls,0)
+        with self.assertRaises(ValueError):execute(self.om,f,'5','.45','exit-test','.02')
+
+    def test_taker_needs_persisted_authority(self):
+        from nba_recorder.inplay.reference import submission_risk
+        f=self.feed()[0];f['phase']='ACTIVE_MM'
+        target={'side':'SELL','price':'.48','size':'5','maker_only':False,'purpose':'BOUNDED_PAPER_EXIT',
+                'asset_id':'a','market_id':f['market_id'],'event_id':f['market']['event_id'],'expires_ms':AT+1000}
+        self.assertIn('unauthorized_or_excess_paper_taker_exit',submission_risk(target,f,self.om.account(),[],self.policy,AT))
+
+    def test_compatible_parameter_change_preserves_capital_on_restart(self):
+        self.feed();before=self.om.account()['cash'];run=self.om.run_id
+        capital=self.om.db.execute("SELECT count(*) FROM l6_events WHERE kind='CAPITAL'").fetchone()[0]
+        self.om.change_research_parameters({'quote_distance':'.03','max_order_lifetime_ms':90000})
+        saved=self.om.policy
+        restored=UnifiedPaperManager(self.store,saved)
+        self.assertEqual(restored.run_id,run);self.assertEqual(restored.account()['cash'],before)
+        self.assertEqual(self.om.db.execute("SELECT count(*) FROM l6_events WHERE kind='CAPITAL'").fetchone()[0],capital)
+
+    def test_auto_q4_once_and_report_failure_not_oms_action(self):
+        import asyncio
+        from types import SimpleNamespace
+        from nba_recorder.console.service import ConsoleService
+        f=frame(AT,period=4);self.om.phases.update(f,AT)
+        service=ConsoleService(self.tmp.name);service.session_id=self.sid
+        service.runner=SimpleNamespace(om=self.om,latest={'a':f})
+        service.publish=lambda **kwargs:None
+        calls=[];service.schedule_report=lambda *args:calls.append(args)
+        async def run():
+            await service.pump();await service.pump()
+        before=self.om.account();asyncio.run(run())
+        self.assertEqual(len(calls),1);self.assertEqual(self.om.account(),before)
+
+    def test_watchdog_compression_keeps_interval_and_duplicate_guard(self):
+        fs=self.feed();before=self.om.db.execute('SELECT count(*) FROM ip_inputs').fetchone()[0]
+        for i in range(1,10):
+            cooked=[{**f,'time_ms':AT+i} for f in fs]
+            event={'id':'watch-'+str(i),'kind':'WATCHDOG','time_ms':AT+i,'frames':cooked,'trades':[]}
+            self.session.on_event(event);self.assertFalse(self.session.on_event(event))
+        after=self.om.db.execute('SELECT count(*) FROM ip_inputs').fetchone()[0]
+        self.assertLess(after-before,9)
+        self.assertGreater(self.om.db.execute("SELECT count FROM ip_diagnostic_intervals WHERE kind='watchdog'").fetchone()[0],1)

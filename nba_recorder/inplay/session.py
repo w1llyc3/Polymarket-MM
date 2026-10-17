@@ -174,6 +174,10 @@ class BookSession:
         om = self.om
         identity = event["id"]
         old = om.db.execute("SELECT payload FROM ip_inputs WHERE id=?", (identity,)).fetchone()
+        seen=om.db.execute('SELECT signature FROM ip_watchdog_seen WHERE id=?',(identity,)).fetchone()
+        if seen:
+            if seen[0]!=digest(event):raise ValueError('immutable watchdog identity collision')
+            return False
         if old:
             if old[0] != encode(event):
                 raise ValueError("immutable stream identity collision")
@@ -190,8 +194,11 @@ class BookSession:
             if frames:
                 om.mark_equity(frames)
             with om.db:
-                om.db.execute("INSERT INTO ip_inputs VALUES(?,?,?)", (identity, event["time_ms"], encode(event)))
-                om._log("WALL_CLOCK_WATCHDOG", detail={"input_id": identity, "wall_ms": event.get("wall_ms"), "new_quotes_allowed": False})
+                summary=[{'asset':f['asset_id'],'book_ref':f.get('book_ref'),'quality':book_risk(f,om.policy,om.now),'phase':f.get('phase')} for f in frames]
+                if om.diagnostic_changed('watchdog',{'frames':summary,'risk_state':om.risk_state}):
+                    om.db.execute("INSERT INTO ip_inputs VALUES(?,?,?)", (identity, event["time_ms"], encode(event)))
+                    om._log("WALL_CLOCK_WATCHDOG", detail={"input_id": identity, "wall_ms": event.get("wall_ms"), "new_quotes_allowed": False})
+                else:om.db.execute('INSERT INTO ip_watchdog_seen VALUES(?,?)',(identity,digest(event)))
             return True
         # Existing orders can fill in the same frame that requests a cancel.
         self.executions(frames, event.get("trades", []), identity)

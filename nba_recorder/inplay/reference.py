@@ -119,22 +119,33 @@ def submission_risk(order, frame, account, orders, policy, at, retaining=False):
         book, asset = frame["book"], order["asset_id"]
         tick = decimal(book["tick_size"])
         side = order["side"]
+        taker=order.get('purpose')=='BOUNDED_PAPER_EXIT'
+        if taker:
+            grant=frame.get('paper_exit_authority') or {}
+            consumed=sum((decimal(o['size']) for o in orders if o.get('exit_grant_id')==order.get('exit_grant_id') and o['state']!='REJECTED'),decimal(0))
+            if not policy.research_phase or side!='SELL' or grant.get('id')!=order.get('exit_grant_id') or grant.get('asset_id')!=asset or grant.get('market_id')!=order['market_id'] or at>=grant.get('expires_ms',0) or price<decimal(grant.get('minimum_price','1')) or consumed+qty>decimal(grant.get('quantity','0')) or qty>reduction_capacity(order,frame,account,orders):
+                reasons.append('unauthorized_or_excess_paper_taker_exit')
         size_invalid = qty <= 0 or (not retaining and (qty < decimal(book["minimum_order_size"]) or qty % decimal(".01")))
-        if side not in {"BUY", "SELL"} or not tick <= price <= 1-tick or price % tick or size_invalid or order.get("maker_only") is not True:
+        if side not in {"BUY", "SELL"} or not tick <= price <= 1-tick or price % tick or size_invalid or (order.get("maker_only") is not True and not taker):
             reasons.append("unsafe_order_grid_size_or_postonly")
         if asset != frame["asset_id"] or order["market_id"] != frame["market_id"] or order["event_id"] != frame["market"]["event_id"]:
             reasons.append("intent_identity_mismatch")
         if qty > decimal(policy.max_order_shares) or qty*price > decimal(policy.max_order_notional):
             reasons.append("order_shares_or_dollars_limit")
-        if (side == "BUY" and price >= decimal(book["ask"])) or (side == "SELL" and price <= decimal(book["bid"])):
+        if not taker and ((side == "BUY" and price >= decimal(book["ask"])) or (side == "SELL" and price <= decimal(book["bid"]))):
             reasons.append("maker_only_reject")
         mid = (decimal(book["bid"])+decimal(book["ask"]))/2
         if order.get("purpose") == "RISK_EXIT":
             if frame["phase"] != "REDUCE_ONLY" or qty > reduction_capacity(order, frame, account, orders) or price*qty > decimal(policy.exit_notional) or abs(price-mid) > decimal(policy.exit_slippage):
                 reasons.append("exit_budget_slippage_or_portfolio_risk")
-        else:
+        elif not taker:
             distance = mid-price if side == "BUY" else price-mid
-            if distance < decimal(policy.quote_distance):
+            floor=decimal(policy.quote_distance)
+            if policy.research_phase and side=='SELL':
+                other=next(o['asset_id'] for o in frame['market']['outcomes'] if o['asset_id']!=asset)
+                if decimal(account['positions'].get(asset,'0'))>decimal(account['positions'].get(other,'0')):
+                    floor=max(decimal(book['tick_size']),floor-decimal(policy.inventory_skew)*decimal(account['positions'].get(asset,'0')))
+            if distance < floor:
                 reasons.append("quote_distance_lost")
             if frame["phase"] == "REDUCE_ONLY":
                 reasons.append("entry_forbidden_in_reduce_only")
@@ -149,6 +160,10 @@ def submission_risk(order, frame, account, orders, policy, at, retaining=False):
             pending = sum((decimal(o["size"])-decimal(o["filled"]) for o in orders if o["state"] in ACTIVE and o["asset_id"] == asset and o["side"] == "BUY"), decimal(0))
             if decimal(account["positions"].get(asset, "0"))+pending+qty > decimal(policy.max_asset_inventory):
                 reasons.append("inventory_limit")
+            if policy.research_phase:
+                other=next(o['asset_id'] for o in frame['market']['outcomes'] if o['asset_id']!=asset)
+                if decimal(account['positions'].get(asset,'0'))-decimal(account['positions'].get(other,'0'))+pending+qty > decimal(policy.max_one_sided_shares):
+                    reasons.append('directional_inventory_soft_limit')
         elif qty+budget["reserved_sell"].get(asset, decimal(0)) > decimal(account["positions"].get(asset, "0")):
             reasons.append("insufficient_unreserved_inventory")
         if at >= order["expires_ms"]:
@@ -178,7 +193,7 @@ def book_targets(frame, account, orders, catalog, policy):
         center = mid-decimal(policy.inventory_skew)*max(decimal(0), directional) if policy.enhanced else mid
         distance, tick = decimal(policy.quote_distance), decimal(book["tick_size"])
         result.update(reference_mid=str(mid), quote_center=str(center), quote_distance=str(distance), inventory=str(inventory), side_reasons={})
-        result.update(paired_inventory=str(paired), net_directional_inventory=str(directional), inventory_rule="SUPPRESS_BUY_ON_NET_LONG; ask distance floor unchanged")
+        result.update(paired_inventory=str(paired), net_directional_inventory=str(directional), inventory_rule="NET_LONG_SUPPRESS_BUY_AND_IMPROVE_EXIT" if policy.research_phase else "SUPPRESS_BUY_ON_NET_LONG; ask distance floor unchanged")
         result["actions"] = []
         for side in ("BUY", "SELL"):
             reduce = frame["phase"] == "REDUCE_ONLY"
@@ -186,6 +201,8 @@ def book_targets(frame, account, orders, catalog, policy):
             if reduce:
                 # Independent risk-exit distance budget; still post-only.
                 price = decimal(book["bid"]) if side == "BUY" else decimal(book["ask"])
+            elif policy.research_phase and side=='SELL' and directional>0:
+                price=grid(max(mid+max(tick,distance-decimal(policy.inventory_skew)*directional),decimal(book['bid'])+tick),tick,side)
             retained = None
             for existing in orders:
                 if existing["asset_id"] != asset or existing["side"] != side or existing["state"] not in {"SUBMITTING", "OPEN", "PARTIALLY_FILLED"}:

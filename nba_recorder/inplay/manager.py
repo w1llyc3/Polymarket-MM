@@ -44,6 +44,11 @@ class UnifiedPaperManager(OrderManager):
         CREATE TABLE IF NOT EXISTS ip_session_config(id TEXT PRIMARY KEY,payload TEXT);
         CREATE TABLE IF NOT EXISTS ip_flow_diagnostics(id INTEGER PRIMARY KEY,time_ms INTEGER,asset_id TEXT,payload TEXT);
         CREATE TABLE IF NOT EXISTS ip_own_fills(id TEXT PRIMARY KEY,exchange_ms INTEGER,receipt_ms INTEGER,asset_id TEXT,side TEXT,quantity TEXT,payload TEXT);
+        CREATE TABLE IF NOT EXISTS ip_risk_intervals(key TEXT PRIMARY KEY,reason TEXT,first_ms INTEGER,last_ms INTEGER,count INTEGER,active INTEGER);
+        CREATE TABLE IF NOT EXISTS ip_risk_interval_history(id INTEGER PRIMARY KEY,key TEXT,reason TEXT,first_ms INTEGER,last_ms INTEGER,count INTEGER);
+        CREATE TABLE IF NOT EXISTS ip_diagnostic_intervals(kind TEXT PRIMARY KEY,signature TEXT,first_ms INTEGER,last_ms INTEGER,count INTEGER);
+        CREATE TABLE IF NOT EXISTS ip_diagnostic_history(id INTEGER PRIMARY KEY,kind TEXT,signature TEXT,first_ms INTEGER,last_ms INTEGER,count INTEGER);
+        CREATE TABLE IF NOT EXISTS ip_watchdog_seen(id TEXT PRIMARY KEY,signature TEXT);
         CREATE UNIQUE INDEX IF NOT EXISTS ip_unique_cash_receipt ON ip_income(json_extract(evidence,'$.cash_flow_id')) WHERE stage='RECEIVED';
         """)
         prior=store.db.execute("SELECT run_id FROM l6_accounts WHERE lane='UNIFIED_PAPER'").fetchall()
@@ -69,6 +74,50 @@ class UnifiedPaperManager(OrderManager):
     def seed_asset(self, asset, event_id):
         # Parent uses initial_inventory=0, never manufactures holdings.
         super().seed_asset(asset, event_id)
+
+    def change_research_parameters(self, changes):
+        from dataclasses import replace
+        allowed={'quote_distance','order_size','max_order_lifetime_ms','inventory_skew','min_top_depth','max_one_sided_shares','reduce_remaining_s','close_remaining_s'}
+        if not self.policy.research_phase or not isinstance(changes,dict) or not changes or set(changes)-allowed:
+            raise ValueError('only explicit compatible research parameters may change')
+        updated=replace(self.policy,**changes)
+        for key in allowed-{'max_order_lifetime_ms','reduce_remaining_s','close_remaining_s'}:
+            if decimal(getattr(updated,key))<0:raise ValueError('negative research parameter')
+        if decimal(updated.order_size)>decimal(updated.max_order_shares) or decimal(updated.max_one_sided_shares)>decimal(updated.max_asset_inventory):
+            raise ValueError('research parameters cannot exceed account hard caps')
+        from contextlib import closing
+        filename=self.db.execute('PRAGMA database_list').fetchone()[2]
+        version=__import__('uuid').uuid4().hex
+        with closing(__import__('sqlite3').connect(filename+'.policy-'+version+'.backup')) as backup:self.db.backup(backup)
+        with self.db:
+            self.db.execute('UPDATE pe_control SET config=? WHERE id=1',(encode(asdict(updated)),))
+            self._log('RESEARCH_PARAMETER_VERSION',detail={'version':version,'before':asdict(self.policy),'after':asdict(updated),'capital_unchanged':True})
+        self.policy=updated;self.phases.policy=updated
+        return version
+
+    def diagnostic_changed(self,kind,payload):
+        if not self.policy.research_phase:return True
+        signature=digest(payload)
+        row=self.db.execute('SELECT signature FROM ip_diagnostic_intervals WHERE kind=?',(kind,)).fetchone()
+        if row and row[0]==signature:
+            self.db.execute('UPDATE ip_diagnostic_intervals SET last_ms=?,count=count+1 WHERE kind=?',(self.now,kind));return False
+        if row:self.db.execute('INSERT INTO ip_diagnostic_history(kind,signature,first_ms,last_ms,count) SELECT * FROM ip_diagnostic_intervals WHERE kind=?',(kind,))
+        self.db.execute('INSERT INTO ip_diagnostic_intervals VALUES(?,?,?,?,1) ON CONFLICT(kind) DO UPDATE SET signature=excluded.signature,first_ms=excluded.first_ms,last_ms=excluded.last_ms,count=1',(kind,signature,self.now,self.now))
+        return True
+
+    def _risk(self, reason, order=None, evidence=None):
+        if not self.policy.research_phase or (evidence or {}).get('kill_switch'):
+            return super()._risk(reason,order,evidence)
+        context=evidence or {};asset=(context.get('frame') or {}).get('asset_id')
+        key=digest([reason,(order or {}).get('id'),asset])
+        old=self.db.execute('SELECT active,last_ms FROM ip_risk_intervals WHERE key=?',(key,)).fetchone()
+        if old and old[0] and 0<=self.now-old[1]<=5000:
+            self.db.execute('UPDATE ip_risk_intervals SET last_ms=?,count=count+1 WHERE key=?',(self.now,key))
+            return
+        if old:
+            self.db.execute('INSERT INTO ip_risk_interval_history(key,reason,first_ms,last_ms,count) SELECT key,reason,first_ms,last_ms,count FROM ip_risk_intervals WHERE key=?',(key,))
+        self.db.execute('INSERT INTO ip_risk_intervals VALUES(?,?,?,?,1,1) ON CONFLICT(key) DO UPDATE SET first_ms=excluded.first_ms,last_ms=excluded.last_ms,count=1,active=1',(key,reason,self.now,self.now))
+        return super()._risk(reason,order,evidence)
 
     def register_market(self, market):
         outcomes = market["outcomes"]
@@ -122,7 +171,7 @@ class UnifiedPaperManager(OrderManager):
         # Strategy reads its allowlisted fields; unrelated source metadata is inert.
         if target.get("intent_valid_until_ms", self.now+1) <= self.now:
             raise ValueError("unsent intent expired")
-        current = self.prepare_submission_frame(None, frame)
+        current = self.prepare_submission_frame(target, frame)
         return super().enqueue(request_id, target, current, min_edge)
 
     def prepare_submission_frame(self, order, frame):
@@ -130,7 +179,11 @@ class UnifiedPaperManager(OrderManager):
         if guard:
             frame = guard(frame)
         frame = self.phase_frame(frame)
-        return {**frame, "phase": self.phases.boundary(frame, self.now)}
+        result={**frame, "phase": self.phases.boundary(frame, self.now)}
+        if order and order.get('purpose')=='BOUNDED_PAPER_EXIT':
+            row=self.db.execute('SELECT payload FROM ip_session_config WHERE id=?',('paper_exit:'+order.get('exit_grant_id',''),)).fetchone()
+            result['paper_exit_authority']=json.loads(row[0]) if row else None
+        return result
 
     def phase_frame(self, frame):
         if self.policy.research_phase:
@@ -242,7 +295,8 @@ class UnifiedPaperManager(OrderManager):
             pnl = equity-decimal(daily["baseline"])
             daily.update(equity=str(equity), paper_pnl=str(pnl), observed_ms=self.now)
             self._account(account)
-            self._log("BOOK_PAPER_EQUITY", detail={"marks": {a: str(v) for a, v in marks.items()}, "paper_pnl": str(pnl), "ledger_valuation": valuation(self.ledger.state(), {a:str(v) for a,v in marks.items()}, self.orders())})
+            detail={"marks": {a: str(v) for a, v in marks.items()}, "paper_pnl": str(pnl), "ledger_valuation": valuation(self.ledger.state(), {a:str(v) for a,v in marks.items()}, self.orders())}
+            if self.diagnostic_changed('equity',detail):self._log("BOOK_PAPER_EQUITY", detail=detail)
             if pnl <= -decimal(self.policy.max_daily_loss):
                 self._kill("daily_paper_loss_circuit_breaker")
             return str(pnl)

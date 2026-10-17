@@ -37,7 +37,8 @@ def book_reasons(frame, at):
         if not frame.get("connected"):
             reasons.append("disconnected")
         age = at-b.get("book_receive_timestamp", frame["book_received_ms"])
-        if not 0 <= age <= frame["signal"]["config"]["book_max_age_ms"] or (b.get("exchange_timestamp") is not None and b["exchange_timestamp"] > at):
+        max_age=frame.get('signal',{}).get('config',{}).get('book_max_age_ms',frame.get('book_max_age_ms',3000))
+        if not 0 <= age <= max_age or (b.get("exchange_timestamp") is not None and b["exchange_timestamp"] > at):
             reasons.append("book_stale_or_future")
         if not 0 <= decimal(b["bid"]) < decimal(b["ask"]) <= 1:
             reasons.append("invalid_bbo")
@@ -89,7 +90,7 @@ def evaluate_lot(lot, state, frames, at, config, reserved_sell="0", available_ca
             p = {**base, "plan": plan, "status": plan+"_CANDIDATE", "reasons": sorted(set(blocked)), "book_refs": [f["book_ref"] for f in (frame, other) if f], "fee_assumption": config.taker_fee_rate}
             if plan == "HOLD":
                 fair = frame.get("signal", {}).get("fair_probability") if frame else None
-                valid = frame and frame["signal"].get("reference_eligible") and not reasons and frame["signal"].get("decision_ms") == at
+                valid = frame and frame.get('signal',{}).get("reference_eligible") and not reasons and frame.get('signal',{}).get("decision_ms") == at
                 p.update(expected_future_value=str(qty*decimal(fair)) if valid and fair is not None else None, liquidity_required_now="0", immediate_fee="0", worst_terminal_value="0", unhedged=True,
                          assumptions=["future exit liquidity unknown", "settlement rules and delay still apply", "fair value is a reference, not realized value"])
             elif not blocked:

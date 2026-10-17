@@ -26,6 +26,7 @@ def view(root,sid):
         first=db.execute('SELECT time_ms,payload FROM ip_inputs ORDER BY time_ms,rowid LIMIT 1').fetchone()
         last=db.execute('SELECT time_ms,payload FROM ip_inputs ORDER BY time_ms DESC,rowid DESC LIMIT 1').fetchone()
         origin=json.loads(db.execute("SELECT payload FROM ip_session_config WHERE id='console_origin'").fetchone()[0])
+        if db.execute("SELECT 1 FROM pe_journal WHERE kind='EXECUTION_SEGMENT_START' LIMIT 1").fetchone():origin['execution_source']='OBSERVATION_THEN_PAPER'
         frames=json.loads(last[1])['frames'] if last else []
         return {'session_id':sid,'lifecycle':'HISTORICAL_READ_ONLY','mode':'SYNTHETIC_DEMO' if origin.get('data_source')=='SYNTHETIC_DATA' else 'OBSERVATION' if origin.get('execution_source')=='OBSERVATION_ONLY' else 'REAL_PAPER',
                 'chart':{'start_ms':first[0] if first else None,'end_ms':last[0] if last else None},
@@ -57,6 +58,12 @@ def save_report(root,sid,kind,as_of=None,note=''):
     # Exclusive creation: late information can only create a new report.
     with target.open('x',encoding='utf-8') as f:json.dump(result,f,ensure_ascii=False,indent=2)
     markdown='# NBA 研究报告 · '+kind+'\n\n截至 '+str(result.get('as_of_ms'))+'；模拟结果，不是实盘收益。\n\n'
-    markdown+='人工备注：'+note+'\n\n```json\n'+json.dumps(result,ensure_ascii=False,indent=2)+'\n```\n'
+    markdown+='人工备注：'+note+'\n\n'
+    markdown+='来源：'+str(result['source'])+'\n\n候选：'+result.get('candidate_plan','无数据')+'\n\n'
+    markdown+='净方向 A−B：'+str(result.get('net_directional_shares'))+'；配对份数：'+str(result.get('paired_shares'))+'\n\n'
+    markdown+='资金估值：'+json.dumps(result.get('valuation',{}),ensure_ascii=False)+'\n\n'
+    markdown+='退出深度：'+json.dumps(result.get('exit_candidates',[]),ensure_ascii=False)+'\n\n'
+    markdown+='样本：'+str(result.get('sample_size'))+'\n\n限制：'+'；'.join(result.get('limitations',[]))+'\n\n'
+    markdown+='完整输入游标和统计见同名JSON。报告不可覆盖；新增数据需生成新版本。\n'
     with target.with_suffix('.md').open('x',encoding='utf-8') as f:f.write(markdown)
     return result

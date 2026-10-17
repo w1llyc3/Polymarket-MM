@@ -5,6 +5,8 @@ def permission(frame, policy, at):
     market, sports = frame['market'], frame.get('sports') or {}
     if market.get('event_ended') or sports.get('ended'):
         return 'MM_CLOSED', []
+    if market.get('identity_conflict') or sports.get('conflict'):
+        return 'UNKNOWN', ['research_identity_or_phase_conflict']
     grant = frame.get('research_phase_grant')
     if grant:
         if grant.get('market_id') != market['market_id'] or not 0 <= at-grant.get('confirmed_ms', at+1) or at >= grant.get('expires_ms', 0):
