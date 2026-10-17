@@ -11,27 +11,28 @@ ok
 test_bad_rest_preserved_before_reconnect (test_core.IntegrationUnitTests.test_bad_rest_preserved_before_reconnect) ... ok
 test_identity_mismatch_repaired (test_core.IntegrationUnitTests.test_identity_mismatch_repaired) ... ok
 test_missing_asset_delta_preserved_and_invalidates_all (test_core.IntegrationUnitTests.test_missing_asset_delta_preserved_and_invalidates_all) ... ok
-test_missing_list_roles_fetches_public_event_detail (test_core.IntegrationUnitTests.test_missing_list_roles_fetches_public_event_detail) ... Executing <Task finished name='Task-22' coro=<IntegrationUnitTests.test_missing_list_roles_fetches_public_event_detail() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:194> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.343 seconds
+test_missing_list_roles_fetches_public_event_detail (test_core.IntegrationUnitTests.test_missing_list_roles_fetches_public_event_detail) ... Executing <Task finished name='Task-22' coro=<IntegrationUnitTests.test_missing_list_roles_fetches_public_event_detail() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:194> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.344 seconds
 ok
 test_no_market_is_distinct_from_failure (test_core.IntegrationUnitTests.test_no_market_is_distinct_from_failure) ... Executing <Task finished name='Task-27' coro=<IntegrationUnitTests.test_no_market_is_distinct_from_failure() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:307> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.344 seconds
 ok
-test_pagination_no_market_and_errors (test_core.IntegrationUnitTests.test_pagination_no_market_and_errors) ... Executing <Task finished name='Task-32' coro=<IntegrationUnitTests.test_pagination_no_market_and_errors() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:331> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.344 seconds
+test_pagination_no_market_and_errors (test_core.IntegrationUnitTests.test_pagination_no_market_and_errors) ... Executing <Task finished name='Task-32' coro=<IntegrationUnitTests.test_pagination_no_market_and_errors() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:331> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.359 seconds
 ok
 test_rediscovery_changes_subscription_and_status (test_core.IntegrationUnitTests.test_rediscovery_changes_subscription_and_status) ... ok
 test_repair_after_delta_and_duplicate (test_core.IntegrationUnitTests.test_repair_after_delta_and_duplicate) ... ok
-{"health": "market_resolved", "detail": "a", "local_timestamp": 1792224785306}
-{"health": "market_resolved", "detail": "b", "local_timestamp": 1792224785306}
-{"health": "market_resolved", "detail": "a", "local_timestamp": 1792224785309}
-{"health": "market_resolved", "detail": "b", "local_timestamp": 1792224785310}
+{"health": "market_resolved", "detail": "a", "local_timestamp": 1792225524126}
+{"health": "market_resolved", "detail": "b", "local_timestamp": 1792225524127}
+{"health": "market_resolved", "detail": "a", "local_timestamp": 1792225524129}
+{"health": "market_resolved", "detail": "b", "local_timestamp": 1792225524130}
 test_resolved_assets_are_not_resubscribed (test_core.IntegrationUnitTests.test_resolved_assets_are_not_resubscribed) ... ok
-{"health": "started", "detail": "record-only", "local_timestamp": 1792224785335}
-{"health": "connected", "detail": "2", "local_timestamp": 1792224785337}
-{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792224785381}
-{"health": "connected", "detail": "2", "local_timestamp": 1792224785401}
-{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792224785443}
-{"health": "connected", "detail": "2", "local_timestamp": 1792224785463}
-{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792224785505}
-{"health": "stopped", "detail": "", "local_timestamp": 1792224785522}
+{"health": "started", "detail": "record-only", "local_timestamp": 1792225524154}
+{"health": "connected", "detail": "2", "local_timestamp": 1792225524156}
+{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792225524193}
+{"health": "connected", "detail": "2", "local_timestamp": 1792225524205}
+{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792225524254}
+{"health": "connected", "detail": "2", "local_timestamp": 1792225524266}
+{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792225524318}
+{"health": "connected", "detail": "2", "local_timestamp": 1792225524328}
+{"health": "stopped", "detail": "", "local_timestamp": 1792225524335}
 test_transport_reconnect_resnapshots_and_stops (test_core.IntegrationUnitTests.test_transport_reconnect_resnapshots_and_stops) ... ok
 test_exclusion_matrix (test_core.ScannerTests.test_exclusion_matrix) ... ok
 test_missing_roles_never_guessed_from_slug (test_core.ScannerTests.test_missing_roles_never_guessed_from_slug) ... ok
@@ -109,9 +110,9 @@ test_paper_import_idempotent_and_read_only_source (test_fill_management.Research
 test_report_net_pnl_matches_cash_positions_and_daily_rates (test_fill_management.ResearchTests.test_report_net_pnl_matches_cash_positions_and_daily_rates) ... ok
 test_restart_preserves_equity_and_queue (test_fill_management.ResearchTests.test_restart_preserves_equity_and_queue) ... ok
 test_zero_live_calls_and_unavailable_market_is_no_quote (test_fill_management.ResearchTests.test_zero_live_calls_and_unavailable_market_is_no_quote) ... ok
-test_all_categories_flow_through_dynamic_metadata_discovery (test_general_chart.AsyncDiscovery.test_all_categories_flow_through_dynamic_metadata_discovery) ... Executing <Task finished name='Task-85' coro=<AsyncDiscovery.test_all_categories_flow_through_dynamic_metadata_discovery() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:70> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.047 seconds
+test_all_categories_flow_through_dynamic_metadata_discovery (test_general_chart.AsyncDiscovery.test_all_categories_flow_through_dynamic_metadata_discovery) ... Executing <Task finished name='Task-86' coro=<AsyncDiscovery.test_all_categories_flow_through_dynamic_metadata_discovery() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:70> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.047 seconds
 ok
-test_schedule_without_market_distinct_from_access_failure (test_general_chart.AsyncDiscovery.test_schedule_without_market_distinct_from_access_failure) ... Executing <Task finished name='Task-90' coro=<AsyncDiscovery.test_schedule_without_market_distinct_from_access_failure() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:90> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.391 seconds
+test_schedule_without_market_distinct_from_access_failure (test_general_chart.AsyncDiscovery.test_schedule_without_market_distinct_from_access_failure) ... Executing <Task finished name='Task-91' coro=<AsyncDiscovery.test_schedule_without_market_distinct_from_access_failure() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:90> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.390 seconds
 ok
 test_accepted_orders_partial_cancel_unknown_and_historical_ledger (test_general_chart.ChartTests.test_accepted_orders_partial_cancel_unknown_and_historical_ledger) ... ok
 test_late_fill_during_bad_data_updates_inventory_without_fabricated_pnl (test_general_chart.ChartTests.test_late_fill_during_bad_data_updates_inventory_without_fabricated_pnl) ... ok
@@ -159,6 +160,7 @@ test_distribution_conservation_duplicates_and_missing_quantity (test_next_iterat
 test_history_is_readonly_and_report_versions_immutable (test_next_iteration.ResearchTests.test_history_is_readonly_and_report_versions_immutable) ... ok
 test_markout_sign_units_pending_unknown_no_future (test_next_iteration.ResearchTests.test_markout_sign_units_pending_unknown_no_future) ... ok
 test_multi_lot_exits_use_depth_once_and_reserve_pending (test_next_iteration.ResearchTests.test_multi_lot_exits_use_depth_once_and_reserve_pending) ... ok
+test_paper_exit_partial_depth_below_minimum_fill_is_not_lost (test_next_iteration.ResearchTests.test_paper_exit_partial_depth_below_minimum_fill_is_not_lost) ... ok
 test_path_injection_rejected (test_next_iteration.ResearchTests.test_path_injection_rejected) ... ok
 test_research_unknown_category_missing_upstream_time_can_quote (test_next_iteration.ResearchTests.test_research_unknown_category_missing_upstream_time_can_quote) ... ok
 test_stale_cancels_but_not_permanent_account_halt (test_next_iteration.ResearchTests.test_stale_cancels_but_not_permanent_account_halt) ... ok
@@ -185,11 +187,11 @@ test_same_event_multiple_fills_preserve_committed_risk (test_paper_execution.Pap
 test_sell_reservation_and_cash_and_order_risk (test_paper_execution.PaperExecutionTests.test_sell_reservation_and_cash_and_order_risk) ... ok
 test_stale_odds_book_disconnect_edge_jump_start_and_market (test_paper_execution.PaperExecutionTests.test_stale_odds_book_disconnect_edge_jump_start_and_market) ... ok
 test_submit_timeout_but_exchange_accepted (test_paper_execution.PaperExecutionTests.test_submit_timeout_but_exchange_accepted) ... ok
-test_console_research_catalog_and_real_start_parameters (test_preseason_pilot.AsyncTests.test_console_research_catalog_and_real_start_parameters) ... Executing <Task pending name='Task-98' coro=<AsyncTests.test_console_research_catalog_and_real_start_parameters() running at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:260> wait_for=<Task pending name='Task-99' coro=<ConsoleService.session() running at D:\vibe coding\polymarket\nba\nba_recorder\console\service.py:460> cb=[Task.task_wakeup()] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py:420> cb=[_run_until_complete_cb() at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py:181] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.375 seconds
+test_console_research_catalog_and_real_start_parameters (test_preseason_pilot.AsyncTests.test_console_research_catalog_and_real_start_parameters) ... Executing <Task pending name='Task-99' coro=<AsyncTests.test_console_research_catalog_and_real_start_parameters() running at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:260> wait_for=<Task pending name='Task-100' coro=<ConsoleService.session() running at D:\vibe coding\polymarket\nba\nba_recorder\console\service.py:460> cb=[Task.task_wakeup()] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py:420> cb=[_run_until_complete_cb() at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py:181] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.359 seconds
 ok
-test_preflight_access_failure_not_no_market_and_schema_separate (test_preseason_pilot.AsyncTests.test_preflight_access_failure_not_no_market_and_schema_separate) ... Executing <Task finished name='Task-104' coro=<AsyncTests.test_preflight_access_failure_not_no_market_and_schema_separate() done, defined at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:265> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.469 seconds
+test_preflight_access_failure_not_no_market_and_schema_separate (test_preseason_pilot.AsyncTests.test_preflight_access_failure_not_no_market_and_schema_separate) ... Executing <Task finished name='Task-105' coro=<AsyncTests.test_preflight_access_failure_not_no_market_and_schema_separate() done, defined at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:265> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.453 seconds
 ok
-test_preflight_success_empty_is_no_matching_market (test_preseason_pilot.AsyncTests.test_preflight_success_empty_is_no_matching_market) ... Executing <Task finished name='Task-109' coro=<AsyncTests.test_preflight_success_empty_is_no_matching_market() done, defined at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:271> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.734 seconds
+test_preflight_success_empty_is_no_matching_market (test_preseason_pilot.AsyncTests.test_preflight_success_empty_is_no_matching_market) ... Executing <Task finished name='Task-110' coro=<AsyncTests.test_preflight_success_empty_is_no_matching_market() done, defined at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:271> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.750 seconds
 ok
 test_explicit_research_preserves_regular_default_and_season (test_preseason_pilot.IdentityTests.test_explicit_research_preserves_regular_default_and_season) ... ok
 test_live_discovery_independent_of_season_or_quote_permission (test_preseason_pilot.IdentityTests.test_live_discovery_independent_of_season_or_quote_permission) ... ok
@@ -268,8 +270,8 @@ test_metadata_and_connection_completion_are_not_receive_times (test_v21_timing.A
 test_missing_processing_is_unknown_and_future_append_does_not_change_tape (test_v21_timing.AvailabilityRegressions.test_missing_processing_is_unknown_and_future_append_does_not_change_tape) ... ok
 test_sports_not_visible_until_processed_and_bucket_is_present (test_v21_timing.AvailabilityRegressions.test_sports_not_visible_until_processed_and_bucket_is_present) ... ok
 test_trade_first_available_at_processed_time_preserves_exchange_time (test_v21_timing.AvailabilityRegressions.test_trade_first_available_at_processed_time_preserves_exchange_time) ... ok
-test_bounded_catalog_and_start_chain (test_v221_console.Discovery.test_bounded_catalog_and_start_chain) ... Executing <Task pending name='Task-121' coro=<Discovery.test_bounded_catalog_and_start_chain() running at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:160> wait_for=<Task pending name='Task-122' coro=<Discovery.test_bounded_catalog_and_start_chain.<locals>.session() running at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:156> cb=[Task.task_wakeup()] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py:420> cb=[_run_until_complete_cb() at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py:181] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.375 seconds
-Executing <Task finished name='Task-121' coro=<Discovery.test_bounded_catalog_and_start_chain() done, defined at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:129> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.344 seconds
+test_bounded_catalog_and_start_chain (test_v221_console.Discovery.test_bounded_catalog_and_start_chain) ... Executing <Task pending name='Task-122' coro=<Discovery.test_bounded_catalog_and_start_chain() running at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:160> wait_for=<Task pending name='Task-123' coro=<Discovery.test_bounded_catalog_and_start_chain.<locals>.session() running at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:156> cb=[Task.task_wakeup()] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py:420> cb=[_run_until_complete_cb() at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py:181] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.375 seconds
+Executing <Task finished name='Task-122' coro=<Discovery.test_bounded_catalog_and_start_chain() done, defined at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:129> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.344 seconds
 ok
 test_operator_pause_rechecked_at_final_dispatch (test_v221_console.PauseLifecycle.test_operator_pause_rechecked_at_final_dispatch) ... ok
 test_pause_keeps_causal_late_partial_fill_and_cash (test_v221_console.PauseLifecycle.test_pause_keeps_causal_late_partial_fill_and_cash) ... ok
@@ -296,6 +298,6 @@ test_same_second_overflow_and_outside_window_fail_explicitly (test_wallet_resear
 test_window_bisection_keeps_equal_timestamp_boundaries (test_wallet_research.WalletResearchTests.test_window_bisection_keeps_equal_timestamp_boundaries) ... ok
 
 ----------------------------------------------------------------------
-Ran 273 tests in 20.675s
+Ran 274 tests in 20.611s
 
 OK

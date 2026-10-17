@@ -119,6 +119,19 @@ class ResearchTests(unittest.TestCase):
                 'asset_id':'a','market_id':f['market_id'],'event_id':f['market']['event_id'],'expires_ms':AT+1000}
         self.assertIn('unauthorized_or_excess_paper_taker_exit',submission_risk(target,f,self.om.account(),[],self.policy,AT))
 
+    def test_paper_exit_partial_depth_below_minimum_fill_is_not_lost(self):
+        from nba_recorder.inplay.paper_exit import execute
+        fs=self.feed();self.om.advance(AT+10)
+        buy=next(o for o in self.om.orders() if o['asset_id']=='a' and o['side']=='BUY' and o['state']=='OPEN')
+        self.om.adapter.fill(buy['id'],'5',self.om.now,'partial-test-buy');self.om.advance(AT+20)
+        for o in self.om.orders():self.om.cancel(o['id'])
+        self.om.advance(AT+40)
+        f=self.om.prepare_submission_frame(None,fs[0]);f['book']['bids']=[{'price':f['book']['bid'],'size':'3'}]
+        with self.om.db:self.om.db.execute('UPDATE pe_risk_frames SET payload=? WHERE asset_id=?',(json.dumps(f),'a'))
+        result=execute(self.om,f,'5','.45','partial-exit-test','.02')
+        self.assertEqual(float(result['filled']),3);self.assertEqual(float(result['remaining']),2)
+        self.assertEqual(float(self.om.account()['positions']['a']),2);self.assertTrue(self.om.consistent())
+
     def test_compatible_parameter_change_preserves_capital_on_restart(self):
         self.feed();before=self.om.account()['cash'];run=self.om.run_id
         capital=self.om.db.execute("SELECT count(*) FROM l6_events WHERE kind='CAPITAL'").fetchone()[0]
@@ -151,6 +164,9 @@ class ResearchTests(unittest.TestCase):
         after=self.om.db.execute('SELECT count(*) FROM ip_inputs').fetchone()[0]
         self.assertLess(after-before,9)
         self.assertGreater(self.om.db.execute("SELECT count FROM ip_diagnostic_intervals WHERE kind='watchdog'").fetchone()[0],1)
+        clock=self.om.now;cash=self.om.account()['cash']
+        restored=UnifiedPaperManager(self.store,self.policy)
+        self.assertGreaterEqual(restored.now,clock);self.assertEqual(restored.account()['cash'],cash)
 
     def test_clock_review_cannot_be_bypassed_at_dispatch_boundary(self):
         f=frame(AT);self.om.phases.update(f,AT)

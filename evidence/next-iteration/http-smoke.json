@@ -1,20 +1,20 @@
 {
   "source": "SYNTHETIC_DATA",
-  "session_id": "68839efd9b2549c49d9d00fb2fbb9314",
+  "session_id": "73eb542dea5046eb9948be9fbe243d9d",
   "lifecycle": "STOPPED",
   "history_readonly": true,
   "analysis_as_of": 1791954044125,
-  "report_id": "0a58aad511e94e5789b1abcd747a341b",
+  "report_id": "60149bae407f442fb27b5182ddbbfaa2",
   "paper_fills": 1,
   "real_submission_calls": 0,
   "receipts": [
     {
-      "request_id": "c0ebf7410a3f4a309abb233429560a79",
+      "request_id": "084595b6db9d455db9f1d791dc4f44a2",
       "status": "APPLIED",
-      "received_ms": 1792224600271,
+      "received_ms": 1792224923745,
       "command": {
         "action": "start",
-        "request_id": "c0ebf7410a3f4a309abb233429560a79",
+        "request_id": "084595b6db9d455db9f1d791dc4f44a2",
         "session_id": null,
         "expected_version": 1,
         "confirmed": true,
@@ -22,9 +22,9 @@
       },
       "result": {
         "message": "会话已分配，等待后台状态",
-        "session_id": "68839efd9b2549c49d9d00fb2fbb9314"
+        "session_id": "73eb542dea5046eb9948be9fbe243d9d"
       },
-      "applied_ms": 1792224600335,
+      "applied_ms": 1792224923762,
       "version": 2
     }
   ]

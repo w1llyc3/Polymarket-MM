@@ -122,7 +122,7 @@ def submission_risk(order, frame, account, orders, policy, at, retaining=False):
         taker=order.get('purpose')=='BOUNDED_PAPER_EXIT'
         if taker:
             grant=frame.get('paper_exit_authority') or {}
-            consumed=sum((decimal(o['size']) for o in orders if o.get('exit_grant_id')==order.get('exit_grant_id') and o['state']!='REJECTED'),decimal(0))
+            consumed=sum((decimal(o['filled'])+(decimal(o['size'])-decimal(o['filled']) if o['state'] in ACTIVE else decimal(0)) for o in orders if o.get('exit_grant_id')==order.get('exit_grant_id') and o['state']!='REJECTED'),decimal(0))
             if not policy.research_phase or side!='SELL' or grant.get('id')!=order.get('exit_grant_id') or grant.get('asset_id')!=asset or grant.get('market_id')!=order['market_id'] or at>=grant.get('expires_ms',0) or price<decimal(grant.get('minimum_price','1')) or consumed+qty>decimal(grant.get('quantity','0')) or qty>reduction_capacity(order,frame,account,orders):
                 reasons.append('unauthorized_or_excess_paper_taker_exit')
         size_invalid = qty <= 0 or (not retaining and (qty < decimal(book["minimum_order_size"]) or qty % decimal(".01")))

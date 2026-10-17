@@ -32,13 +32,13 @@ SMALL/WIDE明确为实验预设；虚拟预算在启动时保存。兼容参数�
 
 ## 自动化与实际运行
 
-完整命令：`.\.venv\Scripts\python.exe -m unittest discover -s tests -v`；本轮273项测试（原256项保留并修改3处政策预期，新增17项）。最终结果见[完整日志](evidence/next-iteration/tests.txt)。前端三个脚本经node --check；Node仅用于开发语法验证，不是运行依赖。
+完整命令：`.\.venv\Scripts\python.exe -m unittest discover -s tests -v`；本轮274项测试（原256项保留并修改3处政策预期，新增18项）。最终结果见[完整日志](evidence/next-iteration/tests.txt)。前端三个脚本经node --check；Node仅用于开发语法验证，不是运行依赖。
 
-独立[长回放结果](evidence/next-iteration/long-replay.json)：三小时**虚拟时间**、721个15秒稀疏合成点，主动暂停/核对/恢复、模拟成交、末段及终止账本核对；不是三小时实时采集，未证明连续新鲜数据或墙钟watchdog调度。[HTTP证据](evidence/next-iteration/http-smoke.json)：明确合成Paper会话启动至STOPPED，历史只读、统计、报告保存，真实提交0。大型数据库留本机data/next-long和data/console，GitHub只提交有界证据。
+独立[长回放结果](evidence/next-iteration/long-replay.json)：三小时**虚拟时间**、721个15秒稀疏合成点，主动暂停/核对/恢复、模拟成交、末段及终止账本核对；不是三小时实时采集，未证明连续新鲜数据或墙钟watchdog调度。该长跑明确绑定52280c3干净工作区；约92秒墙钟、90.6秒CPU、峰值工作集约56.2MB、分析0.20秒、报告0.20秒、图表服务端首批0.027秒，has_more=True，不是浏览器首屏完成时间。随后部分深度退出和重启时钟补丁由最终全量测试覆盖，未冒称该长跑已经包含后续补丁。[HTTP证据](evidence/next-iteration/http-smoke.json)：明确合成Paper会话启动至STOPPED，历史只读、统计、报告保存，真实提交0。大型数据库留本机data/next-long和data/console，GitHub只提交有界证据。
 
 本轮未新增整场真实比赛采集证据；此前Gamma/CLOB/市场和体育WS连通性证据见旧报告，NBA官方赛程403限制仍未被本轮证明解除。本轮浏览器自动化两次focus/navigation超时，未取得新版视觉截图；只完成HTTP、源码语法与自动化验证，不冒充浏览器端到端验收。
 
-开发失败保留：initial-failures.txt（旧政策预期及fixture规则）、second-failures.txt（升级字段/备份句柄、单资产撤单测试、观察时间断言）、exit-format-failure.txt（5与5.00的测试格式比较）。曾用模块方式跑旧测试产生test_core导入路径问题，完整discover执行无该问题。一次HTTP统计在开发中返回400，重启并加载修复后复跑通过；未隐藏失败或删除资金保护测试。
+开发失败保留：initial-failures.txt（旧政策预期及fixture规则）、second-failures.txt（升级字段/备份句柄、单资产撤单测试、观察时间断言）、exit-format-failure.txt（5与5.00的测试格式比较）、partial-exit-fixture-failure.txt（新增夹具深度价格与BBO不一致被拒绝）。曾用模块方式跑旧测试产生test_core导入路径问题，完整discover执行无该问题。一次HTTP统计在开发中返回400，重启并加载修复后复跑通过；未隐藏失败或删除资金保护测试。
 
 ## 未解决项与准入结论
 

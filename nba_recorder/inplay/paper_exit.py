@@ -29,10 +29,11 @@ def execute(om,frame,quantity,minimum_price,request_id,fee_rate='.02'):
         price,available=D(level['price']),D(level['size'])
         if price<floor:break
         while available>0 and left>0:
-            take=min(left,available,D(om.policy.max_order_shares),D(om.policy.max_order_notional)/price)
-            take=(take//D('.01'))*D('.01')
-            if take<D(frame['book']['minimum_order_size']):break
-            target={'side':'SELL','price':str(price),'size':str(take),'maker_only':False,'purpose':'BOUNDED_PAPER_EXIT',
+            submitted=min(left,D(om.policy.max_order_shares),D(om.policy.max_order_notional)/price)
+            submitted=(submitted//D('.01'))*D('.01')
+            if submitted<D(frame['book']['minimum_order_size']):break
+            take=min(submitted,available)
+            target={'side':'SELL','price':str(price),'size':str(submitted),'maker_only':False,'purpose':'BOUNDED_PAPER_EXIT',
                     'event_id':frame['market']['event_id'],'market_id':frame['market_id'],'asset_id':frame['asset_id'],
                     'exit_grant_id':request_id,'expires_ms':grant['expires_ms']}
             identity=om.enqueue(request_id+':'+str(len(ids)),target,frame);om.dispatch()
@@ -40,6 +41,9 @@ def execute(om,frame,quantity,minimum_price,request_id,fee_rate='.02'):
             if not om.adapter.fill(identity,str(take),om.now,request_id+':fill:'+str(len(ids))):break
             om.advance(om.now+om.policy.submit_ack_ms+om.policy.data_transport_ms+1)
             ids.append(identity);left-=take;available-=take;gross+=take*price;fee+=take*rate*price*(1-price)
+            if take<submitted:
+                om.cancel(identity)
+                om.advance(om.now+om.policy.cancel_latency_ms+1)
         if left<=0:break
     if fee:
         om.income(request_id+':fee','SIMULATED_COST','RECEIVED',str(fee),{'observed_ms':om.now,'cash_flow_id':request_id+':fee','provenance':'explicit research fee assumption, not verified exchange fee'},frame['market_id'])

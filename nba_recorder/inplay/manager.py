@@ -76,6 +76,13 @@ class UnifiedPaperManager(OrderManager):
         # Parent uses initial_inventory=0, never manufactures holdings.
         super().seed_asset(asset, event_id)
 
+    def _restore(self):
+        # Compressed diagnostic intervals may advance the durable clock without
+        # another full control journal. Financial state still replays the journal.
+        persisted_clock=self.now
+        super()._restore()
+        self.db.execute('UPDATE pe_control SET clock_ms=max(clock_ms,?) WHERE id=1',(persisted_clock,))
+
     def change_research_parameters(self, changes):
         from dataclasses import replace
         allowed={'quote_distance','order_size','max_order_lifetime_ms','inventory_skew','min_top_depth','max_one_sided_shares','reduce_remaining_s','close_remaining_s'}
