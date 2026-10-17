@@ -31,37 +31,39 @@ class BookSession:
         om.book_risk_check(frame, previous_mid)
         if not om.halted:
             om.register_market(frame["market"])
-        for order in om.orders():
+        for order in om.orders(active_only=True):
             if order["asset_id"] == frame["asset_id"] and order["state"] in ACTIVE:
                 if phase["state"] not in {"ACTIVE_MM", "REDUCE_ONLY"} or (phase["state"] == "REDUCE_ONLY" and order.get("purpose") != "RISK_EXIT"):
-                    om.cancel(order["id"])
+                    om.cancel(order["id"],reason='PHASE')
         return frame
 
     def quote(self, frame, input_id):
         om = self.om
         catalog = {a: {"event_id": e} for a, e in om.account()["events"].items()}
-        decision = book_targets(frame, om.account(), om.orders(), catalog, om.policy)
+        decision = book_targets(frame, om.account(), om.orders(active_only=True), catalog, om.policy)
         if om.halted:
             decision.update(state="NO_QUOTE", targets=[], reasons=["risk_control_"+om.risk_state])
         with om.db:
             om.db.execute("INSERT OR IGNORE INTO pe_quotes VALUES(?,?,?)", (input_id, om.now, encode({**decision, "frame": frame, "model": self.model})))
         wanted = {t["side"]: t for t in decision["targets"]}
-        for order in om.orders():
+        for order in om.orders(active_only=True):
             if order["asset_id"] != frame["asset_id"] or order["state"] not in ACTIVE:
                 continue
             target = wanted.get(order["side"])
             if target and target.get("action") == "RETAIN" and target.get("retained_order_id") == order["id"]:
                 wanted.pop(order["side"])
             elif order["state"] not in {"UNKNOWN", "RECONCILED", "CANCEL_PENDING"}:
-                om.cancel(order["id"])
-        busy = {o["side"] for o in om.orders() if o["asset_id"] == frame["asset_id"] and o["state"] in ACTIVE}
+                side_reasons=decision.get('side_reasons',{}).get(order['side'],[])
+                cause='INVENTORY' if any('inventory' in r or 'risk_limit' in r or 'cash' in r for r in side_reasons) else 'DATA_INVALID' if decision.get('reasons') else 'PRICE_CHANGE'
+                om.cancel(order["id"],reason=cause)
+        busy = {o["side"] for o in om.orders(active_only=True) if o["asset_id"] == frame["asset_id"] and o["state"] in ACTIVE}
         for side, target in wanted.items():
             if side not in busy:
                 om.enqueue(input_id+":"+side, target, frame)
         om.dispatch()
         # Initial visible queue is fixed using information available at dispatch.
         with om.db:
-            for order in om.orders():
+            for order in om.orders(active_only=True):
                 if order["asset_id"] != frame["asset_id"] or om.db.execute("SELECT 1 FROM ip_models WHERE order_id=?", (order["id"],)).fetchone() or not om.adapter.authoritative(order["id"]):
                     continue
                 levels = frame["book"]["bids" if order["side"] == "BUY" else "asks"]

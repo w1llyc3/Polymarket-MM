@@ -162,8 +162,9 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
     source = Store(source_path)
     now = utc_ms()
     saved = store.db.execute("SELECT config FROM pe_control WHERE id=1").fetchone()
+    parameters={'quote_distance':'.03' if getattr(control,'paper_plan','SMALL')=='WIDE' else '.02',**getattr(control,'research_overrides',{})}
     policy = BookPolicy(**json.loads(saved[0])) if saved else BookPolicy(allow_manual_phase=manual_file is not None, research_phase=control is not None,
-                initial_cash=getattr(control,'paper_budget','100'),quote_distance='.03' if getattr(control,'paper_plan','SMALL')=='WIDE' else '.02')
+                initial_cash=getattr(control,'paper_budget','100'),**parameters)
     if policy.allow_manual_phase != (manual_file is not None):
         source.close()
         store.close()
@@ -189,6 +190,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
         om.reconcile()
         om.resume()  # explicit CLI operator action, never default restart recovery
     queue = asyncio.Queue(maxsize=8)
+    runner.input_queue=queue
     market_state = {}
     sports_state = {}
     from ..pilot import PilotWindow

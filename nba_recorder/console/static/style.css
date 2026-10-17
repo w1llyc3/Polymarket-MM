@@ -4,3 +4,5 @@ dialog{max-width:560px;border:1px solid var(--line);border-radius:10px;backgroun
 .price-chart{width:100%;height:430px;display:block;touch-action:none}#chart-tooltip{max-height:330px;overflow:auto}input[type=date],input[type=number],input[type=text]{background:#15252c;color:#d5e7ea;border:1px solid #35505a;padding:8px;max-width:220px}
 
 .chart-stale{opacity:.45}
+
+.metric-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px;margin:15px 0}.metric-card{border:1px solid var(--line);padding:14px;border-radius:8px;min-width:0}.metric-card h4{margin:0 0 8px;color:var(--green)}.metric-card pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:240px;overflow:auto;font-size:12px}.plan-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}.plan-fields label{display:grid}.plan-fields input{width:100%}

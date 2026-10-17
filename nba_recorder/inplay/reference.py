@@ -150,6 +150,14 @@ def submission_risk(order, frame, account, orders, policy, at, retaining=False):
             if frame["phase"] == "REDUCE_ONLY":
                 reasons.append("entry_forbidden_in_reduce_only")
         budget = commitments(account, orders)
+        if policy.research_phase:
+            other=next(o['asset_id'] for o in frame['market']['outcomes'] if o['asset_id']!=asset)
+            delta=decimal(account['positions'].get(asset,'0'))-decimal(account['positions'].get(other,'0'))
+            increasing=sum((decimal(o['size'])-decimal(o['filled']) for o in orders if o['state'] in ACTIVE and ((o['asset_id']==asset and o['side']=='BUY') or (o['asset_id']==other and o['side']=='SELL'))),decimal(0))
+            decreasing=sum((decimal(o['size'])-decimal(o['filled']) for o in orders if o['state'] in ACTIVE and ((o['asset_id']==asset and o['side']=='SELL') or (o['asset_id']==other and o['side']=='BUY'))),decimal(0))
+            # Independent adverse fill scenarios; opposite pending orders do not cancel risk.
+            if (side=='BUY' and delta+increasing+qty>decimal(policy.max_one_sided_shares)) or (side=='SELL' and delta-decreasing-qty < -decimal(policy.max_one_sided_shares)):
+                reasons.append('directional_inventory_soft_limit')
         if any(o["state"] in {"UNKNOWN", "TIMEOUT", "RECONCILED"} for o in orders):
             reasons.append("unknown_order_state")
         if side == "BUY":
@@ -160,10 +168,6 @@ def submission_risk(order, frame, account, orders, policy, at, retaining=False):
             pending = sum((decimal(o["size"])-decimal(o["filled"]) for o in orders if o["state"] in ACTIVE and o["asset_id"] == asset and o["side"] == "BUY"), decimal(0))
             if decimal(account["positions"].get(asset, "0"))+pending+qty > decimal(policy.max_asset_inventory):
                 reasons.append("inventory_limit")
-            if policy.research_phase:
-                other=next(o['asset_id'] for o in frame['market']['outcomes'] if o['asset_id']!=asset)
-                if decimal(account['positions'].get(asset,'0'))-decimal(account['positions'].get(other,'0'))+pending+qty > decimal(policy.max_one_sided_shares):
-                    reasons.append('directional_inventory_soft_limit')
         elif qty+budget["reserved_sell"].get(asset, decimal(0)) > decimal(account["positions"].get(asset, "0")):
             reasons.append("insufficient_unreserved_inventory")
         if at >= order["expires_ms"]:

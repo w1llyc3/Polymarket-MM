@@ -66,6 +66,17 @@ def make_server(service, port=8765):
                 self.send(200, {"app": APP, "token": token, "real_trading_permission": False})
             elif path == "/api/state":
                 self.send(200, service.read())
+            elif path=='/api/plans':
+                from .plans import listing
+                self.send(200,listing(service.data))
+            elif path=='/api/review':
+                from urllib.parse import urlparse,parse_qs
+                from .history import review
+                try:
+                    p=parse_qs(urlparse(self.path).query,strict_parsing=True)
+                    if set(p)-{'session_id','report_id','as_of_ms'} or any(len(v)!=1 for v in p.values()):raise ValueError('review params')
+                    self.send(200,review(service.data,p['session_id'][0],p['report_id'][0],int(p['as_of_ms'][0]) if 'as_of_ms' in p else None))
+                except (ValueError,KeyError,OSError,sqlite3.Error):self.send(400,{'error':'报告复盘引用无效'})
             elif path == '/api/report-download':
                 from urllib.parse import urlparse,parse_qs
                 from .history import resolve
@@ -123,8 +134,8 @@ def make_server(service, port=8765):
                     self.send(200, file.read_bytes(), filename="nba-paper-report.json")
                 else:
                     self.send(404, {"error": "导出不存在，请重新导出"})
-            elif path in {"/", "/app.js", "/style.css", "/chart.js", "/workbench.js"}:
-                name, mime = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/style.css": ("style.css", "text/css"), "/chart.js": ("chart.js", "text/javascript"), "/workbench.js": ("workbench.js", "text/javascript")}[path]
+            elif path in {"/", "/app.js", "/style.css", "/chart.js", "/workbench.js", "/research-ui.js"}:
+                name, mime = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/style.css": ("style.css", "text/css"), "/chart.js": ("chart.js", "text/javascript"), "/workbench.js": ("workbench.js", "text/javascript"), "/research-ui.js": ("research-ui.js", "text/javascript")}[path]
                 self.send(200, (STATIC/name).read_bytes(), mime+"; charset=utf-8")
             else:
                 self.send(404, {"error": "页面不存在"})
@@ -133,7 +144,7 @@ def make_server(service, port=8765):
             if not self.trusted(writing=True):
                 self.send(403, {"error": "来源或会话令牌无效，请从本地页面重试"})
                 return
-            if self.path not in {"/api/command", "/api/reports"}:
+            if self.path not in {"/api/command", "/api/reports", "/api/plans"}:
                 self.send(404, {"error": "接口不存在"})
                 return
             try:
@@ -141,11 +152,16 @@ def make_server(service, port=8765):
                 if not 0 < length <= 32768 or self.headers.get("Transfer-Encoding") or self.headers.get("Content-Type", "").split(";")[0] != "application/json":
                     raise ValueError("仅支持有界 JSON 命令")
                 command = json.loads(self.rfile.read(length))
+                if self.path=='/api/plans':
+                    from .plans import save
+                    if not isinstance(command,dict) or set(command)-{'name','parameters','id','expected_version'}:raise ValueError('plan fields')
+                    self.send(201,save(service.data,command['name'],command['parameters'],command.get('id'),command.get('expected_version',0)))
+                    return
                 if self.path == '/api/reports':
                     from .history import save_report
-                    if set(command)-{'session_id','kind','as_of_ms','note'}:raise ValueError('report fields')
+                    if set(command)-{'session_id','kind','as_of_ms','note','manual_q3_ended'}:raise ValueError('report fields')
                     if command.get('kind')=='Q4_AUTO':raise ValueError('auto report is owner-triggered only')
-                    result=save_report(service.data,command['session_id'],command['kind'],command.get('as_of_ms'),command.get('note',''))
+                    result=save_report(service.data,command['session_id'],command['kind'],command.get('as_of_ms'),command.get('note',''),command.get('manual_q3_ended',False))
                     self.send(201,result)
                     return
                 result = service.submit(command)

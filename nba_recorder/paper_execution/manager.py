@@ -75,7 +75,10 @@ class OrderManager:
     def account(self):
         return json.loads(self.db.execute("SELECT account FROM pe_control WHERE id=1").fetchone()[0])
 
-    def orders(self):
+    def orders(self,active_only=False):
+        if active_only:
+            states=sorted(ACTIVE)
+            return [json.loads(r[0]) for r in self.db.execute('SELECT payload FROM pe_orders WHERE state IN ('+','.join('?' for _ in states)+') ORDER BY rowid',states)]
         return [json.loads(r[0]) for r in self.db.execute("SELECT payload FROM pe_orders ORDER BY rowid")]
 
     def order(self, order_id):
@@ -138,7 +141,7 @@ class OrderManager:
             order = {**target, "id": order_id, "request_id": request_id, "asset_id": frame["asset_id"], "market_id": frame["market_id"], "event_id": frame["market"]["event_id"], "filled": "0", "state": "CREATED", "created_ms": self.now, "min_edge": min_edge, "frame": frame, "target": target, "virtual": True}
             if not self.halted:
                 self.seed_asset(order["asset_id"], order["event_id"])
-            reasons = ["kill_switch_halted"] if self.halted else order_risk(order, frame, self.account(), self.orders(), self.policy, self.now)
+            reasons = ["kill_switch_halted"] if self.halted else order_risk(order, frame, self.account(), self.orders(active_only=True), self.policy, self.now)
             self._save(order, "CREATED")
             if reasons:
                 order["state"] = "REJECTED"
@@ -157,10 +160,10 @@ class OrderManager:
             if self.halted:
                 return 0
             count = 0
-            for order in self.orders():
+            for order in self.orders(active_only=True):
                 if order["state"] != "QUEUED":
                     continue
-                others = [o for o in self.orders() if o["id"] != order["id"]]
+                others = [o for o in self.orders(active_only=True) if o["id"] != order["id"]]
                 latest = self.db.execute("SELECT payload FROM pe_risk_frames WHERE asset_id=?", (order["asset_id"],)).fetchone()
                 current = json.loads(latest[0]) if latest else order["frame"]
                 if current["time_ms"] < order["frame"]["time_ms"]:
@@ -198,18 +201,21 @@ class OrderManager:
         if order["state"] not in {"UNKNOWN", "RECONCILED"}:
             order["state"] = "CANCEL_PENDING"
         order.update(cancel_requested_ms=self.now, cancel_deadline_ms=self.now+self.policy.request_timeout_ms)
-        self._save(order, "CANCEL_REQUEST")
+        self._save(order, "CANCEL_REQUEST", {'reason':order.get('cancel_reason','EXPIRY' if order.get('expiry_handled') else 'LEGACY_UNCLASSIFIED')})
         self.adapter.cancel(order["id"], self.now, self.policy.cancel_latency_ms, drop_response)
 
-    def cancel(self, order_id, drop_response=False):
+    def cancel(self, order_id, drop_response=False, reason=None):
         with self.db:
-            self._cancel(self.order(order_id), drop_response)
+            order=self.order(order_id)
+            if reason:order['cancel_reason']=reason
+            self._cancel(order, drop_response)
 
     def _kill(self, reason):
         self.db.execute("UPDATE pe_control SET state='HALTED' WHERE id=1")
         self._risk(reason, evidence={"kill_switch": True})
-        for order in self.orders():
+        for order in self.orders(active_only=True):
             if order["state"] in ACTIVE:
+                order['cancel_reason']='OPERATOR' if any(x in reason for x in ('operator','prepare_direction')) else 'ACCOUNT_RISK'
                 self._risk(reason, order, {"kill_switch": True})
                 self._cancel(order)
         self._log("KILL_SWITCH", detail={"reason": reason, "new_risk_allowed": False})
@@ -286,8 +292,8 @@ class OrderManager:
             ctx.prec = PRECISION
             while True:
                 pending = self.db.execute("SELECT * FROM pe_pending WHERE done=0 AND due_ms<=? ORDER BY due_ms,id LIMIT 1", (to_ms,)).fetchone()
-                deadlines = [o[k] for o in self.orders() for k in ("submit_deadline_ms", "cancel_deadline_ms") if o.get(k) is not None and o[k] <= to_ms]
-                deadlines += [o["expires_ms"] for o in self.orders() if o["state"] in ACTIVE and not o.get("expiry_handled") and o["expires_ms"] <= to_ms]
+                deadlines = [o[k] for o in self.orders(active_only=True) for k in ("submit_deadline_ms", "cancel_deadline_ms") if o.get(k) is not None and o[k] <= to_ms]
+                deadlines += [o["expires_ms"] for o in self.orders(active_only=True) if o["state"] in ACTIVE and not o.get("expiry_handled") and o["expires_ms"] <= to_ms]
                 deadline = min(deadlines) if deadlines else None
                 if not pending and deadline is None:
                     break
@@ -302,7 +308,7 @@ class OrderManager:
                         self._report(pending["order_id"], payload)
                 else:
                     self.db.execute("UPDATE pe_control SET clock_ms=? WHERE id=1", (max(self.now, deadline),))
-                    for order in self.orders():
+                    for order in self.orders(active_only=True):
                         if order["state"] in ACTIVE and not order.get("expiry_handled") and order["expires_ms"] <= self.now:
                             order["expiry_handled"] = True
                             self._risk("intent_expired", order)

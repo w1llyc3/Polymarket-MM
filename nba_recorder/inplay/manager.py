@@ -255,7 +255,7 @@ class UnifiedPaperManager(OrderManager):
                         self._risk("observed_abrupt_price_change_baseline", evidence={"frame": frame, "monitor_only": True})
             except (ValueError, KeyError, TypeError, ArithmeticError):
                 reasons.append("invalid_prices")
-        if any(o["state"] in {"UNKNOWN", "TIMEOUT", "RECONCILED"} for o in self.orders()):
+        if any(o["state"] in {"UNKNOWN", "TIMEOUT", "RECONCILED"} for o in self.orders(active_only=True)):
             reasons.append("unknown_order_state")
         with self.db:
             self.db.execute("INSERT INTO pe_risk_frames VALUES(?,?,?) ON CONFLICT(asset_id) DO UPDATE SET time_ms=excluded.time_ms,payload=excluded.payload WHERE excluded.time_ms>=pe_risk_frames.time_ms", (frame["asset_id"], frame["time_ms"], encode(frame)))
@@ -273,11 +273,12 @@ class UnifiedPaperManager(OrderManager):
                     levels = (frame.get("book") or {}).get(side, [])
                     if levels and decimal(levels[0]["size"]) < decimal(self.policy.min_top_depth):
                         self._risk("observed_depth_drained_baseline", evidence={"asset_id": frame["asset_id"], "side": side, "monitor_only": True})
-            if severe and (any(o["state"] in ACTIVE for o in self.orders()) or any(decimal(q) > 0 for q in self.account()["positions"].values())):
+            if severe and (any(o["state"] in ACTIVE for o in self.orders(active_only=True)) or any(decimal(q) > 0 for q in self.account()["positions"].values())):
                 self._kill(";".join(sorted(set(severe))))
             elif reasons:
-                for order in self.orders():
+                for order in self.orders(active_only=True):
                     if order['asset_id'] == frame['asset_id'] and order['state'] in ACTIVE:
+                        order['cancel_reason']='DATA_INVALID'
                         self._cancel(order)
         return sorted(set(reasons))
 
@@ -293,8 +294,9 @@ class UnifiedPaperManager(OrderManager):
                 if not self.policy.research_phase:
                     self._kill('daily_equity_unavailable')
                     return None
-                for order in self.orders():
+                for order in self.orders(active_only=True):
                     if order['state'] in ACTIVE:
+                        order['cancel_reason']='VALUATION_UNAVAILABLE'
                         self._cancel(order)
                 self._risk("daily_equity_unavailable", evidence={"valuation": "UNKNOWN", "account_corruption": False})
                 return None
@@ -303,7 +305,7 @@ class UnifiedPaperManager(OrderManager):
             pnl = equity-decimal(daily["baseline"])
             daily.update(equity=str(equity), paper_pnl=str(pnl), observed_ms=self.now)
             self._account(account)
-            detail={"marks": {a: str(v) for a, v in marks.items()}, "paper_pnl": str(pnl), "ledger_valuation": valuation(self.ledger.state(), {a:str(v) for a,v in marks.items()}, self.orders())}
+            detail={"marks": {a: str(v) for a, v in marks.items()}, "paper_pnl": str(pnl), "ledger_valuation": valuation(self.ledger.state(), {a:str(v) for a,v in marks.items()}, self.orders(active_only=True))}
             if self.diagnostic_changed('equity',detail):self._log("BOOK_PAPER_EQUITY", detail=detail)
             if pnl <= -decimal(self.policy.max_daily_loss):
                 self._kill("daily_paper_loss_circuit_breaker")

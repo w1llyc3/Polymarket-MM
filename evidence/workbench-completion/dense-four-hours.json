@@ -1,0 +1,37 @@
+{
+  "source": "SYNTHETIC_DATA",
+  "code_commit": "dfa52acac5ef0eb0dd8f5fe20c54dfd771af2a41",
+  "working_tree_dirty": true,
+  "virtual_hours": 4,
+  "snapshot_cadence_ms": 1000,
+  "wall_seconds": 151.2577019999735,
+  "cpu_seconds": 143.953125,
+  "database_bytes": 520015872,
+  "wal_bytes": 4490832,
+  "paper_order_count": 948,
+  "ledger_consistent": true,
+  "real_submission_calls": 0,
+  "analysis_seconds": 4.13321930001257,
+  "report_seconds": 4.133508900005836,
+  "chart_server_pages": 133,
+  "chart_first_page_server_seconds": 0.023013300029560924,
+  "chart_max_page_server_seconds": 0.03179249999811873,
+  "chart_has_more_at_end": false,
+  "valid_record_window_coverage": {
+    "a": {
+      "valid_bbo_ms": 14400205,
+      "recorded_window_ms": 14400205,
+      "ratio": "1",
+      "basis": "recorded interval only, not full game"
+    },
+    "b": {
+      "valid_bbo_ms": 14400205,
+      "recorded_window_ms": 14400205,
+      "ratio": "1",
+      "basis": "recorded interval only, not full game"
+    }
+  },
+  "browser_render_memory_not_measured": true,
+  "real_game_coverage_not_verified": true,
+  "session_id": "de1d07018b394e92a22f4bde668b8e16"
+}

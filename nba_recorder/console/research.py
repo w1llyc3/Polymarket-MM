@@ -87,6 +87,7 @@ def exit_depth(account, frames, at, max_age=3000, fee_rate=None):
 
 
 def analyze(path, as_of=None):
+    if as_of is not None and (type(as_of) is not int or as_of<0):raise ValueError('nonnegative integer cutoff required')
     db=read_connection(path)
     try:
         db.execute('BEGIN')
@@ -98,16 +99,20 @@ def analyze(path, as_of=None):
         frames,prices,trades,fills={}, {}, [], []
         from ..inplay.policy import BookPolicy
         from ..inplay.reference import book_data_risk
-        policy=BookPolicy(**json.loads(db.execute('SELECT config FROM pe_control WHERE id=1').fetchone()[0]))
+        historical_control=db.execute('SELECT payload FROM pe_journal WHERE time_ms<=? ORDER BY seq DESC LIMIT 1',(cutoff,)).fetchone()
+        if not historical_control:return {'as_of_ms':cutoff,'coverage':'NO_DATA'}
+        policy=BookPolicy(**json.loads(json.loads(historical_control[0])['control']['config']))
         input_cursor=0
         for row in db.execute('SELECT rowid,payload FROM ip_inputs WHERE time_ms<=? ORDER BY time_ms,rowid',(cutoff,)):
             e=json.loads(row[1]);input_cursor=max(input_cursor,row[0]);at=e['time_ms']
             for f in e['frames']:
                 asset=f['asset_id'];frames[asset]=f;b=f.get('book') or {}
                 good=not book_data_risk(f,policy,at)
-                prices.setdefault(asset,[]).append({'time_ms':at,'mid':str((D(b['bid'])+D(b['ask']))/2) if good else None,'valid_until_ms':f['book_received_ms']+3000})
+                prices.setdefault(asset,[]).append({'time_ms':at,'mid':str((D(b['bid'])+D(b['ask']))/2) if good else None,
+                    'bid':b.get('bid'),'ask':b.get('ask'),'depth_shares':str(sum((D(l['size']) for side in ('bids','asks') for l in b.get(side,[])),D(0))),
+                    'valid_until_ms':f['book_received_ms']+policy.book_max_age_ms})
             trades.extend({**t,'time_ms':at} for t in e.get('trades',[]))
-        account={};valuation={};journal_cursor=0;pending={};resting=set();accepted_ms=0;previous=None;last_time=None;cancel_reasons={};segments=[]
+        account={};valuation={};journal_cursor=0;pending={};resting=set();accepted_ms=0;previous=None;last_time=None;cancel_reasons={};segments=[];events=[]
         for row in db.execute('SELECT seq,time_ms,kind,payload FROM pe_journal WHERE time_ms<=? ORDER BY seq',(cutoff,)):
             seq,at,kind,raw=tuple(row);journal_cursor=seq;p=json.loads(raw);o=p.get('order');d=p.get('detail') or {}
             if not isinstance(d,dict):d={}
@@ -116,6 +121,9 @@ def analyze(path, as_of=None):
             last_time=at
             control=p.get('control',{});a=control.get('account')
             if a:account=json.loads(a) if isinstance(a,str) else a
+            events.append({'seq':seq,'time_ms':at,'kind':kind,'order':{k:o[k] for k in ('id','asset_id','state')} if o else None,
+                           'detail':{k:v for k,v in d.items() if k not in {'evidence','frame','ledger_valuation','before','after'}},
+                           'risk_state':control.get('state'),'positions':account.get('positions',{})})
             if o:
                 if o['state'] in {'QUEUED','SUBMITTING','OPEN','PARTIALLY_FILLED','CANCEL_PENDING','UNKNOWN','TIMEOUT','RECONCILED'}:pending[o['id']]=o
                 elif o['state'] in {'CANCELLED','FILLED','REJECTED'}:pending.pop(o['id'],None)
@@ -133,15 +141,23 @@ def analyze(path, as_of=None):
         account['reserved_inventory']={k:str(v) for k,v in budget.get('reserved_sell',{}).items()}
         account['available_cash']=str(D(account.get('cash','0'))-budget.get('reserved_cash',D(0)))
         assets=list(frames);pos=account.get('positions',{})
-        eligible=retained=0
+        eligible=retained=0;decisions=[]
         for r in db.execute('SELECT payload FROM pe_quotes WHERE time_ms<=?',(cutoff,)):
-            retention=json.loads(r[0]).get('retention',{});eligible+=retention.get('eligible_before',0);retained+=retention.get('retained',0)
+            decision=json.loads(r[0]);f=decision.get('frame') or {}
+            decisions.append({'frame':{k:f.get(k) for k in ('asset_id','time_ms','book_received_ms')},'targets':bool(decision.get('targets')),'reasons':decision.get('reasons')})
+            retention=decision.get('retention',{});eligible+=retention.get('eligible_before',0);retained+=retention.get('retained',0)
         from ..fill_management.ledger import empty, reduce_event, valuation as ledger_valuation
         ledger=empty();ledger_cursor=0
         for r in db.execute("SELECT seq,id,time_ms,kind,payload FROM l6_events WHERE lane='UNIFIED_PAPER' AND time_ms<=? ORDER BY seq",(cutoff,)):
             ledger=reduce_event(ledger,{'id':r['id'],'time_ms':r['time_ms'],'kind':r['kind'],'payload':json.loads(r['payload'])});ledger_cursor=r['seq']
         marks={a:ps[-1]['mid'] for a,ps in prices.items() if ps and ps[-1]['mid'] is not None and cutoff<=ps[-1]['valid_until_ms']}
         valuation=ledger_valuation(ledger,marks,list(pending.values()));previous=cutoff
+        from .insights import monitor
+        monitoring=monitor(prices,fills,ledger,events,decisions,cutoff,policy)
+        direction=None
+        for e in events:
+            if e['kind']=='DIRECTION_RESEARCH_PREPARATION':direction={'status':'WAIT_CANCEL_OR_RECONCILIATION','requested_ms':e['time_ms']}
+            if e['kind']=='DIRECTION_RESEARCH_READY':direction={'status':'READY_FOR_MANUAL_DIRECTION_RESEARCH','ready_ms':e['time_ms'],'residual_inventory':e['detail'].get('residual_inventory'),'auto_execute':False}
         latencies={}
         for r in db.execute('SELECT kind,duration_ms FROM pe_latency WHERE time_ms<=? ORDER BY duration_ms',(cutoff,)):
             latencies.setdefault(r[0],[]).append(r[1])
@@ -161,6 +177,7 @@ def analyze(path, as_of=None):
                     group=[v for v in values if v['side']==side and v['seconds']==seconds]
                     valid=[v for v in group if v['status']=='VALID'];qty=sum((D(v['quantity']) for v in valid),D(0))
                     weighted.append({'side':side,'seconds':seconds,'fills':len(group),'mature_valid':len(valid),'valid_shares':str(qty),
+                                     'pending':sum(v['status']=='PENDING' for v in group),'unknown':sum(v['status']=='UNKNOWN' for v in group),
                                      'weighted_fill_markout_cents':str(sum((D(v['quantity'])*D(v['fill_markout_cents']) for v in valid),D(0))/qty) if qty else None})
             recent=[p for p in prices[asset] if p['time_ms']>=cutoff-120000 and p['mid'] is not None]
             mids=[D(p['mid']) for p in recent]
@@ -172,7 +189,29 @@ def analyze(path, as_of=None):
                                  rule='2-cent end-to-start threshold; descriptive, not predictive',
                                  conditional_trigger_above=str(max(mids)),conditional_invalidation_below=str(min(mids)))
             summaries[asset]={'weighted_markouts':weighted,'price_structure':structure}
+            current=frames[asset]
+            if not book_data_risk(current,policy,cutoff):
+                probe=D(policy.order_size)
+                summaries[asset]['planned_liquidity']={'planned_quantity':str(probe),'buy':executable(current['book']['asks'],probe,True,None),
+                    'sell':executable(current['book']['bids'],probe,False,None),'available_owned_shares':str(max(D(0),D(pos.get(asset,'0'))-D(account['reserved_inventory'].get(asset,'0')))),
+                    'available_cash':account['available_cash'],'fee_status':'UNKNOWN','alternative_scenarios_not_joint_reservations':True}
+            recent_dist=distribution(trades,asset,max(0,cutoff-120000),cutoff)
+            previous_dist=distribution(trades,asset,max(0,cutoff-240000),max(0,cutoff-120001))
+            def center(dist):
+                total=sum((D(b['value']) for b in dist['bins']),D(0))
+                return sum((D(b['price'])*D(b['value']) for b in dist['bins']),D(0))/total if total else None
+            now_center,old_center=center(recent_dist),center(previous_dist)
+            summaries[asset]['flow']={'public_prints_per_minute':str(D(recent_dist['unique_events'])/2),
+                'distribution_migration_cents':str(100*(now_center-old_center)) if now_center is not None and old_center is not None else None,
+                'recent_samples':recent_dist['unique_events'],'previous_samples':previous_dist['unique_events'],'window_ms':120000,
+                'coverage_limited':coverage[asset]['ratio']!='1','identity_basis':'recorded public event IDs / fingerprint, not independent clearing volume'}
         return {'as_of_ms':cutoff,'input_cursor':input_cursor,'journal_cursor':journal_cursor,'version':'research-v1',
+                'origin':json.loads((db.execute("SELECT payload FROM ip_session_config WHERE id='console_origin'").fetchone() or ['{}'])[0]),
+                'bound_market':next(iter(frames.values()))['market'] if frames else None,
+                'fill_model':(db.execute("SELECT payload FROM ip_session_config WHERE id='fill_model'").fetchone() or ['UNKNOWN'])[0],
+                'session_completion':next((e['detail'] for e in reversed(events) if e['kind']=='CONSOLE_SESSION_FINISHED'),None),
+                'bound_plan':next((e['detail'] for e in events if e['kind']=='RESEARCH_PLAN_BOUND'),None),
+                'monitoring':monitoring,'direction_preparation':direction,'policy_as_of':__import__('dataclasses').asdict(policy),'accounting_closures':ledger['closures'],
                 'sources':{'public':'recorded public prints only','fills':'PAPER_EXECUTION'},'real_submission_calls':0,
                 'execution_segments':segments,
                 'account':account,'valuation':valuation,'valuation_as_of_ms':previous,'ledger_cursor':ledger_cursor,
@@ -189,7 +228,7 @@ def analyze(path, as_of=None):
                              'recent_distribution':distribution(trades,a,max(0,cutoff-120000),cutoff),
                              'previous_distribution':distribution(trades,a,max(0,cutoff-240000),max(0,cutoff-120001)),
                              'markouts':markouts([f for f in fills if f['asset_id']==a],prices[a],cutoff)} for a in assets},
-                'sample_size':{'public_events':len(trades),'paper_fills':len(fills),'independent_games':1},
+                'sample_size':{'public_events':len({t.get('event_id') for t in trades if t.get('event_id')}),'paper_fills':len(fills),'independent_games':1 if frames else 0},
                 'candidate_plan':'继续观察；方向情景需用户记录触发价与失效条件，不自动执行',
                 'limitations':['模拟成交未校准','费用未知：仅毛退出现金可用','Markout独立诊断，不加到PnL','未证明完整比赛覆盖']}
     finally:db.close()

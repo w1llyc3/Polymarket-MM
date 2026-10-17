@@ -1,5 +1,7 @@
 # 保护调整 · 2026-10-17
 
+后续补齐：跨场方案不可覆盖版本及启动绑定，不变更活动账户资本；历史按当时参数和输入游标复盘；方向准备撤单核对后保持HALTED。提交边界按同资产买入/互补卖出累计最坏方向风险，不净额抵消待成交承诺。活动订单索引仅优化热查询，迟到成交、恢复和完整审计保留历史路径。详见WORKBENCH_COMPLETION_ACCEPTANCE.md。
+
 基线2320261；现有单Runner/OMS/FIFO上修改，网页主路径research_phase，严格旧模式保留对照。
 
 - D01：reference.book_data_risk移除min_top_depth错误；book_targets按深度缩量，中点/估值同口径。

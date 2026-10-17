@@ -66,6 +66,8 @@ class ConsoleService:
         self.auto_q4_sessions = set()
         self.paper_budget = '100'
         self.paper_plan = 'SMALL'
+        self.research_overrides = {}
+        self.bound_plan = None
         self.publish(force=True)
 
     def start(self):
@@ -96,7 +98,7 @@ class ConsoleService:
             return copy.deepcopy(self.view)
 
     def submit(self, command):
-        allowed = {"request_id", "session_id", "expected_version", "action", "mode", "market_id", "confirmed", "discovery_scope", "season_type", "day_filter", "limit_s", "postgame_s", "custom_start", "custom_end", "period", "phase_state", "approve_unclassified", "paper_budget", "paper_plan", "asset_id", "exit_quantity", "exit_minimum", "fee_rate", "research_params"}
+        allowed = {"request_id", "session_id", "expected_version", "action", "mode", "market_id", "confirmed", "discovery_scope", "season_type", "day_filter", "limit_s", "postgame_s", "custom_start", "custom_end", "period", "phase_state", "approve_unclassified", "paper_budget", "paper_plan", "asset_id", "exit_quantity", "exit_minimum", "fee_rate", "research_params", "plan_id", "plan_version"}
         if not isinstance(command, dict) or set(command)-allowed or not isinstance(command.get("request_id"), str) or not 1 <= len(command["request_id"]) <= 100:
             raise ValueError("命令格式错误")
         identity = command["request_id"]
@@ -123,6 +125,8 @@ class ConsoleService:
     def attach(self, runner):
         with runner.om.db:
             runner.om.db.execute("INSERT OR IGNORE INTO ip_session_config VALUES('console_origin',?)", (json.dumps({"data_source":"SYNTHETIC_DATA" if self.mode=="SYNTHETIC_DEMO" else "REAL_OBSERVED", "execution_source":"OBSERVATION_ONLY" if self.mode=="OBSERVATION" else "PAPER_EXECUTION"}),))
+            if self.bound_plan:
+                runner.om._log('RESEARCH_PLAN_BOUND',detail={'plan':self.bound_plan,'virtual_budget':self.paper_budget,'code_commit':self.commit})
         self.chart_start_ms = runner.om.now
         self.runner = runner
         self.lifecycle = "RUNNING"
@@ -132,6 +136,21 @@ class ConsoleService:
     async def pump(self):
         # Called by run_paper on its owning loop; never constructs a second OMS.
         self.publish()
+        if self.runner:
+            om=self.runner.om
+            request=om.db.execute("SELECT payload FROM ip_session_config WHERE id='direction_preparation'").fetchone()
+            ready=om.db.execute("SELECT 1 FROM ip_session_config WHERE id='direction_ready'").fetchone()
+            if request and not ready:
+                busy=any(o['state'] in ACTIVE and not (o['state']=='RECONCILED' and o.get('confirmed_state') in {'CANCELLED','FILLED','REJECTED'}) for o in om.orders())
+                attempted=om.db.execute("SELECT 1 FROM ip_session_config WHERE id='direction_reconciliation_attempted'").fetchone()
+                if not busy and not attempted:
+                    with om.db:om.db.execute("INSERT INTO ip_session_config VALUES('direction_reconciliation_attempted',?)",(str(om.now),))
+                    om.reconcile()
+                if not busy and om.risk_state=='READY_FOR_MANUAL_RESET' and om.consistent():
+                    with om.db:
+                        om.db.execute("INSERT INTO ip_session_config VALUES('direction_ready',?)",(str(om.now),))
+                        om.db.execute("UPDATE pe_control SET state='HALTED' WHERE id=1")
+                        om._log('DIRECTION_RESEARCH_READY',detail={'residual_inventory':om.account()['positions'],'no_direction_orders':True,'reconciled_ms':om.now})
         if self.runner and self.session_id not in self.auto_q4_sessions:
             phases=[self.runner.om.phases.get(f['market_id']) for f in self.runner.latest.values()]
             if any(p.get('period') == 4 and p.get('state') in {'ACTIVE_MM','REDUCE_ONLY','MM_CLOSED'} for p in phases):
@@ -151,6 +170,11 @@ class ConsoleService:
 
     def finished(self, result):
         self.final_report = result
+        if self.runner:
+            with self.runner.om.db:
+                self.runner.om._log('CONSOLE_SESSION_FINISHED',detail={'coverage':result.get('recording_coverage'),
+                    'source':result.get('source'),'watchdog_ticks':self.runner.ticks,'input_queue_backlog':getattr(self.runner,'input_queue',self.commands).qsize(),
+                    'command_queue_backlog':self.commands.qsize(),'code_commit':self.commit})
         self.schedule_report('POST_SESSION')
         self.publish(force=True)
 
@@ -171,6 +195,8 @@ class ConsoleService:
             self.version += 1
             self.last_signature = signature
         value = {"app": "NBA_MM_LOCAL_CONSOLE_V2_2", "version": self.version, "session_id": self.session_id,
+                 'runtime_health':{'command_backlog':self.commands.qsize(),'input_backlog':getattr(self.runner,'input_queue',self.commands).qsize() if self.runner else None,
+                                   'watchdog_ticks':self.runner.ticks if self.runner else None,'analysis_error':self.analysis_error},
                  "lifecycle": self.lifecycle, "mode": self.mode, "commit": self.commit, "config_version": "BookPolicy-v2.2",
                  "working_tree_dirty_at_start": self.dirty, "analysis_error": self.analysis_error,
                  "server_ms": utc_ms(), "catalog": self.catalog, "chart": {"start_ms": self.chart_start_ms, "end_ms": self.last_snapshot.get("paper_clock_ms")},
@@ -284,6 +310,9 @@ class ConsoleService:
             if not budget.is_finite() or not 1<=budget<=1000 or plan not in {'SMALL','WIDE'}:
                 raise ValueError('研究预算1至1000虚拟美元，方案SMALL/WIDE')
             self.paper_budget,self.paper_plan=str(budget),plan
+            from .plans import load
+            self.bound_plan=load(self.data,cmd.get('plan_id',plan),cmd.get('plan_version',1))
+            self.research_overrides=self.bound_plan['parameters']
             if mode not in {"OBSERVATION", "REAL_PAPER", "SYNTHETIC_DEMO"}:
                 raise ValueError("模式不可用；离线回放请使用已有开发 CLI")
             if not cmd.get("confirmed"):
@@ -323,6 +352,15 @@ class ConsoleService:
                 return self.export()
             raise ValueError("当前无运行中的会话")
         om = self.runner.om
+        if self.lifecycle!='RUNNING' and action!='export':
+            raise ValueError('会话正在清理；禁止修改账户或阶段')
+        if action=='prepare_direction':
+            if not cmd.get('confirmed'):raise ValueError('需要明确确认停止做市')
+            self.runner.stop_paper('console_prepare_direction_keep_recording')
+            with om.db:
+                om.db.execute("INSERT OR IGNORE INTO ip_session_config VALUES('direction_preparation',?)",(json.dumps({'requested_ms':om.now}),))
+                om._log('DIRECTION_RESEARCH_PREPARATION',detail={'status':'WAIT_RECONCILIATION','auto_direction_orders':False})
+            return {'message':'已阻止新增做市风险并请求撤单；等待核对，残余仓位不会自动转为方向仓位'}
         if action == 'update_plan':
             if not cmd.get('confirmed'):raise ValueError('参数修改需要确认')
             version=om.change_research_parameters(cmd.get('research_params'))
@@ -478,11 +516,14 @@ class ConsoleService:
         store = SingleWriterStore(str(path)+".sqlite")
         runner = None
         try:
-            om = UnifiedPaperManager(store, start_ms=AT)
+            from ..inplay.policy import BookPolicy
+            om = UnifiedPaperManager(store, BookPolicy(initial_cash=self.paper_budget,**self.research_overrides),start_ms=AT)
             runner = PaperRunner(om, "L1")
             self.attach(runner)
             stream = events()
-            om.split(stream[0]["frames"][0]["market"], "5", "explicit-synthetic-console-split")
+            from ..fair_value.maths import decimal
+            seed=min(decimal('5'),decimal(om.policy.initial_cash),decimal(om.policy.max_event_risk)/2,decimal(om.policy.max_account_risk)/2,decimal(om.policy.max_asset_inventory))
+            if seed>0:om.split(stream[0]["frames"][0]["market"],str(seed),"explicit-synthetic-console-split")
             # Advance the same deterministic fixture, not invented real time.
             # Real wall watchdog remains active but maps to fixture clock only.
             runner.last_wall_ms = None

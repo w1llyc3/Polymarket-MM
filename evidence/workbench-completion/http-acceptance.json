@@ -1,0 +1,876 @@
+{
+  "source": "SYNTHETIC_DATA",
+  "session_id": "4da475c9b79b4c5ead8a954070261856",
+  "plan_versions": [
+    {
+      "id": "0a11f89f5d7c43379e6307c957b35350",
+      "version": 1,
+      "name": "合成验收方案",
+      "parameters": {
+        "quote_distance": ".03",
+        "max_order_lifetime_ms": 90000
+      },
+      "created_ms": 1792227610967,
+      "builtin": false,
+      "mode": "PAPER"
+    },
+    {
+      "id": "0a11f89f5d7c43379e6307c957b35350",
+      "version": 2,
+      "name": "合成验收方案v2",
+      "parameters": {
+        "quote_distance": ".04"
+      },
+      "created_ms": 1792227610989,
+      "builtin": false,
+      "mode": "PAPER"
+    }
+  ],
+  "report_hash": "cc830a57d3b098a4d172b215269807cc661a1ab62113aa4f3f06b5a2416bacd4",
+  "original_report_unchanged": true,
+  "direction_preparation": {
+    "status": "READY_FOR_MANUAL_DIRECTION_RESEARCH",
+    "ready_ms": 1791954006005,
+    "residual_inventory": {
+      "a": "5",
+      "b": "5"
+    },
+    "auto_execute": false
+  },
+  "coverage": {
+    "a": {
+      "valid_bbo_ms": 6005,
+      "recorded_window_ms": 6005,
+      "ratio": "1",
+      "basis": "recorded interval only, not full game"
+    },
+    "b": {
+      "valid_bbo_ms": 6005,
+      "recorded_window_ms": 6005,
+      "ratio": "1",
+      "basis": "recorded interval only, not full game"
+    }
+  },
+  "monitoring": {
+    "availability": {
+      "a": {
+        "eligible_decision_ms": 2000,
+        "accepted_eligible_ms": 1995,
+        "ratio": "0.9975",
+        "basis": "time intersection of recorded feasible target intervals and confirmed accepted orders; no frame counting"
+      },
+      "b": {
+        "eligible_decision_ms": 2000,
+        "accepted_eligible_ms": 1995,
+        "ratio": "0.9975",
+        "basis": "time intersection of recorded feasible target intervals and confirmed accepted orders; no frame counting"
+      }
+    },
+    "assets": {
+      "a": {
+        "current_spread_cents": "2.00",
+        "recent_inventory_growth_shares": "5",
+        "completed_turnover_shares": "0",
+        "completed_gross_pnl": "0",
+        "quantity_weighted_holding_ms": null,
+        "depth_change_shares": "0",
+        "own_fill_count": 0,
+        "last_valid_bbo_ms": 1791954006005
+      },
+      "b": {
+        "current_spread_cents": "2.00",
+        "recent_inventory_growth_shares": "5",
+        "completed_turnover_shares": "0",
+        "completed_gross_pnl": "0",
+        "quantity_weighted_holding_ms": null,
+        "depth_change_shares": "0",
+        "own_fill_count": 0,
+        "last_valid_bbo_ms": 1791954006005
+      }
+    },
+    "cancel_reasons": {
+      "OPERATOR": 8
+    },
+    "unresolved_orders": {},
+    "peak_gross_inventory_shares": "10",
+    "recent_data_issues": [],
+    "system_cases": [
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 10,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 12,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 18,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 20,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 25,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 27,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 32,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 34,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 39,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 41,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 46,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 48,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 53,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 55,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 60,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 62,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 67,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 69,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 74,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954000000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 76,
+        "evidence": {
+          "reason": "phase_not_permitted"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 218,
+        "evidence": {
+          "reason": "console_operator_pause"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": "c1d93d6695c2b5617f59bfa38da0e231bf44658508bc45c3305d43b1d150f7b8",
+        "journal_seq": 219,
+        "evidence": {
+          "reason": "console_operator_pause"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": "fc1d25586773d4a781452bb8f7f76f764806cfe000862cb7add6c975d528e396",
+        "journal_seq": 221,
+        "evidence": {
+          "reason": "console_operator_pause"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": "473ee26ef72a803ba6d72de3a0cff829d987003f259f42fa2158358ebd18b949",
+        "journal_seq": 223,
+        "evidence": {
+          "reason": "console_operator_pause"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": "8da04da08faea4ef7dbf63a7312720d46613aa0be85b04aaaaf293727be65723",
+        "journal_seq": 225,
+        "evidence": {
+          "reason": "console_operator_pause"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "KILL_SWITCH",
+        "order_id": null,
+        "journal_seq": 227,
+        "evidence": {
+          "new_risk_allowed": false,
+          "reason": "console_operator_pause"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 232,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 234,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 239,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 241,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 246,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 248,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 253,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 255,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 260,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 262,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 267,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 269,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 274,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954003000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 276,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954004000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 285,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954004000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 287,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954004000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 293,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954004000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 295,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954004000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 300,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954004000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 302,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954004000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 307,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954004000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 309,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954004005,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 318,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954004005,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 320,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 398,
+        "evidence": {
+          "reason": "console_prepare_direction_keep_recording"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "RISK",
+        "order_id": "6fd0d6f7333414dbebbb28fa32e8b2c454b6f6d33f3cf24a96a62a05a3fe4fa8",
+        "journal_seq": 399,
+        "evidence": {
+          "reason": "console_prepare_direction_keep_recording"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "RISK",
+        "order_id": "7533e98e28cac01303ff79e939664ee2d403d7e9b075027199c01739330187d9",
+        "journal_seq": 401,
+        "evidence": {
+          "reason": "console_prepare_direction_keep_recording"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "RISK",
+        "order_id": "5cffe58759f40eb1a6548458d4e0f5da917e2cc576f180a745d87fb78fedff87",
+        "journal_seq": 403,
+        "evidence": {
+          "reason": "console_prepare_direction_keep_recording"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "RISK",
+        "order_id": "a7fb5ee27b193953ef2797a727a765019dadd9fe46107e96ed0fbeea8827afb4",
+        "journal_seq": 405,
+        "evidence": {
+          "reason": "console_prepare_direction_keep_recording"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "KILL_SWITCH",
+        "order_id": null,
+        "journal_seq": 407,
+        "evidence": {
+          "new_risk_allowed": false,
+          "reason": "console_prepare_direction_keep_recording"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 412,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 414,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 419,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 421,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 426,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954005000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 428,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954006000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 441,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954006000,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 443,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954006005,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 453,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954006005,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 455,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954006005,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 460,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954006005,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 462,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954006005,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 467,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      },
+      {
+        "time_ms": 1791954006005,
+        "kind": "RISK",
+        "order_id": null,
+        "journal_seq": 469,
+        "evidence": {
+          "reason": "operator_quotes_disabled"
+        }
+      }
+    ],
+    "system_case_count": 70,
+    "case_projection_complete": true,
+    "complete_case_source": "pe_journal, referenced by journal_seq",
+    "data_issue_count": 0,
+    "data_issue_projection_complete": true,
+    "termination": {
+      "time_ms": 1791954005000,
+      "reason": "console_prepare_direction_keep_recording"
+    },
+    "parameter_versions": [],
+    "latency_summary_ms": {
+      "submit_to_accept": {
+        "count": 8,
+        "basis": "Paper local visible report times, not real exchange latency",
+        "p50": 5,
+        "p95": 5,
+        "p99": 5
+      },
+      "cancel_to_confirmation": {
+        "count": 8,
+        "basis": "Paper local visible report times, not real exchange latency",
+        "p50": 10,
+        "p95": 10,
+        "p99": 10
+      }
+    },
+    "diagnostic_only": true,
+    "attribution_not_causal": true
+  },
+  "final_lifecycle": "STOPPED",
+  "real_submission_calls": 0,
+  "receipts": [
+    {
+      "request_id": "1fcf287c6cb2443f9d1fbda9d04bf1fd",
+      "status": "APPLIED",
+      "received_ms": 1792227611029,
+      "command": {
+        "session_id": null,
+        "expected_version": 1,
+        "request_id": "1fcf287c6cb2443f9d1fbda9d04bf1fd",
+        "action": "start",
+        "confirmed": true,
+        "mode": "SYNTHETIC_DEMO",
+        "paper_budget": "25",
+        "plan_id": "0a11f89f5d7c43379e6307c957b35350",
+        "plan_version": 1
+      },
+      "result": {
+        "message": "会话已分配，等待后台状态",
+        "session_id": "4da475c9b79b4c5ead8a954070261856"
+      },
+      "applied_ms": 1792227611052,
+      "version": 2
+    },
+    {
+      "request_id": "60f5c1f86a414eae844008d0125ead68",
+      "status": "APPLIED",
+      "received_ms": 1792227614329,
+      "command": {
+        "session_id": "4da475c9b79b4c5ead8a954070261856",
+        "expected_version": 7,
+        "request_id": "60f5c1f86a414eae844008d0125ead68",
+        "action": "pause",
+        "confirmed": true
+      },
+      "result": {
+        "message": "已暂停新增报价并请求撤销活动单；库存未清空",
+        "risk_state": "PAUSED"
+      },
+      "applied_ms": 1792227614379,
+      "version": 8
+    },
+    {
+      "request_id": "651cd90cb54c4d788ea8cf68ee922a18",
+      "status": "APPLIED",
+      "received_ms": 1792227615477,
+      "command": {
+        "session_id": "4da475c9b79b4c5ead8a954070261856",
+        "expected_version": 9,
+        "request_id": "651cd90cb54c4d788ea8cf68ee922a18",
+        "action": "reconcile",
+        "confirmed": true
+      },
+      "result": {
+        "message": "已执行权威 Paper 核对；未自动恢复",
+        "consistent": true,
+        "risk_state": "READY_FOR_MANUAL_RESET"
+      },
+      "applied_ms": 1792227615487,
+      "version": 10
+    },
+    {
+      "request_id": "1644220ba53245128699f6a62f87db49",
+      "status": "APPLIED",
+      "received_ms": 1792227615524,
+      "command": {
+        "session_id": "4da475c9b79b4c5ead8a954070261856",
+        "expected_version": 11,
+        "request_id": "1644220ba53245128699f6a62f87db49",
+        "action": "resume",
+        "confirmed": true
+      },
+      "result": {
+        "message": "后台风险检查通过，允许受控 Paper；不代表清仓或实盘许可"
+      },
+      "applied_ms": 1792227615557,
+      "version": 12
+    },
+    {
+      "request_id": "b4265b5a504842429fbbd2c03db6aeaf",
+      "status": "APPLIED",
+      "received_ms": 1792227616704,
+      "command": {
+        "session_id": "4da475c9b79b4c5ead8a954070261856",
+        "expected_version": 13,
+        "request_id": "b4265b5a504842429fbbd2c03db6aeaf",
+        "action": "prepare_direction",
+        "confirmed": true
+      },
+      "result": {
+        "message": "已阻止新增做市风险并请求撤单；等待核对，残余仓位不会自动转为方向仓位"
+      },
+      "applied_ms": 1792227616754,
+      "version": 13
+    },
+    {
+      "request_id": "a5e8428f169d4e76983828455c2f27d2",
+      "status": "APPLIED",
+      "received_ms": 1792227617634,
+      "command": {
+        "session_id": "4da475c9b79b4c5ead8a954070261856",
+        "expected_version": 14,
+        "request_id": "a5e8428f169d4e76983828455c2f27d2",
+        "action": "stop",
+        "confirmed": true
+      },
+      "result": {
+        "message": "撤单请求已生效，等待回报和核对；尚未宣称清仓",
+        "stop_request_applied": true
+      },
+      "applied_ms": 1792227617638,
+      "version": 15
+    }
+  ],
+  "visual_browser_acceptance": false
+}

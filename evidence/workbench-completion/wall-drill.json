@@ -1,0 +1,11 @@
+{
+  "source": "SYNTHETIC_WALL_CLOCK_DRILL",
+  "wall_seconds": 10.014999999955762,
+  "ticks": 40,
+  "max_tick_gap_ms": 266.00000000325963,
+  "pause_kept_submissions_constant": true,
+  "explicit_resume": true,
+  "ledger_consistent": true,
+  "real_submission_calls": 0,
+  "not_four_hour_wall_run": true
+}

@@ -11,6 +11,7 @@ class ExecutionStore:
         self.db.executescript("""
         CREATE TABLE IF NOT EXISTS pe_control(id INTEGER PRIMARY KEY CHECK(id=1),mode TEXT CHECK(mode='PAPER'),state TEXT,clock_ms INTEGER,config TEXT,account TEXT);
         CREATE TABLE IF NOT EXISTS pe_orders(id TEXT PRIMARY KEY,state TEXT,payload TEXT);
+        CREATE INDEX IF NOT EXISTS pe_orders_state ON pe_orders(state);
         CREATE TABLE IF NOT EXISTS pe_journal(seq INTEGER PRIMARY KEY,time_ms INTEGER,kind TEXT,order_id TEXT,payload TEXT);
         CREATE TRIGGER IF NOT EXISTS pe_journal_no_update BEFORE UPDATE ON pe_journal BEGIN SELECT RAISE(ABORT,'append-only journal'); END;
         CREATE TRIGGER IF NOT EXISTS pe_journal_no_delete BEFORE DELETE ON pe_journal BEGIN SELECT RAISE(ABORT,'append-only journal'); END;
