@@ -159,8 +159,7 @@ class InplayTests(unittest.TestCase):
         target = book_targets(f, self.om.account(), [], {}, self.policy)["targets"][0]
         for field in ("reversal", "final_result", "win_probability", "fair_probability"):
             invalid = {**f, field: "team a wins"}
-            with self.assertRaises(ValueError):
-                self.om.enqueue(field, target, invalid)
+            self.assertEqual(book_targets(invalid,self.om.account(),[],{},self.policy),book_targets(f,self.om.account(),[],{},self.policy))
 
     def test_single_writer_and_zero_network(self):
         with self.assertRaises(RuntimeError):

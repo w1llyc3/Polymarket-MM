@@ -48,8 +48,6 @@ def book_data_risk(frame, policy, at=None):
             prices = [decimal(level["price"]) for level in levels]
             if len(set(prices)) != len(prices) or prices != sorted(prices, reverse=levels is b["bids"]):
                 reasons.append("unsorted_or_duplicate_depth")
-            if policy.enhanced and decimal(levels[0]["size"]) < decimal(policy.min_top_depth):
-                reasons.append("depth_drained")
         reasons.extend(b.get("flags", []))
     except (KeyError, ValueError, TypeError, ArithmeticError, AttributeError):
         reasons.append("missing_or_invalid_book_reference")
@@ -63,12 +61,16 @@ def book_risk(frame, policy, at=None, *, check_operator=True):
         reasons.append("operator_quotes_disabled")
     try:
         m = frame["market"]
-        if m.get("discovery_schema") and not m.get("paper_scope_approved"):
+        if m.get("discovery_schema") and not m.get("paper_scope_approved") and not (policy.research_phase and m.get("research_authorized") and m.get("rules_verified") and not m.get("identity_conflict")):
             reasons.append("competition_paper_scope_not_approved")
-        if m.get("season_type") == "UNKNOWN" or (m.get("season_type") == "PRESEASON" and not m.get("rules_verified")):
+        if (m.get("season_type") == "UNKNOWN" and not (policy.research_phase and m.get("research_authorized"))) or not m.get("rules_verified", True):
             reasons.append("season_or_rules_unverified")
         if frame.get("phase") not in {"ACTIVE_MM", "REDUCE_ONLY"}:
             reasons.append("phase_not_permitted")
+        if policy.research_phase:
+            from .research_phase import permission
+            reasons.extend(permission(frame, policy, at)[1])
+            return sorted(set(reasons))
         if policy.allow_manual_phase:
             from .manual import effective
             manual_state, errors = effective(frame.get("manual_confirmation"), m, at, policy)
@@ -151,6 +153,8 @@ def submission_risk(order, frame, account, orders, policy, at, retaining=False):
             reasons.append("insufficient_unreserved_inventory")
         if at >= order["expires_ms"]:
             reasons.append("intent_expired")
+        if not retaining and order.get('state') in {None,'CREATED','QUEUED'} and at >= order.get('intent_valid_until_ms',at+1):
+            reasons.append('unsent_intent_expired')
     except (KeyError, ValueError, TypeError, ArithmeticError, AttributeError):
         reasons.append("invalid_order")
     return sorted(set(reasons))
@@ -200,12 +204,14 @@ def book_targets(frame, account, orders, catalog, policy):
                 result["actions"].append({"action": "RETAIN", "order_id": retained["retained_order_id"], "side": side})
                 continue
             qty = min(decimal(policy.order_size), decimal(policy.max_order_shares))
+            if policy.enhanced:
+                qty = min(qty, decimal(book["bids" if side == "BUY" else "asks"][0]["size"]))
             if price > 0:
                 qty = min(qty, decimal(policy.max_order_notional)/price)
             candidate = {"asset_id": asset, "market_id": frame["market_id"], "event_id": frame["market"]["event_id"], "side": side, "price": str(price), "size": str(qty),
                          "purpose": "RISK_EXIT" if reduce else "MAKER", "strategy_mode": "BOOK_DRIVEN", "maker_only": True,
-                         "expires_ms": min(at+policy.ttl_ms, frame["book_received_ms"]+policy.book_max_age_ms,
-                                           frame["manual_confirmation"]["expires_ms"] if policy.allow_manual_phase else frame["sports"]["received_ms"]+policy.sports_max_age_ms)}
+                         "expires_ms": at+policy.max_order_lifetime_ms,
+                         "intent_valid_until_ms": at+policy.ttl_ms}
             if reduce:
                 qty = min(qty, reduction_capacity(candidate, frame, account, orders), decimal(policy.exit_notional)/price if price > 0 else decimal(0))
             if side == "SELL":

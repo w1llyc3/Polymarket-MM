@@ -31,6 +31,9 @@ class BookPolicy(ExecutionPolicy):
     exit_slippage: str = ".03"
     exit_notional: str = "5"
     inventory_skew: str = ".001"
+    research_phase: bool = False
+    research_phase_age_ms: int = 120000
+    max_order_lifetime_ms: int = 60000
 
     def __post_init__(self):
         super().__post_init__()

@@ -45,7 +45,8 @@ def normalize_market(event, market, nba, now, official=None):
             return None,'EXCLUDED_BY_FILTER'
         if market.get('sportsMarketType') != 'moneyline':
             return None,'EXCLUDED_BY_FILTER'
-        full_rule='final score including any overtime' in market.get('description','').lower()
+        normalized_rule = ' '.join(market.get('description','').lower().replace('cancelled','canceled').split())
+        full_rule='final score including any overtime' in normalized_rule
         if any(str(market.get(k,'')).lower() not in {'','none','full','full_game','game'} for k in ('gamePeriod','periodType')):
             return None,'EXCLUDED_BY_FILTER'
         if market.get('slug') != event.get('slug') and not full_rule:
@@ -81,7 +82,7 @@ def normalize_market(event, market, nba, now, official=None):
         if category.pop('excluded'):
             return None,'EXCLUDED_BY_FILTER'
         description = market.get('description','')
-        rules = all(x in description.lower() for x in ('including any overtime','postponed','canceled','50-50'))
+        rules = all(x in normalized_rule for x in ('including any overtime','postponed','canceled','50-50'))
         conflict = bool(event.get('startTime') and parse_time(event['startTime']) != start)
         return {**category,'venue':'polymarket.com','league':'nba','market_type':'moneyline','version':version,
                 'discovery_schema':'NBA_GENERAL_V1','event_id':str(event['id']),'market_id':str(market['id']),
@@ -97,7 +98,8 @@ def normalize_market(event, market, nba, now, official=None):
                 'event_status':{k:event.get(k) for k in ('active','closed','archived')},
                 'status':{k:market.get(k) for k in ('active','closed','archived','acceptingOrders','enableOrderBook','restricted')},
                 'schedule_status_raw':event.get('status'),'game_phase':'ENDED' if event.get('ended') else 'PAUSED' if event.get('paused') is True or event.get('status')=='Suspended' else 'BREAK' if event.get('period')=='HT' else 'LIVE' if event.get('live') else 'SCHEDULED' if start>now else 'UNKNOWN',
-                'paper_scope_approved': bool(schedule and rules and not conflict),
+                'paper_scope_approved': False,
+                'research_eligible': bool(rules and not conflict),
                 'collection_allowed':not conflict},'MARKET_FOUND'
     except (KeyError,TypeError,ValueError,ArithmeticError):
         return None,'SCHEMA_UNSUPPORTED'

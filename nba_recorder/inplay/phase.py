@@ -32,6 +32,22 @@ class PhaseController:
         old = self.get(frame["market_id"])
         state = {**old, "observed_ms": at, "reasons": []}
         sports = frame.get("sports", {})
+        if self.policy.research_phase:
+            from .research_phase import permission
+            chosen, errors = permission(frame, self.policy, at)
+            if old['latched_closed']:
+                chosen = 'MM_CLOSED'
+            elif old['state'] == 'REDUCE_ONLY' and chosen == 'ACTIVE_MM':
+                chosen = 'REDUCE_ONLY'
+            state.update(state=chosen, reasons=errors, latched_closed=old['latched_closed'] or chosen=='MM_CLOSED',
+                         phase_authority='MANUAL_RESEARCH' if frame.get('research_phase_grant') else 'AUTOMATIC_RESEARCH',
+                         period=(frame.get('research_phase_grant') or sports).get('period'),
+                         evidence=frame.get('research_phase_grant') or sports, exact_clock_verified=False)
+            with self.db:
+                self.db.execute('INSERT INTO ip_phase VALUES(?,?) ON CONFLICT(market_id) DO UPDATE SET payload=excluded.payload', (frame['market_id'], encode(state)))
+                if {k:v for k,v in state.items() if k!='observed_ms'} != {k:v for k,v in old.items() if k!='observed_ms'}:
+                    self.db.execute('INSERT INTO ip_phase_log(market_id,time_ms,payload) VALUES(?,?,?)',(frame['market_id'],at,encode(state)))
+            return state
         if self.policy.allow_manual_phase:
             from .manual import effective
             grant = frame.get("manual_confirmation")
@@ -102,6 +118,10 @@ class PhaseController:
         phase = self.get(frame["market_id"])
         if phase["latched_closed"]:
             return "MM_CLOSED"
+        if self.policy.research_phase:
+            from .research_phase import permission
+            chosen, _ = permission(frame, self.policy, at)
+            return 'REDUCE_ONLY' if phase['state']=='REDUCE_ONLY' and chosen=='ACTIVE_MM' else chosen
         if self.policy.allow_manual_phase:
             from .manual import effective
             chosen, _ = effective(frame.get("manual_confirmation"), frame["market"], at, self.policy)

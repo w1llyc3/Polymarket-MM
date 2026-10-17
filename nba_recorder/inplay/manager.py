@@ -23,7 +23,8 @@ class UnifiedPaperManager(OrderManager):
         if not isinstance(policy, BookPolicy):
             raise ValueError("unified inplay manager requires BookPolicy")
         saved = store.db.execute("SELECT config FROM pe_control WHERE id=1").fetchone()
-        if saved and json.loads(saved[0]) != asdict(policy):
+        additive={'research_phase','research_phase_age_ms','max_order_lifetime_ms'}
+        if saved and (set(asdict(policy))-set(json.loads(saved[0]))-additive or asdict(BookPolicy(**json.loads(saved[0]))) != asdict(policy)):
             # Refuse legacy/incompatible writers before creating a new ledger
             # or capital receipt. Historical results remain read-only auditable.
             raise ValueError("policy/version immutable; use a fresh v2.1 paper database")
@@ -45,7 +46,17 @@ class UnifiedPaperManager(OrderManager):
         CREATE TABLE IF NOT EXISTS ip_own_fills(id TEXT PRIMARY KEY,exchange_ms INTEGER,receipt_ms INTEGER,asset_id TEXT,side TEXT,quantity TEXT,payload TEXT);
         CREATE UNIQUE INDEX IF NOT EXISTS ip_unique_cash_receipt ON ip_income(json_extract(evidence,'$.cash_flow_id')) WHERE stage='RECEIVED';
         """)
-        self.run_id = digest(["book-driven-unified-v2", asdict(policy)])
+        prior=store.db.execute("SELECT run_id FROM l6_accounts WHERE lane='UNIFIED_PAPER'").fetchall()
+        if len(prior)>1:raise ValueError('ambiguous existing ledger')
+        self.run_id = prior[0][0] if prior else digest(["book-driven-unified-v2", asdict(policy)])
+        if saved and json.loads(saved[0]) != asdict(policy):
+            # Nullable/additive policy defaults only; no account or capital reset.
+            filename=store.db.execute('PRAGMA database_list').fetchone()[2]
+            from contextlib import closing
+            with closing(__import__('sqlite3').connect(filename+'.pre-research-backup')) as backup:
+                store.db.backup(backup)
+            with store.db:
+                store.db.execute('UPDATE pe_control SET config=? WHERE id=1',(encode(asdict(policy)),))
         self.ledger = Ledger(store.db, self.run_id, "UNIFIED_PAPER")
         if not self.ledger.state()["capital"] or self.ledger.state()["last_ms"] == -1:
             self.ledger.add(digest([self.run_id, "CAPITAL"]), start_ms, "CAPITAL", {"amount": policy.initial_cash, "source": "explicit virtual cash contribution"})
@@ -108,8 +119,9 @@ class UnifiedPaperManager(OrderManager):
             return True
 
     def enqueue(self, request_id, target, frame, min_edge="0.01"):
-        if any(k in target or k in frame for k in ("reversal", "reversal_signal", "predicted_winner", "final_result", "win_probability", "fair_probability")):
-            raise ValueError("directional/reversal/prediction fields forbidden in BOOK_DRIVEN input")
+        # Strategy reads its allowlisted fields; unrelated source metadata is inert.
+        if target.get("intent_valid_until_ms", self.now+1) <= self.now:
+            raise ValueError("unsent intent expired")
         current = self.prepare_submission_frame(None, frame)
         return super().enqueue(request_id, target, current, min_edge)
 
@@ -121,6 +133,9 @@ class UnifiedPaperManager(OrderManager):
         return {**frame, "phase": self.phases.boundary(frame, self.now)}
 
     def phase_frame(self, frame):
+        if self.policy.research_phase:
+            row = self.db.execute("SELECT payload FROM ip_session_config WHERE id='research_phase_grant'").fetchone()
+            return {**frame, 'research_phase_grant': json.loads(row[0]) if row else None}
         if not self.policy.allow_manual_phase:
             return {k: v for k, v in frame.items() if k != "manual_confirmation"}
         latest = None
@@ -187,7 +202,9 @@ class UnifiedPaperManager(OrderManager):
             # Phase is a permission gate, not a requirement to permanently kill
             # an otherwise clean pre-game observer. Live data faults with active
             # risk are severe and require reconciliation/manual reset.
-            severe = [r for r in reasons if r not in {"phase_not_permitted", "operator_quotes_disabled"}]
+            severe = [r for r in reasons if r in {"identity_mismatch", "unsupported_market", "unknown_order_state"}]
+            if not self.policy.research_phase:  # strict legacy replay contract retained as a comparison
+                severe = [r for r in reasons if r not in {'phase_not_permitted','operator_quotes_disabled'}]
             for reason in reasons:
                 self._risk(reason, evidence={"frame": frame})
             if not self.policy.enhanced:
@@ -197,6 +214,10 @@ class UnifiedPaperManager(OrderManager):
                         self._risk("observed_depth_drained_baseline", evidence={"asset_id": frame["asset_id"], "side": side, "monitor_only": True})
             if severe and (any(o["state"] in ACTIVE for o in self.orders()) or any(decimal(q) > 0 for q in self.account()["positions"].values())):
                 self._kill(";".join(sorted(set(severe))))
+            elif reasons:
+                for order in self.orders():
+                    if order['asset_id'] == frame['asset_id'] and order['state'] in ACTIVE:
+                        self._cancel(order)
         return sorted(set(reasons))
 
     def mark_equity(self, frames):
@@ -208,7 +229,13 @@ class UnifiedPaperManager(OrderManager):
         with self.db:
             account = self.account()
             if any(decimal(q) and asset not in marks for asset, q in account["positions"].items()):
-                self._kill("daily_equity_unavailable")
+                if not self.policy.research_phase:
+                    self._kill('daily_equity_unavailable')
+                    return None
+                for order in self.orders():
+                    if order['state'] in ACTIVE:
+                        self._cancel(order)
+                self._risk("daily_equity_unavailable", evidence={"valuation": "UNKNOWN", "account_corruption": False})
                 return None
             equity = decimal(account["cash"])+sum((decimal(q)*marks.get(a, decimal(0)) for a, q in account["positions"].items()), decimal(0))
             daily = account["daily"].setdefault(str(self.now//86400000), {"baseline": str(equity), "baseline_ms": self.now})

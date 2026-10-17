@@ -159,7 +159,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
     source = Store(source_path)
     now = utc_ms()
     saved = store.db.execute("SELECT config FROM pe_control WHERE id=1").fetchone()
-    policy = BookPolicy(**json.loads(saved[0])) if saved else BookPolicy(allow_manual_phase=manual_file is not None)
+    policy = BookPolicy(**json.loads(saved[0])) if saved else BookPolicy(allow_manual_phase=manual_file is not None, research_phase=control is not None)
     if policy.allow_manual_phase != (manual_file is not None):
         source.close()
         store.close()
@@ -213,6 +213,11 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                     selected, reason = select_market(event, raw, str(nba["series"]), utc_ms(), nba.get("ordering"), scope="full-game", research=research)
                 if not selected or not selected.get("home_away_evidence"):
                     raise ValueError("market identity/type/season/roles failed: "+reason)
+                if initial_market:
+                    invariant = ('market_id','condition_id','event_id','home_team','away_team','outcomes','rules_verified')
+                    if any(selected.get(k) != initial_market.get(k) for k in invariant):
+                        raise ValueError('selected identity/rules changed; explicit confirmation required')
+                    selected['research_authorized'] = bool(initial_market.get('research_authorized'))
                 at = utc_ms()
                 if market_state.get("resolved"):
                     selected["status"]["closed"] = True
@@ -235,7 +240,11 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                 health["rest_errors"] += 1
                 runner.issues.append("METADATA_"+type(error).__name__)
                 source.health(utc_ms(), "disconnected", "metadata_unavailable")
-                om.kill("runner_metadata_identity_or_transport_error")
+                if isinstance(error, ValueError):
+                    om.kill("runner_metadata_identity_or_rules_error")
+                else:
+                    with om.db:
+                        om._risk('metadata_transport_unavailable', evidence={'type':type(error).__name__})
             await asyncio.sleep(10)
 
     async def books_loop():
@@ -411,6 +420,11 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                 rows = message
                 reuse = False
             contract = (contracts or {}).get(str(market_id), {})
+            if policy.research_phase and runner.bound_market and not contract:
+                m=runner.bound_market
+                contract={'event_id':m['event_id'],'game_id':str(m.get('polymarket_game_id') or ''),
+                          'home_team':m.get('home_team'),'away_team':m.get('away_team'),
+                          'identity_evidence':'revalidated Gamma explicit game ID and home/away roles'}
             item = sports_state.get(str(contract.get("game_id")))
             if item:
                 for f in rows:

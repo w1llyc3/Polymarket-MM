@@ -128,6 +128,7 @@ class PauseLifecycle(unittest.TestCase):
 class Discovery(unittest.IsolatedAsyncioTestCase):
     async def test_bounded_catalog_and_start_chain(self):
         event, market, _ = fixture()
+        market['description']='Final score including any overtime; postponed; canceled; 50-50.'
         now = parse_time('2026-10-20T18:00:00Z')
         rows = []
         for key, live, ended, kind in [('scheduled', False, False, 'moneyline'), ('live', True, False, 'moneyline'), ('ended', False, True, 'moneyline'), ('wrong', True, False, 'spread')]:

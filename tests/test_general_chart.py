@@ -127,7 +127,7 @@ class ChartTests(unittest.TestCase):
         with patch('nba_recorder.inplay.runner.utc_ms',return_value=AT+8):self.r.feed(thin,provenance='synthetic')
         thin_point=query(self.path,'a',AT,AT+8)['prices'][-1]
         self.assertEqual(thin_point['mid'],'0.50')
-        self.assertIn('depth_drained',thin_point['reference_quality'])
+        self.assertNotIn('depth_drained',thin_point['reference_quality'])  # liquidity is not data corruption
         self.r.connection_guard=lambda:False;self.feed(AT+20)
         after=query(self.path,'a',AT,AT+20)
         self.assertIsNone(after['prices'][-1]['mid']);self.assertIn('disconnected',after['prices'][-1]['quality'])
