@@ -1,0 +1,278 @@
+# Polymarket NBA MM — 通用比赛发现 + 单张价格与交易图
+
+**日常入口：首次 `install-console.cmd`；以后 `start-console.cmd`。** 保留Python、本地原生前端、单owner、Paper OMS/FIFO，不需Node构建、钱包、私钥或博彩赔率key。
+
+网页新增按实际来源动态发现NBA季前赛、常规赛、附加赛、季后赛/总决赛；不再把球队、旧赛季日期或固定slug当作只读采集白名单。来源无法证明类别时显示UNKNOWN，身份明确仍可观察记录，不能因此授予Paper。官方NBA赛程本机403，本轮真实Gamma发现12场；未来类别与跨赛季路径有fixture测试，不代表未来比赛已经上架。
+
+02页新增**一张价格与交易图**：盘口中间价阶梯、买卖一价差带、已接受Paper挂单、公开/模拟成交、风险/阶段。做市/趋势是显示预设；切换不改变交易模式，不会生成方向信号。按当时本地可见时间对齐，缺口断线，历史库存/PnL来自当时日志，未知不拿当前值倒填。
+
+**256项测试通过（原242项保留，新增14项）。** 真实Heat–Magic观察与独立合成部分成交已通过浏览器/账本验证。当前以 [GENERAL_DISCOVERY_CHART_ACCEPTANCE.md](GENERAL_DISCOVERY_CHART_ACCEPTANCE.md) 为准；其中分别列Discovery、Recording、Chart、Controlled Paper、Real-game Quote、Live状态与限制。真实赛中报价/整场覆盖仍未验收，Live固定NO-GO。旧季前赛验收与课程报告保留为历史。
+
+## 不用CLI的日常流程
+
+1. 打开操作台，选“全部类别”或具体类别，再选今天/明天/未来7天，或自定义1至8天。点刷新，查看身份、类别、数据来源和未上架/失败原因。日期显示UTC+8，不用日期猜slug。
+2. 选真实比赛和“只观察/记录”，或满足独立准入后选受控Paper，再确认启动；不知道类别可以观察，不能绕过Paper门。正在采集的比赛置顶，刷新列表不切换账户。
+3. 打开“02 盘口与报价”：选一个结果、做市/趋势、时间范围；可缩放/拖动/按钮平移与回到最新，展开双结果盘口或悬停原始证据。公开成交与Paper成交标记不同，无成交不造点。研究水平线/备注只存本地浏览器，与订单隔离。
+4. 暂停报价或停止Paper仍继续公开采集；停止全部采集才结束会话。等STOPPED/核对回执，查看未确认订单及残余库存；停止不等于清仓，新会话现金不代表旧仓退出。
+5. 导出会话报告；图表按钮另导出已加载数据与本地标注。has_more期间图还没加载完整，不把局部导出当作完整数据库。完整原始数据与账本留在 `data/console`。
+
+
+## Windows 安装与日常使用
+
+1. 安装 Python 3.12（含 Python Launcher），下载/拉取本仓库。
+2. 首次双击 `install-console.cmd`，安装锁定的两个Python依赖。已有 `.venv` 会复用；失败时窗口保留中文提示。没有 Node/React 构建步骤。
+3. 更新代码后如旧服务还在运行，请先停止会话并关闭旧启动窗口；重新启动才能加载新版。此后双击 `start-console.cmd`，浏览器自动打开 `http://127.0.0.1:8765`。重复双击复用健康实例，跨端口也禁止同仓库第二个owner。
+4. 新版默认全部类别，可按类别、UTC+8日期和阶段筛选。点“刷新真实比赛”，选择比赛和模式，再确认启动。赛前观察不等于赛中报价验证；真实体育字段不足时仍 UNKNOWN/NO_QUOTE。可以直接选“合成演示”，但不会伪装为实时行情。
+5. 停止时点“停止并撤销 Paper 活动单”，等待后台回执与STOPPED，检查未确认订单、残余库存，再导出报告。关网页不停止后台风险检查；关闭启动窗口前应先停止会话。
+
+端口冲突可关闭占用程序，或开发诊断用 `.\.venv\Scripts\python.exe -m nba_recorder.console --port 8766`；不要绕过已有实例锁。目录不可写请检查仓库下 `data/console` 权限；依赖失败重跑安装入口。服务/网页失联时不能假定撤单成功，应检查进程和会话账本。首次安装未在全新Windows系统做端到端验证，本轮复用了现有Python 3.12环境。
+
+四页：比赛与运行、盘口与报价、订单与账本、操作与诊断。盘口使用真实结果标签，报价中心/距离不是胜率；数据过期或后台离线会变灰。未知估值显示“未知”。预计/确认返佣不当现金，未归属奖励不算单场收入。人工阶段确认本版网页只读，不自动续期。网页离线回放明确禁用，已有封存CLI继续可用。
+
+真实会话可选60秒短测至4小时实验上限；建议开赛前15分钟启动，确认结束后继续10分钟。比赛阶段未知/策略HALTED仍继续公开采集；“停止Paper”保留采集，“停止全部采集”才结束Runner。到限撤单、核对并保持HALTED，未确认完整覆盖仍NOT_COMPLETE。请保持电脑联网不休眠，工具不修改电源设置。合成演示按45秒虚拟事件流播放。
+
+每次明确启动使用独立Paper研究账户；旧库存和亏损留在旧账本，不能把新会话现金100当成旧账户清仓或恢复。当前网页只展示本次会话。原始数据/订单/账本在 `data/console` 本机保存，GitHub只提交有界、已标来源的验收证据。API、幂等回执、安全限制见 [LOCAL_CONSOLE_API.md](LOCAL_CONSOLE_API.md)。
+
+**Data短窗GO / Offline Paper受控GO / Real-input Observation受控GO；真实报价验收、无人值守及Live继续NO-GO。** 界面可用不代表体育数据契约、真实成交概率或盈利能力已经通过。
+
+## v2.1 历史基线
+
+本轮按 `NBA_MM_V2_1_CODEX_FIX.md` 修复，审计基线为 `1a1eb9b304b6e47ea7e75c623d6ecd75ba86748c`。当前结论见 [V2_1_REVIEW_FIX_ACCEPTANCE.md](V2_1_REVIEW_FIX_ACCEPTANCE.md)，它取代下面 v2/课程历史报告中的当前验收结论；旧报告和测试保留。
+
+已修复自身预留导致有效 SELL/REDUCE_ONLY 被误撤、体育/成交在处理完成前提前进入回放的问题。新增独立墙钟 watchdog、单场真实输入 `run-paper`、有限期 `MANUAL_CONFIRMED`、公共流量与自身成交分账诊断。库存规则明确为“净多头抑制买入，卖价距离下限不变”，不是双边库存偏移。完整测试 **204 PASS / 0 FAIL**（原183项 + 新增21项）。
+
+真实35秒窗口连接了 Gamma/CLOB REST、市场/体育 WebSocket，系统保持 **NO_QUOTE、零订单、零真实提交**；没有 NBA 体育阶段样本，因此真实输入报价执行闭环、完整比赛与无人值守均未验收。[逐字段体育契约](SPORTS_FIELD_CONTRACT_V2_1.md)和[原始运行证据](evidence/v21/real-run.json)可复核。数据短窗连通 GO、受控离线 Paper GO、真实输入观察 GO；真实输入报价验收、无人值守及 Live 均 NO-GO。
+
+## v2.1 运行入口
+
+```powershell
+# 在仓库根目录；公共接口，不需要钱包或博彩赔率 key。
+.\.venv\Scripts\python.exe -m nba_recorder scan --scope full-game
+# 先用 scan 核实 event slug / market ID；下面是本轮实际核实过的常规赛样例，不能永久假定有效。
+.\.venv\Scripts\python.exe -m nba_recorder.inplay run-paper --db data/v21-new-paper.sqlite --source-db data/v21-new-source.sqlite --event-slug nba-bos-det-2026-10-20 --market-id 5676016 --seconds 35 --model L2
+.\.venv\Scripts\python.exe -m nba_recorder.inplay show --db data/v21-new-paper.sqlite
+.\.venv\Scripts\python.exe scripts/validate_inplay.py --db data/v21-new-paper.sqlite --out data/v21-audit.json
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+# 相同合成流、共享 Paper OMS/FIFO 的修复前后规划器对照，需要本地保留基线 Git 对象。
+.\.venv\Scripts\python.exe scripts/compare_v21_retention.py --out data/v21-retention.json
+```
+
+`run-paper` 只绑定显式的一场比赛。REST 双资产完整快照、公开市场成交、体育事件进入同一 BookSession/OMS/FIFO；250ms watchdog 独立于源消息与 HTTP 等待，静默时仍核查陈旧数据/撤单。这里使用 REST 周期快照，不声称维护了市场 WS 增量连续性；原 `record` 的 WS 重同步采集路径仍保留。L0/L1/L2 均为未校准模拟，不能等价于真实成交。
+
+自动体育契约不足时 UNKNOWN/NO_QUOTE 是预期结果。短窗结束取消 Paper 活动订单、核对并保持 HALTED；重启不会自动解锁，确需人工复位可显式加 `--operator-reset`，失败仍停机。v2.1 使用**全新 Paper 数据库**；旧政策账本不静默迁移，不注入新资本，仍可只读查看/审计。原始采集库允许添加 nullable 时序列，旧行缺处理证据保持 UNKNOWN。
+
+人工研究可另用 `confirm-phase --help` 和 `run-paper --manual-file <文件>`：必须由操作者实际核实游戏身份、IN_PROGRESS、RUNNING、节次与剩余时间，并提供 evidence、exit-instructions；确认最长15秒，过期撤单并对未清风险保持人工处置。人工确认不会伪造上游时间或 paused=False，不能算自动数据契约通过。默认 reduce=180秒/close=60秒未经校准和用户策略确认，不是最佳退出时间或实盘授权。
+
+时间口径：exchange=源交易所时间；received=本地回调接收；processed=处理完成；strategy_available=策略可读取时点。封存流中全部分支使用已记录处理完成时间，未知时不补零/现在；实际 runner 的队列等待另在可用时间与 backlog 中保留。延迟公开成交仍按其原始 exchange time 判断曾经在场的 Paper 挂单，不能把已确认取消误当作从未存在成交；更正后的账本须 HALTED 核对。同毫秒跨通道顺序无证据时不假定成交，并记录不确定性。
+
+以下为保留的 v2 与 Lesson 2–7 使用说明；**183 PASS 是历史结果，本轮测试结果以 v2.1 验收报告为准**。
+
+主路线调整为 **Polymarket.com NBA 全场 Moneyline、赛中、盘口驱动、小额及库存受限的做市研究**。使用盘口中点作为可观察参考，不把它解释为最终胜率；研究价差、可核实返佣、不利成交和风险退出成本。原赛前 EXTERNAL_FAIR 保留。
+
+**新主线 BOOK_DRIVEN 不需要博彩赔率 key 或两个外部来源。** 它要求有效盘口、可信比赛阶段与时钟语义、时效、资金/库存及提交边界风控；缺失时 NO_QUOTE，不静默回退至另一模式。
+
+v2 历史改动见 [INPLAY_BOOK_DRIVEN_ACCEPTANCE.md](INPLAY_BOOK_DRIVEN_ACCEPTANCE.md)。下方 Lesson 2–7 记录是保留的历史基线。
+
+## v2 入口
+
+```powershell
+# 采集范围与报价权限分离。显式指定一场真实市场，允许继续记录赛中/末段/加时。
+.\.venv\Scripts\python.exe -m nba_recorder scan --scope full-game
+.\.venv\Scripts\python.exe -m nba_recorder record --scope full-game --market-id 5676016 --db data/full-game.sqlite --minutes 30 --limit 1 --stale 3 --resync 2
+# 上述 ID 为曾经验证的样例；运行时以 scan 当时结果为准。
+.\.venv\Scripts\python.exe -m nba_recorder.inplay sports-record --db data/sports.sqlite --seconds 60
+# A/B × L0/L1/L2 × 两组虚拟延迟，同资金、同一封存流；输出 JSON/CSV。
+.\.venv\Scripts\python.exe -m nba_recorder.inplay demo --out data/v2-new-demo
+.\.venv\Scripts\python.exe -m nba_recorder.inplay show --db data/v2-new-demo/B-L2-2ms.sqlite
+.\.venv\Scripts\python.exe scripts/validate_inplay.py --db data/v2-new-demo/B-L2-2ms.sqlite --out data/v2-audit.json
+```
+
+`--out` 演示目录必须全新。A 为固定距离/库存限制基线；B 增加异常暂停、库存偏移和更早 REDUCE_ONLY。三模型的模拟 fill 均经异步 Paper OMS 更新同一 FIFO 账本；不混用旧即时撤单回放结果。默认现金初始化、零份额；演示显式用 $5 抵押现金换两资产各5份，资本贡献不变。
+
+比赛阶段为 PRE_GAME_OBSERVE / SYNCING / ACTIVE_MM / REDUCE_ONLY / MM_CLOSED / UNKNOWN。MM_CLOSED 持久锁定，加时/重启不能自动开放。REDUCE_ONLY 按组合不平衡与活动承诺限量，禁止拆坏完整对冲或制造反向敞口。风险退出有独立距离/规模预算，仍遵守 post-only 和账户限制。
+
+官方 sports 原始流可记录，但 `elapsed`、上游更新时间、暂停语义和 game→market 关系必须逐项核验；默认 **UNKNOWN，不开放真实赛中 Paper 报价**。不通过墙钟推算比赛剩余时间。时钟修正、冲突或失效只会更保守。读盘口构建封存流无需赔率：
+
+```powershell
+.\.venv\Scripts\python.exe -m nba_recorder.inplay freeze-book --source data/full-game.sqlite --db data/book-tape.sqlite --start-ms <UTC毫秒起点> --end-ms <UTC毫秒终点> --sports-source data/sports.sqlite
+# 使用输出 tape ID；没有经核验的 sports contract 时预期 NO_QUOTE。
+.\.venv\Scripts\python.exe -m nba_recorder.inplay replay --db data/book-paper.sqlite --tape-db data/book-tape.sqlite --tape <输出的tapeID> --model L2 --strategy B
+```
+
+`freeze-book --contracts` 接受经核验的显式字段/身份契约；不提供可直接用于真实比赛的假契约。旧记录缺少处理延迟证据时 backlog 为 UNKNOWN，不能授权报价。BOOK_DRIVEN 输出 reference_mid / quote_center / quote_distance；Markout 为成交后1/3/5/10/30秒的事后 signed 诊断。预计返佣、确认返佣和到账现金分层，未归属奖励保持 unallocated，不算 NBA 收益。
+
+公开账户研究独立于报价路径：
+
+```powershell
+.\.venv\Scripts\python.exe -m nba_recorder.wallet_research --address 0x216050de6080fac3926226b2b8ce3d5544784c78 --out data/wallet-new
+```
+
+默认只采固定一小时窗口，保留 profile/proxy、完整请求参数、HTTP 状态、原始响应及摘要；分页超限拆分时间窗，同秒超限/请求预算耗尽显式 TRUNCATED。`takerOnly=false` 明确请求包含 Maker 的全成交，绝不把 BUY/SELL 当角色；无法核实则 UNKNOWN。没有完整窗口不生成金额统计。本轮两账户的一小时窗口均无符合 NBA 样本，不能称为已验证的“几美元 NBA Maker”。
+
+v2 新代码：`nba_recorder/inplay/`（阶段、盘口参考、统一 OMS/账本、单写者、成交代理、报告、体育流及无赔率封存流）；`nba_recorder/wallet_research/`（只读证据）。仍无自动逆转策略、跟单、方向分账或真实执行接口。
+
+**当前阶段：v2 盘口驱动 Paper，保留 Lesson 2–7；禁止真实交易。** 本项目没有真实订单提交适配器，不读取钱包私钥、不签名、不修改真实账户资金，也没有 Live 解锁配置。仅支持 **Polymarket.com**，不混用 Polymarket US 的 API、市场、账户或 SDK。
+
+README 更新：2026-10-15（Asia/Shanghai）。v2 完整回归 **183 项通过、0 失败**，包含全部原有155项及新增28项；原 Lesson 7 的16个故障场景保留。这些证据不表示当前真实比赛阶段、盘口或赔率持续可用。
+
+## 当前可以用来做什么
+
+- **Data GO**：扫描 NBA 2026–27 常规赛赛前全场 Moneyline，记录真实公开盘口，查看 BBO、深度和数据新鲜度。
+- **受控离线 Paper GO**：在同一封存事件流上比较 1¢ / 2¢ / 3¢ 阈值及三种模拟成交模型，测试撤单竞态、风险熔断、恢复核对，生成账本及报告。
+- **无人值守整体 Paper NO-GO**：BOOK_DRIVEN 的真实比赛身份/时钟/暂停/上游新鲜度、完整比赛和长时间故障验收仍有缺口。外部赔率仅阻塞 EXTERNAL_FAIR，不再阻塞 BOOK_DRIVEN。
+- **Limited Live NO-GO**：当前不具备实盘做市验收证据，也没有实盘授权。模拟 Edge、Markout、成交或 PnL 均不得解释为真实收益。
+
+完整证据、12 项模块状态及 P0/P1/P2 清单见 [MVP_ACCEPTANCE_REPORT.md](MVP_ACCEPTANCE_REPORT.md)。截至当前代码，开幕比赛期间可运行公开采集与受控模拟研究，不能承诺自动实盘做市。
+
+## 已实现的模块
+
+- **Lesson 2 — Scanner / Recorder**：动态发现 NBA series，校验赛季、赛前、Moneyline、球队与主客角色；输出市场/资产 ID、开赛时间、tick、最小数量和状态。REST + WebSocket、重连/重同步、原始事件/标准化盘口、SQLite 去重及只读 CLI。
+- **Lesson 3 — Odds / Fair Value**：The Odds API 与本地 JSON Provider，American/Decimal Odds、Proportional De-vig、严格事件/规则匹配、来源时效与冲突检查、Consensus Fair Value、Edge 及四期限 Markout。缺数据输出 NO_QUOTE。
+- **Lesson 4 — Quote Engine**：TWO_SIDED / BUY_ONLY / SELL_ONLY / NO_QUOTE；价格、tick、maker-only、最小数量、资金/库存与风险约束；独立阈值实验、封存回放及生命周期日志。
+- **Lesson 5 — Paper OMS**：独立 Order Manager、Paper Exchange、部分成交、撤单请求/确认、拒单、TIMEOUT / UNKNOWN / RECONCILED、Kill Switch、承诺风险、日亏损熔断及持久化恢复。
+- **Lesson 6 — Fill / Inventory / Exit / PnL**：Touch、Trade-through、Queue-aware 三种代理；FIFO 多批次账本、部分退出、完整份额配对/结算；退出与对冲候选、会计与策略归因、UTC 日报、CSV。
+- **Lesson 7 — Stress / Acceptance**：确定性故障矩阵、五态风险控制、提交边界最新参考复检、独立 Paper 成交账余额 reducer、权威订单/现金/库存核对及 GO/NO-GO 报告。
+
+风险控制支持 ACTIVE、PAUSED、HALTED、RECONCILING、READY_FOR_MANUAL_RESET。仅 ACTIVE 可提交新的 Paper 风险订单；核对失败保持 HALTED，严重熔断不自动恢复，UNKNOWN 不视为已取消。核对通过后仍需显式人工复位。
+
+**集成边界：** 保留的 Lesson 5/6 旧路径仍是异步 OMS 与即时撤单回放两套研究工具。v2 新 `inplay` 路径已经统一 OMS 与 FIFO，事件事务原子化，拥有跨进程排他写锁和子进程异常退出测试；Paper authority 仍与 OMS 同进程、同 SQLite，不能声称独立服务故障域已验收。
+
+## 快速开始
+
+需要 Python 3.12+。以下命令在 Windows PowerShell、仓库根目录执行，无需激活虚拟环境。
+
+```powershell
+git clone https://github.com/w1llyc3/Polymarket-MM.git
+cd Polymarket-MM
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+```
+
+Linux/macOS 可将 `.\.venv\Scripts\python.exe` 换为 `.venv/bin/python`。依赖为固定版本 `httpx`、`websockets`；没有含真实交易能力的 SDK 依赖。
+
+### 1. 扫描和采集真实公开盘口
+
+```powershell
+.\.venv\Scripts\python.exe -m nba_recorder scan
+.\.venv\Scripts\python.exe -m nba_recorder record --db data/nba.sqlite --minutes 30 --limit 3
+# 在另一终端只读查看
+.\.venv\Scripts\python.exe -m nba_recorder show --db data/nba.sqlite --limit 3 --depth 5
+# 主动重连故障验证
+.\.venv\Scripts\python.exe -m nba_recorder record --db data/nba.sqlite --minutes 30 --force-reconnect-seconds 300
+.\.venv\Scripts\python.exe scripts/validate_recording.py --db data/nba.sqlite
+```
+
+没有合格市场时明确报告 `no_matching_markets`；403、超时和 schema 错误不会伪装成没有市场。Ctrl+C 可停止；重启使用同一 DB，重新取快照，不以磁盘盘口直接续接增量。`show` 不联网、不写 DB；停止采集后显示 disconnected/stale。
+
+真实采集只证明 API 和记录功能可用。赛季筛选基于联赛元数据及日历，尚未逐场接入官方 NBA schedule ID；延期和异常命名仍需复核。
+
+### 2. 赔率和 Fair Value
+
+```powershell
+# 无 API key 的合成演示；数据库路径需未使用
+.\.venv\Scripts\python.exe -m nba_recorder.fair_value demo --demo-db data/fv-demo.sqlite
+# 查看真实采集 DB 在当前时点是否具有有效参考
+.\.venv\Scripts\python.exe -m nba_recorder.fair_value evaluate --db data/nba.sqlite
+# 本地授权 JSON 快照格式示例
+.\.venv\Scripts\python.exe -m nba_recorder.fair_value ingest --db data/nba.sqlite --json examples/odds.normalized.example.json
+```
+
+授权 The Odds API 的调用方式：
+
+```powershell
+# ODDS_API_KEY 请通过本机环境配置，不发到聊天或提交到 Git
+.\.venv\Scripts\python.exe -m nba_recorder.fair_value run --db data/nba.sqlite --provider the-odds-api --rules examples/bookmaker_rules.example.json --minutes 30 --interval 30
+```
+
+`bookmaker_rules.example.json` 是结构示例，不是已核验的真实书商规则；必须按授权数据与实际结算条款逐书商核验。配置 key 并不自动满足两独立来源、OT/取消/延期兼容性和时效要求。少于两个有效来源仅可研究；不合格输入 NO_QUOTE。示例 JSON 是 fixture，不是真实当前赔率，不能用于冒充有效实时参考。
+
+当前验收环境尚无真实授权赔率 key 或兼容双来源证据。读取赔率可能消耗 Provider 配额，调用者需自行管理授权与频率。
+
+### 3. 三种成交模型 × 三档阈值
+
+```powershell
+# 生成明确标记的合成事件流与九个独立 Paper 账户
+# 两个路径必须全新；禁止覆盖旧证据
+.\.venv\Scripts\python.exe -m nba_recorder.fill_management demo --source data/research-source.sqlite --db data/research.sqlite
+```
+
+命令输出 `run_id` 和 `tape`。将实际 `run_id` 用于后续命令：
+
+```powershell
+$researchRun = '<填入上一步输出的 run_id>'
+.\.venv\Scripts\python.exe -m nba_recorder.fill_management report --db data/research.sqlite --run $researchRun --out data/research-report.json
+.\.venv\Scripts\python.exe -m nba_recorder.fill_management audit --db data/research.sqlite --run $researchRun
+.\.venv\Scripts\python.exe -m nba_recorder.fill_management export --db data/research.sqlite --run $researchRun --out data/research-csv
+.\.venv\Scripts\python.exe scripts/summarize_acceptance.py --db data/research.sqlite --run $researchRun --out data/acceptance-research.json
+```
+
+日报包含报价机会、模拟成交率、部分成交率、10s/30s/60s/300s Markout、库存/敞口、Trading/Net PnL、费用/奖励、对冲及数据覆盖。缺少对冲成交或旧报价证据时相应指标为 null/N/A。会计以现金流、持仓估值和资本贡献对账；重叠归因不加到总 PnL。
+
+L0 触碰不能证明排队成交；L1 依赖公开成交事件及方向假设；L2 依赖 FIFO、初始可见队列和隐藏量估计。三者均未校准真实成交概率、市场影响或实际延迟。九账户互为反事实，不能相加当成一个账户。
+
+### 4. 确定性故障测试及 Paper OMS
+
+```powershell
+# 新目录；失败返回非零退出码，保留每个场景结果及 SQLite
+.\.venv\Scripts\python.exe -m nba_recorder.stress --out data/stress-new
+.\.venv\Scripts\python.exe -m nba_recorder.paper_execution show --db data/stress-new/service_restart.sqlite
+.\.venv\Scripts\python.exe -m nba_recorder.paper_execution export --db data/stress-new/service_restart.sqlite --out data/paper-csv
+```
+
+矩阵覆盖 FV 突变、赔率过期/冲突、WS 断线、REST 超时、撤单/部分成交竞态、提交响应丢失、重复/同时成交、服务恢复、开赛边界、日亏损与账户不一致，另含提交边界、人工复位及 PAUSED。全部使用 Mock/Paper；延迟 P50/P95/P99 来自 `synthetic_paper_clock`，不能当成真实交易延迟。
+
+更多封存流回放、Paper kill/reconcile/resume 及只读导入命令见 [LESSON5.md](LESSON5.md)、[LESSON6.md](LESSON6.md)。没有退出候选自动执行功能。
+
+## 配置与持久化
+
+[.env.example](.env.example) 列出 `NBA_DB`、`NBA_STALE_SECONDS`、`NBA_RESYNC_SECONDS`、可选 `ODDS_API_KEY`。程序读取进程环境，**不自动加载 `.env`**；例如 `$env:NBA_DB='data/nba.sqlite'`。不要配置私钥。交易所端点不能通过环境变量替换。
+
+[examples/](examples/) 包含报价/Paper 风险策略、模型假设、书商规则结构及赔率 fixture。`lesson6-models-demo.json` 的费用为合成假设；实际费用未知时应人工复核。
+
+- SQLite 保存原始事件、exchange timestamp（如有）、local receive timestamp、市场/资产 ID、深度、事件类型、连接与核验状态。
+- 使用 Decimal 字符串；空盘、锁盘、交叉盘明确标记，不静默修正。
+- 可识别事件跨重启去重；无法识别的相同观察不强行合并。静态盘口重复确认不等于独立行情样本。
+- 公开流尚不能证明全局增量连续性；不可保证同步时重取 REST 快照。断线期间历史事件不能靠快照补回。
+- 封存事件流具备哈希链与不可修改约束；历史决策只读当时已收到的数据，Markout 是之后的事后观察。
+- `data/`、SQLite、日志、`.env` 和 `.venv/` 被 Git 忽略。克隆仓库后需要运行命令生成本地 DB；JSON 验收摘要随代码提供，不能假设 DB 已下载。
+
+## 代码结构
+
+```text
+nba_recorder/
+  api.py / teams.py             只读接口、扫描和球队映射
+  book.py / recorder.py         本地盘口、WS 与重同步
+  storage.py                   原始数据与标准化 SQLite
+  fair_value/                  Provider、去水、匹配、共识、Markout
+  quote_engine/                纯目标报价、封存流、回放及虚拟执行
+  paper_execution/             OMS、Paper authority、风险、核对与延迟
+  fill_management/             L0/L1/L2、FIFO、退出候选、PnL 与日报
+  stress/                      确定性故障矩阵与研究指标投影
+tests/                         单元与 Mock/Paper 集成测试
+scripts/                       连通性、采集/账本核验与验收摘要
+examples/                      不含凭证的配置/合成输入
+```
+
+## 验收证据及下一步
+
+- [MVP_ACCEPTANCE_REPORT.md](MVP_ACCEPTANCE_REPORT.md)：模块状态、真实连接、测试、风险与 GO/NO-GO。
+- [lesson7-stress-results.json](lesson7-stress-results.json)：16 个确定性故障结果。
+- [lesson7-data-validation.json](lesson7-data-validation.json)：真实约 31 秒复核、两次主动断线/三次连接；不是新增长时间验收。
+- [lesson7-ledger-audit.json](lesson7-ledger-audit.json)、[lesson7-research-results.json](lesson7-research-results.json)：九实验账本与研究指标。
+- [VALIDATION.md](VALIDATION.md)：早期真实 30 分钟采集验收；[LESSON3_VALIDATION.md](LESSON3_VALIDATION.md)、[LESSON45_VALIDATION.md](LESSON45_VALIDATION.md)、[LESSON6_VALIDATION.md](LESSON6_VALIDATION.md)：各阶段证据。
+- [LESSON3.md](LESSON3.md)、[LESSON4.md](LESSON4.md)、[LESSON5.md](LESSON5.md)、[LESSON6.md](LESSON6.md)：详细运行方法；[PROJECT_STATUS.md](PROJECT_STATUS.md)：阶段进度记录。文档中的“未提交/未推送”描述为验收当时状态，当前版本以 GitHub 提交历史为准。
+
+已有九实验样本只有 **350 秒、706 asset frames、2 个合成 public prints、14 个代理成交事件**；窗口有效率约 99.43%，不代表全天覆盖或可信策略收益。真实封存盘口在缺少有效赔率时得到 72 NO_QUOTE、0 订单。
+
+v2 后续优先核验真实比赛阶段/时钟来源，完成整场数据及长时间 Paper 验收，校准队列/延迟、退出预算与返佣证据。原 EXTERNAL_FAIR 单独保留授权赔率/规则依赖。P0 未解决不能解除 Live NO-GO。
+
+## 给 ChatGPT / 代码审阅者
+
+建议依次阅读本 README、`MVP_ACCEPTANCE_REPORT.md`、`nba_recorder/stress/engine.py`、`paper_execution/manager.py`、`fill_management/ledger.py` 及对应测试。请重点审查提交边界风险、UNKNOWN/撤单竞态、恢复核对、时间前视、重复记账及 PnL 恒等式；不要仅凭测试通过或模拟正收益推断实盘就绪。若无法访问仓库，请粘贴上述文件，且不要提供 API key 或私钥。
+
+## 官方接口与参考
+
+使用 Polymarket.com Gamma `https://gamma-api.polymarket.com`、CLOB `https://clob.polymarket.com` 的明确 GET 白名单，以及 `wss://ws-subscriptions-clob.polymarket.com/ws/market` 公共市场订阅；不发送交易请求，不跟随接口重定向。
+
+官方资料：[市场发现](https://docs.polymarket.com/market-data/discover-markets)、[实时数据](https://docs.polymarket.com/market-data/realtime-data)、[Python SDK](https://github.com/Polymarket/py-sdk)。工程参考：[polymm](https://github.com/kachence/polymm)、[poly-maker](https://github.com/warproxxx/poly-maker)、[polymaker](https://github.com/yluoc/polymaker)。未复制其真实交易/账户代码；接口与规则变化需重新核验。

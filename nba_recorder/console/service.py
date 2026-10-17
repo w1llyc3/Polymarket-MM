@@ -430,6 +430,8 @@ class ConsoleService:
                      {k:int(params.get(k,0)) for k in ('input','journal','phase','game')})
 
     def chart_event(self, sid, seq):
+        if isinstance(seq,str) and ':' in seq:
+            sid,seq=seq.split(':',1)  # registered original source of a merged timeline
         from .history import resolve
         path=resolve(self.data,sid)
         if not isinstance(sid,str) or len(sid)!=32 or not all(c in '0123456789abcdef' for c in sid) or not 0<int(seq):

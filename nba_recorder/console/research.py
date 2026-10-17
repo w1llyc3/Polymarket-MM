@@ -96,12 +96,15 @@ def analyze(path, as_of=None):
         cutoff=min(as_of,watermark) if as_of is not None and watermark is not None else watermark
         if cutoff is None:return {'as_of_ms':None,'coverage':'NO_DATA'}
         frames,prices,trades,fills={}, {}, [], []
+        from ..inplay.policy import BookPolicy
+        from ..inplay.reference import book_data_risk
+        policy=BookPolicy(**json.loads(db.execute('SELECT config FROM pe_control WHERE id=1').fetchone()[0]))
         input_cursor=0
         for row in db.execute('SELECT rowid,payload FROM ip_inputs WHERE time_ms<=? ORDER BY time_ms,rowid',(cutoff,)):
             e=json.loads(row[1]);input_cursor=max(input_cursor,row[0]);at=e['time_ms']
             for f in e['frames']:
                 asset=f['asset_id'];frames[asset]=f;b=f.get('book') or {}
-                good=f.get('connected') and not b.get('flags') and b.get('bid') is not None and b.get('ask') is not None and 0<=at-f['book_received_ms']<=3000
+                good=not book_data_risk(f,policy,at)
                 prices.setdefault(asset,[]).append({'time_ms':at,'mid':str((D(b['bid'])+D(b['ask']))/2) if good else None,'valid_until_ms':f['book_received_ms']+3000})
             trades.extend({**t,'time_ms':at} for t in e.get('trades',[]))
         account={};valuation={};journal_cursor=0;pending={};resting=set();accepted_ms=0;previous=None;last_time=None;cancel_reasons={};segments=[]
@@ -119,6 +122,7 @@ def analyze(path, as_of=None):
                 authority=d.get('authority')
                 if authority and authority.get('state') in {'OPEN','PARTIALLY_FILLED'}:resting.add(o['id'])
                 if authority and authority.get('state') in {'FILLED','CANCELLED','REJECTED'}:resting.discard(o['id'])
+                if o['state'] in {'UNKNOWN','TIMEOUT','RECONCILED'}:resting.discard(o['id'])
                 if authority and D(str(d.get('delta_fill','0')))>0:
                     fills.append({'id':d.get('report_id') or str(seq),'asset_id':o['asset_id'],'side':o['side'],'price':o['price'],'quantity':str(d['delta_fill']),'time_ms':at})
             if kind=='BOOK_PAPER_EQUITY':valuation=d.get('ledger_valuation') or {};previous=at
@@ -129,6 +133,9 @@ def analyze(path, as_of=None):
         account['reserved_inventory']={k:str(v) for k,v in budget.get('reserved_sell',{}).items()}
         account['available_cash']=str(D(account.get('cash','0'))-budget.get('reserved_cash',D(0)))
         assets=list(frames);pos=account.get('positions',{})
+        eligible=retained=0
+        for r in db.execute('SELECT payload FROM pe_quotes WHERE time_ms<=?',(cutoff,)):
+            retention=json.loads(r[0]).get('retention',{});eligible+=retention.get('eligible_before',0);retained+=retention.get('retained',0)
         from ..fill_management.ledger import empty, reduce_event, valuation as ledger_valuation
         ledger=empty();ledger_cursor=0
         for r in db.execute("SELECT seq,id,time_ms,kind,payload FROM l6_events WHERE lane='UNIFIED_PAPER' AND time_ms<=? ORDER BY seq",(cutoff,)):
@@ -140,6 +147,12 @@ def analyze(path, as_of=None):
             latencies.setdefault(r[0],[]).append(r[1])
         latencies={k:{'count':len(v),**{label:v[min(len(v)-1,max(0,__import__('math').ceil(len(v)*q)-1))] for label,q in [('p50',.5),('p95',.95),('p99',.99)]},'basis':'synthetic_paper_clock_not_real_latency'} for k,v in latencies.items()}
         summaries={}
+        first_time=db.execute('SELECT min(time_ms) FROM ip_inputs WHERE time_ms<=?',(cutoff,)).fetchone()[0]
+        duration=max(0,cutoff-first_time) if first_time is not None else 0
+        coverage={}
+        for a,ps in prices.items():
+            ms=sum(max(0,min(ps[i+1]['time_ms'] if i+1<len(ps) else cutoff,p['valid_until_ms'],cutoff)-p['time_ms']) for i,p in enumerate(ps) if p['mid'] is not None)
+            coverage[a]={'valid_bbo_ms':ms,'recorded_window_ms':duration,'ratio':str(D(ms)/D(duration)) if duration else None,'basis':'recorded interval only, not full game'}
         for asset in assets:
             values=markouts([f for f in fills if f['asset_id']==asset],prices[asset],cutoff)
             weighted=[]
@@ -165,6 +178,10 @@ def analyze(path, as_of=None):
                 'account':account,'valuation':valuation,'valuation_as_of_ms':previous,'ledger_cursor':ledger_cursor,
                 'inventory_lots':[{'asset_id':l['asset_id'],'remaining':l['remaining'],'cost_per_share':l.get('price'),'age_ms':cutoff-l['time_ms']} for l in ledger['lots'] if D(l['remaining'])>0],
                 'latency':latencies,'accepted_order_time_ms':accepted_ms,'cancel_reasons':cancel_reasons,
+                'quote_availability':{'accepted_any_side_ms':accepted_ms,'recorded_window_ms':duration,'ratio':str(D(accepted_ms)/D(duration)) if duration else None,'basis':'known accepted order presence / recorded time; not eligibility-adjusted'},
+                'data_coverage':coverage,
+                'income_stages':[dict(r) for r in db.execute('SELECT id,time_ms,kind,stage,amount,market_id FROM ip_income WHERE time_ms<=? ORDER BY time_ms,id',(cutoff,))],
+                'order_retention':{'eligible_before':eligible,'retained':retained,'ratio':str(D(retained)/D(eligible)) if eligible else None,'basis':'decision opportunities, not frames or time'},
                 'paired_shares':str(min((D(pos.get(a,'0')) for a in assets),default=D(0))),
                 'direction_order':assets,'net_directional_shares':str(D(pos.get(assets[0],'0'))-D(pos.get(assets[1],'0'))) if len(assets)==2 else None,
                 'exit_candidates':exit_depth(account,frames,cutoff),

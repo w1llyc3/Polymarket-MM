@@ -151,3 +151,11 @@ class ResearchTests(unittest.TestCase):
         after=self.om.db.execute('SELECT count(*) FROM ip_inputs').fetchone()[0]
         self.assertLess(after-before,9)
         self.assertGreater(self.om.db.execute("SELECT count FROM ip_diagnostic_intervals WHERE kind='watchdog'").fetchone()[0],1)
+
+    def test_clock_review_cannot_be_bypassed_at_dispatch_boundary(self):
+        f=frame(AT);self.om.phases.update(f,AT)
+        corrected=frame(AT+1,remaining=650)
+        self.assertEqual(self.om.phases.update(corrected,AT+1)['state'],'UNKNOWN')
+        self.assertEqual(self.om.phases.boundary(corrected,AT+1),'UNKNOWN')
+        reviewed=frame(AT+2,remaining=649)
+        self.assertEqual(self.om.phases.update(reviewed,AT+2)['state'],'ACTIVE_MM')

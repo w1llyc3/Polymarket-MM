@@ -1,0 +1,26 @@
+{
+  "source": "SYNTHETIC_DATA",
+  "virtual_duration_seconds": 10800,
+  "wall_seconds": 93.42099079996115,
+  "cpu_seconds": 91.984375,
+  "snapshot_cadence_seconds": 15,
+  "continuous_freshness_proven": false,
+  "watchdog_wall_scheduling_proven": false,
+  "database_bytes": 58187776,
+  "wal_bytes": 4466112,
+  "analysis_seconds": 0.16420299996389076,
+  "ledger_consistent": true,
+  "real_submission_calls": 0,
+  "paper_orders": 580,
+  "fills": {
+    "public_events": 3,
+    "paper_fills": 1,
+    "independent_games": 1
+  },
+  "report_id": "e6d3fd36f2884db48abc8386da063038",
+  "limitations": [
+    "加速稀疏合成流，不是整场真实比赛",
+    "未测浏览器4小时内存/首载和实际网络积压",
+    "没有伪造实盘性能"
+  ]
+}

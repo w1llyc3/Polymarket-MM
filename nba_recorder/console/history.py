@@ -51,9 +51,13 @@ def save_report(root,sid,kind,as_of=None,note=''):
     if not isinstance(note,str) or len(note)>2000:raise ValueError('bounded note')
     path=resolve(root,sid);result=analyze(path,as_of)
     identity=uuid.uuid4().hex
+    db=read_connection(path)
+    try:origin=json.loads(db.execute("SELECT payload FROM ip_session_config WHERE id='console_origin'").fetchone()[0])
+    finally:db.close()
+    if result.get('execution_segments'):origin['execution_source']='OBSERVATION_THEN_PAPER'
     result.update(report_id=identity,session_id=sid,kind=kind,note=note,
                   report_basis='manual research request' if kind=='Q4_MANUAL' else kind,
-                  source=view(root,sid)['origin'],not_real_profit=True)
+                  source=origin,not_real_profit=True)
     target=Path(root)/(sid+'-report-'+identity+'.json')
     # Exclusive creation: late information can only create a new report.
     with target.open('x',encoding='utf-8') as f:json.dump(result,f,ensure_ascii=False,indent=2)

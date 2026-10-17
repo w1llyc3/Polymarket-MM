@@ -17,6 +17,9 @@ def main():
     root=Path('data/next-long');root.mkdir(parents=True,exist_ok=True)
     import uuid
     sid=uuid.uuid4().hex;path=root/(sid+'.sqlite');store=SingleWriterStore(path)
+    import subprocess
+    commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+    dirty=bool(subprocess.check_output(['git','status','--porcelain'],text=True).strip())
     started=time.perf_counter();cpu=time.process_time();peak=0
     try:
         om=UnifiedPaperManager(store,BookPolicy(research_phase=True),AT);session=BookSession(om,'L1')
@@ -38,8 +41,22 @@ def main():
         om.kill('synthetic_run_limit_not_real_game_end');om.advance(om.now+1000);om.reconcile()
         assert om.consistent();assert om.real_submission_calls==0
         t=time.perf_counter();result=analyze(path);analysis_seconds=time.perf_counter()-t
-        report=save_report(root,sid,'POST_SESSION')
+        t=time.perf_counter();report=save_report(root,sid,'POST_SESSION');report_seconds=time.perf_counter()-t
+        from nba_recorder.console.chart import query
+        t=time.perf_counter();projection=query(path,'a',AT,om.now);first_page_seconds=time.perf_counter()-t
+        peak_rss=None
+        if sys.platform=='win32':
+            import ctypes
+            from ctypes import wintypes
+            class Counters(ctypes.Structure):
+                _fields_=[('cb',wintypes.DWORD),('faults',wintypes.DWORD)]+[(n,ctypes.c_size_t) for n in ('peak','working','quota_peak_paged','quota_paged','quota_peak_nonpaged','quota_nonpaged','pagefile','peak_pagefile')]
+            counters=Counters();counters.cb=ctypes.sizeof(counters)
+            current=ctypes.windll.kernel32.GetCurrentProcess;current.restype=wintypes.HANDLE
+            memory=ctypes.windll.psapi.GetProcessMemoryInfo;memory.argtypes=[wintypes.HANDLE,ctypes.c_void_p,wintypes.DWORD]
+            if memory(current(),ctypes.byref(counters),counters.cb):peak_rss=counters.peak
         result={'source':'SYNTHETIC_DATA','virtual_duration_seconds':10800,'wall_seconds':time.perf_counter()-started,
+                'code_commit':commit,'working_tree_dirty':dirty,'peak_working_set_bytes':peak_rss,
+                'report_seconds':report_seconds,'chart_first_page_server_seconds':first_page_seconds,'chart_first_page_has_more':projection['has_more'],
                 'cpu_seconds':time.process_time()-cpu,'snapshot_cadence_seconds':15,
                 'continuous_freshness_proven':False,'watchdog_wall_scheduling_proven':False,
                 'database_bytes':path.stat().st_size,'wal_bytes':Path(str(path)+'-wal').stat().st_size if Path(str(path)+'-wal').exists() else 0,

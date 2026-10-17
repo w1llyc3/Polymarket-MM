@@ -184,6 +184,11 @@ def book_targets(frame, account, orders, catalog, policy):
         if reasons:
             return result
         book, asset, at = frame["book"], frame["asset_id"], frame["time_ms"]
+        eligible_before=0
+        for existing in orders:
+            if existing['asset_id']==asset and existing['state'] in {'OPEN','PARTIALLY_FILLED'}:
+                remaining=decimal(existing['size'])-decimal(existing['filled'])
+                if not submission_risk({**existing,'size':str(remaining),'filled':'0'},frame,account,[o for o in orders if o['id']!=existing['id']],policy,at,retaining=True):eligible_before+=1
         mid = (decimal(book["bid"])+decimal(book["ask"]))/2
         inventory = decimal(account["positions"].get(asset, "0"))
         complement = next(o["asset_id"] for o in frame["market"]["outcomes"] if o["asset_id"] != asset)
@@ -245,5 +250,6 @@ def book_targets(frame, account, orders, catalog, policy):
             if existing["asset_id"] == asset and existing["state"] in ACTIVE and existing["id"] not in retained_ids:
                 result["actions"].append({"action": "WAIT" if existing["state"] in {"CANCEL_PENDING", "UNKNOWN", "TIMEOUT", "RECONCILED"} else "CANCEL", "order_id": existing["id"], "side": existing["side"]})
         sides = {t["side"] for t in result["targets"]}
+        result['retention']={'eligible_before':eligible_before,'retained':sum(t.get('action')=='RETAIN' and next((o['state'] in {'OPEN','PARTIALLY_FILLED'} for o in orders if o['id']==t.get('retained_order_id')),False) for t in result['targets'])}
         result["state"] = "TWO_SIDED" if len(sides) == 2 else "BUY_ONLY" if sides == {"BUY"} else "SELL_ONLY" if sides else "NO_QUOTE"
         return result

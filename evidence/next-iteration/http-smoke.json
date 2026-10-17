@@ -1,0 +1,31 @@
+{
+  "source": "SYNTHETIC_DATA",
+  "session_id": "68839efd9b2549c49d9d00fb2fbb9314",
+  "lifecycle": "STOPPED",
+  "history_readonly": true,
+  "analysis_as_of": 1791954044125,
+  "report_id": "0a58aad511e94e5789b1abcd747a341b",
+  "paper_fills": 1,
+  "real_submission_calls": 0,
+  "receipts": [
+    {
+      "request_id": "c0ebf7410a3f4a309abb233429560a79",
+      "status": "APPLIED",
+      "received_ms": 1792224600271,
+      "command": {
+        "action": "start",
+        "request_id": "c0ebf7410a3f4a309abb233429560a79",
+        "session_id": null,
+        "expected_version": 1,
+        "confirmed": true,
+        "mode": "SYNTHETIC_DEMO"
+      },
+      "result": {
+        "message": "会话已分配，等待后台状态",
+        "session_id": "68839efd9b2549c49d9d00fb2fbb9314"
+      },
+      "applied_ms": 1792224600335,
+      "version": 2
+    }
+  ]
+}

@@ -66,6 +66,19 @@ def make_server(service, port=8765):
                 self.send(200, {"app": APP, "token": token, "real_trading_permission": False})
             elif path == "/api/state":
                 self.send(200, service.read())
+            elif path == '/api/report-download':
+                from urllib.parse import urlparse,parse_qs
+                from .history import resolve
+                import re
+                try:
+                    p=parse_qs(urlparse(self.path).query,strict_parsing=True)
+                    if set(p)!={'session_id','report_id','format'} or any(len(v)!=1 for v in p.values()):raise ValueError('download')
+                    resolve(service.data,p['session_id'][0]);rid=p['report_id'][0];fmt=p['format'][0]
+                    if not re.fullmatch('[0-9a-f]{32}',rid) or fmt not in {'json','md'}:raise ValueError('format')
+                    file=service.data/(p['session_id'][0]+'-report-'+rid+'.'+fmt)
+                    if file.is_symlink():raise ValueError('symlink')
+                    self.send(200,file.read_bytes(),'text/markdown; charset=utf-8' if fmt=='md' else 'application/json',filename='nba-research-report.'+fmt)
+                except (ValueError,KeyError,OSError):self.send(400,{'error':'报告文件不存在或引用无效'})
             elif path in {'/api/sessions','/api/history','/api/research','/api/reports'}:
                 from urllib.parse import urlparse, parse_qs
                 from . import history
@@ -131,6 +144,7 @@ def make_server(service, port=8765):
                 if self.path == '/api/reports':
                     from .history import save_report
                     if set(command)-{'session_id','kind','as_of_ms','note'}:raise ValueError('report fields')
+                    if command.get('kind')=='Q4_AUTO':raise ValueError('auto report is owner-triggered only')
                     result=save_report(service.data,command['session_id'],command['kind'],command.get('as_of_ms'),command.get('note',''))
                     self.send(201,result)
                     return

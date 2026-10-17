@@ -130,6 +130,8 @@ class PhaseController:
             return "MM_CLOSED"
         if self.policy.research_phase:
             from .research_phase import permission
+            if phase['state'] not in {'ACTIVE_MM','REDUCE_ONLY'}:
+                return phase['state']
             chosen, _ = permission(frame, self.policy, at)
             return 'REDUCE_ONLY' if phase['state']=='REDUCE_ONLY' and chosen=='ACTIVE_MM' else chosen
         if self.policy.allow_manual_phase:

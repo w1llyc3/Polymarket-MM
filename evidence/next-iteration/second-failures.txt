@@ -1,0 +1,95 @@
+Executing <Task finished name='Task-2' coro=<IntegrationUnitTests.test_allowlist_rejects_trading_and_us() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:322> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.406 seconds
+Executing <Task finished name='Task-22' coro=<IntegrationUnitTests.test_missing_list_roles_fetches_public_event_detail() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:194> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.344 seconds
+Executing <Task finished name='Task-27' coro=<IntegrationUnitTests.test_no_market_is_distinct_from_failure() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:307> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.344 seconds
+Executing <Task finished name='Task-32' coro=<IntegrationUnitTests.test_pagination_no_market_and_errors() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:331> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.390 seconds
+{"health": "market_resolved", "detail": "a", "local_timestamp": 1792222253284}
+{"health": "market_resolved", "detail": "b", "local_timestamp": 1792222253285}
+{"health": "market_resolved", "detail": "a", "local_timestamp": 1792222253287}
+{"health": "market_resolved", "detail": "b", "local_timestamp": 1792222253288}
+{"health": "started", "detail": "record-only", "local_timestamp": 1792222253311}
+{"health": "connected", "detail": "2", "local_timestamp": 1792222253312}
+{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792222253350}
+{"health": "connected", "detail": "2", "local_timestamp": 1792222253360}
+{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792222253397}
+{"health": "connected", "detail": "2", "local_timestamp": 1792222253421}
+{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792222253459}
+{"health": "connected", "detail": "2", "local_timestamp": 1792222253466}
+{"health": "stopped", "detail": "", "local_timestamp": 1792222253491}
+Executing <Task finished name='Task-86' coro=<AsyncDiscovery.test_all_categories_flow_through_dynamic_metadata_discovery() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:70> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.063 seconds
+Executing <Task finished name='Task-91' coro=<AsyncDiscovery.test_schedule_without_market_distinct_from_access_failure() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:90> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.375 seconds
+Executing <Task pending name='Task-96' coro=<AsyncTests.test_console_research_catalog_and_real_start_parameters() running at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:260> wait_for=<Task pending name='Task-97' coro=<ConsoleService.session() running at D:\vibe coding\polymarket\nba\nba_recorder\console\service.py:422> cb=[Task.task_wakeup()] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py:420> cb=[_run_until_complete_cb() at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py:181] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.359 seconds
+Executing <Task finished name='Task-102' coro=<AsyncTests.test_preflight_access_failure_not_no_market_and_schema_separate() done, defined at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:265> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.468 seconds
+Executing <Task finished name='Task-107' coro=<AsyncTests.test_preflight_success_empty_is_no_matching_market() done, defined at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:271> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.734 seconds
+Executing <Task pending name='Task-119' coro=<Discovery.test_bounded_catalog_and_start_chain() running at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:160> wait_for=<Task pending name='Task-120' coro=<Discovery.test_bounded_catalog_and_start_chain.<locals>.session() running at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:156> cb=[Task.task_wakeup()] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py:420> cb=[_run_until_complete_cb() at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py:181] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.359 seconds
+Executing <Task finished name='Task-119' coro=<Discovery.test_bounded_catalog_and_start_chain() done, defined at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:129> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.375 seconds
+======================================================================
+ERROR: test_incompatible_restart_does_not_write_new_capital_or_replace_ledger (test_v21_controls.ControlRegressions.test_incompatible_restart_does_not_write_new_capital_or_replace_ledger)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] ��һ����������ʹ�ô��ļ��������޷����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\tmphefhrgsh\\paper.sqlite.pre-research-backup'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_v21_controls.py", line 31, in tearDown
+    self.tmp.cleanup()
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] ��һ����������ʹ�ô��ļ��������޷����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\tmphefhrgsh\\paper.sqlite.pre-research-backup'
+
+======================================================================
+FAIL: test_history_is_readonly_and_report_versions_immutable (test_next_iteration.ResearchTests.test_history_is_readonly_and_report_versions_immutable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_next_iteration.py", line 91, in test_history_is_readonly_and_report_versions_immutable
+    self.assertEqual(raw,path.read_bytes());self.assertEqual(self.om.account(),before)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'cas[122 chars]954001000, 'paper_pnl': '0.00'}}, 'events': {'[137 chars]'0'}} != {'cas[122 chars]954000000, 'paper_pnl': '0.00'}}, 'events': {'[137 chars]'0'}}
+  {'cash': '100',
+   'daily': {'20740': {'baseline': '100.00',
+                       'baseline_ms': 1791954000000,
+                       'equity': '100.00',
+-                      'observed_ms': 1791954001000,
+?                                              ^
+
++                      'observed_ms': 1791954000000,
+?                                              ^
+
+                       'paper_pnl': '0.00'}},
+   'events': {'a': 'synthetic-event', 'b': 'synthetic-event'},
+   'positions': {'a': '0', 'b': '0'},
+   'seed_cash': '100',
+   'seed_positions': {'a': '0', 'b': '0'}}
+
+======================================================================
+FAIL: test_stale_cancels_but_not_permanent_account_halt (test_next_iteration.ResearchTests.test_stale_cancels_but_not_permanent_account_halt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_next_iteration.py", line 54, in test_stale_cancels_but_not_permanent_account_halt
+    self.assertTrue(all(o['state'] not in {'OPEN','PARTIALLY_FILLED'} for o in self.om.orders()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_incompatible_restart_does_not_write_new_capital_or_replace_ledger (test_v21_controls.ControlRegressions.test_incompatible_restart_does_not_write_new_capital_or_replace_ledger)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_v21_controls.py", line 212, in test_incompatible_restart_does_not_write_new_capital_or_replace_ledger
+    with self.assertRaisesRegex(ValueError, "fresh v2.1"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 267 tests in 20.155s
+
+FAILED (failures=3, errors=1)

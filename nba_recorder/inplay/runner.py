@@ -218,7 +218,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                 if not selected or not selected.get("home_away_evidence"):
                     raise ValueError("market identity/type/season/roles failed: "+reason)
                 if initial_market:
-                    invariant = ('market_id','condition_id','event_id','home_team','away_team','outcomes','rules_verified')
+                    invariant = ('market_id','condition_id','event_id','home_team','away_team','outcomes','rules_verified','game_start_ms','version')
                     if any(selected.get(k) != initial_market.get(k) for k in invariant):
                         raise ValueError('selected identity/rules changed; explicit confirmation required')
                     selected['research_authorized'] = bool(initial_market.get('research_authorized'))
@@ -331,7 +331,8 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                             processed = utc_ms()
                             if msg.get("event_type") == "last_trade_price" and msg.get("asset_id") in assets:
                                 try:
-                                    trade = {"event_id": key, "asset_id": msg["asset_id"], "condition_id": msg["market"], "side": msg["side"], "price": msg["price"], "size": msg["size"],
+                                    trade = {"event_id": key, "asset_id": msg["asset_id"], "condition_id": msg["market"], "side": msg.get("side"), "price": msg["price"], "size": msg.get("size"),
+                                             "identity_basis":"full public event fingerprint; identical unidentifiable prints may coalesce",
                                              "exchange_ms": int(msg["timestamp"]), "received_ms": received, "processed_ms": processed, "strategy_available_ms": processed}
                                 except (ValueError, KeyError, TypeError):
                                     runner.issues.append("PUBLIC_TRADE_SCHEMA_UNKNOWN")

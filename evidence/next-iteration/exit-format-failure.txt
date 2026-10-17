@@ -1,0 +1,30 @@
+test_analyze_asof_excludes_later_records (test_next_iteration.ResearchTests.test_analyze_asof_excludes_later_records) ... ok
+test_bounded_paper_exit_updates_same_fifo_and_fee_cashflow (test_next_iteration.ResearchTests.test_bounded_paper_exit_updates_same_fifo_and_fee_cashflow) ... FAIL
+test_closed_latch_manual_cannot_reopen (test_next_iteration.ResearchTests.test_closed_latch_manual_cannot_reopen) ... ok
+test_current_data_revalidates_order_without_old_snapshot_expiry (test_next_iteration.ResearchTests.test_current_data_revalidates_order_without_old_snapshot_expiry) ... ok
+test_distribution_conservation_duplicates_and_missing_quantity (test_next_iteration.ResearchTests.test_distribution_conservation_duplicates_and_missing_quantity) ... ok
+test_history_is_readonly_and_report_versions_immutable (test_next_iteration.ResearchTests.test_history_is_readonly_and_report_versions_immutable) ... ok
+test_markout_sign_units_pending_unknown_no_future (test_next_iteration.ResearchTests.test_markout_sign_units_pending_unknown_no_future) ... ok
+test_multi_lot_exits_use_depth_once_and_reserve_pending (test_next_iteration.ResearchTests.test_multi_lot_exits_use_depth_once_and_reserve_pending) ... ok
+test_path_injection_rejected (test_next_iteration.ResearchTests.test_path_injection_rejected) ... ok
+test_research_unknown_category_missing_upstream_time_can_quote (test_next_iteration.ResearchTests.test_research_unknown_category_missing_upstream_time_can_quote) ... ok
+test_stale_cancels_but_not_permanent_account_halt (test_next_iteration.ResearchTests.test_stale_cancels_but_not_permanent_account_halt) ... ok
+test_taker_needs_persisted_authority (test_next_iteration.ResearchTests.test_taker_needs_persisted_authority) ... ok
+test_thin_book_mid_valuation_and_size (test_next_iteration.ResearchTests.test_thin_book_mid_valuation_and_size) ... ok
+
+======================================================================
+FAIL: test_bounded_paper_exit_updates_same_fifo_and_fee_cashflow (test_next_iteration.ResearchTests.test_bounded_paper_exit_updates_same_fifo_and_fee_cashflow)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_next_iteration.py", line 110, in test_bounded_paper_exit_updates_same_fifo_and_fee_cashflow
+    self.assertEqual(result['filled'],'5');self.assertEqual(self.om.account()['positions']['a'],'0')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '5.00' != '5'
+- 5.00
++ 5
+
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.624s
+
+FAILED (failures=1)

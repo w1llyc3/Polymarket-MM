@@ -28,6 +28,11 @@ class UnifiedPaperManager(OrderManager):
             # Refuse legacy/incompatible writers before creating a new ledger
             # or capital receipt. Historical results remain read-only auditable.
             raise ValueError("policy/version immutable; use a fresh v2.1 paper database")
+        if saved and json.loads(saved[0]) != asdict(policy):
+            from contextlib import closing
+            filename=store.db.execute('PRAGMA database_list').fetchone()[2]
+            with closing(__import__('sqlite3').connect(filename+'.pre-research-backup')) as backup:
+                store.db.backup(backup)
         install(store.db)
         initialize(store.db)
         store.db.executescript("""
@@ -56,10 +61,6 @@ class UnifiedPaperManager(OrderManager):
         self.run_id = prior[0][0] if prior else digest(["book-driven-unified-v2", asdict(policy)])
         if saved and json.loads(saved[0]) != asdict(policy):
             # Nullable/additive policy defaults only; no account or capital reset.
-            filename=store.db.execute('PRAGMA database_list').fetchone()[2]
-            from contextlib import closing
-            with closing(__import__('sqlite3').connect(filename+'.pre-research-backup')) as backup:
-                store.db.backup(backup)
             with store.db:
                 store.db.execute('UPDATE pe_control SET config=? WHERE id=1',(encode(asdict(policy)),))
         self.ledger = Ledger(store.db, self.run_id, "UNIFIED_PAPER")

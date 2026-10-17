@@ -1,0 +1,92 @@
+Executing <Task finished name='Task-2' coro=<IntegrationUnitTests.test_allowlist_rejects_trading_and_us() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:322> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.406 seconds
+Executing <Task finished name='Task-22' coro=<IntegrationUnitTests.test_missing_list_roles_fetches_public_event_detail() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:194> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.344 seconds
+Executing <Task finished name='Task-27' coro=<IntegrationUnitTests.test_no_market_is_distinct_from_failure() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:307> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.375 seconds
+Executing <Task finished name='Task-32' coro=<IntegrationUnitTests.test_pagination_no_market_and_errors() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:331> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.360 seconds
+{"health": "market_resolved", "detail": "a", "local_timestamp": 1792222144773}
+{"health": "market_resolved", "detail": "b", "local_timestamp": 1792222144774}
+{"health": "market_resolved", "detail": "a", "local_timestamp": 1792222144776}
+{"health": "market_resolved", "detail": "b", "local_timestamp": 1792222144776}
+{"health": "started", "detail": "record-only", "local_timestamp": 1792222144802}
+{"health": "connected", "detail": "2", "local_timestamp": 1792222144818}
+{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792222144864}
+{"health": "connected", "detail": "2", "local_timestamp": 1792222144874}
+{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792222144914}
+{"health": "connected", "detail": "2", "local_timestamp": 1792222144935}
+{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792222144973}
+{"health": "stopped", "detail": "", "local_timestamp": 1792222144996}
+Executing <Task finished name='Task-85' coro=<AsyncDiscovery.test_all_categories_flow_through_dynamic_metadata_discovery() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:70> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.047 seconds
+Executing <Task finished name='Task-90' coro=<AsyncDiscovery.test_schedule_without_market_distinct_from_access_failure() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:90> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.391 seconds
+Executing <Task pending name='Task-95' coro=<AsyncTests.test_console_research_catalog_and_real_start_parameters() running at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:260> wait_for=<Task pending name='Task-96' coro=<ConsoleService.session() running at D:\vibe coding\polymarket\nba\nba_recorder\console\service.py:403> cb=[Task.task_wakeup()] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py:420> cb=[_run_until_complete_cb() at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py:181] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.375 seconds
+Executing <Task finished name='Task-101' coro=<AsyncTests.test_preflight_access_failure_not_no_market_and_schema_separate() done, defined at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:265> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.485 seconds
+Executing <Task finished name='Task-106' coro=<AsyncTests.test_preflight_success_empty_is_no_matching_market() done, defined at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:271> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.781 seconds
+Executing <Task finished name='Task-118' coro=<Discovery.test_bounded_catalog_and_start_chain() done, defined at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:129> exception=ValueError('ȫ��������δ��ʵ') created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.360 seconds
+======================================================================
+ERROR: test_bounded_catalog_and_start_chain (test_v221_console.Discovery.test_bounded_catalog_and_start_chain)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "D:\vibe coding\polymarket\nba\tests\test_v221_console.py", line 158, in test_bounded_catalog_and_start_chain
+    service.handle({'session_id': None, 'expected_version': service.version, 'action': 'start', 'mode': 'REAL_PAPER', 'market_id': 'live', 'confirmed': True})
+  File "D:\vibe coding\polymarket\nba\nba_recorder\console\service.py", line 271, in handle
+    raise ValueError('ȫ��������δ��ʵ')
+ValueError: ȫ��������δ��ʵ
+
+======================================================================
+FAIL: test_missing_book_with_resting_orders_halts_without_losing_risk_event (test_inplay.InplayTests.test_missing_book_with_resting_orders_halts_without_losing_risk_event)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_inplay.py", line 353, in test_missing_book_with_resting_orders_halts_without_losing_risk_event
+    self.assertEqual(self.om.risk_state, "HALTED")
+AssertionError: 'ACTIVE' != 'HALTED'
+- ACTIVE
++ HALTED
+
+
+======================================================================
+FAIL: test_predictive_fields_cannot_change_orders (test_inplay.InplayTests.test_predictive_fields_cannot_change_orders)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_inplay.py", line 162, in test_predictive_fields_cannot_change_orders
+    with self.assertRaises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_manual_expiry_not_upstream_freshness_and_auto_mode_stays_unknown (test_v21_controls.ControlRegressions.test_manual_expiry_not_upstream_freshness_and_auto_mode_stays_unknown)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_v21_controls.py", line 152, in test_manual_expiry_not_upstream_freshness_and_auto_mode_stays_unknown
+    self.assertTrue(om.halted)
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_watchdog_runs_while_source_is_permanently_waiting (test_v21_controls.IndependentWatchdog.test_watchdog_runs_while_source_is_permanently_waiting)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "D:\vibe coding\polymarket\nba\tests\test_v21_controls.py", line 240, in test_watchdog_runs_while_source_is_permanently_waiting
+    self.assertTrue(om.halted)
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill (test_v22_runner.RunnerBoundaryTests.test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_v22_runner.py", line 41, in test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill
+    self.assertTrue(om.halted)
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 256 tests in 19.637s
+
+FAILED (failures=5, errors=1)
