@@ -1,10 +1,10 @@
 """Bounded recording lifecycle; independent of Paper risk and game-clock gates."""
 class PilotWindow:
     def __init__(self, started_ms, limit_s=14400, postgame_s=600):
-        if type(limit_s) is not int or not 60 <= limit_s <= 14400:
-            raise ValueError('recording limit must be 60..14400 seconds')
-        if type(postgame_s) is not int or not 0 <= postgame_s <= 1800:
-            raise ValueError('postgame recording must be 0..1800 seconds')
+        if type(limit_s) is not int or not 60 <= limit_s <= 28800:
+            raise ValueError('recording limit must be 60..28800 seconds')
+        if type(postgame_s) is not int or not 0 <= postgame_s <= 3600:
+            raise ValueError('postgame recording must be 0..3600 seconds')
         self.started_ms, self.limit_s, self.postgame_s = started_ms, limit_s, postgame_s
         self.finished_ms = None
 

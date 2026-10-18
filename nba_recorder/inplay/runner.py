@@ -155,7 +155,7 @@ class PaperRunner:
 
 
 async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, interval=1, model="L2", manual_file=None, contracts=None, operator_reset=False, control=None, research=False, postgame_s=600, initial_market=None):
-    if seconds <= 0 or seconds > 14400 or interval <= 0 or Path(db_path).resolve() == Path(source_path).resolve():
+    if seconds <= 0 or seconds > 28800 or interval <= 0 or Path(db_path).resolve() == Path(source_path).resolve():
         raise ValueError("bounded duration, positive interval and distinct source/paper paths required")
     api = PublicAPI()
     store = SingleWriterStore(db_path)
@@ -195,7 +195,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
     sports_state = {}
     from ..pilot import PilotWindow
     from ..game_state import information
-    window = PilotWindow(now, max(60, min(14400, int(seconds))), postgame_s)
+    window = PilotWindow(now, max(60, min(28800, int(seconds))), postgame_s)
     stop_reason = "HARD_LIMIT_NOT_COMPLETE"
     with source.db:
         source.db.executescript("CREATE TABLE IF NOT EXISTS game_information(id INTEGER PRIMARY KEY,received_ms INTEGER,processed_ms INTEGER,payload TEXT); CREATE TABLE IF NOT EXISTS public_metadata(id INTEGER PRIMARY KEY,received_ms INTEGER,payload TEXT);")

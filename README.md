@@ -17,6 +17,8 @@ Python + SQLite + 原生本地网页，复用单 Runner / Paper OMS / FIFO。主
 
 ## 运行与测试
 
+10月19日无人值守全部可发现比赛的本机安排、状态路径和限制见 [UNATTENDED_OCT19.md](UNATTENDED_OCT19.md)。Windows任务独立于网页当前单场会话，仅公开采集和Paper。
+
 Python 3.12，固定依赖见 requirements.txt；无需Node构建。
 
 ```powershell
