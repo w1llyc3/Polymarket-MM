@@ -1,0 +1,17 @@
+{
+  "day": "2026-10-19",
+  "timezone": "Asia/Shanghai",
+  "games": {},
+  "mode": "PAPER_ONLY",
+  "per_game_virtual_budget": "25",
+  "accounts_independent": true,
+  "real_submission_calls": 0,
+  "last_scan_ms": 1792344062577,
+  "discovery_status": "NO_LISTED_MARKET",
+  "schedule_only": [],
+  "scan_error": null,
+  "heartbeat_ms": 1792344062577,
+  "active_games": 0,
+  "disk_free_bytes": 662062403584,
+  "scheduler_status": "RUNNING"
+}

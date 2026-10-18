@@ -13,3 +13,5 @@ Windows任务 `NBA-MM-Paper-2026-10-19`：23:00（10月18日+08:00）及当前�
 状态：`data/unattended/2026-10-19/state.json`。公开扫描：同目录discovery.jsonl。各场报告：market-id-report.json。每场源行情与Paper SQLite在`data/console`独立UUID文件，可通过现有历史会话查看；当前网页单场控制不控制这些后台多场任务。停止整体调度用Windows任务计划程序结束该任务；硬终止不是撤单确认，恢复后的Paper状态必须核对。
 
 测试：290项全量回归通过；新增4项覆盖UTC+8边界、US/规则/未知类别拒绝、结束信号尾录与硬上限、预检无订单/重跑session_id不变。旧撤单/重复成交/恢复测试保留。尚未进行真实比赛多场长时间负载验收；L2不能代表真实成交概率。Live NO-GO。
+
+部署检查：一次重启曾退出码1，原因未取得日志，未标为成功；增加`data/unattended/scheduler-errors.log`持久化异常后重新启动，实测进程及RUNNING扫描心跳更新，任务返回267009（正在运行）。初始运行证据见evidence/unattended-oct19/initial-running-state.json，当时NO_LISTED_MARKET、活动比赛0。新增日志补丁后4项调度测试复跑通过；长期可靠性仍待实际验证。

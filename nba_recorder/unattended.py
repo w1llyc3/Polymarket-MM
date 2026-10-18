@@ -161,7 +161,15 @@ def main():
     p.add_argument('--root', type=Path, default=Path(__file__).resolve().parent.parent)
     p.add_argument('--once', action='store_true', help='One real discovery pass; no simulated data')
     a = p.parse_args()
-    asyncio.run(run(a.date, a.root.resolve(), once=a.once))
+    try:
+        asyncio.run(run(a.date, a.root.resolve(), once=a.once))
+    except Exception:
+        import traceback
+        directory = a.root.resolve()/'data'/'unattended'
+        directory.mkdir(parents=True, exist_ok=True)
+        with (directory/'scheduler-errors.log').open('a', encoding='utf-8') as fp:
+            fp.write(datetime.now(CST).isoformat()+'\n'+traceback.format_exc()+'\n')
+        raise
 
 
 if __name__ == '__main__':
