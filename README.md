@@ -25,6 +25,8 @@ Python + SQLite + 原生本地网页，复用单 Runner / Paper OMS / FIFO。主
 
 最新预约见 [10月21日准备状态](OCT21_READINESS.md)；通用无人值守行为与限制见 [原部署说明](UNATTENDED_OCT19.md)。19日任务已禁用，21日任务独立于网页当前单场会话，仅公开采集和Paper。
 
+21日三个开幕赛市场的UNKNOWN分类已修复，依据精确匹配的NBA官方比赛证据，均为常规赛且Paper准入通过；真实公开行情30秒联测、条件与限制见 [分类修复验收](OPENING_MARKET_ACCEPTANCE.md)。赛前及实时条件不足时仍NO_QUOTE，不保证必然报价或成交。
+
 Python 3.12，固定依赖见 requirements.txt；无需Node构建。
 
 ```powershell

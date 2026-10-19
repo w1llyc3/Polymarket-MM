@@ -83,7 +83,8 @@ def make_server(service, port=8765):
                         current=json.loads(state.read_text(encoding='utf-8')) if state.exists() else {}
                         value=json.loads(file.read_text(encoding='utf-8')) if file.exists() else {'day':day,'status':'NOT_GENERATED','sessions':[]}
                         value['scheduler']={k:current.get(k) for k in ('scheduler_status','heartbeat_ms','discovery_status','scan_error','active_games')}
-                        value['current_games']=[{**{k:e.get(k) for k in ('session_id','status','mode','postcapture_status')},'question':e.get('market',{}).get('question'),'season_type':e.get('market',{}).get('season_type')} for e in current.get('games',{}).values()]
+                        from ..unattended import paper_allowed
+                        value['current_games']=[{**{k:e.get(k) for k in ('session_id','status','mode','postcapture_status')},'question':e.get('market',{}).get('question'),'season_type':e.get('market',{}).get('season_type'),'paper_eligible':paper_allowed(e.get('market',{}))} for e in current.get('games',{}).values()]
                         self.send(200,value)
                     else:
                         if set(params)!={'session_id','id','format'}:raise ValueError('download')

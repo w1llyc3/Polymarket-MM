@@ -9,7 +9,18 @@ VERIFIED_GAMES = ({
     "source": "https://www.nba.com/game/0012600018",
     "classification_source": "https://www.nba.com/celtics/news/celtics-announce-2026-27-preseason-schedule",
     "verified_date": "2026-10-16", "method": "official pages cross-checked; not a sports phase contract",
-},)
+}, *({
+    'nba_game_id':game_id,'away_team':away,'home_team':home,
+    'start_ms':start,'season':'2026-27','season_type':'REGULAR_SEASON',
+    'source':'https://www.nba.com/game/'+slug+'-'+game_id,
+    'classification_source':'https://www.nba.com/news/2026-27-nba-regular-season-schedule',
+    'verified_date':'2026-10-19',
+    'method':'official opening-night release and individual game pages; exact teams, roles and UTC time only; not a live phase grant',
+} for game_id,away,home,start,slug in (
+    ('0022600001','bos','det',1792522800000,'bos-vs-det'),
+    ('0022600002','phi','nyk',1792537200000,'phi-vs-nyk'),
+    ('0022600003','okc','sas',1792546200000,'okc-vs-sas'),
+)))
 
 
 def schedule_match(away, home, start):

@@ -6,7 +6,7 @@ from decimal import Decimal
 import httpx
 from .api import GAMMA, array, parse_time, utc_ms
 from .teams import team_code
-from .game_state import schedule_match
+from .game_state import schedule_match, VERIFIED_GAMES
 
 SCHEDULE_URL = 'https://cdn.nba.com/static/json/staticData/scheduleLeagueV2_1.json'
 TYPES = {'ALL','PRESEASON','REGULAR_SEASON','PLAY_IN','PLAYOFFS','UNKNOWN'}
@@ -20,10 +20,12 @@ def classify(event, start, official=None):
     text = ' '.join(labels).lower().replace('_',' ').replace('–','-').replace('summerleague','summer league').replace('allstar','all star')
     excluded = any(x in text for x in ('summer league','all-star','all star'))
     cup = 'cup' in text
-    kind = ('PRESEASON' if 'preseason' in text or 'pre-season' in text else
-            'PLAY_IN' if 'play-in' in text or 'play in' in text else
-            'PLAYOFFS' if 'playoff' in text or ('finals' in text and not cup) else
-            'REGULAR_SEASON' if 'regular season' in text else 'UNKNOWN')
+    kinds=set()
+    if 'preseason' in text or 'pre-season' in text:kinds.add('PRESEASON')
+    if 'play-in' in text or 'play in' in text:kinds.add('PLAY_IN')
+    if 'playoff' in text or ('finals' in text and not cup):kinds.add('PLAYOFFS')
+    if 'regular season' in text:kinds.add('REGULAR_SEASON')
+    kind=next(iter(kinds)) if len(kinds)==1 else 'UNKNOWN'
     round_ = next((v for v in labels if any(x in v.lower() for x in ('conference','first round','second round','nba finals'))), 'UNKNOWN')
     dt = datetime.fromtimestamp(start/1000,timezone.utc)
     year = dt.year if dt.month >= 7 else dt.year-1
@@ -31,7 +33,9 @@ def classify(event, start, official=None):
     parsed=re.fullmatch(r'(\d{4})(?:[-–](?:\d{2}|\d{4}))?',season)
     if parsed:season=f'{parsed[1]}-{str(int(parsed[1])+1)[-2:]}'
     return {'season': season, 'season_type':kind, 'competition_round':round_, 'competition_tags':['NBA_CUP'] if cup else [],
+            'classification_conflict':len(kinds)>1,
             'excluded': excluded, 'season_evidence':{'labels':labels,'source':'official schedule + Gamma explicit metadata',
+            'verified_schedule':official or None,
             'season_label_basis':'explicit season when available, otherwise July-to-June display convention; not classification evidence'}}
 
 
@@ -75,16 +79,17 @@ def normalize_market(event, market, nba, now, official=None):
         if not tick.is_finite() or not minimum.is_finite() or not 0<tick<=1 or minimum<=0:
             return None,'SCHEMA_UNSUPPORTED'
         schedule = schedule_match(roles['away'],roles['home'],start)
+        if official and schedule and official.get('nba_game_id')==schedule.get('nba_game_id'):
+            official={**schedule,**official}
         official = official or schedule
         category = classify(event,start,official)
-        if schedule and category['season_type']=='UNKNOWN':
-            category['season_type']='PRESEASON'
-            category['season_evidence']['verified_schedule']=schedule
         if category.pop('excluded'):
             return None,'EXCLUDED_BY_FILTER'
         description = market.get('description','')
         rules = all(x in normalized_rule for x in ('including any overtime','postponed','canceled','50-50'))
         conflict = bool(event.get('startTime') and parse_time(event['startTime']) != start)
+        if official and any(official.get(k)!=v for k,v in (('away_team',roles['away']),('home_team',roles['home']),('start_ms',start))):
+            conflict=True
         return {**category,'venue':'polymarket.com','league':'nba','market_type':'moneyline','version':version,
                 'discovery_schema':'NBA_GENERAL_V1','event_id':str(event['id']),'market_id':str(market['id']),
                 'condition_id':market['conditionId'],'slug':event['slug'],'question':market['question'],
@@ -129,6 +134,10 @@ async def discover(api, start, end, season_type='ALL'):
             r.raise_for_status();schedule=schedule_rows(r.json())
         except (httpx.HTTPError,KeyError,ValueError,TypeError) as error:
             evidence.append({'source':'NBA schedule','status':'ACCESS_FAILED' if isinstance(error,httpx.HTTPError) else 'SCHEMA_UNSUPPORTED','error':type(error).__name__})
+            schedule=[dict(g) for g in VERIFIED_GAMES if start<=g['start_ms']<=end]
+            evidence.append({'source':'individually verified official game evidence','games':len(schedule),
+                'scope':'exact registered games only; not a complete league schedule mirror',
+                'sources':[g['source'] for g in schedule]})
     counts=Counter(); markets=[]; raw_events=[]
     try:
         sports=await api.get(GAMMA,'/sports');nba=next(s for s in sports if s.get('sport')=='nba')

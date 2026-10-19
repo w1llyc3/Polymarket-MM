@@ -1,0 +1,5 @@
+等待记录结束；尚无赛后结果
+真实交易权限：关闭；不代表已覆盖当日所有比赛。
+Celtics vs. Pistons · SCHEDULED · 常规赛 · Paper准入通过，等待开赛与可信实时数据
+76ers vs. Knicks · SCHEDULED · 常规赛 · Paper准入通过，等待开赛与可信实时数据
+Thunder vs. Spurs · SCHEDULED · 常规赛 · Paper准入通过，等待开赛与可信实时数据

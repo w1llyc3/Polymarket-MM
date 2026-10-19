@@ -61,6 +61,8 @@ def book_risk(frame, policy, at=None, *, check_operator=True):
         reasons.append("operator_quotes_disabled")
     try:
         m = frame["market"]
+        if m.get('classification_conflict'):
+            reasons.append('conflicting_competition_classification')
         if m.get("discovery_schema") and not m.get("paper_scope_approved") and not (policy.research_phase and m.get("research_authorized") and m.get("rules_verified") and not m.get("identity_conflict")):
             reasons.append("competition_paper_scope_not_approved")
         if (m.get("season_type") == "UNKNOWN" and not (policy.research_phase and m.get("research_authorized"))) or not m.get("rules_verified", True):

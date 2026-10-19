@@ -220,7 +220,7 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                 if not selected or not selected.get("home_away_evidence"):
                     raise ValueError("market identity/type/season/roles failed: "+reason)
                 if initial_market:
-                    invariant = ('market_id','condition_id','event_id','home_team','away_team','outcomes','rules_verified','game_start_ms','version')
+                    invariant = ('market_id','condition_id','event_id','home_team','away_team','outcomes','rules_verified','game_start_ms','version','season_type')
                     if any(selected.get(k) != initial_market.get(k) for k in invariant):
                         raise ValueError('selected identity/rules changed; explicit confirmation required')
                     selected['research_authorized'] = bool(initial_market.get('research_authorized'))

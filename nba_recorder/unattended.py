@@ -144,6 +144,10 @@ async def run(day, root, scan_s=120, once=False):
                     if key not in state['games']:
                         state['games'][key] = {'market': m, 'session_id': uuid.uuid4().hex, 'status': 'SCHEDULED'}
                     entry = state['games'][key]
+                    if entry['status']=='SCHEDULED':
+                        # Refresh classification/identity evidence before allocating
+                        # an account, preserving the originally scheduled session ID.
+                        entry['market']=m
                     if key in active or entry['status'] not in {'SCHEDULED', 'RUNNING'}:
                         continue
                     if not once and due(m, now, start, end):

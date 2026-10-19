@@ -1,0 +1,67 @@
+{
+  "verified_games": [
+    {
+      "nba_game_id": "0022600001",
+      "away_team": "bos",
+      "home_team": "det",
+      "start_ms": 1792522800000,
+      "season": "2026-27",
+      "season_type": "REGULAR_SEASON",
+      "source": "https://www.nba.com/game/bos-vs-det-0022600001",
+      "classification_source": "https://www.nba.com/news/2026-27-nba-regular-season-schedule",
+      "verified_date": "2026-10-19",
+      "method": "official opening-night release and individual game pages; exact teams, roles and UTC time only; not a live phase grant"
+    },
+    {
+      "nba_game_id": "0022600002",
+      "away_team": "phi",
+      "home_team": "nyk",
+      "start_ms": 1792537200000,
+      "season": "2026-27",
+      "season_type": "REGULAR_SEASON",
+      "source": "https://www.nba.com/game/phi-vs-nyk-0022600002",
+      "classification_source": "https://www.nba.com/news/2026-27-nba-regular-season-schedule",
+      "verified_date": "2026-10-19",
+      "method": "official opening-night release and individual game pages; exact teams, roles and UTC time only; not a live phase grant"
+    },
+    {
+      "nba_game_id": "0022600003",
+      "away_team": "okc",
+      "home_team": "sas",
+      "start_ms": 1792546200000,
+      "season": "2026-27",
+      "season_type": "REGULAR_SEASON",
+      "source": "https://www.nba.com/game/okc-vs-sas-0022600003",
+      "classification_source": "https://www.nba.com/news/2026-27-nba-regular-season-schedule",
+      "verified_date": "2026-10-19",
+      "method": "official opening-night release and individual game pages; exact teams, roles and UTC time only; not a live phase grant"
+    }
+  ],
+  "current_reservations": [
+    {
+      "market_id": "5676016",
+      "session_id": "9604866cbb934b208a30f36b9e006373",
+      "status": "SCHEDULED",
+      "season_type": "REGULAR_SEASON",
+      "paper_eligible": true,
+      "game_start": "2026-10-20 19:00:00+00"
+    },
+    {
+      "market_id": "5676021",
+      "session_id": "07ac29b9a864454f95d72b5e042fa79b",
+      "status": "SCHEDULED",
+      "season_type": "REGULAR_SEASON",
+      "paper_eligible": true,
+      "game_start": "2026-10-20 23:00:00+00"
+    },
+    {
+      "market_id": "5680507",
+      "session_id": "8fc9793f22e64aabbac64d64f1d48ab3",
+      "status": "SCHEDULED",
+      "season_type": "REGULAR_SEASON",
+      "paper_eligible": true,
+      "game_start": "2026-10-21 01:30:00+00"
+    }
+  ],
+  "live_go": false
+}

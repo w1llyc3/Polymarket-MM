@@ -47,6 +47,7 @@ class DiscoveryTests(unittest.TestCase):
         item,status=normalize_market(e,m,{'series':'10345'},0)
         self.assertEqual(status,'MARKET_FOUND');self.assertEqual(item['competition_tags'],['NBA_CUP'])
         e.pop('seasonType');e['tags']=[]
+        e['startTime']='2030-10-20T19:00:00Z'  # No individually verified game evidence.
         item,_=normalize_market(e,m,{'series':'10345'},0)
         self.assertEqual(item['season_type'],'UNKNOWN');self.assertTrue(item['collection_allowed'])
         e['sport']={'sport':'wnba'}

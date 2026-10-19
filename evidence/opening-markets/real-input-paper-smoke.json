@@ -1,0 +1,874 @@
+{
+  "source": "REAL_PUBLIC_INPUT_ISOLATED_PAPER_SMOKE_NOT_FULL_GAME",
+  "day": "2026-10-21",
+  "discovery_status": "MARKET_FOUND",
+  "evidence": [
+    {
+      "url": "https://cdn.nba.com/static/json/staticData/scheduleLeagueV2_1.json",
+      "http_status": 403,
+      "received_ms": 1792398250909
+    },
+    {
+      "source": "NBA schedule",
+      "status": "ACCESS_FAILED",
+      "error": "HTTPStatusError"
+    },
+    {
+      "source": "individually verified official game evidence",
+      "games": 3,
+      "scope": "exact registered games only; not a complete league schedule mirror",
+      "sources": [
+        "https://www.nba.com/game/bos-vs-det-0022600001",
+        "https://www.nba.com/game/phi-vs-nyk-0022600002",
+        "https://www.nba.com/game/okc-vs-sas-0022600003"
+      ]
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/sports",
+      "http_status": 200,
+      "selected_nba_metadata": {
+        "id": 34,
+        "sport": "nba",
+        "name": "NBA",
+        "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-icons/nba-7a8bf611.png",
+        "resolution": "https://www.nba.com/",
+        "ordering": "away",
+        "tags": "1,745,100639",
+        "primaryTagId": 745,
+        "series": "10345",
+        "createdAt": "2025-11-05T19:27:45.399303Z"
+      },
+      "received_ms": 1792398250971
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/events",
+      "params": {
+        "limit": 100,
+        "offset": 0,
+        "order": "id",
+        "ascending": "true",
+        "start_time_min": "2026-10-20T16:00:00+00:00",
+        "start_time_max": "2026-10-21T15:59:59.999000+00:00",
+        "tag_id": "745"
+      },
+      "http_status": 200,
+      "received_ms": 1792398251001
+    }
+  ],
+  "results": [
+    {
+      "market_id": "5676016",
+      "question": "Celtics vs. Pistons",
+      "season_type": "REGULAR_SEASON",
+      "game_start": "2026-10-20 19:00:00+00",
+      "nba_game_id": "0022600001",
+      "paper_eligible": true,
+      "mode": "REAL_PAPER",
+      "coverage": {
+        "inputs": 49,
+        "asset_frames": 96,
+        "markets": 1,
+        "first_ms": 1792398252171,
+        "last_ms": 1792398280863
+      },
+      "runner": {
+        "start_ms": 1792398251394,
+        "stop_ms": 1792398282826,
+        "duration_requested_s": 30,
+        "market_id": "5676016",
+        "event_slug": "nba-bos-det-2026-10-20",
+        "public_input_batches": 28,
+        "wall_watchdog_ticks": 113,
+        "health": {
+          "rest_batches": 20,
+          "sports_updates": 8,
+          "metadata_updates": 3,
+          "rest_errors": 0,
+          "sports_connections": 1,
+          "market_ws_connections": 1,
+          "public_trades": 0
+        },
+        "issues": [
+          "AUTO_SPORTS_CONTRACT_UNVERIFIED"
+        ],
+        "source_provenance": "real public GET/WS",
+        "phase_authority": "AUTOMATIC_UNVERIFIED_UNTIL_CONTRACT_PROVEN",
+        "execution_evidence": {
+          "input_loop_operational": true,
+          "eligible_quote_decisions": 0,
+          "intents_created": 0,
+          "local_rejections": 0,
+          "paper_submissions": 0,
+          "paper_orders_accepted": 0,
+          "simulated_fill_events": 0,
+          "cancel_acknowledged": 0,
+          "inventory_reconciled": true,
+          "reduce_exit_observed": false,
+          "full_game_coverage_verified": false,
+          "quote_execution_acceptance_status": "NOT_VERIFIED",
+          "evidence_refs": [
+            "pe_journal",
+            "pe_quotes",
+            "pe_exchange",
+            "pe_fills",
+            "ip_inputs",
+            "ip_receipts"
+          ],
+          "limitation": "component observations never automatically certify complete real-game execution acceptance"
+        },
+        "game_full_window_verified": false,
+        "reduce_s": 180,
+        "close_s": 60,
+        "parameters_calibrated": false,
+        "initial_inventory_source": "cash-only, no injected shares",
+        "public_trades_consumed": 0,
+        "fill_scope": "same asynchronous L0/L1/L2 proxies; zero prints is not proof of no real market trades"
+      },
+      "pilot": {
+        "mode": "REAL_PUBLIC_INPUT_PAPER_ONLY",
+        "season_type": "REGULAR_SEASON",
+        "nba_game_id": "0022600001",
+        "market_id": "5676016",
+        "coverage": {
+          "status": "NOT_COMPLETE",
+          "start_ms": 1792398251372,
+          "stop_ms": 1792398282826,
+          "stop_reason": "HARD_LIMIT_NOT_COMPLETE",
+          "observed_game_finished_ms": null,
+          "postgame_s": 0,
+          "hard_limit_s": 60,
+          "limitation": "End observation is informational. Full coverage requires independent gap/phase audit; never inferred from scheduled tip or market settlement."
+        },
+        "book_mode": "REST periodic samples; market WS raw events/trades; no gap backfill or continuous-book claim",
+        "asset_book_samples": 40,
+        "quality_valid_samples": 38,
+        "book_sample_availability": 0.95,
+        "phase_observations": 1,
+        "phase_authorization_availability": 0.0,
+        "availability_unit": "unique asset/book_ref/receive samples; reuse/watchdog excluded, not wall-time/full-game coverage",
+        "code_version": "36a3af6f855880172dbd3bd236328efdb850465b",
+        "code_dirty_at_report": true,
+        "source_event_counts": {
+          "book": 2,
+          "price_change": 16,
+          "rest_snapshot": 17
+        },
+        "sports_raw_updates_all_games": 8,
+        "matched_game_information_updates": 0,
+        "health_events_and_gaps": [
+          {
+            "time_ms": 1792398252644,
+            "kind": "connected",
+            "detail": "sports_ws_information_only"
+          },
+          {
+            "time_ms": 1792398253180,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398253610,
+            "kind": "connected",
+            "detail": "market_ws_epoch_1"
+          },
+          {
+            "time_ms": 1792398254605,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398256053,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398257528,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398258959,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398260423,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398261929,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398263387,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398264833,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398266282,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398267719,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398269165,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398270607,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398272078,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398273527,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398274973,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398276450,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398277899,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398279345,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398280791,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          }
+        ],
+        "issues": [
+          "AUTO_SPORTS_CONTRACT_UNVERIFIED"
+        ],
+        "processing_lag_ms": {
+          "samples": 58,
+          "P50": 0,
+          "P95": 1,
+          "P99": 1
+        },
+        "execution_evidence": {
+          "input_loop_operational": true,
+          "eligible_quote_decisions": 0,
+          "intents_created": 0,
+          "local_rejections": 0,
+          "paper_submissions": 0,
+          "paper_orders_accepted": 0,
+          "simulated_fill_events": 0,
+          "cancel_acknowledged": 0,
+          "inventory_reconciled": true,
+          "reduce_exit_observed": false,
+          "full_game_coverage_verified": false,
+          "quote_execution_acceptance_status": "NOT_VERIFIED",
+          "evidence_refs": [
+            "pe_journal",
+            "pe_quotes",
+            "pe_exchange",
+            "pe_fills",
+            "ip_inputs",
+            "ip_receipts"
+          ],
+          "limitation": "component observations never automatically certify complete real-game execution acceptance"
+        },
+        "residual_inventory": {},
+        "pnl": {
+          "trading_pnl": "0",
+          "execution_fees": "0",
+          "recorded_running_costs": "0",
+          "received_income": "0",
+          "net_pnl": "0",
+          "expected_or_confirmed_rebates_in_cash": false,
+          "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+        },
+        "income_stages": {},
+        "real_submission_calls": 0,
+        "Public_Observation": "BOUNDED_SAMPLES_ONLY",
+        "Controlled_Paper": "NOT_VERIFIED",
+        "Full_game_Coverage": "NO_GO",
+        "Live": "NO_GO",
+        "limitations": [
+          "Complementary asset events are not independent liquidity or summed trade volume",
+          "Reconnect snapshots never reconstruct missing trades",
+          "No actual execution latency or profit is measured"
+        ]
+      },
+      "orders": 0,
+      "ledger_consistent": true,
+      "real_submission_calls": 0
+    },
+    {
+      "market_id": "5676021",
+      "question": "76ers vs. Knicks",
+      "season_type": "REGULAR_SEASON",
+      "game_start": "2026-10-20 23:00:00+00",
+      "nba_game_id": "0022600002",
+      "paper_eligible": true,
+      "mode": "REAL_PAPER",
+      "coverage": {
+        "inputs": 51,
+        "asset_frames": 100,
+        "markets": 1,
+        "first_ms": 1792398252174,
+        "last_ms": 1792398281655
+      },
+      "runner": {
+        "start_ms": 1792398251786,
+        "stop_ms": 1792398283214,
+        "duration_requested_s": 30,
+        "market_id": "5676021",
+        "event_slug": "nba-phi-nyk-2026-10-20",
+        "public_input_batches": 30,
+        "wall_watchdog_ticks": 114,
+        "health": {
+          "rest_batches": 20,
+          "sports_updates": 11,
+          "metadata_updates": 3,
+          "rest_errors": 0,
+          "sports_connections": 1,
+          "market_ws_connections": 1,
+          "public_trades": 0
+        },
+        "issues": [
+          "AUTO_SPORTS_CONTRACT_UNVERIFIED"
+        ],
+        "source_provenance": "real public GET/WS",
+        "phase_authority": "AUTOMATIC_UNVERIFIED_UNTIL_CONTRACT_PROVEN",
+        "execution_evidence": {
+          "input_loop_operational": true,
+          "eligible_quote_decisions": 0,
+          "intents_created": 0,
+          "local_rejections": 0,
+          "paper_submissions": 0,
+          "paper_orders_accepted": 0,
+          "simulated_fill_events": 0,
+          "cancel_acknowledged": 0,
+          "inventory_reconciled": true,
+          "reduce_exit_observed": false,
+          "full_game_coverage_verified": false,
+          "quote_execution_acceptance_status": "NOT_VERIFIED",
+          "evidence_refs": [
+            "pe_journal",
+            "pe_quotes",
+            "pe_exchange",
+            "pe_fills",
+            "ip_inputs",
+            "ip_receipts"
+          ],
+          "limitation": "component observations never automatically certify complete real-game execution acceptance"
+        },
+        "game_full_window_verified": false,
+        "reduce_s": 180,
+        "close_s": 60,
+        "parameters_calibrated": false,
+        "initial_inventory_source": "cash-only, no injected shares",
+        "public_trades_consumed": 0,
+        "fill_scope": "same asynchronous L0/L1/L2 proxies; zero prints is not proof of no real market trades"
+      },
+      "pilot": {
+        "mode": "REAL_PUBLIC_INPUT_PAPER_ONLY",
+        "season_type": "REGULAR_SEASON",
+        "nba_game_id": "0022600002",
+        "market_id": "5676021",
+        "coverage": {
+          "status": "NOT_COMPLETE",
+          "start_ms": 1792398251765,
+          "stop_ms": 1792398283214,
+          "stop_reason": "HARD_LIMIT_NOT_COMPLETE",
+          "observed_game_finished_ms": null,
+          "postgame_s": 0,
+          "hard_limit_s": 60,
+          "limitation": "End observation is informational. Full coverage requires independent gap/phase audit; never inferred from scheduled tip or market settlement."
+        },
+        "book_mode": "REST periodic samples; market WS raw events/trades; no gap backfill or continuous-book claim",
+        "asset_book_samples": 40,
+        "quality_valid_samples": 38,
+        "book_sample_availability": 0.95,
+        "phase_observations": 1,
+        "phase_authorization_availability": 0.0,
+        "availability_unit": "unique asset/book_ref/receive samples; reuse/watchdog excluded, not wall-time/full-game coverage",
+        "code_version": "36a3af6f855880172dbd3bd236328efdb850465b",
+        "code_dirty_at_report": true,
+        "source_event_counts": {
+          "book": 2,
+          "rest_snapshot": 2
+        },
+        "sports_raw_updates_all_games": 11,
+        "matched_game_information_updates": 0,
+        "health_events_and_gaps": [
+          {
+            "time_ms": 1792398252665,
+            "kind": "connected",
+            "detail": "sports_ws_information_only"
+          },
+          {
+            "time_ms": 1792398252903,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398253410,
+            "kind": "connected",
+            "detail": "market_ws_epoch_1"
+          },
+          {
+            "time_ms": 1792398254389,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398255830,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398257298,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398258763,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398260205,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398261673,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398263144,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398264604,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398266045,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398267501,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398268956,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398270398,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398271856,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398273329,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398274816,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398276286,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398277752,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398279197,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398280634,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          }
+        ],
+        "issues": [
+          "AUTO_SPORTS_CONTRACT_UNVERIFIED"
+        ],
+        "processing_lag_ms": {
+          "samples": 42,
+          "P50": 0,
+          "P95": 1,
+          "P99": 1
+        },
+        "execution_evidence": {
+          "input_loop_operational": true,
+          "eligible_quote_decisions": 0,
+          "intents_created": 0,
+          "local_rejections": 0,
+          "paper_submissions": 0,
+          "paper_orders_accepted": 0,
+          "simulated_fill_events": 0,
+          "cancel_acknowledged": 0,
+          "inventory_reconciled": true,
+          "reduce_exit_observed": false,
+          "full_game_coverage_verified": false,
+          "quote_execution_acceptance_status": "NOT_VERIFIED",
+          "evidence_refs": [
+            "pe_journal",
+            "pe_quotes",
+            "pe_exchange",
+            "pe_fills",
+            "ip_inputs",
+            "ip_receipts"
+          ],
+          "limitation": "component observations never automatically certify complete real-game execution acceptance"
+        },
+        "residual_inventory": {},
+        "pnl": {
+          "trading_pnl": "0",
+          "execution_fees": "0",
+          "recorded_running_costs": "0",
+          "received_income": "0",
+          "net_pnl": "0",
+          "expected_or_confirmed_rebates_in_cash": false,
+          "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+        },
+        "income_stages": {},
+        "real_submission_calls": 0,
+        "Public_Observation": "BOUNDED_SAMPLES_ONLY",
+        "Controlled_Paper": "NOT_VERIFIED",
+        "Full_game_Coverage": "NO_GO",
+        "Live": "NO_GO",
+        "limitations": [
+          "Complementary asset events are not independent liquidity or summed trade volume",
+          "Reconnect snapshots never reconstruct missing trades",
+          "No actual execution latency or profit is measured"
+        ]
+      },
+      "orders": 0,
+      "ledger_consistent": true,
+      "real_submission_calls": 0
+    },
+    {
+      "market_id": "5680507",
+      "question": "Thunder vs. Spurs",
+      "season_type": "REGULAR_SEASON",
+      "game_start": "2026-10-21 01:30:00+00",
+      "nba_game_id": "0022600003",
+      "paper_eligible": true,
+      "mode": "REAL_PAPER",
+      "coverage": {
+        "inputs": 56,
+        "asset_frames": 110,
+        "markets": 1,
+        "first_ms": 1792398252177,
+        "last_ms": 1792398281904
+      },
+      "runner": {
+        "start_ms": 1792398252171,
+        "stop_ms": 1792398283604,
+        "duration_requested_s": 30,
+        "market_id": "5680507",
+        "event_slug": "nba-okc-sas-2026-10-20",
+        "public_input_batches": 34,
+        "wall_watchdog_ticks": 116,
+        "health": {
+          "rest_batches": 21,
+          "sports_updates": 13,
+          "metadata_updates": 3,
+          "rest_errors": 0,
+          "sports_connections": 1,
+          "market_ws_connections": 1,
+          "public_trades": 0
+        },
+        "issues": [
+          "AUTO_SPORTS_CONTRACT_UNVERIFIED"
+        ],
+        "source_provenance": "real public GET/WS",
+        "phase_authority": "AUTOMATIC_UNVERIFIED_UNTIL_CONTRACT_PROVEN",
+        "execution_evidence": {
+          "input_loop_operational": true,
+          "eligible_quote_decisions": 0,
+          "intents_created": 0,
+          "local_rejections": 0,
+          "paper_submissions": 0,
+          "paper_orders_accepted": 0,
+          "simulated_fill_events": 0,
+          "cancel_acknowledged": 0,
+          "inventory_reconciled": true,
+          "reduce_exit_observed": false,
+          "full_game_coverage_verified": false,
+          "quote_execution_acceptance_status": "NOT_VERIFIED",
+          "evidence_refs": [
+            "pe_journal",
+            "pe_quotes",
+            "pe_exchange",
+            "pe_fills",
+            "ip_inputs",
+            "ip_receipts"
+          ],
+          "limitation": "component observations never automatically certify complete real-game execution acceptance"
+        },
+        "game_full_window_verified": false,
+        "reduce_s": 180,
+        "close_s": 60,
+        "parameters_calibrated": false,
+        "initial_inventory_source": "cash-only, no injected shares",
+        "public_trades_consumed": 0,
+        "fill_scope": "same asynchronous L0/L1/L2 proxies; zero prints is not proof of no real market trades"
+      },
+      "pilot": {
+        "mode": "REAL_PUBLIC_INPUT_PAPER_ONLY",
+        "season_type": "REGULAR_SEASON",
+        "nba_game_id": "0022600003",
+        "market_id": "5680507",
+        "coverage": {
+          "status": "NOT_COMPLETE",
+          "start_ms": 1792398252151,
+          "stop_ms": 1792398283604,
+          "stop_reason": "HARD_LIMIT_NOT_COMPLETE",
+          "observed_game_finished_ms": null,
+          "postgame_s": 0,
+          "hard_limit_s": 60,
+          "limitation": "End observation is informational. Full coverage requires independent gap/phase audit; never inferred from scheduled tip or market settlement."
+        },
+        "book_mode": "REST periodic samples; market WS raw events/trades; no gap backfill or continuous-book claim",
+        "asset_book_samples": 42,
+        "quality_valid_samples": 40,
+        "book_sample_availability": 0.9523809523809523,
+        "phase_observations": 1,
+        "phase_authorization_availability": 0.0,
+        "availability_unit": "unique asset/book_ref/receive samples; reuse/watchdog excluded, not wall-time/full-game coverage",
+        "code_version": "36a3af6f855880172dbd3bd236328efdb850465b",
+        "code_dirty_at_report": true,
+        "source_event_counts": {
+          "book": 2,
+          "price_change": 2,
+          "rest_snapshot": 4
+        },
+        "sports_raw_updates_all_games": 13,
+        "matched_game_information_updates": 0,
+        "health_events_and_gaps": [
+          {
+            "time_ms": 1792398252643,
+            "kind": "connected",
+            "detail": "sports_ws_information_only"
+          },
+          {
+            "time_ms": 1792398252851,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398253201,
+            "kind": "connected",
+            "detail": "market_ws_epoch_1"
+          },
+          {
+            "time_ms": 1792398254299,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398255751,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398257193,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398258667,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398260116,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398261572,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398263022,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398264452,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398265909,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398267348,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398268808,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398270257,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398271706,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398273132,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398274608,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398276048,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398277498,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398278956,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398280413,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          },
+          {
+            "time_ms": 1792398281861,
+            "kind": "connected",
+            "detail": "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+          }
+        ],
+        "issues": [
+          "AUTO_SPORTS_CONTRACT_UNVERIFIED"
+        ],
+        "processing_lag_ms": {
+          "samples": 46,
+          "P50": 0,
+          "P95": 1,
+          "P99": 2
+        },
+        "execution_evidence": {
+          "input_loop_operational": true,
+          "eligible_quote_decisions": 0,
+          "intents_created": 0,
+          "local_rejections": 0,
+          "paper_submissions": 0,
+          "paper_orders_accepted": 0,
+          "simulated_fill_events": 0,
+          "cancel_acknowledged": 0,
+          "inventory_reconciled": true,
+          "reduce_exit_observed": false,
+          "full_game_coverage_verified": false,
+          "quote_execution_acceptance_status": "NOT_VERIFIED",
+          "evidence_refs": [
+            "pe_journal",
+            "pe_quotes",
+            "pe_exchange",
+            "pe_fills",
+            "ip_inputs",
+            "ip_receipts"
+          ],
+          "limitation": "component observations never automatically certify complete real-game execution acceptance"
+        },
+        "residual_inventory": {},
+        "pnl": {
+          "trading_pnl": "0",
+          "execution_fees": "0",
+          "recorded_running_costs": "0",
+          "received_income": "0",
+          "net_pnl": "0",
+          "expected_or_confirmed_rebates_in_cash": false,
+          "income_basis": "explicit paper evidence only; unallocated remains unallocated"
+        },
+        "income_stages": {},
+        "real_submission_calls": 0,
+        "Public_Observation": "BOUNDED_SAMPLES_ONLY",
+        "Controlled_Paper": "NOT_VERIFIED",
+        "Full_game_Coverage": "NO_GO",
+        "Live": "NO_GO",
+        "limitations": [
+          "Complementary asset events are not independent liquidity or summed trade volume",
+          "Reconnect snapshots never reconstruct missing trades",
+          "No actual execution latency or profit is measured"
+        ]
+      },
+      "orders": 0,
+      "ledger_consistent": true,
+      "real_submission_calls": 0
+    }
+  ],
+  "live_go": false,
+  "real_submission_calls": 0,
+  "limitation": "Pregame NO_QUOTE is expected; cannot prove future sports delivery or actual fills"
+}

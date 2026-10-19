@@ -90,8 +90,8 @@ def select_market(event, market, series_id, now, ordering=None, scope="pregame",
     from .game_state import schedule_match
     schedule = schedule_match(roles.get("away"), roles.get("home"), start_ms)
     regular = SEASON_START <= date <= SEASON_END and date not in EXCLUDED_DATES and SEASON_START <= start_date <= "2027-04-12" and not preseason_text
-    season_type = "PRESEASON" if schedule or preseason_text else "REGULAR_SEASON" if regular else "UNKNOWN"
-    if schedule and regular:
+    season_type = schedule['season_type'] if schedule else "PRESEASON" if preseason_text else "REGULAR_SEASON" if regular else "UNKNOWN"
+    if schedule and ((schedule['season_type']=='PRESEASON' and regular) or (schedule['season_type']!='PRESEASON' and preseason_text)):
         season_type = "UNKNOWN"  # contradictory classification evidence
     rule_text = market.get("description", "")
     rules_verified = all(t in rule_text.lower() for t in ("including any overtime", "postponed", "canceled", "50-50"))
