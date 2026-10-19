@@ -19,7 +19,7 @@ class UnifiedPaperManager(OrderManager):
     No initial shares; explicit collateral-funded split is separate and journaled.
     """
     supports_book_driven = True
-    def __init__(self, store, policy=BookPolicy(), start_ms=0):
+    def __init__(self, store, policy=BookPolicy(), start_ms=0, adapter_factory=None):
         if not isinstance(policy, BookPolicy):
             raise ValueError("unified inplay manager requires BookPolicy")
         saved = store.db.execute("SELECT config FROM pe_control WHERE id=1").fetchone()
@@ -67,7 +67,7 @@ class UnifiedPaperManager(OrderManager):
         if not self.ledger.state()["capital"] or self.ledger.state()["last_ms"] == -1:
             self.ledger.add(digest([self.run_id, "CAPITAL"]), start_ms, "CAPITAL", {"amount": policy.initial_cash, "source": "explicit virtual cash contribution"})
         self.phases = PhaseController(store.db, policy)
-        super().__init__(store, policy, start_ms)
+        super().__init__(store, policy, start_ms, adapter_factory=adapter_factory)
         self.ledger.audit()
         if not self.consistent():
             self.kill("unified_ledger_mismatch")

@@ -8,15 +8,25 @@ from .reference import book_targets, book_risk, observed_mid, book_data_risk
 
 
 class BookSession:
-    def __init__(self, manager, model="L2"):
+    def __init__(self, manager, model="L2", queue_multiplier="1"):
         if model not in {"L0", "L1", "L2"}:
             raise ValueError("explicit fill model L0/L1/L2 required")
         with manager.db:
+            multiplier = decimal(queue_multiplier)
+            if not multiplier.is_finite() or not 0 <= multiplier <= 10:
+                raise ValueError('queue multiplier must be 0..10')
+            previous = manager.db.execute("SELECT payload FROM ip_session_config WHERE id='queue_multiplier'").fetchone()
+            if previous and decimal(previous[0]) != multiplier:
+                raise ValueError('queue assumption immutable across restart')
+            if not previous and multiplier != 1 and manager.db.execute('SELECT 1 FROM ip_models LIMIT 1').fetchone():
+                raise ValueError('cannot change existing queue assumptions')
+            manager.db.execute("INSERT OR IGNORE INTO ip_session_config VALUES('queue_multiplier',?)", (str(multiplier),))
             old = manager.db.execute("SELECT payload FROM ip_session_config WHERE id='fill_model'").fetchone()
             if old and old[0] != model:
                 raise ValueError("fill model is immutable across restarts; use a separate paper account")
             manager.db.execute("INSERT OR IGNORE INTO ip_session_config VALUES('fill_model',?)", (model,))
         self.om, self.model = manager, model
+        self.queue_multiplier = multiplier
 
     def observe(self, frame):
         om = self.om
@@ -69,7 +79,7 @@ class BookSession:
                 levels = frame["book"]["bids" if order["side"] == "BUY" else "asks"]
                 price = decimal(order["price"])
                 ahead = sum((decimal(l["size"]) for l in levels if (decimal(l["price"]) >= price if order["side"] == "BUY" else decimal(l["price"]) <= price)), decimal(0))
-                om.db.execute("INSERT INTO ip_models VALUES(?,?)", (order["id"], encode({"model": self.model, "ahead": str(ahead), "initialized_ms": om.now, "assumption": "initial visible depth+FIFO; no inferred cancels; new better arrivals unknown", "confidence": "uncalibrated"})))
+                om.db.execute("INSERT INTO ip_models VALUES(?,?)", (order["id"], encode({"model": self.model, "ahead": str(ahead*self.queue_multiplier), "queue_multiplier": str(self.queue_multiplier), "initialized_ms": om.now, "assumption": "initial visible depth times configured hypothesis+FIFO; no inferred cancels; new better arrivals unknown", "confidence": "uncalibrated"})))
         return decision
 
     def executions(self, frames, trades, input_id):

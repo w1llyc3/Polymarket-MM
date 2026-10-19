@@ -16,6 +16,9 @@ class PaperExchangeAdapter:
         row = self.db.execute("SELECT payload FROM pe_exchange WHERE id=?", (order_id,)).fetchone()
         return json.loads(row[0]) if row else None
 
+    def order_ids(self):
+        return [r[0] for r in self.db.execute('SELECT id FROM pe_exchange')]
+
     def balance_snapshot(self, seed_cash, seed_positions):
         """Independent paper fill-ledger reducer; never reads OMS fills/account."""
         cash = decimal(seed_cash)

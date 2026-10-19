@@ -1,0 +1,15 @@
+test_order_lifecycle_uses_different_process_and_database (test_offline_research.OfflineHTTPTests.test_order_lifecycle_uses_different_process_and_database) ... ok
+test_page_to_experiment_to_exports_and_plot (test_offline_research.OfflineHTTPTests.test_page_to_experiment_to_exports_and_plot) ... ok
+test_exact_recorded_callbacks_and_sample_period (test_offline_research.OfflineTests.test_exact_recorded_callbacks_and_sample_period) ... ok
+test_grid_independent_reproducible_and_reconciled (test_offline_research.OfflineTests.test_grid_independent_reproducible_and_reconciled) ... ok
+test_order_preview_has_no_signature_or_sender (test_offline_research.OfflineTests.test_order_preview_has_no_signature_or_sender) ... ok
+test_public_account_is_not_authenticated_authority (test_offline_research.OfflineTests.test_public_account_is_not_authenticated_authority) ... ok
+test_queue_assumption_restart_immutable (test_offline_research.OfflineTests.test_queue_assumption_restart_immutable) ... ok
+test_sdk_acknowledgement_never_invents_fill_quantity (test_offline_research.OfflineTests.test_sdk_acknowledgement_never_invents_fill_quantity) ... ok
+test_streaming_freeze_matches_existing_hash_and_is_immutable (test_offline_research.OfflineTests.test_streaming_freeze_matches_existing_hash_and_is_immutable) ... ok
+test_remote_partial_cancel_timeout_and_restart (test_offline_research.SeparateAuthorityTests.test_remote_partial_cancel_timeout_and_restart) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 9.337s
+
+OK

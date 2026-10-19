@@ -25,11 +25,14 @@ TRANSITIONS = {
 class OrderManager:
     real_submission_calls = 0
 
-    def __init__(self, store, policy=ExecutionPolicy(), start_ms=0):
+    def __init__(self, store, policy=ExecutionPolicy(), start_ms=0, adapter_factory=None):
         if policy.strategy_mode == "BOOK_DRIVEN" and not getattr(self, "supports_book_driven", False):
             raise ValueError("BOOK_DRIVEN requires unified manager and persisted phase authority")
         self.store, self.db, self.policy = store, store.db, policy
-        self.adapter = PaperExchangeAdapter(self.db)
+        self.adapter = (adapter_factory or PaperExchangeAdapter)(self.db)
+        from ..execution.contract import PaperAuthority
+        if not isinstance(self.adapter, PaperAuthority) or self.adapter.mode != 'PAPER' or self.adapter.real_submission_calls != 0:
+            raise ValueError('Only a Paper authority may be connected to this manager')
         with self.db:
             row = self.db.execute("SELECT * FROM pe_control WHERE id=1").fetchone()
             if not row:
@@ -360,7 +363,7 @@ class OrderManager:
     def consistent(self):
         account = self.account()
         local_ids = {o["id"] for o in self.orders()}
-        if any(r[0] not in local_ids for r in self.db.execute("SELECT id FROM pe_exchange")):
+        if any(identity not in local_ids for identity in self.adapter.order_ids()):
             return False
         cash = decimal(account["seed_cash"])
         positions = {a: decimal(q) for a, q in account["seed_positions"].items()}

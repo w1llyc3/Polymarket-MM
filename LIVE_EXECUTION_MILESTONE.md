@@ -1,5 +1,7 @@
 # 下一里程碑D：真实执行接入
 
+2026-10-19更新：统一Paper接口、独立进程Mock、无签名SDK意图/回报映射及公开持仓读取已实现，见OFFLINE_RESEARCH.md。它们不是实际认证账户或可发送的Live适配器；下列真实执行准入仍未完成。
+
 本轮只授权研究/Paper，没有可激活Live路径。下一阶段独立授权后：
 
 1. 按账户与市场协议版本复核官方当前统一SDK、资产ID和认证，严格区分Polymarket.com与US。当前PublicAPI仅公开GET/WS。

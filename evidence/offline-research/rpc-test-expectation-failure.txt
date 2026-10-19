@@ -1,0 +1,21 @@
+test_exact_recorded_callbacks_and_sample_period (test_offline_research.OfflineTests.test_exact_recorded_callbacks_and_sample_period) ... ok
+test_grid_independent_reproducible_and_reconciled (test_offline_research.OfflineTests.test_grid_independent_reproducible_and_reconciled) ... ok
+test_order_preview_has_no_signature_or_sender (test_offline_research.OfflineTests.test_order_preview_has_no_signature_or_sender) ... ok
+test_public_account_is_not_authenticated_authority (test_offline_research.OfflineTests.test_public_account_is_not_authenticated_authority) ... ok
+test_queue_assumption_restart_immutable (test_offline_research.OfflineTests.test_queue_assumption_restart_immutable) ... ok
+test_order_lifecycle_uses_different_process_and_database (test_offline_research.SeparateAuthorityTests.test_order_lifecycle_uses_different_process_and_database) ... ok
+test_remote_partial_cancel_timeout_and_restart (test_offline_research.SeparateAuthorityTests.test_remote_partial_cancel_timeout_and_restart) ... 
+  test_remote_partial_cancel_timeout_and_restart (test_offline_research.SeparateAuthorityTests.test_remote_partial_cancel_timeout_and_restart) (scenario='partial_cancel') ... FAIL
+
+======================================================================
+FAIL: test_remote_partial_cancel_timeout_and_restart (test_offline_research.SeparateAuthorityTests.test_remote_partial_cancel_timeout_and_restart) (scenario='partial_cancel')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_offline_research.py", line 131, in test_remote_partial_cancel_timeout_and_restart
+    self.assertFalse(om.fill(order,'2','unique-partial'))
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 7 tests in 6.884s
+
+FAILED (failures=1)

@@ -66,6 +66,21 @@ def make_server(service, port=8765):
                 self.send(200, {"app": APP, "token": token, "real_trading_permission": False})
             elif path == "/api/state":
                 self.send(200, service.read())
+            elif path in {'/api/offline/samples','/api/offline/job','/api/offline/download','/api/offline/plot'}:
+                from urllib.parse import urlparse,parse_qs
+                from ..research import jobs
+                try:
+                    params=parse_qs(urlparse(self.path).query)
+                    if any(len(v)!=1 for v in params.values()):raise ValueError('duplicate parameter')
+                    if path=='/api/offline/samples':
+                        from ..research.catalog import catalog
+                        self.send(200,catalog(service.root))
+                    elif path=='/api/offline/job':self.send(200,jobs.read(service.root,params['id'][0]))
+                    elif path=='/api/offline/plot':self.send(200,jobs.plot(service.root,params['id'][0],params['lane'][0]))
+                    else:
+                        file=jobs.download(service.root,params['id'][0],params.get('lane',[''])[0],params['name'][0])
+                        self.send(200,file.read_bytes(),'application/octet-stream',filename=file.name)
+                except (ValueError,KeyError,OSError,sqlite3.Error):self.send(400,{'error':'离线研究引用无效或数据未完成'})
             elif path=='/api/plans':
                 from .plans import listing
                 self.send(200,listing(service.data))
@@ -134,6 +149,9 @@ def make_server(service, port=8765):
                     self.send(200, file.read_bytes(), filename="nba-paper-report.json")
                 else:
                     self.send(404, {"error": "导出不存在，请重新导出"})
+            elif path in {'/offline','/offline.js','/offline.css'}:
+                name,mime={'/offline':('offline.html','text/html'),'/offline.js':('offline.js','text/javascript'),'/offline.css':('offline.css','text/css')}[path]
+                self.send(200,(STATIC/name).read_bytes(),mime+'; charset=utf-8')
             elif path in {"/", "/app.js", "/style.css", "/chart.js", "/workbench.js", "/research-ui.js"}:
                 name, mime = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/style.css": ("style.css", "text/css"), "/chart.js": ("chart.js", "text/javascript"), "/workbench.js": ("workbench.js", "text/javascript"), "/research-ui.js": ("research-ui.js", "text/javascript")}[path]
                 self.send(200, (STATIC/name).read_bytes(), mime+"; charset=utf-8")
@@ -144,7 +162,7 @@ def make_server(service, port=8765):
             if not self.trusted(writing=True):
                 self.send(403, {"error": "来源或会话令牌无效，请从本地页面重试"})
                 return
-            if self.path not in {"/api/command", "/api/reports", "/api/plans"}:
+            if self.path not in {"/api/command", "/api/reports", "/api/plans",'/api/offline/run','/api/offline/account'}:
                 self.send(404, {"error": "接口不存在"})
                 return
             try:
@@ -152,6 +170,15 @@ def make_server(service, port=8765):
                 if not 0 < length <= 32768 or self.headers.get("Transfer-Encoding") or self.headers.get("Content-Type", "").split(";")[0] != "application/json":
                     raise ValueError("仅支持有界 JSON 命令")
                 command = json.loads(self.rfile.read(length))
+                if self.path=='/api/offline/run':
+                    from ..research.jobs import start
+                    self.send(202,start(service.root,command));return
+                if self.path=='/api/offline/account':
+                    from ..execution.account import public_positions
+                    if not isinstance(command,dict) or set(command)!={'address'}:raise ValueError('public address only')
+                    try:self.send(200,public_positions(command['address']))
+                    except __import__('httpx').HTTPError:self.send(502,{'error':'公开持仓源不可达，未请求认证账户或任何订单'})
+                    return
                 if self.path=='/api/plans':
                     from .plans import save
                     if not isinstance(command,dict) or set(command)-{'name','parameters','id','expected_version'}:raise ValueError('plan fields')

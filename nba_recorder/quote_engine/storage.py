@@ -87,3 +87,29 @@ class PaperStore:
         if count != manifest["count"] or previous != manifest["chain_hash"] or digest(manifest) != tape_id:
             raise ValueError("tape manifest mismatch")
         return manifest
+
+    def seal_stream(self, events, manifest):
+        """Disk-spooled equivalent of seal; no whole-game list in Python memory."""
+        from ..fair_value.providers import reject_secrets
+        reject_secrets(manifest)
+        self.db.execute('DROP TABLE IF EXISTS temp.research_spool')
+        self.db.execute('CREATE TEMP TABLE research_spool(seq INTEGER,time_ms INTEGER,event_hash TEXT,payload TEXT)')
+        previous, last, count = '', -1, 0
+        try:
+            for count,event in enumerate(events,1):
+                reject_secrets(event)
+                if type(event.get('time_ms')) is not int or event['time_ms']<=last:
+                    raise ValueError('Strictly ordered input buckets required')
+                last=event['time_ms']; previous=digest([previous,count,event])
+                self.db.execute('INSERT INTO research_spool VALUES(?,?,?,?)',(count,last,previous,encode(event)))
+            final={**manifest,'count':count,'chain_hash':previous,'format_version':'lesson4-v1'}
+            identity=digest(final)
+            if self.db.execute('SELECT 1 FROM qe_tapes WHERE id=?',(identity,)).fetchone():
+                self.verify(identity);return identity
+            with self.db:
+                self.db.execute('INSERT INTO qe_tapes VALUES(?,?,0)',(identity,encode(final)))
+                self.db.execute('INSERT INTO qe_input SELECT ?,seq,time_ms,event_hash,payload FROM research_spool ORDER BY seq',(identity,))
+                self.db.execute('UPDATE qe_tapes SET sealed=1 WHERE id=?',(identity,))
+            return identity
+        finally:
+            self.db.execute('DROP TABLE IF EXISTS temp.research_spool')

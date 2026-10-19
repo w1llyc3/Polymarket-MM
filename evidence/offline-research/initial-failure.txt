@@ -1,0 +1,40 @@
+test_exact_recorded_callbacks_and_sample_period (test_offline_research.OfflineTests.test_exact_recorded_callbacks_and_sample_period) ... ok
+test_grid_independent_reproducible_and_reconciled (test_offline_research.OfflineTests.test_grid_independent_reproducible_and_reconciled) ... ok
+test_order_preview_has_no_signature_or_sender (test_offline_research.OfflineTests.test_order_preview_has_no_signature_or_sender) ... ok
+test_public_account_is_not_authenticated_authority (test_offline_research.OfflineTests.test_public_account_is_not_authenticated_authority) ... ok
+test_queue_assumption_restart_immutable (test_offline_research.OfflineTests.test_queue_assumption_restart_immutable) ... ok
+test_order_lifecycle_uses_different_process_and_database (test_offline_research.SeparateAuthorityTests.test_order_lifecycle_uses_different_process_and_database) ... ERROR
+
+======================================================================
+ERROR: test_order_lifecycle_uses_different_process_and_database (test_offline_research.SeparateAuthorityTests.test_order_lifecycle_uses_different_process_and_database)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] ��һ����������ʹ�ô��ļ��������޷����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\tmpv814bsxk\\authority.sqlite'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_offline_research.py", line 99, in test_order_lifecycle_uses_different_process_and_database
+    with tempfile.TemporaryDirectory() as folder:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] ��һ����������ʹ�ô��ļ��������޷����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\tmpv814bsxk\\authority.sqlite'
+
+----------------------------------------------------------------------
+Ran 6 tests in 5.105s
+
+FAILED (errors=1)

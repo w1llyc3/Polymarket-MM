@@ -1,0 +1,4 @@
+{
+  "market":{"venue":"polymarket.com","version":"v2","market_id":"synthetic-market","outcomes":[{"asset_id":"1"},{"asset_id":"2"}],"tick_size":".01","minimum_order_size":"5"},
+  "target":{"asset_id":"1","side":"BUY","price":".45","size":"5"}
+}

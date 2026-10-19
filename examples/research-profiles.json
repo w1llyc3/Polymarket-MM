@@ -1,0 +1,5 @@
+[
+  {"name":"baseline","parameters":{},"queue_multiplier":"1","latencies":{"submit_ack_ms":5,"cancel_latency_ms":10,"data_transport_ms":2}},
+  {"name":"skew-and-longer-rest","parameters":{"inventory_skew":".002","max_order_lifetime_ms":90000,"reduce_remaining_s":240,"close_remaining_s":90},"queue_multiplier":"1","latencies":{"submit_ack_ms":20,"cancel_latency_ms":50,"data_transport_ms":20}},
+  {"name":"queue-conservative","parameters":{"quote_distance":".03"},"queue_multiplier":"2","latencies":{"submit_ack_ms":20,"cancel_latency_ms":80,"data_transport_ms":50}}
+]

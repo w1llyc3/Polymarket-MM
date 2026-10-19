@@ -1,0 +1,20 @@
+{
+  "source": "SYNTHETIC_DATA",
+  "job_id": "b3668b6396e04177861bf3315b89bf68",
+  "url": "http://127.0.0.1:8765/offline#b3668b6396e04177861bf3315b89bf68",
+  "catalog_samples": 23,
+  "catalog_errors": [],
+  "lanes": 9,
+  "shared_tape": "e5847af2735af57a5ae037315bdff5ddb9acd0f2471425f62c60bc97d4ecfbea",
+  "all_lanes_ledger_consistent": true,
+  "collector_session_unchanged": true,
+  "plot": {
+    "targets": 92,
+    "accepted_orders": 5,
+    "inventory": 5,
+    "events": 104
+  },
+  "exports_verified": true,
+  "real_submission_calls": 0,
+  "authenticated_account_verified": false
+}
