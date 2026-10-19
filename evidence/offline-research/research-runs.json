@@ -1,0 +1,70 @@
+{
+  "research_runs": [
+    {
+      "source": "SYNTHETIC_DATA",
+      "period": "SYNTHETIC",
+      "selected_window_s": null,
+      "code_commit": "4af7196502d12a6ff08bc34fffdbe59a85b69da6",
+      "working_tree_dirty": false,
+      "tape_id": "e5847af2735af57a5ae037315bdff5ddb9acd0f2471425f62c60bc97d4ecfbea",
+      "lanes": 27,
+      "all_tape_ids_equal": true,
+      "all_ledger_consistent": true,
+      "fill_events": [
+        0,
+        0,
+        0,
+        3,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        3,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "real_submission_calls": 0
+    },
+    {
+      "source": "REAL_OBSERVED",
+      "period": "PRE_GAME",
+      "selected_window_s": 20,
+      "code_commit": "4af7196502d12a6ff08bc34fffdbe59a85b69da6",
+      "working_tree_dirty": false,
+      "tape_id": "911f0d97a3f04fe423853e672d9970d39bb9f6c4d8cfe968d89f911ebbca2953",
+      "lanes": 1,
+      "all_tape_ids_equal": true,
+      "all_ledger_consistent": true,
+      "fill_events": [
+        0
+      ],
+      "real_submission_calls": 0
+    }
+  ],
+  "independent_mock": {
+    "source": "SYNTHETIC_DATA",
+    "orders": 5,
+    "fill_events": 1,
+    "authority_separate_process": true,
+    "authority_separate_database": true,
+    "shutdown_ledger_consistent": true,
+    "real_submission_calls": 0
+  },
+  "live_go": false
+}

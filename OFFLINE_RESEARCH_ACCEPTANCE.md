@@ -22,6 +22,8 @@
 
 实际独立Mock命令：5个模拟订单、1笔模拟成交，账本一致，真实提交0。实际合成27组队列实验共用一个tape。真实赛前20秒窗口（Celtics/76ers旧记录）1组、0模拟成交、账本一致，保留PRE_GAME，不冒称赛中或完整比赛。精简运行证据见research-runs.json；完整数据库和输入留本机data，不提交大数据库。
 
+最终27组与真实片段演练绑定4af7196502d12a6ff08bc34fffdbe59a85b69da6干净工作区；最终HTTP九组也绑定该提交，working_tree_dirty=false。后续提交只更新验收证据和本文。见[evidence/offline-research/research-runs.json](evidence/offline-research/research-runs.json)。
+
 本机8765 HTTP脚本验证九组、封存tape相同、所有账本一致、采集会话未改变，CSV及各明细导出可读；见http-acceptance.json。浏览器实际完成样本扫描、九组合成运行、选择L1实验、图表与链接检查，并保存browser-acceptance.jpg。本轮浏览器验证通过，不代表旧报告所缺的四小时浏览器负载已补齐。
 
 开发失败保留：initial-failure.txt（Windows测试子进程退出留下SQLite占用，已改为Mock正常关闭）；rpc-test-expectation-failure.txt（重复RPC返回原收据True，测试原先误期待False；改验库存/累计成交不重复，未删除幂等检查）。最初两次前端文本编辑的Shell引号/美元表达式错误未成功改文件，改用apply_patch完成，最终语法检查通过。

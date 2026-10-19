@@ -1,7 +1,7 @@
 {
   "source": "SYNTHETIC_DATA",
-  "job_id": "b3668b6396e04177861bf3315b89bf68",
-  "url": "http://127.0.0.1:8765/offline#b3668b6396e04177861bf3315b89bf68",
+  "job_id": "421ab130b7574c029846ea2618865149",
+  "url": "http://127.0.0.1:8765/offline#421ab130b7574c029846ea2618865149",
   "catalog_samples": 23,
   "catalog_errors": [],
   "lanes": 9,
@@ -12,9 +12,13 @@
     "targets": 92,
     "accepted_orders": 5,
     "inventory": 5,
-    "events": 104
+    "events": 18
   },
   "exports_verified": true,
   "real_submission_calls": 0,
-  "authenticated_account_verified": false
+  "authenticated_account_verified": false,
+  "code_commit": "4af7196502d12a6ff08bc34fffdbe59a85b69da6",
+  "working_tree_dirty": false,
+  "budget_per_lane": "100",
+  "explicit_split_shares": "5"
 }
