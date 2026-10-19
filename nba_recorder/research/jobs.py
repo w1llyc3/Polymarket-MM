@@ -10,6 +10,24 @@ _guard=threading.Lock()
 _running=False
 
 
+def register(root, directory):
+    """Expose a finished CLI experiment already inside the UI research folder."""
+    folder=(Path(root)/'data/research').resolve()
+    directory=Path(directory).resolve()
+    if directory.parent!=folder or not re.fullmatch('[0-9a-f]{32}',directory.name):
+        raise ValueError('Completed experiment must be data/research/<32-hex-id>')
+    result=json.loads((directory/'comparison.json').read_text(encoding='utf-8'))
+    if result.get('mode')!='OFFLINE_PAPER_RESEARCH' or result.get('live_go') is not False or result.get('real_submission_calls')!=0:
+        raise ValueError('Explicit completed Paper result required')
+    if not result.get('lanes') or any(not (directory/lane['lane']/'result.json').is_file() for lane in result['lanes']):
+        raise ValueError('Incomplete lane exports')
+    value={'id':directory.name,'status':'FINISHED',**{k:v for k,v in result.items() if k not in {'lanes','manifest'}},
+        'lanes':[{k:v for k,v in lane.items() if k not in {'end_state','policy'}} for lane in result['lanes']]}
+    with (folder/(directory.name+'.json')).open('x',encoding='utf-8') as fp:
+        json.dump(value,fp,ensure_ascii=False,indent=2)
+    return {'id':directory.name,'status':'FINISHED','url':'/offline#'+directory.name}
+
+
 def start(root, body):
     global _running
     if set(body)-{'sample_id','synthetic','sensitivity','split_shares','budget','seconds'}:
@@ -65,6 +83,7 @@ def download(root,identity,lane,name):
 def plot(root,identity,lane):
     timeline=download(root,identity,lane,'timeline.jsonl')
     count=0;points=[];inventory=[];accepted={};events=[];last_inventory=None;last_phase={}
+    last_price_time={};segments={}
     with timeline.open(encoding='utf-8') as fp:
         for line in fp:
             e=json.loads(line)
@@ -94,9 +113,15 @@ def plot(root,identity,lane):
             if e['kind']!='INPUT':continue
             for f in e['frames']:
                 b=f.get('book') or {}
-                if b.get('bid') is None or b.get('ask') is None or b.get('flags') or not f.get('connected') or not 0<=e['time_ms']-f.get('book_received_ms',-1)<=3000:continue
+                asset=f['asset_id']
+                if b.get('bid') is None or b.get('ask') is None or b.get('flags') or not f.get('connected') or not 0<=e['time_ms']-f.get('book_received_ms',-1)<=3000:
+                    last_price_time.pop(asset,None)
+                    continue
                 from ..fair_value.maths import decimal
-                points.append({'t':e['time_ms'],'asset':f['asset_id'],'mid':str((decimal(b['bid'])+decimal(b['ask']))/2),'book_ref':f.get('book_ref')})
+                if asset not in last_price_time or e['time_ms']-last_price_time[asset]>3000:
+                    segments[asset]=segments.get(asset,0)+1
+                last_price_time[asset]=e['time_ms']
+                points.append({'t':e['time_ms'],'asset':asset,'mid':str((decimal(b['bid'])+decimal(b['ask']))/2),'book_ref':f.get('book_ref'),'segment':segments[asset]})
                 count+=1
     step=max(1,__import__('math').ceil(len(points)/2000))
     result=points[::step]

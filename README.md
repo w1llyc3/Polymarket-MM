@@ -19,6 +19,8 @@ Python + SQLite + 原生本地网页，复用单 Runner / Paper OMS / FIFO。主
 
 新增 [离线回放与执行准备](OFFLINE_RESEARCH.md)：打开 http://127.0.0.1:8765/offline ，扫描真实/合成样本，冻结数据并运行九组/27组Paper实验，查看共用时间轴与导出。真实执行仅有无签名映射和独立Mock，发送继续禁用。
 
+补充执行回报映射、公开 Data API v2 持仓、认证只读接口 Mock 与整场规模合成回放；实际测试与性能证据见 [本轮验收](EXECUTION_READ_SCALE_ACCEPTANCE.md)。认证真实账户尚未接通，Live 仍为 NO-GO。
+
 最新预约见 [10月21日准备状态](OCT21_READINESS.md)；通用无人值守行为与限制见 [原部署说明](UNATTENDED_OCT19.md)。19日任务已禁用，21日任务独立于网页当前单场会话，仅公开采集和Paper。
 
 Python 3.12，固定依赖见 requirements.txt；无需Node构建。

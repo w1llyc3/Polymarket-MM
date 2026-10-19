@@ -162,7 +162,7 @@ def make_server(service, port=8765):
             if not self.trusted(writing=True):
                 self.send(403, {"error": "来源或会话令牌无效，请从本地页面重试"})
                 return
-            if self.path not in {"/api/command", "/api/reports", "/api/plans",'/api/offline/run','/api/offline/account'}:
+            if self.path not in {"/api/command", "/api/reports", "/api/plans",'/api/offline/run','/api/offline/account','/api/offline/account-mock'}:
                 self.send(404, {"error": "接口不存在"})
                 return
             try:
@@ -170,6 +170,14 @@ def make_server(service, port=8765):
                 if not 0 < length <= 32768 or self.headers.get("Transfer-Encoding") or self.headers.get("Content-Type", "").split(";")[0] != "application/json":
                     raise ValueError("仅支持有界 JSON 命令")
                 command = json.loads(self.rfile.read(length))
+                if self.path=='/api/offline/account-mock':
+                    from ..execution.read_account import account_snapshot,MockAccountReadPort
+                    if command!={}:raise ValueError('Built-in explicit Mock only')
+                    import tempfile
+                    with tempfile.TemporaryDirectory() as directory:
+                        fixture=json.loads((service.root/'examples/account-read-fixture.json').read_text(encoding='utf-8'))
+                        self.send(200,account_snapshot(MockAccountReadPort(fixture),Path(directory)/'read.sqlite'))
+                    return
                 if self.path=='/api/offline/run':
                     from ..research.jobs import start
                     self.send(202,start(service.root,command));return

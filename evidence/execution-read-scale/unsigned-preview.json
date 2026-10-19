@@ -1,0 +1,19 @@
+{
+  "venue": "polymarket.com",
+  "market_id": "synthetic-market",
+  "market_version": "v2",
+  "identifier_kind": "position_id",
+  "sdk_intent": {
+    "asset_id": "1",
+    "side": "BUY",
+    "price": "0.45",
+    "size": "5",
+    "post_only": true
+  },
+  "time_in_force": "GTC",
+  "signed": false,
+  "sendable": false,
+  "network_calls": 0,
+  "fees": "UNKNOWN: must read actual market fee rules before live use",
+  "limitation": "SDK intent only; no maker/taker amounts, signature, auth, approval or executable HTTP payload"
+}

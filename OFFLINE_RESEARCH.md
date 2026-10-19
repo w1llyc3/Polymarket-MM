@@ -24,13 +24,15 @@
 .\.venv\Scripts\python.exe -m nba_recorder.execution mock-demo --out data/execution-mock
 .\.venv\Scripts\python.exe -m nba_recorder.execution preview --file examples/unsigned-order-preview.json
 .\.venv\Scripts\python.exe -m nba_recorder.execution account --address <公开钱包地址>
+.\.venv\Scripts\python.exe -m nba_recorder.execution account-mock --journal data/account-read.sqlite
+.\.venv\Scripts\python.exe -m nba_recorder.research run --synthetic --synthetic-seconds 14400 --out data/research-scale --split-shares 5
 ```
 
 输出目录必须全新；CLI不传seconds会处理完整样本，不能把多组独立资本收益相加。profiles可改变方案白名单中的挂单寿命、库存倾斜、减仓/退出阶段边界、规模等，并测试Paper提交/撤单/传输延迟与队列倍数；距离网格覆盖profile中的quote_distance。所有参数完整保存在每组result.json。这里不做最佳参数推荐或收益显著性结论。
 
 ## 数据与指标语义
 
-封存复制ip_inputs中的原始可见回调，按time_ms和原rowid保留同毫秒顺序，不恢复缺失时段、不用未来赔率。新增seal_stream使用SQLite临时表落盘，避免封存阶段把全部事件攒在Python列表；逐组回放结果仍可能很大，共享分析器/报告仍读取完整所选窗口，整场多组内存与存储负载未验收。
+封存复制ip_inputs中的原始可见回调，按time_ms和原rowid保留同毫秒顺序，不恢复缺失时段、不用未来赔率。seal_stream使用SQLite临时表落盘；报告和Markout改为流式读取完整窗口、保留紧凑价格索引，并通过二分查找目标时点。订单、决策和导出仍会占用内存与磁盘，不能无限扩展。四小时合成负载的实测及限制见EXECUTION_READ_SCALE_ACCEPTANCE.md；它不证明真实比赛覆盖或收益。
 
 净PnL由现有资金/持仓估值账本计算；未知估值保持未知，不用最后一次过期价格强行结算。回放结束时分别保留输入截止的研究结果与后续撤单核对一致性，不自动平仓。Markout为事后研究诊断，10/30/60/300秒未到期PENDING、缺新鲜参考UNKNOWN；取目标时刻以前最后可见且仍新鲜的价格，不向后插值，不参与净PnL加总。Quote Markout和Fill Markout独立导出。
 
@@ -44,8 +46,12 @@
 
 参考2026-10-19读取的[官方SDK](https://github.com/Polymarket/py-sdk)、[下单文档](https://docs.polymarket.com/trading/place-orders)、[公开持仓接口](https://docs.polymarket.com/api-reference/core/get-current-positions-for-a-user)。官方统一Python SDK包为polymarket-client，本轮未安装或调用认证交易客户端。Polymarket US接口、市场、账户不接入。
 
-网页与CLI的账户功能只用公开地址GET v1 positions，分页明确完整性；不请求认证现金、活动订单或自身成交流，不伪造空数组/零余额，不作为权威对账。Protocol v2账户的positions路由映射和认证账户联调未完成；需要以后明确账户信息及独立实盘授权才评估真实执行，不能据骨架完成声称账户已接通。
+网页与CLI的公开持仓默认GET Data API v2 /positions，使用不透明游标分页和current_size；可显式传--api-version v1兼容旧接口。Data API版本不等于市场协议版本，返回的outcome标识仍须绑定对应市场元数据。公开接口不提供认证现金、活动订单或自身成交流，不伪造零余额、不作为权威对账。
+
+网页“演示认证只读接口（Mock）”和account-mock命令仅加载examples/account-read-fixture.json。独立读日志持久化订单累计成交及自身Maker/Taker成交份额；重复成交与结算确认共享唯一标识，不重复计数，不修改OMS库存。固定6位余额单位与已经是shares的订单数量分别处理；订单、成交分页、部分撤单回报、用户流更新时间有纯函数映射及测试。compare_account仅比较独立现金、仓位、订单，不自动恢复交易。真实认证transport仍未配置，没有连接真实用户流或验证实际账户；需要以后明确账户信息及独立授权才能继续。
+
+完成的CLI实验若放在data/research/<32位十六进制ID>，可运行`python -m nba_recorder.research register --out <该目录>`注册到网页；它只登记已有完整Paper导出，不重新回放、不覆盖旧任务。访问返回的/offline#ID查看图和导出。
 
 ## 验证与证据
 
-完整回归及实际演练见OFFLINE_RESEARCH_ACCEPTANCE.md。真实比赛效果、完整整场回放负载、真实队列校准、认证账户和发送均没有被本轮验收；21日数据到手可直接选择会话进行离线研究。
+此前验收见OFFLINE_RESEARCH_ACCEPTANCE.md，本轮补充见EXECUTION_READ_SCALE_ACCEPTANCE.md。真实比赛效果、真实队列校准、认证账户和发送仍未验收；21日数据到手可直接选择会话进行离线研究。

@@ -1,0 +1,14 @@
+{
+  "http_status": 200,
+  "wall_seconds": 2.272901999996975,
+  "response_bytes": 790917,
+  "total_points": 28802,
+  "displayed_points": 1922,
+  "first_ms": 1791954000000,
+  "last_ms": 1791968400000,
+  "fills": 238,
+  "segments": [
+    1
+  ],
+  "sampling_display_only": true
+}

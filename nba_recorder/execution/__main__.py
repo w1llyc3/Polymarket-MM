@@ -55,14 +55,27 @@ def main():
     p=argparse.ArgumentParser(description='Offline execution preparation; no live sending or signing')
     sub=p.add_subparsers(dest='command',required=True)
     preview=sub.add_parser('preview');preview.add_argument('--file',type=Path,required=True)
-    account=sub.add_parser('account');account.add_argument('--address',required=True,help='Public address only, no key')
+    account=sub.add_parser('account');account.add_argument('--address',required=True,help='Public address only, no key');account.add_argument('--api-version',choices=['v1','v2'],default='v2')
+    read_mock=sub.add_parser('account-mock');read_mock.add_argument('--file',type=Path,default=Path('examples/account-read-fixture.json'));read_mock.add_argument('--journal',type=Path,required=True)
+    mapping=sub.add_parser('normalize');mapping.add_argument('--file',type=Path,required=True);mapping.add_argument('--kind',choices=['order','trade','cancel','operation'],required=True)
     demo=sub.add_parser('mock-demo');demo.add_argument('--out',type=Path,required=True)
     a=p.parse_args()
     if a.command=='preview':
         from ..fair_value.providers import reject_secrets
         value=json.loads(a.file.read_text(encoding='utf-8'));reject_secrets(value)
         result=preview_order(value['market'],value['target'])
-    elif a.command=='account':result=public_positions(a.address)
+    elif a.command=='account':result=public_positions(a.address,version=a.api_version)
+    elif a.command=='account-mock':
+        from .read_account import account_snapshot,MockAccountReadPort
+        a.journal.parent.mkdir(parents=True,exist_ok=True)
+        result=account_snapshot(MockAccountReadPort(json.loads(a.file.read_text(encoding='utf-8'))),a.journal)
+    elif a.command=='normalize':
+        from .normalization import normalize_order,normalize_trade,normalize_cancel,operation_preview
+        value=json.loads(a.file.read_text(encoding='utf-8'))
+        if a.kind=='order':result=normalize_order(value['data'],value.get('source','SDK'))
+        elif a.kind=='trade':result=normalize_trade(value['data'],value['owned_order_ids'],source=value.get('source','SDK'))
+        elif a.kind=='cancel':result=normalize_cancel(value['data'],value['requested_ids'])
+        else:result=operation_preview(value['operation'],value['parameters'])
     else:result=mock_demo(a.out.resolve())
     print(json.dumps(result,ensure_ascii=False,indent=2))
 

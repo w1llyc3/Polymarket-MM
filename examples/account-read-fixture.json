@@ -1,0 +1,18 @@
+{
+  "fixture_source":"SYNTHETIC_MOCK_ACCOUNT; no credentials or actual wallet",
+  "balance":{"balance":"100000000","allowances":{"synthetic-spender":"50000000"}},
+  "positions":[{"token_id":"asset-a","condition_id":"condition-m","current_size":"5","avg_price":".5"}],
+  "known_order_ids":["own-buy","own-sell"],
+  "orders_pages":[
+    {"items":[{"id":"own-buy","condition_id":"condition-m","asset_id":"asset-a","side":"BUY","price":".45","original_size":"10","size_matched":"2","status":"LIVE","order_type":"GTC"}],"has_more":true,"next_cursor":"orders-2"},
+    {"items":[{"id":"own-sell","condition_id":"condition-m","asset_id":"asset-a","side":"SELL","price":".55","original_size":"4","size_matched":"0","status":"LIVE","order_type":"GTC"}],"has_more":false,"next_cursor":null}
+  ],
+  "trades_pages":[
+    {"items":[{"id":"trade-1","condition_id":"condition-m","asset_id":"asset-a","taker_order_id":"other-taker","side":"SELL","size":"100","price":".45","status":"TRADE_STATUS_MATCHED","trader_side":"MAKER","matched_at":"2026-10-19T00:00:01Z","maker_orders":[{"order_id":"own-buy","asset_id":"asset-a","side":"BUY","matched_amount":"2","price":".45"},{"order_id":"other-maker","asset_id":"asset-a","side":"BUY","matched_amount":"98","price":".45"}]}],"has_more":true,"next_cursor":"trades-2"},
+    {"items":[{"id":"trade-1","condition_id":"condition-m","asset_id":"asset-a","taker_order_id":"other-taker","side":"SELL","size":"100","price":".45","status":"TRADE_STATUS_CONFIRMED","trader_side":"MAKER","matched_at":"2026-10-19T00:00:01Z","maker_orders":[{"order_id":"own-buy","asset_id":"asset-a","side":"BUY","matched_amount":"2","price":".45"}]}],"has_more":false,"next_cursor":null}
+  ],
+  "user_events":[
+    {"topic":"user","type":"order","payload":{"id":"own-buy","condition_id":"condition-m","asset_id":"asset-a","side":"BUY","original_size":"10","size_matched":"2","price":".45","order_event_type":"UPDATE","status":"LIVE","timestamp":"2026-10-19T00:00:02Z"}},
+    {"topic":"user","type":"trade","payload":{"id":"trade-1","condition_id":"condition-m","asset_id":"asset-a","taker_order_id":"other-taker","side":"SELL","size":"100","price":".45","status":"CONFIRMED","trader_side":"MAKER","timestamp":"2026-10-19T00:00:02Z","maker_orders":[{"order_id":"own-buy","asset_id":"asset-a","side":"BUY","matched_amount":"2","price":".45"}]}}
+  ]
+}

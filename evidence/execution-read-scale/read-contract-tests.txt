@@ -1,0 +1,17 @@
+test_bad_latest_book_invalidates_mark_and_expiry_is_bounded (test_execution_read_contracts.MappingTests.test_bad_latest_book_invalidates_mark_and_expiry_is_bounded) ... ok
+test_maker_uses_own_leg_not_total_trade_size_or_counterparty_side (test_execution_read_contracts.MappingTests.test_maker_uses_own_leg_not_total_trade_size_or_counterparty_side) ... ok
+test_partial_cancel_response_does_not_assume_all_canceled (test_execution_read_contracts.MappingTests.test_partial_cancel_response_does_not_assume_all_canceled) ... ok
+test_raw_and_sdk_stream_time_units (test_execution_read_contracts.MappingTests.test_raw_and_sdk_stream_time_units) ... ok
+test_rest_sdk_order_quantities_and_terminal_remainder (test_execution_read_contracts.MappingTests.test_rest_sdk_order_quantities_and_terminal_remainder) ... ok
+test_rest_submit_and_replace_are_descriptions_not_sends (test_execution_read_contracts.MappingTests.test_rest_submit_and_replace_are_descriptions_not_sends) ... ok
+test_cursor_conflict_is_not_complete (test_execution_read_contracts.PublicV2Tests.test_cursor_conflict_is_not_complete) ... ok
+test_cursor_envelope_and_current_size_are_not_lifetime_size (test_execution_read_contracts.PublicV2Tests.test_cursor_envelope_and_current_size_are_not_lifetime_size) ... ok
+test_empty_v2_is_valid_not_fake_cash (test_execution_read_contracts.PublicV2Tests.test_empty_v2_is_valid_not_fake_cash) ... ok
+test_balance_orders_trades_paging_and_restart_dedup (test_execution_read_contracts.ReadJournalTests.test_balance_orders_trades_paging_and_restart_dedup) ... ok
+test_stream_partial_fill_and_failed_settlement_remain_read_evidence (test_execution_read_contracts.ReadJournalTests.test_stream_partial_fill_and_failed_settlement_remain_read_evidence) ... ok
+test_unconfigured_port_never_creates_authentication (test_execution_read_contracts.ReadJournalTests.test_unconfigured_port_never_creates_authentication) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.042s
+
+OK

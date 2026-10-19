@@ -1,5 +1,6 @@
 import csv
 import json
+from bisect import bisect_right
 from ..fair_value.maths import decimal
 from ..inplay.reference import book_data_risk
 
@@ -9,6 +10,7 @@ def export_review(om, directory, report, cutoff):
     frames, count, valid = {}, 0, 0
     timeline = directory/'timeline.jsonl'
     peak = decimal(0)
+    from ..inplay.observations import price_point
     with timeline.open('w',encoding='utf-8') as fp:
         for row in om.db.execute('SELECT rowid,time_ms,payload FROM ip_inputs ORDER BY time_ms,rowid'):
             event=json.loads(row['payload'])
@@ -16,7 +18,7 @@ def export_review(om, directory, report, cutoff):
                 count += 1
                 if not book_data_risk({**f,'phase':'ACTIVE_MM'},om.policy,f['time_ms']):
                     valid += 1
-                    frames.setdefault(f['asset_id'],[]).append(f)
+                frames.setdefault(f['asset_id'],[]).append(price_point(f,om.policy))
             fp.write(json.dumps({'kind':'INPUT','ref':row['rowid'],**event})+'\n')
         for row in om.db.execute('SELECT seq,time_ms,kind,order_id,payload FROM pe_journal ORDER BY seq'):
             value=dict(row); value['payload']=json.loads(value['payload'])
@@ -33,17 +35,20 @@ def export_review(om, directory, report, cutoff):
         if fill.get('purpose')=='SIMULATED_COMPLETE_SET_SPLIT':continue
         fills.append({**fill,'id':row['id'],'time_ms':row['time_ms'],'ledger_seq':row['seq']})
     markouts=[]
+    frame_times={asset:[f['time_ms'] for f in rows] for asset,rows in frames.items()}
+    def reference_at(asset,at):
+        rows=frames.get(asset,[]);i=bisect_right(frame_times.get(asset,[]),at)-1
+        return rows[i] if i>=0 else None
     for fill in fills:
         at=fill.get('context',{}).get('exchange_ms',fill['time_ms'])
         for horizon in (10,30,60,300):
             target=at+horizon*1000
             # As-of target: choose last eligible visible input <= target; no forward interpolation.
-            candidates=[f for f in frames.get(fill['asset_id'],[]) if f['time_ms']<=target]
-            reference=candidates[-1] if candidates else None
+            reference=reference_at(fill['asset_id'],target)
             status='PENDING' if target>cutoff else 'UNKNOWN'
             value=None
-            if target<=cutoff and reference and not book_data_risk({**reference,'phase':'ACTIVE_MM'},om.policy,target):
-                mid=(decimal(reference['book']['bid'])+decimal(reference['book']['ask']))/2
+            if target<=cutoff and reference and reference['mid'] is not None and target<=reference['valid_until_ms']:
+                mid=decimal(reference['mid'])
                 value=str((mid-decimal(fill['price']))*(1 if fill['side']=='BUY' else -1))
                 status='OBSERVED'
             markouts.append({'fill_id':fill['id'],'horizon_s':horizon,'status':status,
@@ -63,7 +68,8 @@ def export_review(om, directory, report, cutoff):
         touch=[]
         for f in frames.get(order['asset_id'],[]):
             if not order['submit_ms']<f['time_ms']<=stop:continue
-            top=decimal(f['book']['ask' if order['side']=='BUY' else 'bid'])
+            if f['mid'] is None:continue
+            top=decimal(f['ask' if order['side']=='BUY' else 'bid'])
             if (top<=price if order['side']=='BUY' else top>=price):touch.append(f['book_ref'])
         queue=om.db.execute('SELECT payload FROM ip_models WHERE order_id=?',(order['id'],)).fetchone()
         calibration.append({'order_id':order['id'],'asset_id':order['asset_id'],'side':order['side'],
@@ -79,11 +85,10 @@ def export_review(om, directory, report, cutoff):
         at=order['submit_ms']
         for horizon in (10,30,60,300):
             target=at+horizon*1000
-            candidates=[f for f in frames.get(order['asset_id'],[]) if f['time_ms']<=target]
-            reference=candidates[-1] if candidates else None
+            reference=reference_at(order['asset_id'],target)
             status='PENDING' if target>cutoff else 'UNKNOWN'; value=None
-            if target<=cutoff and reference and not book_data_risk({**reference,'phase':'ACTIVE_MM'},om.policy,target):
-                mid=(decimal(reference['book']['bid'])+decimal(reference['book']['ask']))/2
+            if target<=cutoff and reference and reference['mid'] is not None and target<=reference['valid_until_ms']:
+                mid=decimal(reference['mid'])
                 value=str((mid-decimal(order['price']))*(1 if order['side']=='BUY' else -1));status='OBSERVED'
             quote_markouts.append({'order_id':order['id'],'horizon_s':horizon,'status':status,'value_per_share':value,
                 'kind':'QUOTE_NOT_FILL','not_added_to_pnl':True,'book_ref':reference.get('book_ref') if reference else None})

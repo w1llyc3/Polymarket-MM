@@ -1,4 +1,5 @@
 import json
+from bisect import bisect_left
 from ..fair_value.engine import table_exists
 from ..fair_value.maths import decimal
 from ..fill_management.ledger import valuation
@@ -20,11 +21,11 @@ def execution_evidence(om):
     accepted = len(accepted_ids)
     fills = om.db.execute("SELECT count(*) FROM ip_receipts").fetchone()[0]
     cancelled = len(cancelled_ids)
-    decisions = [json.loads(r[0]) for r in om.db.execute("SELECT payload FROM pe_quotes")]
+    eligible_decisions=om.db.execute("SELECT count(*) FROM pe_quotes WHERE json_array_length(payload,'$.targets')>0").fetchone()[0]
     inputs = om.db.execute("SELECT count(*) FROM ip_inputs").fetchone()[0]
     reduced = any(o.get("purpose") == "RISK_EXIT" and decimal(o["filled"]) > 0 for o in orders)
     return {"input_loop_operational": inputs > 0,
-            "eligible_quote_decisions": sum(bool(d.get("targets")) for d in decisions),
+            "eligible_quote_decisions": eligible_decisions,
             "intents_created": len(orders), "local_rejections": count("LOCAL_REJECTION")+count("DISPATCH_RISK_REJECTED"),
             "paper_submissions": count("SUBMIT_REQUEST"), "paper_orders_accepted": accepted,
             "simulated_fill_events": fills, "cancel_acknowledged": cancelled,
@@ -39,18 +40,24 @@ def report(manager):
     om = manager
     def diagnostics(table):
         return [{**dict(r), "payload": json.loads(r["payload"])} for r in om.db.execute(f"SELECT * FROM {table} ORDER BY id")] if table_exists(om.db, table) else []
-    inputs = [json.loads(r[0]) for r in om.db.execute("SELECT payload FROM ip_inputs ORDER BY time_ms,rowid")]
-    frames = [f for e in inputs for f in e["frames"]]
+    from .observations import price_point
+    prices={};input_count=frame_count=0;first_ms=last_ms=None;markets=set()
+    for row in om.db.execute('SELECT payload FROM ip_inputs ORDER BY time_ms,rowid'):
+        event=json.loads(row[0]);input_count+=1
+        if first_ms is None:first_ms=event['time_ms']
+        last_ms=event['time_ms']
+        for frame in event['frames']:
+            frame_count+=1;markets.add(frame['market_id'])
+            prices.setdefault(frame['asset_id'],[]).append(price_point(frame,om.policy))
+    times={asset:[p['time_ms'] for p in rows] for asset,rows in prices.items()}
     marks = {}
-    for f in frames:
-        # Final marks only from fresh books with consistent identities; phase
-        # gate affects quoting, not whether the last valid mid was observed.
-        candidate = {**f, "phase": "ACTIVE_MM"}
-        if not book_data_risk(candidate, om.policy, om.now):
-            marks[f["asset_id"]] = str((decimal(f["book"]["bid"])+decimal(f["book"]["ask"]))/2)
+    for asset,rows in prices.items():
+        # A later invalid observation invalidates the previous displayed mark.
+        if rows[-1]['mid'] is not None and om.now<=rows[-1]['valid_until_ms']:
+            marks[asset]=rows[-1]['mid']
     state = om.ledger.state()
     account = valuation(state, marks, om.orders())
-    decisions = [json.loads(r[0]) for r in om.db.execute("SELECT payload FROM pe_quotes ORDER BY time_ms,rowid")]
+    decision_count,quote_count=om.db.execute("SELECT count(*),sum(json_extract(payload,'$.state')!='NO_QUOTE') FROM pe_quotes").fetchone()
     fills = [dict(r) for r in om.db.execute("SELECT * FROM l6_events WHERE kind='FILL' AND run_id=? ORDER BY seq", (om.run_id,)) if json.loads(r["payload"]).get("purpose") != "SIMULATED_COMPLETE_SET_SPLIT"]
     markouts = []
     for row in fills:
@@ -61,12 +68,12 @@ def report(manager):
         at = exchange_ms
         for horizon in (1, 3, 5, 10, 30):
             due = at+horizon*1000
-            future = next((f for f in frames if f["asset_id"] == fill["asset_id"] and due <= f["time_ms"] <= due+1000), None)
-            value, status = None, "RIGHT_CENSORED" if not inputs or due > inputs[-1]["time_ms"] else "UNAVAILABLE"
+            rows=prices.get(fill['asset_id'],[]);i=bisect_left(times.get(fill['asset_id'],[]),due)
+            future=rows[i] if i<len(rows) and rows[i]['time_ms']<=due+1000 else None
+            value, status = None, "RIGHT_CENSORED" if last_ms is None or due>last_ms else "UNAVAILABLE"
             if future:
-                candidate = {**future, "phase": "ACTIVE_MM"}
-                if not book_data_risk(candidate, om.policy, future["time_ms"]):
-                    mid = (decimal(future["book"]["bid"])+decimal(future["book"]["ask"]))/2
+                if future['mid'] is not None:
+                    mid = decimal(future['mid'])
                     value = str((mid-decimal(fill["price"]))* (1 if fill["side"] == "BUY" else -1))
                     status = "OBSERVED"
             markouts.append({"fill_id": row["id"], "horizon_s": horizon, "signed_markout_per_share": value, "adverse": decimal(value) < 0 if value is not None else None, "status": status, "receipt_ms": row["time_ms"], "exchange_ms": exchange_ms, "fill_mid": fill.get("context", {}).get("reference_mid"), "diagnostic_not_added_to_pnl": True})
@@ -92,7 +99,7 @@ def report(manager):
             "realized_book_attribution": [c["attribution"].get("book_decomposition") for c in state["closures"]],
             "stale_quote_loss_realized_diagnostic": str(stale_loss) if stale_loss is not None else None,
             "overlapping_diagnostics_not_added_to_pnl": True,
-            "quote_availability": str(decimal(sum(d["state"] != "NO_QUOTE" for d in decisions))/len(decisions)) if decisions else None,
+            "quote_availability": str(decimal(quote_count)/decision_count) if decision_count else None,
             "orders": len(orders), "fill_events": len(fills), "simulated_fill_order_rate": str(decimal(len(filled))/len(orders)) if orders else None,
             "quote_distance": om.policy.quote_distance,
             "inventory_rule": "SUPPRESS_BUY_ON_NET_LONG; ask distance floor unchanged",
@@ -105,6 +112,6 @@ def report(manager):
             "inventory_ages": ages, "residual_inventory": residual, "residual_risk_status": "MANUAL_REVIEW" if residual else "FLAT",
             "ledger_and_oms_consistent": om.consistent(), "latency_ms": om.status()["latency_ms"], "latency_provenance": "synthetic_paper_clock",
             "risk_reasons": [dict(r) for r in om.db.execute("SELECT reason,count(*) AS count FROM pe_risks GROUP BY reason ORDER BY reason")],
-            "coverage": {"inputs": len(inputs), "asset_frames": len(frames), "markets": len({f["market_id"] for f in frames}), "first_ms": inputs[0]["time_ms"] if inputs else None, "last_ms": inputs[-1]["time_ms"] if inputs else None},
+            "coverage": {"inputs": input_count, "asset_frames": frame_count, "markets": len(markets), "first_ms": first_ms, "last_ms": last_ms},
             "statistical_unit": "game, not correlated frames", "confidence": "uncalibrated; fixtures do not validate profitability or execution probability",
             "execution_evidence": execution_evidence(om), "live_go": False, "real_submission_calls": 0}

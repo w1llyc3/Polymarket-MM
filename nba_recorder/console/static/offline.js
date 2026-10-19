@@ -18,7 +18,7 @@ x.fillText(`中点${v.points.length}/${v.total_points} · 目标${v.targets.valu
 const points=v.points;if(!points.length)return;
 const t0=points[0].t,t1=points[points.length-1].t;const px=t=>30+(t-t0)/Math.max(1,t1-t0)*(c.width-60),py=p=>c.height-35-Number(p)*(c.height-70);
 const assets=[...new Set(points.map(p=>p.asset))];
-for(const [i,a] of assets.entries()){x.beginPath();x.strokeStyle=i?'#70b9dc':'#54dfb2';let last=null;for(const p of points.filter(p=>p.asset===a)){if(last&&p.t-last.t<=v.max_gap_ms)x.lineTo(px(p.t),py(p.mid));else x.moveTo(px(p.t),py(p.mid));last=p;}x.stroke();}
+for(const [i,a] of assets.entries()){x.beginPath();x.strokeStyle=i?'#70b9dc':'#54dfb2';let last=null;for(const p of points.filter(p=>p.asset===a)){if(last&&last.segment===p.segment&&(p.segment!==undefined||p.t-last.t<=v.max_gap_ms))x.lineTo(px(p.t),py(p.mid));else x.moveTo(px(p.t),py(p.mid));last=p;}x.stroke();}
 x.globalAlpha=.4;for(const p of v.targets.values){x.fillStyle=p.side==='BUY'?'#5de6ac':'#f18d95';x.fillRect(px(p.t)-1,py(p.price)-1,2,2);}x.globalAlpha=1;
 x.setLineDash([5,3]);for(const o of v.accepted_orders.values){x.strokeStyle=o.side==='BUY'?'#5de6ac':'#f18d95';x.beginPath();x.moveTo(px(o.start_ms),py(o.price));x.lineTo(px(Math.min(t1,o.end_ms??t1)),py(o.price));x.stroke();}x.setLineDash([]);
 x.fillStyle='#ffd16b';for(const f of v.fills)x.fillRect(px(f.time_ms)-3,py(f.price)-3,6,6);
@@ -34,5 +34,6 @@ $('lane').onchange=display;
 $('run').onclick=async()=>{try{$('run').disabled=true;const selected=$('sample').value;const v=await post('/api/offline/run',{...(selected==='synthetic'?{synthetic:true}:{sample_id:selected}),budget:$('budget').value,split_shares:$('split').value,sensitivity:$('sensitivity').checked,seconds:Number($('seconds').value)});job=v.id;location.hash=job;$('status').textContent='离线实验运行中，不改变采集或原账户。';poll();}catch(e){$('status').textContent=e.message;$('run').disabled=false;}};
 async function poll(){try{const v=await get('/api/offline/job?id='+job);$('status').textContent=v.status+(v.message?' · '+v.message:'');if(v.status==='RUNNING'){setTimeout(poll,1500);return;}$('run').disabled=false;if(v.status==='FINISHED')show(v);}catch(e){$('status').textContent=e.message;$('run').disabled=false;}}
 $('account').onclick=async()=>{try{$('account-view').textContent='读取公开持仓…';$('account-view').textContent=pretty(await post('/api/offline/account',{address:$('wallet').value}));}catch(e){$('account-view').textContent=e.message;}};
+$('account-mock').onclick=async()=>{try{$('account-view').textContent='明确合成Mock账户，只读…';$('account-view').textContent=pretty(await post('/api/offline/account-mock',{}));}catch(e){$('account-view').textContent=e.message;}};
 if(/^#[0-9a-f]{32}$/.test(location.hash)){job=location.hash.slice(1);poll();}
 })();

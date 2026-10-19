@@ -1,0 +1,22 @@
+{
+  "mode": "PUBLIC_READ_ONLY",
+  "venue": "polymarket.com",
+  "api_version": "v2",
+  "address": "0x1111111111111111111111111111111111111111",
+  "received_ms": 1792394719675,
+  "positions": [],
+  "positions_complete": true,
+  "pages": 1,
+  "requested_status": "OPEN",
+  "cash_balance": null,
+  "open_orders": null,
+  "own_fills": null,
+  "equity": null,
+  "authenticated_account_connected": false,
+  "real_submission_calls": 0,
+  "limitations": [
+    "Data API v2 version is not the market protocol version",
+    "Indexed positions can lag; match outcome ids against explicit v1/v2 market metadata before use",
+    "Public positions do not provide authenticated cash, own orders or a complete settlement ledger"
+  ]
+}

@@ -1,0 +1,757 @@
+{
+  "source": "SYNTHETIC_SCALE_FIXTURE_NOT_REAL_GAME",
+  "code_commit": "2e6ebd5cd057cf3900efa090ab2db49d8069d042",
+  "working_tree_dirty": true,
+  "tape_id": "372eb9fe617ef4d6b47d4cd6828e46ecb10c6f2f07af2a65d5108140eb6b39d3",
+  "performance": {
+    "wall_seconds": 1689.3732327999896,
+    "cpu_seconds": 1615.671875,
+    "process_peak_rss_bytes": 1154416640,
+    "output_bytes_before_comparison": 9781822018,
+    "basis": "Sequential lanes; RSS is process lifetime peak, not sum of lane peaks"
+  },
+  "lanes": [
+    {
+      "lane": "p0-L0-d0",
+      "inputs": 14401,
+      "input_sequence_sha256": "ebe597f4126bf2fb9af2e5cc17230c0d41829507612507befded469933392659",
+      "span_ms": 14400000,
+      "frame_count": 28802,
+      "orders": 936,
+      "fill_events": 0,
+      "account": {
+        "cash": "95.0",
+        "capital_contributions": "100",
+        "positions": {
+          "a": "5",
+          "b": "5"
+        },
+        "reserved_cash": "0",
+        "available_cash": "95.0",
+        "cash_flows": "-5.0",
+        "reserved_inventory": {
+          "a": "0",
+          "b": "0"
+        },
+        "available_inventory": {
+          "a": "5",
+          "b": "5"
+        },
+        "realized_trading_pnl": "0",
+        "unrealized_trading_pnl": "0.00",
+        "trading_pnl": "0.00",
+        "fees": "0",
+        "rewards": "0",
+        "settlement_cash_flow": "0",
+        "pair_cash_flow": "0",
+        "market_value": "5.00",
+        "equity": "100.00",
+        "net_pnl": "0.00",
+        "reconciled": true,
+        "missing_marks": [],
+        "cost_basis_complete": true,
+        "conservative_committed_exposure": "10",
+        "virtual": true,
+        "not_real_profit": true
+      },
+      "fill_markouts": {
+        "10": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        },
+        "30": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        },
+        "60": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        },
+        "300": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        }
+      },
+      "performance": {
+        "wall_seconds": 167.91133279999485,
+        "cpu_seconds": 160.1875,
+        "process_peak_rss_bytes": 1048440832,
+        "database_bytes": 551886848,
+        "output_bytes": 1078232375
+      },
+      "ledger_consistent": true
+    },
+    {
+      "lane": "p0-L0-d1",
+      "inputs": 14401,
+      "input_sequence_sha256": "ebe597f4126bf2fb9af2e5cc17230c0d41829507612507befded469933392659",
+      "span_ms": 14400000,
+      "frame_count": 28802,
+      "orders": 936,
+      "fill_events": 0,
+      "account": {
+        "cash": "95.0",
+        "capital_contributions": "100",
+        "positions": {
+          "a": "5",
+          "b": "5"
+        },
+        "reserved_cash": "0",
+        "available_cash": "95.0",
+        "cash_flows": "-5.0",
+        "reserved_inventory": {
+          "a": "0",
+          "b": "0"
+        },
+        "available_inventory": {
+          "a": "5",
+          "b": "5"
+        },
+        "realized_trading_pnl": "0",
+        "unrealized_trading_pnl": "0.00",
+        "trading_pnl": "0.00",
+        "fees": "0",
+        "rewards": "0",
+        "settlement_cash_flow": "0",
+        "pair_cash_flow": "0",
+        "market_value": "5.00",
+        "equity": "100.00",
+        "net_pnl": "0.00",
+        "reconciled": true,
+        "missing_marks": [],
+        "cost_basis_complete": true,
+        "conservative_committed_exposure": "10",
+        "virtual": true,
+        "not_real_profit": true
+      },
+      "fill_markouts": {
+        "10": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        },
+        "30": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        },
+        "60": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        },
+        "300": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        }
+      },
+      "performance": {
+        "wall_seconds": 172.40991480002413,
+        "cpu_seconds": 164.828125,
+        "process_peak_rss_bytes": 1061363712,
+        "database_bytes": 551886848,
+        "output_bytes": 1078232375
+      },
+      "ledger_consistent": true
+    },
+    {
+      "lane": "p0-L0-d2",
+      "inputs": 14401,
+      "input_sequence_sha256": "ebe597f4126bf2fb9af2e5cc17230c0d41829507612507befded469933392659",
+      "span_ms": 14400000,
+      "frame_count": 28802,
+      "orders": 936,
+      "fill_events": 0,
+      "account": {
+        "cash": "95.0",
+        "capital_contributions": "100",
+        "positions": {
+          "a": "5",
+          "b": "5"
+        },
+        "reserved_cash": "0",
+        "available_cash": "95.0",
+        "cash_flows": "-5.0",
+        "reserved_inventory": {
+          "a": "0",
+          "b": "0"
+        },
+        "available_inventory": {
+          "a": "5",
+          "b": "5"
+        },
+        "realized_trading_pnl": "0",
+        "unrealized_trading_pnl": "0.00",
+        "trading_pnl": "0.00",
+        "fees": "0",
+        "rewards": "0",
+        "settlement_cash_flow": "0",
+        "pair_cash_flow": "0",
+        "market_value": "5.00",
+        "equity": "100.00",
+        "net_pnl": "0.00",
+        "reconciled": true,
+        "missing_marks": [],
+        "cost_basis_complete": true,
+        "conservative_committed_exposure": "10",
+        "virtual": true,
+        "not_real_profit": true
+      },
+      "fill_markouts": {
+        "10": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        },
+        "30": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        },
+        "60": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        },
+        "300": {
+          "observed": 0,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "0",
+          "quantity_weighted_per_share": null
+        }
+      },
+      "performance": {
+        "wall_seconds": 177.95860359998187,
+        "cpu_seconds": 167.0625,
+        "process_peak_rss_bytes": 1072472064,
+        "database_bytes": 551886848,
+        "output_bytes": 1078232375
+      },
+      "ledger_consistent": true
+    },
+    {
+      "lane": "p0-L1-d0",
+      "inputs": 14401,
+      "input_sequence_sha256": "ebe597f4126bf2fb9af2e5cc17230c0d41829507612507befded469933392659",
+      "span_ms": 14400000,
+      "frame_count": 28802,
+      "orders": 943,
+      "fill_events": 238,
+      "account": {
+        "cash": "106.90",
+        "capital_contributions": "100",
+        "positions": {
+          "a": "5",
+          "b": "5"
+        },
+        "reserved_cash": "0",
+        "available_cash": "106.90",
+        "cash_flows": "6.90",
+        "reserved_inventory": {
+          "a": "0",
+          "b": "0"
+        },
+        "available_inventory": {
+          "a": "5",
+          "b": "5"
+        },
+        "realized_trading_pnl": "11.85",
+        "unrealized_trading_pnl": "0.05",
+        "trading_pnl": "11.90",
+        "fees": "0",
+        "rewards": "0",
+        "settlement_cash_flow": "0",
+        "pair_cash_flow": "0",
+        "market_value": "5.00",
+        "equity": "111.90",
+        "net_pnl": "11.90",
+        "reconciled": true,
+        "missing_marks": [],
+        "cost_basis_complete": true,
+        "conservative_committed_exposure": "10",
+        "virtual": true,
+        "not_real_profit": true
+      },
+      "fill_markouts": {
+        "10": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01"
+        },
+        "30": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01"
+        },
+        "60": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01"
+        },
+        "300": {
+          "observed": 235,
+          "pending": 3,
+          "unknown": 0,
+          "quantity": "1175",
+          "quantity_weighted_per_share": "0.01"
+        }
+      },
+      "performance": {
+        "wall_seconds": 204.0900241000345,
+        "cpu_seconds": 195.671875,
+        "process_peak_rss_bytes": 1092812800,
+        "database_bytes": 553484288,
+        "output_bytes": 1081029052
+      },
+      "ledger_consistent": true
+    },
+    {
+      "lane": "p0-L1-d1",
+      "inputs": 14401,
+      "input_sequence_sha256": "ebe597f4126bf2fb9af2e5cc17230c0d41829507612507befded469933392659",
+      "span_ms": 14400000,
+      "frame_count": 28802,
+      "orders": 943,
+      "fill_events": 238,
+      "account": {
+        "cash": "118.75",
+        "capital_contributions": "100",
+        "positions": {
+          "a": "5",
+          "b": "5"
+        },
+        "reserved_cash": "0",
+        "available_cash": "118.75",
+        "cash_flows": "18.75",
+        "reserved_inventory": {
+          "a": "0",
+          "b": "0"
+        },
+        "available_inventory": {
+          "a": "5",
+          "b": "5"
+        },
+        "realized_trading_pnl": "23.65",
+        "unrealized_trading_pnl": "0.10",
+        "trading_pnl": "23.75",
+        "fees": "0",
+        "rewards": "0",
+        "settlement_cash_flow": "0",
+        "pair_cash_flow": "0",
+        "market_value": "5.00",
+        "equity": "123.75",
+        "net_pnl": "23.75",
+        "reconciled": true,
+        "missing_marks": [],
+        "cost_basis_complete": true,
+        "conservative_committed_exposure": "10",
+        "virtual": true,
+        "not_real_profit": true
+      },
+      "fill_markouts": {
+        "10": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01995798319327731092436974790"
+        },
+        "30": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01995798319327731092436974790"
+        },
+        "60": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01995798319327731092436974790"
+        },
+        "300": {
+          "observed": 235,
+          "pending": 3,
+          "unknown": 0,
+          "quantity": "1175",
+          "quantity_weighted_per_share": "0.02"
+        }
+      },
+      "performance": {
+        "wall_seconds": 186.22865970002022,
+        "cpu_seconds": 178.609375,
+        "process_peak_rss_bytes": 1106456576,
+        "database_bytes": 553484288,
+        "output_bytes": 1081128103
+      },
+      "ledger_consistent": true
+    },
+    {
+      "lane": "p0-L1-d2",
+      "inputs": 14401,
+      "input_sequence_sha256": "ebe597f4126bf2fb9af2e5cc17230c0d41829507612507befded469933392659",
+      "span_ms": 14400000,
+      "frame_count": 28802,
+      "orders": 943,
+      "fill_events": 238,
+      "account": {
+        "cash": "130.60",
+        "capital_contributions": "100",
+        "positions": {
+          "a": "5",
+          "b": "5"
+        },
+        "reserved_cash": "0",
+        "available_cash": "130.60",
+        "cash_flows": "30.60",
+        "reserved_inventory": {
+          "a": "0",
+          "b": "0"
+        },
+        "available_inventory": {
+          "a": "5",
+          "b": "5"
+        },
+        "realized_trading_pnl": "35.45",
+        "unrealized_trading_pnl": "0.15",
+        "trading_pnl": "35.60",
+        "fees": "0",
+        "rewards": "0",
+        "settlement_cash_flow": "0",
+        "pair_cash_flow": "0",
+        "market_value": "5.00",
+        "equity": "135.60",
+        "net_pnl": "35.60",
+        "reconciled": true,
+        "missing_marks": [],
+        "cost_basis_complete": true,
+        "conservative_committed_exposure": "10",
+        "virtual": true,
+        "not_real_profit": true
+      },
+      "fill_markouts": {
+        "10": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.02991596638655462184873949580"
+        },
+        "30": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.02991596638655462184873949580"
+        },
+        "60": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.02991596638655462184873949580"
+        },
+        "300": {
+          "observed": 235,
+          "pending": 3,
+          "unknown": 0,
+          "quantity": "1175",
+          "quantity_weighted_per_share": "0.03"
+        }
+      },
+      "performance": {
+        "wall_seconds": 191.78551969997352,
+        "cpu_seconds": 184.1875,
+        "process_peak_rss_bytes": 1118625792,
+        "database_bytes": 553484288,
+        "output_bytes": 1081162258
+      },
+      "ledger_consistent": true
+    },
+    {
+      "lane": "p0-L2-d0",
+      "inputs": 14401,
+      "input_sequence_sha256": "ebe597f4126bf2fb9af2e5cc17230c0d41829507612507befded469933392659",
+      "span_ms": 14400000,
+      "frame_count": 28802,
+      "orders": 943,
+      "fill_events": 238,
+      "account": {
+        "cash": "106.90",
+        "capital_contributions": "100",
+        "positions": {
+          "a": "5",
+          "b": "5"
+        },
+        "reserved_cash": "0",
+        "available_cash": "106.90",
+        "cash_flows": "6.90",
+        "reserved_inventory": {
+          "a": "0",
+          "b": "0"
+        },
+        "available_inventory": {
+          "a": "5",
+          "b": "5"
+        },
+        "realized_trading_pnl": "11.85",
+        "unrealized_trading_pnl": "0.05",
+        "trading_pnl": "11.90",
+        "fees": "0",
+        "rewards": "0",
+        "settlement_cash_flow": "0",
+        "pair_cash_flow": "0",
+        "market_value": "5.00",
+        "equity": "111.90",
+        "net_pnl": "11.90",
+        "reconciled": true,
+        "missing_marks": [],
+        "cost_basis_complete": true,
+        "conservative_committed_exposure": "10",
+        "virtual": true,
+        "not_real_profit": true
+      },
+      "fill_markouts": {
+        "10": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01"
+        },
+        "30": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01"
+        },
+        "60": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01"
+        },
+        "300": {
+          "observed": 235,
+          "pending": 3,
+          "unknown": 0,
+          "quantity": "1175",
+          "quantity_weighted_per_share": "0.01"
+        }
+      },
+      "performance": {
+        "wall_seconds": 194.4601703999797,
+        "cpu_seconds": 186.921875,
+        "process_peak_rss_bytes": 1130356736,
+        "database_bytes": 553484288,
+        "output_bytes": 1081028576
+      },
+      "ledger_consistent": true
+    },
+    {
+      "lane": "p0-L2-d1",
+      "inputs": 14401,
+      "input_sequence_sha256": "ebe597f4126bf2fb9af2e5cc17230c0d41829507612507befded469933392659",
+      "span_ms": 14400000,
+      "frame_count": 28802,
+      "orders": 943,
+      "fill_events": 238,
+      "account": {
+        "cash": "118.75",
+        "capital_contributions": "100",
+        "positions": {
+          "a": "5",
+          "b": "5"
+        },
+        "reserved_cash": "0",
+        "available_cash": "118.75",
+        "cash_flows": "18.75",
+        "reserved_inventory": {
+          "a": "0",
+          "b": "0"
+        },
+        "available_inventory": {
+          "a": "5",
+          "b": "5"
+        },
+        "realized_trading_pnl": "23.65",
+        "unrealized_trading_pnl": "0.10",
+        "trading_pnl": "23.75",
+        "fees": "0",
+        "rewards": "0",
+        "settlement_cash_flow": "0",
+        "pair_cash_flow": "0",
+        "market_value": "5.00",
+        "equity": "123.75",
+        "net_pnl": "23.75",
+        "reconciled": true,
+        "missing_marks": [],
+        "cost_basis_complete": true,
+        "conservative_committed_exposure": "10",
+        "virtual": true,
+        "not_real_profit": true
+      },
+      "fill_markouts": {
+        "10": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01995798319327731092436974790"
+        },
+        "30": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01995798319327731092436974790"
+        },
+        "60": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.01995798319327731092436974790"
+        },
+        "300": {
+          "observed": 235,
+          "pending": 3,
+          "unknown": 0,
+          "quantity": "1175",
+          "quantity_weighted_per_share": "0.02"
+        }
+      },
+      "performance": {
+        "wall_seconds": 195.89294069999596,
+        "cpu_seconds": 187.890625,
+        "process_peak_rss_bytes": 1142607872,
+        "database_bytes": 553484288,
+        "output_bytes": 1081127627
+      },
+      "ledger_consistent": true
+    },
+    {
+      "lane": "p0-L2-d2",
+      "inputs": 14401,
+      "input_sequence_sha256": "ebe597f4126bf2fb9af2e5cc17230c0d41829507612507befded469933392659",
+      "span_ms": 14400000,
+      "frame_count": 28802,
+      "orders": 943,
+      "fill_events": 238,
+      "account": {
+        "cash": "130.60",
+        "capital_contributions": "100",
+        "positions": {
+          "a": "5",
+          "b": "5"
+        },
+        "reserved_cash": "0",
+        "available_cash": "130.60",
+        "cash_flows": "30.60",
+        "reserved_inventory": {
+          "a": "0",
+          "b": "0"
+        },
+        "available_inventory": {
+          "a": "5",
+          "b": "5"
+        },
+        "realized_trading_pnl": "35.45",
+        "unrealized_trading_pnl": "0.15",
+        "trading_pnl": "35.60",
+        "fees": "0",
+        "rewards": "0",
+        "settlement_cash_flow": "0",
+        "pair_cash_flow": "0",
+        "market_value": "5.00",
+        "equity": "135.60",
+        "net_pnl": "35.60",
+        "reconciled": true,
+        "missing_marks": [],
+        "cost_basis_complete": true,
+        "conservative_committed_exposure": "10",
+        "virtual": true,
+        "not_real_profit": true
+      },
+      "fill_markouts": {
+        "10": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.02991596638655462184873949580"
+        },
+        "30": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.02991596638655462184873949580"
+        },
+        "60": {
+          "observed": 238,
+          "pending": 0,
+          "unknown": 0,
+          "quantity": "1190",
+          "quantity_weighted_per_share": "0.02991596638655462184873949580"
+        },
+        "300": {
+          "observed": 235,
+          "pending": 3,
+          "unknown": 0,
+          "quantity": "1175",
+          "quantity_weighted_per_share": "0.03"
+        }
+      },
+      "performance": {
+        "wall_seconds": 194.60497619997477,
+        "cpu_seconds": 186.46875,
+        "process_peak_rss_bytes": 1154416640,
+        "database_bytes": 553484288,
+        "output_bytes": 1081161782
+      },
+      "ledger_consistent": true
+    }
+  ],
+  "same_input_sequence_verified": true,
+  "equity_cash_and_pnl_identities_verified": true,
+  "real_submission_calls": 0,
+  "live_go": false
+}

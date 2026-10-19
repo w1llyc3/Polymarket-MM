@@ -1,0 +1,40 @@
+Paper lane p0-L0-d0 done: 167.91s
+Paper lane p0-L0-d1 done: 172.41s
+Paper lane p0-L0-d2 done: 177.96s
+Paper lane p0-L1-d0 done: 204.09s
+Paper lane p0-L1-d1 done: 186.23s
+Paper lane p0-L1-d2 done: 191.79s
+Paper lane p0-L2-d0 done: 194.46s
+Paper lane p0-L2-d1 done: 195.89s
+Paper lane p0-L2-d2 done: 194.60s
+{
+  "mode": "OFFLINE_PAPER_RESEARCH",
+  "sample": {
+    "source": "SYNTHETIC_DATA",
+    "research_phase": false,
+    "period": "SYNTHETIC",
+    "full_game_verified": false,
+    "synthetic_scale_seconds": 14400,
+    "cadence_ms": 1000
+  },
+  "tape_id": "372eb9fe617ef4d6b47d4cd6828e46ecb10c6f2f07af2a65d5108140eb6b39d3",
+  "code_commit": "2e6ebd5cd057cf3900efa090ab2db49d8069d042",
+  "working_tree_dirty": true,
+  "budget_per_lane": "100",
+  "explicit_split_shares": "5",
+  "live_go": false,
+  "real_submission_calls": 0,
+  "limitations": [
+    "Book-mid distance is not outcome fair-value edge",
+    "Models are uncalibrated proxies, not real fills",
+    "Independent lane capital; do not sum lanes as one account profit",
+    "No full-game certification; PRE_GAME samples cannot validate in-play strategies"
+  ],
+  "performance": {
+    "wall_seconds": 1689.3732327999896,
+    "cpu_seconds": 1615.671875,
+    "process_peak_rss_bytes": 1154416640,
+    "output_bytes_before_comparison": 9781822018,
+    "basis": "Sequential lanes; RSS is process lifetime peak, not sum of lane peaks"
+  }
+}

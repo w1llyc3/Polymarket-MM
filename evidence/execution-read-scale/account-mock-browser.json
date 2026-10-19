@@ -1,0 +1,101 @@
+{
+  "mode": "MOCK_AUTHENTICATED_READ_ONLY",
+  "venue": "polymarket.com",
+  "received_ms": 1792395024737,
+  "cash_balance": "100",
+  "read_status": "MOCK_READ_COMPLETE",
+  "equity": null,
+  "balance_unit": "explicit raw fixed-6 collateral units converted to decimal",
+  "allowances": {
+    "synthetic-spender": "50"
+  },
+  "available_cash_after_local_order_reservations": "96.40",
+  "positions": {
+    "asset-a": "5"
+  },
+  "orders_complete": true,
+  "trades_complete": true,
+  "unattributed_trades": 0,
+  "orders": [
+    {
+      "id": "own-buy",
+      "asset_id": "asset-a",
+      "condition_id": "condition-m",
+      "side": "BUY",
+      "price": "0.45",
+      "size": "10",
+      "filled": "2",
+      "remaining": "8",
+      "state": "PARTIALLY_FILLED",
+      "exchange_status": "LIVE",
+      "order_type": null,
+      "received_ms": 1792395024737,
+      "exchange_ms": 1792368002000,
+      "expires_ms": null,
+      "requires_reconciliation": false,
+      "source": "USER_SDK",
+      "quantity_units": "shares; never divide original_size/size_matched by 1e6"
+    },
+    {
+      "id": "own-sell",
+      "asset_id": "asset-a",
+      "condition_id": "condition-m",
+      "side": "SELL",
+      "price": "0.55",
+      "size": "4",
+      "filled": "0",
+      "remaining": "4",
+      "state": "OPEN",
+      "exchange_status": "LIVE",
+      "order_type": "GTC",
+      "received_ms": 1792395024737,
+      "exchange_ms": null,
+      "expires_ms": null,
+      "requires_reconciliation": false,
+      "source": "SDK",
+      "quantity_units": "shares; never divide original_size/size_matched by 1e6"
+    }
+  ],
+  "confirmed_fills": [
+    {
+      "fill_id": "604979f9dacc52e1049b94a4e99cbe1cb539c75445400781842612ead0b4b65f",
+      "trade_id": "trade-1",
+      "order_id": "own-buy",
+      "asset_id": "asset-a",
+      "condition_id": "condition-m",
+      "side": "BUY",
+      "quantity": "2",
+      "price": "0.45",
+      "role": "MAKER",
+      "settlement_status": "CONFIRMED",
+      "confirmed": true,
+      "failed": false,
+      "exchange_ms": 1792368001000,
+      "received_ms": 1792395024737,
+      "fee_paid": null,
+      "fee_rate_bps": null,
+      "updates_inventory": false,
+      "requires_reconciliation": false,
+      "source": "SDK"
+    }
+  ],
+  "provisional_fills": [],
+  "failed_fills": [],
+  "mutates_inventory": false,
+  "read_calls": [
+    "GET_BALANCE",
+    "GET_ORDERS_PAGES",
+    "GET_ORDERS_PAGES",
+    "GET_TRADES_PAGES",
+    "GET_TRADES_PAGES",
+    "GET_POSITIONS"
+  ],
+  "authenticated_account_connected": false,
+  "real_submission_calls": 0,
+  "live_go": false,
+  "limitations": [
+    "Mock auth-read contract only; no live credentials, SDK account or user subscription connected",
+    "Matched/mined/confirmed updates share a fill identity; failed settlement requires review, never automatic inventory repair",
+    "Read evidence does not establish initial cost basis or actual account equity"
+  ]
+}

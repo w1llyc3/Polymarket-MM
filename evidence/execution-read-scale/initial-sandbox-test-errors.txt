@@ -1,0 +1,141 @@
+test_bad_latest_book_invalidates_mark_and_expiry_is_bounded (test_execution_read_contracts.MappingTests.test_bad_latest_book_invalidates_mark_and_expiry_is_bounded) ... ok
+test_maker_uses_own_leg_not_total_trade_size_or_counterparty_side (test_execution_read_contracts.MappingTests.test_maker_uses_own_leg_not_total_trade_size_or_counterparty_side) ... ok
+test_partial_cancel_response_does_not_assume_all_canceled (test_execution_read_contracts.MappingTests.test_partial_cancel_response_does_not_assume_all_canceled) ... ok
+test_raw_and_sdk_stream_time_units (test_execution_read_contracts.MappingTests.test_raw_and_sdk_stream_time_units) ... ok
+test_rest_sdk_order_quantities_and_terminal_remainder (test_execution_read_contracts.MappingTests.test_rest_sdk_order_quantities_and_terminal_remainder) ... ok
+test_rest_submit_and_replace_are_descriptions_not_sends (test_execution_read_contracts.MappingTests.test_rest_submit_and_replace_are_descriptions_not_sends) ... ok
+test_cursor_conflict_is_not_complete (test_execution_read_contracts.PublicV2Tests.test_cursor_conflict_is_not_complete) ... ok
+test_cursor_envelope_and_current_size_are_not_lifetime_size (test_execution_read_contracts.PublicV2Tests.test_cursor_envelope_and_current_size_are_not_lifetime_size) ... ok
+test_empty_v2_is_valid_not_fake_cash (test_execution_read_contracts.PublicV2Tests.test_empty_v2_is_valid_not_fake_cash) ... ok
+test_balance_orders_trades_paging_and_restart_dedup (test_execution_read_contracts.ReadJournalTests.test_balance_orders_trades_paging_and_restart_dedup) ... ERROR
+test_stream_partial_fill_and_failed_settlement_remain_read_evidence (test_execution_read_contracts.ReadJournalTests.test_stream_partial_fill_and_failed_settlement_remain_read_evidence) ... ERROR
+test_unconfigured_port_never_creates_authentication (test_execution_read_contracts.ReadJournalTests.test_unconfigured_port_never_creates_authentication) ... ERROR
+
+======================================================================
+ERROR: test_balance_orders_trades_paging_and_restart_dedup (test_execution_read_contracts.ReadJournalTests.test_balance_orders_trades_paging_and_restart_dedup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_execution_read_contracts.py", line 91, in test_balance_orders_trades_paging_and_restart_dedup
+    first=account_snapshot(MockAccountReadPort(self.fixture()),path)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\vibe coding\polymarket\nba\nba_recorder\execution\read_account.py", line 96, in account_snapshot
+    positions=port.positions();journal=ReadAccountJournal(journal_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\vibe coding\polymarket\nba\nba_recorder\execution\read_account.py", line 44, in __init__
+    self.db=sqlite3.connect(path)
+            ^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: unable to open database file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Packages\\sandbox.{cf0e7645-7779-4dba-947a-cc095dc93db2}\\AC\\Temp\\tmprkv2vrbz'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_execution_read_contracts.py", line 89, in test_balance_orders_trades_paging_and_restart_dedup
+    with tempfile.TemporaryDirectory() as directory:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Packages\\sandbox.{cf0e7645-7779-4dba-947a-cc095dc93db2}\\AC\\Temp\\tmprkv2vrbz'
+
+======================================================================
+ERROR: test_stream_partial_fill_and_failed_settlement_remain_read_evidence (test_execution_read_contracts.ReadJournalTests.test_stream_partial_fill_and_failed_settlement_remain_read_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_execution_read_contracts.py", line 104, in test_stream_partial_fill_and_failed_settlement_remain_read_evidence
+    path=Path(directory)/'read.sqlite';journal=ReadAccountJournal(path)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\vibe coding\polymarket\nba\nba_recorder\execution\read_account.py", line 44, in __init__
+    self.db=sqlite3.connect(path)
+            ^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: unable to open database file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Packages\\sandbox.{cf0e7645-7779-4dba-947a-cc095dc93db2}\\AC\\Temp\\tmpg6b5nb39'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_execution_read_contracts.py", line 103, in test_stream_partial_fill_and_failed_settlement_remain_read_evidence
+    with tempfile.TemporaryDirectory() as directory:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Packages\\sandbox.{cf0e7645-7779-4dba-947a-cc095dc93db2}\\AC\\Temp\\tmpg6b5nb39'
+
+======================================================================
+ERROR: test_unconfigured_port_never_creates_authentication (test_execution_read_contracts.ReadJournalTests.test_unconfigured_port_never_creates_authentication)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 637, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Packages\\sandbox.{cf0e7645-7779-4dba-947a-cc095dc93db2}\\AC\\Temp\\tmpmh5k4zyw'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_execution_read_contracts.py", line 116, in test_unconfigured_port_never_creates_authentication
+    with tempfile.TemporaryDirectory() as d:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 639, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Packages\\sandbox.{cf0e7645-7779-4dba-947a-cc095dc93db2}\\AC\\Temp\\tmpmh5k4zyw'
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.011s
+
+FAILED (errors=3)

@@ -158,7 +158,9 @@ class BookSession:
                                     break
                         om.db.execute("INSERT INTO ip_fill_evidence VALUES(?,?)", (fill_id, encode({"trade_id": key, "model": self.model, "assumptions": "public aggressor side assumed, causal exchange time and volume budget; not actual execution", "confidence": "uncalibrated", "exchange_ms": trade["exchange_ms"], "strategy_available_ms": om.now, "reference_mid_at_fill": fill_mid})))
             if self.model == "L0":
-                for order in om.orders():
+                # Touch never models a late exchange-time fill of a terminal
+                # order; CANCEL_PENDING/UNKNOWN remain in the active set.
+                for order in om.orders(active_only=True):
                     authority = om.adapter.authoritative(order["id"])
                     f = by_asset.get(order["asset_id"])
                     if not authority or authority["state"] not in {"OPEN", "PARTIALLY_FILLED"} or not f or not isinstance(f.get("book"), dict) or not f.get("connected") or f["book"].get("flags") or order.get("submit_ms", om.now) >= f["time_ms"]:

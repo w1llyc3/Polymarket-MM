@@ -101,7 +101,7 @@ class OfflineTests(unittest.TestCase):
             requests.append(request)
             return httpx.Response(200,json=[{'asset':'1','size':2,'conditionId':'c','avgPrice':.5}])
         with httpx.Client(transport=httpx.MockTransport(handler)) as client:
-            result=public_positions('0x'+'1'*40,client)
+            result=public_positions('0x'+'1'*40,client,version='v1')
         self.assertEqual(len(requests),1);self.assertEqual(requests[0].method,'GET')
         self.assertIsNone(result['cash_balance']);self.assertIsNone(result['open_orders'])
         self.assertFalse(result['authenticated_account_connected'])
@@ -186,6 +186,8 @@ class OfflineHTTPTests(unittest.TestCase):
         from nba_recorder.console.__main__ import make_server
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);(root/'data').mkdir()
+            (root/'examples').mkdir()
+            (root/'examples/account-read-fixture.json').write_bytes((ROOT/'examples/account-read-fixture.json').read_bytes())
             server=make_server(SimpleNamespace(root=root),0)
             worker=threading.Thread(target=server.serve_forever,daemon=True);worker.start()
             base=f'http://127.0.0.1:{server.server_port}'
@@ -195,6 +197,11 @@ class OfflineHTTPTests(unittest.TestCase):
             try:
                 self.assertIn('离线回放'.encode(),get('/offline'))
                 token=json.loads(get('/api/bootstrap'))['token']
+                mock_request=urllib.request.Request(base+'/api/offline/account-mock',data=b'{}',headers={'Content-Type':'application/json','Origin':base,'X-Console-Token':token})
+                with opener.open(mock_request,timeout=5) as response:mock=json.load(response)
+                self.assertEqual(mock['mode'],'MOCK_AUTHENTICATED_READ_ONLY')
+                self.assertEqual(mock['real_submission_calls'],0)
+                self.assertEqual(len(mock['confirmed_fills']),1)
                 request=urllib.request.Request(base+'/api/offline/run',data=json.dumps({'synthetic':True,'split_shares':'5','seconds':180}).encode(),headers={'Content-Type':'application/json','Origin':base,'X-Console-Token':token})
                 with opener.open(request,timeout=5) as response:identity=json.load(response)['id']
                 deadline=time.monotonic()+20

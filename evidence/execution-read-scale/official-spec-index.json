@@ -1,0 +1,44 @@
+[
+  {
+    "url": "https://docs.polymarket.com/migrate/data-api-v1-to-v2.md",
+    "file": "migration.md",
+    "http_status": 200,
+    "sha256": "96955b89c27fe908979a73fbb77d31b30c50f9f5fdebca211b009c4ffb0d05fd"
+  },
+  {
+    "url": "https://docs.polymarket.com/trading/manage-orders.md",
+    "file": "orders.md",
+    "http_status": 200,
+    "sha256": "f44c2c6f41cd6ce112c511fd09b224969ddc49a2c0dd76e9f62792d3c654a1c8"
+  },
+  {
+    "url": "https://docs.polymarket.com/trading/realtime-order-updates.md",
+    "file": "user-stream.md",
+    "http_status": 200,
+    "sha256": "9504f1221729c68e3ea2ba11b9dd13b1e232653f3f0ed0e28dfa5c7136b2439e"
+  },
+  {
+    "url": "https://docs.polymarket.com/trading/wallet-activity.md",
+    "file": "wallet.md",
+    "http_status": 200,
+    "sha256": "b46c059d28808de24cf0ff0341e29ae5b54916b96ea095b16cfec0bd1c7016a4"
+  },
+  {
+    "url": "https://data-api.polymarket.com/v2/openapi.json",
+    "file": "data-v2.json",
+    "http_status": 200,
+    "sha256": "51ebbdfdeaa259215cd4e5195d7e1cef4769afd8a46ee6bff1cb4ba325c68bda"
+  },
+  {
+    "url": "https://docs.polymarket.com/api-spec/clob-openapi.yaml",
+    "file": "clob.yaml",
+    "http_status": 200,
+    "sha256": "75e2c3cac8db42dbffcbe6cf1df7a9711fda63993fec21ed0f6d289b5a0a2376"
+  },
+  {
+    "url": "https://docs.polymarket.com/asyncapi-user.json",
+    "file": "user-asyncapi.json",
+    "http_status": 200,
+    "sha256": "d17d8e8f81c5d06446c6418fb4046a0e34b59ae1dfa97f3917313d0e2f90c021"
+  }
+]

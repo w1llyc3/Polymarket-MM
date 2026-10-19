@@ -1,6 +1,7 @@
 import csv
 import json
 import subprocess
+import time
 from dataclasses import asdict
 from pathlib import Path
 from ..fair_value.store import read_connection, digest
@@ -40,9 +41,15 @@ def freeze_recording(path, target, sample):
         out.close(); db.close()
 
 
-def seal_demo(path):
+def seal_demo(path,seconds=None,cadence_ms=1000):
     store = PaperStore(path)
     try:
+        if seconds is not None:
+            from .scale import events
+            from ..inplay.demo import AT
+            return store.seal_stream(events(seconds,cadence_ms),{'mode':'BOOK_DRIVEN','source_kind':'SYNTHETIC_DATA',
+                'start_ms':AT,'end_ms':AT+seconds*1000,'network_calls':0,'synthetic_scale_seconds':seconds,
+                'cadence_ms':cadence_ms,'limitation':'Stretched synthetic phases, not a real NBA clock or actual game'})
         stream = demo_events()
         return store.seal(stream, {'mode':'BOOK_DRIVEN', 'source_kind':'SYNTHETIC_DATA',
             'start_ms':stream[0]['time_ms'], 'end_ms':stream[-1]['time_ms'], 'network_calls':0})
@@ -60,7 +67,9 @@ def observed_events(source, tape_id):
 
 
 def experiment(root, output, sample_id=None, synthetic=False, distances=('.01','.02','.03'),
-               models=('L0','L1','L2'), budget='100', split_shares='0', scenarios=None, seconds=None):
+               models=('L0','L1','L2'), budget='100', split_shares='0', scenarios=None, seconds=None,
+               synthetic_seconds=None,cadence_ms=1000):
+    started=time.perf_counter();cpu_started=time.process_time()
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
     if bool(sample_id) == bool(synthetic):
@@ -83,7 +92,8 @@ def experiment(root, output, sample_id=None, synthetic=False, distances=('.01','
     tape_path = output/'tape.sqlite'
     sample = {'source':'SYNTHETIC_DATA', 'research_phase':False, 'period':'SYNTHETIC', 'full_game_verified':False}
     if synthetic:
-        tape_id = seal_demo(tape_path)
+        tape_id = seal_demo(tape_path,synthetic_seconds,cadence_ms)
+        if synthetic_seconds is not None:sample.update(synthetic_scale_seconds=synthetic_seconds,cadence_ms=cadence_ms)
     else:
         path, sample = resolve(root, sample_id)
         if seconds is not None:
@@ -107,6 +117,7 @@ def experiment(root, output, sample_id=None, synthetic=False, distances=('.01','
                     lane_id = f'p{profile_index}-{model}-d{distance_index}'
                     lane_dir = output/lane_id
                     lane_dir.mkdir()
+                    lane_started=time.perf_counter();lane_cpu=time.process_time()
                     store = SingleWriterStore(lane_dir/'paper.sqlite')
                     try:
                         om = UnifiedPaperManager(store, policy, manifest['start_ms'])
@@ -137,6 +148,12 @@ def experiment(root, output, sample_id=None, synthetic=False, distances=('.01','
                         lanes.append(row)
                     finally:
                         store.close()
+                    from .scale import peak_rss_bytes
+                    row['performance']={'wall_seconds':time.perf_counter()-lane_started,'cpu_seconds':time.process_time()-lane_cpu,
+                        'process_peak_rss_bytes':peak_rss_bytes(),'database_bytes':(lane_dir/'paper.sqlite').stat().st_size,
+                        'output_bytes':sum(p.stat().st_size for p in lane_dir.iterdir() if p.is_file())}
+                    (lane_dir/'result.json').write_text(json.dumps(row,ensure_ascii=False,indent=2),encoding='utf-8')
+                    print(f"Paper lane {lane_id} done: {row['performance']['wall_seconds']:.2f}s",flush=True)
         try:
             commit = subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True,stderr=subprocess.DEVNULL).strip()
             dirty=bool(subprocess.check_output(['git','status','--porcelain'],cwd=root,text=True,stderr=subprocess.DEVNULL).strip())
@@ -149,6 +166,10 @@ def experiment(root, output, sample_id=None, synthetic=False, distances=('.01','
             'limitations':['Book-mid distance is not outcome fair-value edge', 'Models are uncalibrated proxies, not real fills',
                            'Independent lane capital; do not sum lanes as one account profit',
                            'No full-game certification; PRE_GAME samples cannot validate in-play strategies']}
+        from .scale import peak_rss_bytes
+        summary['performance']={'wall_seconds':time.perf_counter()-started,'cpu_seconds':time.process_time()-cpu_started,
+            'process_peak_rss_bytes':peak_rss_bytes(),'output_bytes_before_comparison':sum(p.stat().st_size for p in output.rglob('*') if p.is_file()),
+            'basis':'Sequential lanes; RSS is process lifetime peak, not sum of lane peaks'}
         (output/'comparison.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding='utf-8')
         with (output/'comparison.csv').open('w',newline='',encoding='utf-8-sig') as fp:
             writer=csv.writer(fp)
