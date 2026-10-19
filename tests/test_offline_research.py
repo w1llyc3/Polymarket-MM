@@ -196,6 +196,8 @@ class OfflineHTTPTests(unittest.TestCase):
                 with opener.open(base+path,timeout=10) as response:return response.read()
             try:
                 self.assertIn('离线回放'.encode(),get('/offline'))
+                self.assertEqual(json.loads(get('/api/postcapture?date=2026-10-21'))['status'],'NOT_GENERATED')
+                with self.assertRaises(urllib.error.HTTPError):get('/api/postcapture?date=../../secret')
                 token=json.loads(get('/api/bootstrap'))['token']
                 mock_request=urllib.request.Request(base+'/api/offline/account-mock',data=b'{}',headers={'Content-Type':'application/json','Origin':base,'X-Console-Token':token})
                 with opener.open(mock_request,timeout=5) as response:mock=json.load(response)

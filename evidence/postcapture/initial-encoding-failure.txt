@@ -1,0 +1,22 @@
+test_cache_corruption_detected_and_old_report_retained (test_postcapture.PostcaptureTests.test_cache_corruption_detected_and_old_report_retained) ... ok
+test_frozen_idempotent_replay_and_source_untouched (test_postcapture.PostcaptureTests.test_frozen_idempotent_replay_and_source_untouched) ... ERROR
+test_no_games_and_atomic_immutable_publication (test_postcapture.PostcaptureTests.test_no_games_and_atomic_immutable_publication) ... ok
+test_postcapture_uses_independent_process_not_live_writer (test_postcapture.PostcaptureTests.test_postcapture_uses_independent_process_not_live_writer) ... ok
+test_watchdog_gap_not_new_observations_and_unfinished_no_analysis (test_postcapture.PostcaptureTests.test_watchdog_gap_not_new_observations_and_unfinished_no_analysis) ... ok
+
+======================================================================
+ERROR: test_frozen_idempotent_replay_and_source_untouched (test_postcapture.PostcaptureTests.test_frozen_idempotent_replay_and_source_untouched)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_postcapture.py", line 50, in test_frozen_idempotent_replay_and_source_untouched
+    saved=json.loads((root/first['path']).read_text())
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1028, in read_text
+    return f.read()
+           ^^^^^^^^
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xaf in position 41208: illegal multibyte sequence
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.554s
+
+FAILED (errors=1)

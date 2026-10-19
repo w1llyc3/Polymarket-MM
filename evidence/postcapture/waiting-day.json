@@ -1,0 +1,29 @@
+{
+  "day": "2026-10-21",
+  "sessions": [
+    {
+      "market_id": "5676016",
+      "session_id": "9604866cbb934b208a30f36b9e006373",
+      "recording_status": "SCHEDULED",
+      "review_status": "WAITING_FOR_RECORDING_END"
+    },
+    {
+      "market_id": "5676021",
+      "session_id": "07ac29b9a864454f95d72b5e042fa79b",
+      "recording_status": "SCHEDULED",
+      "review_status": "WAITING_FOR_RECORDING_END"
+    },
+    {
+      "market_id": "5680507",
+      "session_id": "8fc9793f22e64aabbac64d64f1d48ab3",
+      "recording_status": "SCHEDULED",
+      "review_status": "WAITING_FOR_RECORDING_END"
+    }
+  ],
+  "discovery_status": "MARKET_FOUND",
+  "schedule_only": [],
+  "status": "WAITING",
+  "real_submission_calls": 0,
+  "live_go": false,
+  "all_games_coverage_verified": false
+}

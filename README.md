@@ -21,6 +21,8 @@ Python + SQLite + 原生本地网页，复用单 Runner / Paper OMS / FIFO。主
 
 补充执行回报映射、公开 Data API v2 持仓、认证只读接口 Mock 与整场规模合成回放；实际测试与性能证据见 [本轮验收](EXECUTION_READ_SCALE_ACCEPTANCE.md)。认证真实账户尚未接通，Live 仍为 NO-GO。
 
+新增 [比赛日数据验收与自动复盘](POSTCAPTURE_ACCEPTANCE.md)：无人值守采集结束后独立生成不可覆盖的快照报告，检查新鲜盘口覆盖、Paper账本与未决订单，输出10/30/60/300秒模拟成交Markout；在 `/offline` 第5节查看并下载。比赛尚未记录时明确显示等待，不生成比赛成绩。
+
 最新预约见 [10月21日准备状态](OCT21_READINESS.md)；通用无人值守行为与限制见 [原部署说明](UNATTENDED_OCT19.md)。19日任务已禁用，21日任务独立于网页当前单场会话，仅公开采集和Paper。
 
 Python 3.12，固定依赖见 requirements.txt；无需Node构建。

@@ -1,0 +1,78 @@
+{
+  "source": "REAL_PUBLIC_PREFLIGHT_NO_RECORDING_STARTED",
+  "day": "2026-10-21",
+  "scheduler_status": "PREFLIGHT_ONLY",
+  "discovery_status": "MARKET_FOUND",
+  "last_scan_ms": 1792396893338,
+  "markets": [
+    {
+      "market_id": "5676016",
+      "question": "Celtics vs. Pistons",
+      "game_start_ms": 1792522800000,
+      "season_type": "UNKNOWN",
+      "rules_verified": true,
+      "research_eligible": true
+    },
+    {
+      "market_id": "5676021",
+      "question": "76ers vs. Knicks",
+      "game_start_ms": 1792537200000,
+      "season_type": "UNKNOWN",
+      "rules_verified": true,
+      "research_eligible": true
+    },
+    {
+      "market_id": "5680507",
+      "question": "Thunder vs. Spurs",
+      "game_start_ms": 1792546200000,
+      "season_type": "UNKNOWN",
+      "rules_verified": true,
+      "research_eligible": true
+    }
+  ],
+  "evidence": [
+    {
+      "url": "https://cdn.nba.com/static/json/staticData/scheduleLeagueV2_1.json",
+      "http_status": 403,
+      "received_ms": 1792396892955
+    },
+    {
+      "source": "NBA schedule",
+      "status": "ACCESS_FAILED",
+      "error": "HTTPStatusError"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/sports",
+      "http_status": 200,
+      "selected_nba_metadata": {
+        "id": 34,
+        "sport": "nba",
+        "name": "NBA",
+        "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-icons/nba-7a8bf611.png",
+        "resolution": "https://www.nba.com/",
+        "ordering": "away",
+        "tags": "1,745,100639",
+        "primaryTagId": 745,
+        "series": "10345",
+        "createdAt": "2025-11-05T19:27:45.399303Z"
+      },
+      "received_ms": 1792396893036
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/events",
+      "params": {
+        "limit": 100,
+        "offset": 0,
+        "order": "id",
+        "ascending": "true",
+        "start_time_min": "2026-10-20T16:00:00+00:00",
+        "start_time_max": "2026-10-21T15:59:59.999000+00:00",
+        "tag_id": "745"
+      },
+      "http_status": 200,
+      "received_ms": 1792396893334
+    }
+  ],
+  "real_submission_calls": 0,
+  "live_go": false
+}

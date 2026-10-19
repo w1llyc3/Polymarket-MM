@@ -1,0 +1,1463 @@
+{
+  "id": "d7abda641f692249b0abcd47ab68f5ba897a12aa4f68030afac49b34dae45cf8",
+  "session_id": "dddddddddddddddddddddddddddddddd",
+  "audit": {
+    "version": "postcapture-v1",
+    "session_id": "dddddddddddddddddddddddddddddddd",
+    "origin": {
+      "data_source": "SYNTHETIC_DATA",
+      "execution_source": "PAPER_EXECUTION"
+    },
+    "input_sha256": "1364f9b478a1dfec750688556577fa8d78f9bce6c24db11a3249fd2d2399b210",
+    "input_cursor": 45,
+    "journal_cursor": 351,
+    "ledger_cursor": 4,
+    "as_of_ms": 1791954044205,
+    "start_ms": 1791954000000,
+    "last_input_ms": 1791954044000,
+    "markets": [
+      {
+        "away_team": "bos",
+        "condition_id": "synthetic-condition",
+        "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+        "event_id": "synthetic-event",
+        "event_live": true,
+        "game_start_ms": 1791957600000,
+        "home_away_evidence": "synthetic_fixture",
+        "home_team": "det",
+        "league": "nba",
+        "market_id": "m",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "outcomes": [
+          {
+            "asset_id": "a",
+            "label": "Pistons"
+          },
+          {
+            "asset_id": "b",
+            "label": "Celtics"
+          }
+        ],
+        "season": "2026-27",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true
+        },
+        "synthetic": true,
+        "team_ordering": "away",
+        "tick_size": "0.01",
+        "venue": "polymarket.com"
+      }
+    ],
+    "input_asset_frames": 90,
+    "watchdog_callbacks": 0,
+    "coverage": {
+      "a": {
+        "valid_ms": 44000,
+        "window_ms": 44000,
+        "ratio": "1",
+        "largest_uncovered_ms": 0,
+        "unique_book_observations": 45
+      },
+      "b": {
+        "valid_ms": 44000,
+        "window_ms": 44000,
+        "ratio": "1",
+        "largest_uncovered_ms": 0,
+        "unique_book_observations": 45
+      }
+    },
+    "ledger_checks": [
+      {
+        "event_replay_equals_cache": true,
+        "cash_positions_equal_oms": true
+      }
+    ],
+    "unresolved_or_active_orders": 0,
+    "session_finished": true,
+    "completion": null,
+    "reasons": [
+      "NOT_REAL_OBSERVED",
+      "PRE_GAME_ONLY",
+      "END_AND_TAIL_NOT_OBSERVED"
+    ],
+    "full_game_verified": false,
+    "data_status": "BOUNDED_OBSERVATIONS",
+    "paper_status": "LOCAL_LEDGER_VERIFIED_NOT_STRATEGY_ACCEPTANCE",
+    "markouts": {
+      "a": [
+        {
+          "fill_id": "b4fae6748db1e68952eaa6f5a2b3dca77eca1dcde1bb9764d143a90ab77010b0",
+          "seconds": 10,
+          "side": "BUY",
+          "quantity": "3",
+          "status": "VALID",
+          "fill_markout_cents": "2.00",
+          "post_fill_drift_cents": "0.00"
+        },
+        {
+          "fill_id": "b4fae6748db1e68952eaa6f5a2b3dca77eca1dcde1bb9764d143a90ab77010b0",
+          "seconds": 30,
+          "side": "BUY",
+          "quantity": "3",
+          "status": "VALID",
+          "fill_markout_cents": "2.00",
+          "post_fill_drift_cents": "0.00"
+        },
+        {
+          "fill_id": "b4fae6748db1e68952eaa6f5a2b3dca77eca1dcde1bb9764d143a90ab77010b0",
+          "seconds": 60,
+          "side": "BUY",
+          "quantity": "3",
+          "status": "PENDING",
+          "fill_markout_cents": null,
+          "post_fill_drift_cents": null
+        },
+        {
+          "fill_id": "b4fae6748db1e68952eaa6f5a2b3dca77eca1dcde1bb9764d143a90ab77010b0",
+          "seconds": 300,
+          "side": "BUY",
+          "quantity": "3",
+          "status": "PENDING",
+          "fill_markout_cents": null,
+          "post_fill_drift_cents": null
+        }
+      ],
+      "b": []
+    },
+    "ledger_cash": "98.56",
+    "real_submission_calls": 0,
+    "live_go": false,
+    "limits": [
+      "Coverage is fresh observed-book time within recorded window, not proof of full game",
+      "Watchdog reuse does not count as unique book observation",
+      "Paper ledger verification is not external account reconciliation",
+      "All fills and PnL are simulated; fees/rewards and actual execution quality remain unverified"
+    ],
+    "snapshot_sha256": "8784ad92839f2b9e888ecc739052a3a8fdcb458b43eed32fc6bb6665599395cd"
+  },
+  "analysis": {
+    "as_of_ms": 1791954044205,
+    "input_cursor": 45,
+    "journal_cursor": 351,
+    "version": "research-v1",
+    "origin": {
+      "data_source": "SYNTHETIC_DATA",
+      "execution_source": "PAPER_EXECUTION"
+    },
+    "bound_market": {
+      "away_team": "bos",
+      "condition_id": "synthetic-condition",
+      "description": "Full game including any overtime periods. If the game is postponed this market will remain open until the game has been completed. If canceled entirely it resolves 50-50.",
+      "event_id": "synthetic-event",
+      "event_live": true,
+      "game_start_ms": 1791957600000,
+      "home_away_evidence": "synthetic_fixture",
+      "home_team": "det",
+      "league": "nba",
+      "market_id": "m",
+      "market_type": "moneyline",
+      "minimum_order_size": "5",
+      "outcomes": [
+        {
+          "asset_id": "a",
+          "label": "Pistons"
+        },
+        {
+          "asset_id": "b",
+          "label": "Celtics"
+        }
+      ],
+      "season": "2026-27",
+      "status": {
+        "acceptingOrders": true,
+        "active": true,
+        "archived": false,
+        "closed": false,
+        "enableOrderBook": true
+      },
+      "synthetic": true,
+      "team_ordering": "away",
+      "tick_size": "0.01",
+      "venue": "polymarket.com"
+    },
+    "fill_model": "L1",
+    "session_completion": {
+      "fixture": true
+    },
+    "bound_plan": null,
+    "monitoring": {
+      "availability": {
+        "a": {
+          "eligible_decision_ms": 23000,
+          "accepted_eligible_ms": 22000,
+          "ratio": "0.9565217391304347826086956522",
+          "basis": "time intersection of recorded feasible target intervals and confirmed accepted orders; no frame counting"
+        },
+        "b": {
+          "eligible_decision_ms": 23000,
+          "accepted_eligible_ms": 22995,
+          "ratio": "0.9997826086956521739130434783",
+          "basis": "time intersection of recorded feasible target intervals and confirmed accepted orders; no frame counting"
+        }
+      },
+      "assets": {
+        "a": {
+          "current_spread_cents": "2.00",
+          "recent_inventory_growth_shares": "3",
+          "completed_turnover_shares": "0",
+          "completed_gross_pnl": "0",
+          "quantity_weighted_holding_ms": null,
+          "depth_change_shares": "0",
+          "own_fill_count": 1,
+          "last_valid_bbo_ms": 1791954044000
+        },
+        "b": {
+          "current_spread_cents": "2.00",
+          "recent_inventory_growth_shares": "0",
+          "completed_turnover_shares": "0",
+          "completed_gross_pnl": "0",
+          "quantity_weighted_holding_ms": null,
+          "depth_change_shares": "0",
+          "own_fill_count": 0,
+          "last_valid_bbo_ms": 1791954044000
+        }
+      },
+      "cancel_reasons": {
+        "PRICE_CHANGE": 1,
+        "PHASE": 2
+      },
+      "unresolved_orders": {},
+      "peak_gross_inventory_shares": "3",
+      "recent_data_issues": [],
+      "system_cases": [
+        {
+          "time_ms": 1791954000000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 4,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954000000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 8,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954012000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 97,
+          "evidence": {
+            "reason": "public_one_sided_flow_diagnostic"
+          }
+        },
+        {
+          "time_ms": 1791954039000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 263,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954039000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 264,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954039000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 265,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954039000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 266,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954039000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 268,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954039000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 269,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954039000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 270,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954039000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 271,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954040000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 277,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954040000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 278,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954040000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 279,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954040000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 280,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954040000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 282,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954040000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 283,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954040000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 284,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954040000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 285,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954041000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 291,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954041000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 292,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954041000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 293,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954041000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 294,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954041000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 296,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954041000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 297,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954041000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 298,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954041000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 299,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954042000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 305,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954042000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 306,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954042000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 307,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954042000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 308,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954042000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 310,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954042000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 311,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954042000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 312,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954042000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 313,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954043000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 319,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954043000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 320,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954043000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 321,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954043000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 322,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954043000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 324,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954043000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 325,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954043000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 326,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954043000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 327,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954044000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 333,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954044000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 334,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954044000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 335,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954044000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 336,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954044000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 338,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954044000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 339,
+          "evidence": {
+            "reason": "phase_not_permitted"
+          }
+        },
+        {
+          "time_ms": 1791954044000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 340,
+          "evidence": {
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954044000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 341,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "late_close_threshold"
+          }
+        },
+        {
+          "time_ms": 1791954044000,
+          "kind": "RISK",
+          "order_id": null,
+          "journal_seq": 345,
+          "evidence": {
+            "reason": "fixture_end"
+          }
+        },
+        {
+          "time_ms": 1791954044000,
+          "kind": "KILL_SWITCH",
+          "order_id": null,
+          "journal_seq": 346,
+          "evidence": {
+            "new_risk_allowed": false,
+            "reason": "fixture_end"
+          }
+        }
+      ],
+      "system_case_count": 53,
+      "case_projection_complete": true,
+      "complete_case_source": "pe_journal, referenced by journal_seq",
+      "data_issue_count": 0,
+      "data_issue_projection_complete": true,
+      "termination": {
+        "time_ms": 1791954044000,
+        "reason": "fixture_end"
+      },
+      "parameter_versions": [],
+      "latency_summary_ms": {
+        "submit_to_accept": {
+          "count": 3,
+          "basis": "Paper local visible report times, not real exchange latency",
+          "p50": 5,
+          "p95": 5,
+          "p99": 5
+        },
+        "cancel_to_confirmation": {
+          "count": 3,
+          "basis": "Paper local visible report times, not real exchange latency",
+          "p50": 10,
+          "p95": 10,
+          "p99": 10
+        }
+      },
+      "diagnostic_only": true,
+      "attribution_not_causal": true
+    },
+    "direction_preparation": null,
+    "policy_as_of": {
+      "strategy_mode": "BOOK_DRIVEN",
+      "initial_cash": "100",
+      "initial_inventory": "0",
+      "target_inventory": "0",
+      "order_size": "5",
+      "max_order_notional": "5",
+      "max_event_risk": "30",
+      "max_account_risk": "40",
+      "max_asset_inventory": "20",
+      "min_spread": "0.02",
+      "inventory_skew": ".001",
+      "ttl_ms": 30000,
+      "start_guard_ms": 300000,
+      "markout_window_ms": 5000,
+      "request_timeout_ms": 100,
+      "submit_ack_ms": 5,
+      "cancel_latency_ms": 10,
+      "risk_detection_ms": 1,
+      "data_transport_ms": 2,
+      "rest_latency_ms": 5,
+      "rest_timeout_ms": 100,
+      "max_price_jump": "0.05",
+      "max_daily_loss": "20",
+      "max_order_shares": "5",
+      "quote_distance": ".02",
+      "book_max_age_ms": 3000,
+      "sports_max_age_ms": 3000,
+      "metadata_max_age_ms": 60000,
+      "max_backlog_ms": 500,
+      "reduce_remaining_s": 180,
+      "close_remaining_s": 60,
+      "sync_observations": 2,
+      "enhanced": true,
+      "public_flow_pause": false,
+      "allow_manual_phase": false,
+      "manual_max_age_ms": 15000,
+      "max_one_sided_shares": "15",
+      "min_top_depth": "5",
+      "exit_slippage": ".03",
+      "exit_notional": "5",
+      "research_phase": false,
+      "research_phase_age_ms": 120000,
+      "max_order_lifetime_ms": 60000
+    },
+    "accounting_closures": [],
+    "sources": {
+      "public": "recorded public prints only",
+      "fills": "PAPER_EXECUTION"
+    },
+    "real_submission_calls": 0,
+    "execution_segments": [],
+    "account": {
+      "cash": "98.56",
+      "daily": {
+        "20740": {
+          "baseline": "100.00",
+          "baseline_ms": 1791954000000,
+          "equity": "100.06",
+          "observed_ms": 1791954044000,
+          "paper_pnl": "0.06"
+        }
+      },
+      "events": {
+        "a": "synthetic-event",
+        "b": "synthetic-event"
+      },
+      "positions": {
+        "a": "3",
+        "b": "0"
+      },
+      "seed_cash": "100",
+      "seed_positions": {
+        "a": "0",
+        "b": "0"
+      },
+      "reserved_inventory": {},
+      "available_cash": "98.56"
+    },
+    "valuation": {
+      "cash": "98.56",
+      "capital_contributions": "100",
+      "positions": {
+        "a": "3",
+        "b": "0"
+      },
+      "reserved_cash": "0",
+      "available_cash": "98.56",
+      "cash_flows": "-1.44",
+      "reserved_inventory": {
+        "a": "0",
+        "b": "0"
+      },
+      "available_inventory": {
+        "a": "3",
+        "b": "0"
+      },
+      "realized_trading_pnl": "0",
+      "unrealized_trading_pnl": "0.06",
+      "trading_pnl": "0.06",
+      "fees": "0",
+      "rewards": "0",
+      "settlement_cash_flow": "0",
+      "pair_cash_flow": "0",
+      "market_value": "1.50",
+      "equity": "100.06",
+      "net_pnl": "0.06",
+      "reconciled": true,
+      "missing_marks": [],
+      "cost_basis_complete": true,
+      "conservative_committed_exposure": "3",
+      "virtual": true,
+      "not_real_profit": true
+    },
+    "valuation_as_of_ms": 1791954044205,
+    "ledger_cursor": 4,
+    "inventory_lots": [
+      {
+        "asset_id": "a",
+        "remaining": "3",
+        "cost_per_share": "0.48",
+        "age_ms": 39203
+      }
+    ],
+    "latency": {
+      "risk_detection": {
+        "count": 90,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "basis": "synthetic_paper_clock_not_real_latency"
+      },
+      "data_transport": {
+        "count": 7,
+        "p50": 2,
+        "p95": 5,
+        "p99": 5,
+        "basis": "synthetic_paper_clock_not_real_latency"
+      },
+      "authority_query": {
+        "count": 1,
+        "p50": 5,
+        "p95": 5,
+        "p99": 5,
+        "basis": "synthetic_paper_clock_not_real_latency"
+      },
+      "simulated_cancel": {
+        "count": 3,
+        "p50": 10,
+        "p95": 10,
+        "p99": 10,
+        "basis": "synthetic_paper_clock_not_real_latency"
+      }
+    },
+    "accepted_order_time_ms": 23005,
+    "cancel_reasons": {
+      "CANCEL_REQUEST": 3
+    },
+    "quote_availability": {
+      "accepted_any_side_ms": 23005,
+      "recorded_window_ms": 44205,
+      "ratio": "0.5204162425065037891641217057",
+      "basis": "known accepted order presence / recorded time; not eligibility-adjusted"
+    },
+    "data_coverage": {
+      "a": {
+        "valid_bbo_ms": 44205,
+        "recorded_window_ms": 44205,
+        "ratio": "1",
+        "basis": "recorded interval only, not full game"
+      },
+      "b": {
+        "valid_bbo_ms": 44205,
+        "recorded_window_ms": 44205,
+        "ratio": "1",
+        "basis": "recorded interval only, not full game"
+      }
+    },
+    "income_stages": [],
+    "order_retention": {
+      "eligible_before": 43,
+      "retained": 42,
+      "ratio": "0.9767441860465116279069767442",
+      "basis": "decision opportunities, not frames or time"
+    },
+    "paired_shares": "0",
+    "direction_order": [
+      "a",
+      "b"
+    ],
+    "net_directional_shares": "3",
+    "exit_candidates": [
+      {
+        "asset_id": "a",
+        "held": "3",
+        "available": "3",
+        "hold": {
+          "future_value": null,
+          "future_liquidity": "UNKNOWN"
+        },
+        "fee_assumption": null,
+        "auto_execute": false,
+        "status": "EXIT_CANDIDATE",
+        "direct": {
+          "requested": "3",
+          "executable_quantity": "3",
+          "unfilled": "0",
+          "gross_cash": "1.47",
+          "fee": null,
+          "full_depth_available": true,
+          "levels": [
+            {
+              "price": "0.49",
+              "quantity": "3"
+            }
+          ]
+        },
+        "complement": {
+          "requested": "3",
+          "executable_quantity": "3",
+          "unfilled": "0",
+          "gross_cash": "1.53",
+          "fee": null,
+          "full_depth_available": true,
+          "levels": [
+            {
+              "price": "0.51",
+              "quantity": "3"
+            }
+          ]
+        },
+        "fee_sensitivity": [
+          {
+            "fee_rate": "0",
+            "net_cash": "1.47000",
+            "basis": "research_assumption"
+          },
+          {
+            "fee_rate": "0.02",
+            "net_cash": "1.45501",
+            "basis": "research_assumption"
+          },
+          {
+            "fee_rate": "0.05",
+            "net_cash": "1.43251",
+            "basis": "research_assumption"
+          }
+        ],
+        "net_direct_cash": null,
+        "conditional_pair_value_only": true,
+        "alternatives_not_additive": true
+      },
+      {
+        "asset_id": "b",
+        "held": "0",
+        "available": "0",
+        "hold": {
+          "future_value": null,
+          "future_liquidity": "UNKNOWN"
+        },
+        "fee_assumption": null,
+        "auto_execute": false,
+        "status": "EXIT_CANDIDATE",
+        "direct": {
+          "requested": "0",
+          "executable_quantity": "0",
+          "unfilled": "0",
+          "gross_cash": "0",
+          "fee": null,
+          "full_depth_available": true,
+          "levels": []
+        },
+        "complement": {
+          "requested": "0",
+          "executable_quantity": "0",
+          "unfilled": "0",
+          "gross_cash": "0",
+          "fee": null,
+          "full_depth_available": true,
+          "levels": []
+        },
+        "fee_sensitivity": [
+          {
+            "fee_rate": "0",
+            "net_cash": "0",
+            "basis": "research_assumption"
+          },
+          {
+            "fee_rate": "0.02",
+            "net_cash": "0",
+            "basis": "research_assumption"
+          },
+          {
+            "fee_rate": "0.05",
+            "net_cash": "0",
+            "basis": "research_assumption"
+          }
+        ],
+        "net_direct_cash": null,
+        "conditional_pair_value_only": true,
+        "alternatives_not_additive": true
+      }
+    ],
+    "assets": {
+      "a": {
+        "weighted_markouts": [
+          {
+            "side": "BUY",
+            "seconds": 1,
+            "fills": 1,
+            "mature_valid": 1,
+            "valid_shares": "3",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": "2.00"
+          },
+          {
+            "side": "BUY",
+            "seconds": 3,
+            "fills": 1,
+            "mature_valid": 1,
+            "valid_shares": "3",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": "2.00"
+          },
+          {
+            "side": "BUY",
+            "seconds": 10,
+            "fills": 1,
+            "mature_valid": 1,
+            "valid_shares": "3",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": "2.00"
+          },
+          {
+            "side": "BUY",
+            "seconds": 30,
+            "fills": 1,
+            "mature_valid": 1,
+            "valid_shares": "3",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": "2.00"
+          },
+          {
+            "side": "SELL",
+            "seconds": 1,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          },
+          {
+            "side": "SELL",
+            "seconds": 3,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          },
+          {
+            "side": "SELL",
+            "seconds": 10,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          },
+          {
+            "side": "SELL",
+            "seconds": 30,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          }
+        ],
+        "price_structure": {
+          "samples": 45,
+          "window_ms": 120000,
+          "classification": "RANGE",
+          "low": "0.50",
+          "high": "0.50",
+          "change_cents": "0.00",
+          "rule": "2-cent end-to-start threshold; descriptive, not predictive",
+          "conditional_trigger_above": "0.50",
+          "conditional_invalidation_below": "0.50"
+        },
+        "planned_liquidity": {
+          "planned_quantity": "5",
+          "buy": {
+            "requested": "5",
+            "executable_quantity": "5",
+            "unfilled": "0",
+            "gross_cash": "2.55",
+            "fee": null,
+            "full_depth_available": true,
+            "levels": [
+              {
+                "price": "0.51",
+                "quantity": "5"
+              }
+            ]
+          },
+          "sell": {
+            "requested": "5",
+            "executable_quantity": "5",
+            "unfilled": "0",
+            "gross_cash": "2.45",
+            "fee": null,
+            "full_depth_available": true,
+            "levels": [
+              {
+                "price": "0.49",
+                "quantity": "5"
+              }
+            ]
+          },
+          "available_owned_shares": "3",
+          "available_cash": "98.56",
+          "fee_status": "UNKNOWN",
+          "alternative_scenarios_not_joint_reservations": true
+        },
+        "flow": {
+          "public_prints_per_minute": "1.5",
+          "distribution_migration_cents": null,
+          "recent_samples": 3,
+          "previous_samples": 0,
+          "window_ms": 120000,
+          "coverage_limited": false,
+          "identity_basis": "recorded public event IDs / fingerprint, not independent clearing volume"
+        },
+        "distribution": {
+          "bins": [
+            {
+              "price": "0.47",
+              "value": "116",
+              "peak": true
+            }
+          ],
+          "total": "116",
+          "excluded": 0,
+          "unique_events": 3,
+          "unit": "shares",
+          "boundary": "floor(price / bucket); left inclusive",
+          "bucket": "0.01"
+        },
+        "recent_distribution": {
+          "bins": [
+            {
+              "price": "0.47",
+              "value": "116",
+              "peak": true
+            }
+          ],
+          "total": "116",
+          "excluded": 0,
+          "unique_events": 3,
+          "unit": "shares",
+          "boundary": "floor(price / bucket); left inclusive",
+          "bucket": "0.01"
+        },
+        "previous_distribution": {
+          "bins": [],
+          "total": "0",
+          "excluded": 0,
+          "unique_events": 0,
+          "unit": "shares",
+          "boundary": "floor(price / bucket); left inclusive",
+          "bucket": "0.01"
+        },
+        "markouts": [
+          {
+            "fill_id": "fill:9c3bcb2627d49e155e40b1c17cf3521236ccb6e0eb77ca7cadb28afcf3dabb92",
+            "seconds": 1,
+            "side": "BUY",
+            "quantity": "3",
+            "status": "VALID",
+            "fill_markout_cents": "2.00",
+            "post_fill_drift_cents": "0.00"
+          },
+          {
+            "fill_id": "fill:9c3bcb2627d49e155e40b1c17cf3521236ccb6e0eb77ca7cadb28afcf3dabb92",
+            "seconds": 3,
+            "side": "BUY",
+            "quantity": "3",
+            "status": "VALID",
+            "fill_markout_cents": "2.00",
+            "post_fill_drift_cents": "0.00"
+          },
+          {
+            "fill_id": "fill:9c3bcb2627d49e155e40b1c17cf3521236ccb6e0eb77ca7cadb28afcf3dabb92",
+            "seconds": 10,
+            "side": "BUY",
+            "quantity": "3",
+            "status": "VALID",
+            "fill_markout_cents": "2.00",
+            "post_fill_drift_cents": "0.00"
+          },
+          {
+            "fill_id": "fill:9c3bcb2627d49e155e40b1c17cf3521236ccb6e0eb77ca7cadb28afcf3dabb92",
+            "seconds": 30,
+            "side": "BUY",
+            "quantity": "3",
+            "status": "VALID",
+            "fill_markout_cents": "2.00",
+            "post_fill_drift_cents": "0.00"
+          }
+        ]
+      },
+      "b": {
+        "weighted_markouts": [
+          {
+            "side": "BUY",
+            "seconds": 1,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          },
+          {
+            "side": "BUY",
+            "seconds": 3,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          },
+          {
+            "side": "BUY",
+            "seconds": 10,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          },
+          {
+            "side": "BUY",
+            "seconds": 30,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          },
+          {
+            "side": "SELL",
+            "seconds": 1,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          },
+          {
+            "side": "SELL",
+            "seconds": 3,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          },
+          {
+            "side": "SELL",
+            "seconds": 10,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          },
+          {
+            "side": "SELL",
+            "seconds": 30,
+            "fills": 0,
+            "mature_valid": 0,
+            "valid_shares": "0",
+            "pending": 0,
+            "unknown": 0,
+            "weighted_fill_markout_cents": null
+          }
+        ],
+        "price_structure": {
+          "samples": 45,
+          "window_ms": 120000,
+          "classification": "RANGE",
+          "low": "0.50",
+          "high": "0.50",
+          "change_cents": "0.00",
+          "rule": "2-cent end-to-start threshold; descriptive, not predictive",
+          "conditional_trigger_above": "0.50",
+          "conditional_invalidation_below": "0.50"
+        },
+        "planned_liquidity": {
+          "planned_quantity": "5",
+          "buy": {
+            "requested": "5",
+            "executable_quantity": "5",
+            "unfilled": "0",
+            "gross_cash": "2.55",
+            "fee": null,
+            "full_depth_available": true,
+            "levels": [
+              {
+                "price": "0.51",
+                "quantity": "5"
+              }
+            ]
+          },
+          "sell": {
+            "requested": "5",
+            "executable_quantity": "5",
+            "unfilled": "0",
+            "gross_cash": "2.45",
+            "fee": null,
+            "full_depth_available": true,
+            "levels": [
+              {
+                "price": "0.49",
+                "quantity": "5"
+              }
+            ]
+          },
+          "available_owned_shares": "0",
+          "available_cash": "98.56",
+          "fee_status": "UNKNOWN",
+          "alternative_scenarios_not_joint_reservations": true
+        },
+        "flow": {
+          "public_prints_per_minute": "0",
+          "distribution_migration_cents": null,
+          "recent_samples": 0,
+          "previous_samples": 0,
+          "window_ms": 120000,
+          "coverage_limited": false,
+          "identity_basis": "recorded public event IDs / fingerprint, not independent clearing volume"
+        },
+        "distribution": {
+          "bins": [],
+          "total": "0",
+          "excluded": 0,
+          "unique_events": 0,
+          "unit": "shares",
+          "boundary": "floor(price / bucket); left inclusive",
+          "bucket": "0.01"
+        },
+        "recent_distribution": {
+          "bins": [],
+          "total": "0",
+          "excluded": 0,
+          "unique_events": 0,
+          "unit": "shares",
+          "boundary": "floor(price / bucket); left inclusive",
+          "bucket": "0.01"
+        },
+        "previous_distribution": {
+          "bins": [],
+          "total": "0",
+          "excluded": 0,
+          "unique_events": 0,
+          "unit": "shares",
+          "boundary": "floor(price / bucket); left inclusive",
+          "bucket": "0.01"
+        },
+        "markouts": []
+      }
+    },
+    "sample_size": {
+      "public_events": 3,
+      "paper_fills": 1,
+      "independent_games": 1
+    },
+    "candidate_plan": "继续观察；方向情景需用户记录触发价与失效条件，不自动执行",
+    "limitations": [
+      "模拟成交未校准",
+      "费用未知：仅毛退出现金可用",
+      "Markout独立诊断，不加到PnL",
+      "未证明完整比赛覆盖"
+    ]
+  },
+  "not_real_profit": true,
+  "real_submission_calls": 0,
+  "live_go": false
+}

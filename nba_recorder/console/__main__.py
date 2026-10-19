@@ -66,6 +66,33 @@ def make_server(service, port=8765):
                 self.send(200, {"app": APP, "token": token, "real_trading_permission": False})
             elif path == "/api/state":
                 self.send(200, service.read())
+            elif path in {'/api/postcapture','/api/postcapture-download'}:
+                from urllib.parse import urlparse,parse_qs
+                import re
+                try:
+                    params=parse_qs(urlparse(self.path).query,strict_parsing=True)
+                    if any(len(v)!=1 for v in params.values()):raise ValueError('duplicate parameter')
+                    if path=='/api/postcapture':
+                        if set(params)!={'date'}:raise ValueError('date required')
+                        day=params['date'][0]
+                        from ..unattended import bounds
+                        bounds(day)
+                        if not re.fullmatch(r'\d{4}-\d{2}-\d{2}',day):raise ValueError('date')
+                        file=service.root/'data/postcapture/days'/day/'latest.json'
+                        state=service.root/'data/unattended'/day/'state.json'
+                        current=json.loads(state.read_text(encoding='utf-8')) if state.exists() else {}
+                        value=json.loads(file.read_text(encoding='utf-8')) if file.exists() else {'day':day,'status':'NOT_GENERATED','sessions':[]}
+                        value['scheduler']={k:current.get(k) for k in ('scheduler_status','heartbeat_ms','discovery_status','scan_error','active_games')}
+                        value['current_games']=[{**{k:e.get(k) for k in ('session_id','status','mode','postcapture_status')},'question':e.get('market',{}).get('question'),'season_type':e.get('market',{}).get('season_type')} for e in current.get('games',{}).values()]
+                        self.send(200,value)
+                    else:
+                        if set(params)!={'session_id','id','format'}:raise ValueError('download')
+                        sid,identity,fmt=(params[k][0] for k in ('session_id','id','format'))
+                        if not re.fullmatch('[0-9a-f]{32}',sid) or not re.fullmatch('[0-9a-f]{64}',identity) or fmt not in {'json','md'}:raise ValueError('reference')
+                        file=service.root/'data/postcapture'/sid/(identity+'.'+fmt)
+                        if file.is_symlink():raise ValueError('symlink')
+                        self.send(200,file.read_bytes(),'application/octet-stream',filename='postcapture-review.'+fmt)
+                except (ValueError,KeyError,OSError):self.send(400,{'error':'赛后验收日期或报告引用无效'})
             elif path in {'/api/offline/samples','/api/offline/job','/api/offline/download','/api/offline/plot'}:
                 from urllib.parse import urlparse,parse_qs
                 from ..research import jobs

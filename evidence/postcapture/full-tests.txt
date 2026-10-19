@@ -1,0 +1,379 @@
+test_absolute_delta_and_delete (test_core.BookTests.test_absolute_delta_and_delete) ... ok
+test_crossed_locked_empty_never_clamped (test_core.BookTests.test_crossed_locked_empty_never_clamped) ... ok
+test_delta_before_snapshot (test_core.BookTests.test_delta_before_snapshot) ... ok
+test_depth_sorted_decimal (test_core.BookTests.test_depth_sorted_decimal) ... ok
+test_invalid_constraints_and_tick_updates (test_core.BookTests.test_invalid_constraints_and_tick_updates) ... ok
+test_invalid_numbers_atomic (test_core.BookTests.test_invalid_numbers_atomic) ... ok
+test_older_snapshot_and_delta_rejected (test_core.BookTests.test_older_snapshot_and_delta_rejected) ... ok
+test_stale_and_disconnect (test_core.BookTests.test_stale_and_disconnect) ... ok
+test_allowlist_rejects_trading_and_us (test_core.IntegrationUnitTests.test_allowlist_rejects_trading_and_us) ... Executing <Task finished name='Task-2' coro=<IntegrationUnitTests.test_allowlist_rejects_trading_and_us() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:322> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.406 seconds
+ok
+test_bad_rest_preserved_before_reconnect (test_core.IntegrationUnitTests.test_bad_rest_preserved_before_reconnect) ... ok
+test_identity_mismatch_repaired (test_core.IntegrationUnitTests.test_identity_mismatch_repaired) ... ok
+test_missing_asset_delta_preserved_and_invalidates_all (test_core.IntegrationUnitTests.test_missing_asset_delta_preserved_and_invalidates_all) ... ok
+test_missing_list_roles_fetches_public_event_detail (test_core.IntegrationUnitTests.test_missing_list_roles_fetches_public_event_detail) ... Executing <Task finished name='Task-22' coro=<IntegrationUnitTests.test_missing_list_roles_fetches_public_event_detail() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:194> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.359 seconds
+ok
+test_no_market_is_distinct_from_failure (test_core.IntegrationUnitTests.test_no_market_is_distinct_from_failure) ... Executing <Task finished name='Task-27' coro=<IntegrationUnitTests.test_no_market_is_distinct_from_failure() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:307> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.359 seconds
+ok
+test_pagination_no_market_and_errors (test_core.IntegrationUnitTests.test_pagination_no_market_and_errors) ... Executing <Task finished name='Task-32' coro=<IntegrationUnitTests.test_pagination_no_market_and_errors() done, defined at D:\vibe coding\polymarket\nba\tests\test_core.py:331> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.359 seconds
+ok
+test_rediscovery_changes_subscription_and_status (test_core.IntegrationUnitTests.test_rediscovery_changes_subscription_and_status) ... ok
+test_repair_after_delta_and_duplicate (test_core.IntegrationUnitTests.test_repair_after_delta_and_duplicate) ... ok
+{"health": "market_resolved", "detail": "a", "local_timestamp": 1792397150244}
+{"health": "market_resolved", "detail": "b", "local_timestamp": 1792397150245}
+{"health": "market_resolved", "detail": "a", "local_timestamp": 1792397150248}
+{"health": "market_resolved", "detail": "b", "local_timestamp": 1792397150249}
+test_resolved_assets_are_not_resubscribed (test_core.IntegrationUnitTests.test_resolved_assets_are_not_resubscribed) ... ok
+{"health": "started", "detail": "record-only", "local_timestamp": 1792397150275}
+{"health": "connected", "detail": "2", "local_timestamp": 1792397150276}
+{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792397150328}
+{"health": "connected", "detail": "2", "local_timestamp": 1792397150340}
+{"health": "disconnected", "detail": "ResyncRequired: forced_reconnect_test", "local_timestamp": 1792397150391}
+{"health": "connected", "detail": "2", "local_timestamp": 1792397150402}
+{"health": "stopped", "detail": "", "local_timestamp": 1792397150454}
+test_transport_reconnect_resnapshots_and_stops (test_core.IntegrationUnitTests.test_transport_reconnect_resnapshots_and_stops) ... ok
+test_exclusion_matrix (test_core.ScannerTests.test_exclusion_matrix) ... ok
+test_missing_roles_never_guessed_from_slug (test_core.ScannerTests.test_missing_roles_never_guessed_from_slug) ... ok
+test_named_outcomes_not_false_yes_no (test_core.ScannerTests.test_named_outcomes_not_false_yes_no) ... ok
+test_per_event_roles_override_league_display_order (test_core.ScannerTests.test_per_event_roles_override_league_display_order) ... ok
+test_started_and_live (test_core.ScannerTests.test_started_and_live) ... ok
+test_unrelated_series (test_core.ScannerTests.test_unrelated_series) ... ok
+test_yes_no_and_v2 (test_core.ScannerTests.test_yes_no_and_v2) ... ok
+test_duplicate_rest_refreshes_latest_without_duplicate_history (test_core.StorageTests.test_duplicate_rest_refreshes_latest_without_duplicate_history) ... ok
+test_malformed_timestamp_raw_preserved (test_core.StorageTests.test_malformed_timestamp_raw_preserved) ... ok
+test_missing_identity_not_over_deduped (test_core.StorageTests.test_missing_identity_not_over_deduped) ... ok
+test_restart_dedupe_atomic_snapshot (test_core.StorageTests.test_restart_dedupe_atomic_snapshot) ... ok
+test_bad_latest_book_invalidates_mark_and_expiry_is_bounded (test_execution_read_contracts.MappingTests.test_bad_latest_book_invalidates_mark_and_expiry_is_bounded) ... ok
+test_maker_uses_own_leg_not_total_trade_size_or_counterparty_side (test_execution_read_contracts.MappingTests.test_maker_uses_own_leg_not_total_trade_size_or_counterparty_side) ... ok
+test_partial_cancel_response_does_not_assume_all_canceled (test_execution_read_contracts.MappingTests.test_partial_cancel_response_does_not_assume_all_canceled) ... ok
+test_raw_and_sdk_stream_time_units (test_execution_read_contracts.MappingTests.test_raw_and_sdk_stream_time_units) ... ok
+test_rest_sdk_order_quantities_and_terminal_remainder (test_execution_read_contracts.MappingTests.test_rest_sdk_order_quantities_and_terminal_remainder) ... ok
+test_rest_submit_and_replace_are_descriptions_not_sends (test_execution_read_contracts.MappingTests.test_rest_submit_and_replace_are_descriptions_not_sends) ... ok
+test_cursor_conflict_is_not_complete (test_execution_read_contracts.PublicV2Tests.test_cursor_conflict_is_not_complete) ... ok
+test_cursor_envelope_and_current_size_are_not_lifetime_size (test_execution_read_contracts.PublicV2Tests.test_cursor_envelope_and_current_size_are_not_lifetime_size) ... ok
+test_empty_v2_is_valid_not_fake_cash (test_execution_read_contracts.PublicV2Tests.test_empty_v2_is_valid_not_fake_cash) ... ok
+test_balance_orders_trades_paging_and_restart_dedup (test_execution_read_contracts.ReadJournalTests.test_balance_orders_trades_paging_and_restart_dedup) ... ok
+test_stream_partial_fill_and_failed_settlement_remain_read_evidence (test_execution_read_contracts.ReadJournalTests.test_stream_partial_fill_and_failed_settlement_remain_read_evidence) ... ok
+test_unconfigured_port_never_creates_authentication (test_execution_read_contracts.ReadJournalTests.test_unconfigured_port_never_creates_authentication) ... ok
+test_end_to_end_demo_and_no_overwrite (test_fair_value.DemoTests.test_end_to_end_demo_and_no_overwrite) ... ok
+test_missing_key_cli_no_quote_nonzero_exit (test_fair_value.DemoTests.test_missing_key_cli_no_quote_nonzero_exit) ... ok
+test_read_only_cli_and_replay (test_fair_value.DemoTests.test_read_only_cli_and_replay) ... ok
+test_conflicting_sources (test_fair_value.EngineTests.test_conflicting_sources) ... ok
+test_consensus_edges_and_traceability (test_fair_value.EngineTests.test_consensus_edges_and_traceability) ... ok
+test_disappeared_event_does_not_use_previous_batch (test_fair_value.EngineTests.test_disappeared_event_does_not_use_previous_batch) ... ok
+test_disconnected_or_unverified_books (test_fair_value.EngineTests.test_disconnected_or_unverified_books) ... ok
+test_duplicate_book_across_providers_counts_once (test_fair_value.EngineTests.test_duplicate_book_across_providers_counts_once) ... ok
+test_duplicate_snapshot_observation_retains_verification_time (test_fair_value.EngineTests.test_duplicate_snapshot_observation_retains_verification_time) ... ok
+test_future_exchange_timestamp_not_used (test_fair_value.EngineTests.test_future_exchange_timestamp_not_used) ... ok
+test_future_odds_books_metadata_do_not_change_past_signal (test_fair_value.EngineTests.test_future_odds_books_metadata_do_not_change_past_signal) ... ok
+test_late_received_old_quote_not_known_in_past (test_fair_value.EngineTests.test_late_received_old_quote_not_known_in_past) ... ok
+test_markout_horizons_and_buy_sell_sign (test_fair_value.EngineTests.test_markout_horizons_and_buy_sell_sign) ... ok
+test_markout_window_bad_book_and_started_game (test_fair_value.EngineTests.test_markout_window_bad_book_and_started_game) ... ok
+test_no_asof_metadata_never_reads_latest_market (test_fair_value.EngineTests.test_no_asof_metadata_never_reads_latest_market) ... ok
+test_no_data_is_no_quote (test_fair_value.EngineTests.test_no_data_is_no_quote) ... ok
+test_one_live_cancelled_source_vetoes_whole_event (test_fair_value.EngineTests.test_one_live_cancelled_source_vetoes_whole_event) ... ok
+test_pregame_to_live_boundary (test_fair_value.EngineTests.test_pregame_to_live_boundary) ... ok
+test_rule_timestamp_and_synthetic_live_mixing (test_fair_value.EngineTests.test_rule_timestamp_and_synthetic_live_mixing) ... ok
+test_single_source_research_only (test_fair_value.EngineTests.test_single_source_research_only) ... ok
+test_stale_future_and_invalid_odds (test_fair_value.EngineTests.test_stale_future_and_invalid_odds) ... ok
+test_team_mismatch_and_rules_mismatch (test_fair_value.EngineTests.test_team_mismatch_and_rules_mismatch) ... ok
+test_aliases_and_exact_roles (test_fair_value.MatcherTests.test_aliases_and_exact_roles) ... ok
+test_live_cancelled_and_future_rule_evidence (test_fair_value.MatcherTests.test_live_cancelled_and_future_rule_evidence) ... ok
+test_negated_market_rules_never_classified_as_compatible (test_fair_value.MatcherTests.test_negated_market_rules_never_classified_as_compatible) ... ok
+test_start_and_rules_matrix (test_fair_value.MatcherTests.test_start_and_rules_matrix) ... ok
+test_unknown_rules_mapping_and_foreign_venue (test_fair_value.MatcherTests.test_unknown_rules_mapping_and_foreign_venue) ... ok
+test_american_conversion (test_fair_value.MathsTests.test_american_conversion) ... ok
+test_asymmetric_proportional_formula (test_fair_value.MathsTests.test_asymmetric_proportional_formula) ... ok
+test_consensus_and_dispersion (test_fair_value.MathsTests.test_consensus_and_dispersion) ... ok
+test_formats_equivalent (test_fair_value.MathsTests.test_formats_equivalent) ... ok
+test_invalid_odds_matrix (test_fair_value.MathsTests.test_invalid_odds_matrix) ... ok
+test_reproducible_independent_of_decimal_context (test_fair_value.MathsTests.test_reproducible_independent_of_decimal_context) ... ok
+test_symmetric_vig_and_underround (test_fair_value.MathsTests.test_symmetric_vig_and_underround) ... ok
+test_api_mapper_timestamp_market_type_and_unknown_rules (test_fair_value.ProviderTests.test_api_mapper_timestamp_market_type_and_unknown_rules) ... ok
+test_http_get_and_key_not_persisted_or_error_leaked (test_fair_value.ProviderTests.test_http_get_and_key_not_persisted_or_error_leaked) ... ok
+test_json_receipt_cannot_be_backdated (test_fair_value.ProviderTests.test_json_receipt_cannot_be_backdated) ... ok
+test_missing_key_no_request (test_fair_value.ProviderTests.test_missing_key_no_request) ... ok
+test_secret_fields_rejected (test_fair_value.ProviderTests.test_secret_fields_rejected) ... ok
+test_asymmetric_fair_value_attribution (test_fill_management.AccountingTests.test_asymmetric_fair_value_attribution) ... ok
+test_complete_share_cost_below_equal_above_one (test_fill_management.AccountingTests.test_complete_share_cost_below_equal_above_one) ... ok
+test_decimal_context_and_insufficient_cash (test_fill_management.AccountingTests.test_decimal_context_and_insufficient_cash) ... ok
+test_multiple_batches_fifo_partial_exit (test_fill_management.AccountingTests.test_multiple_batches_fifo_partial_exit) ... ok
+test_partial_fill_duplicate_and_cash_reservation (test_fill_management.AccountingTests.test_partial_fill_duplicate_and_cash_reservation) ... ok
+test_partial_hedge_remains_directional (test_fill_management.AccountingTests.test_partial_hedge_remains_directional) ... ok
+test_partial_pair_then_settlement_is_not_double_payout (test_fill_management.AccountingTests.test_partial_pair_then_settlement_is_not_double_payout) ... ok
+test_restart_and_unknown_valuation_and_future_events (test_fill_management.AccountingTests.test_restart_and_unknown_valuation_and_future_events) ... ok
+test_settlement_equity_and_rewards_and_fees (test_fill_management.AccountingTests.test_settlement_equity_and_rewards_and_fees) ... ok
+test_unknown_seed_basis_cannot_claim_pnl (test_fill_management.AccountingTests.test_unknown_seed_basis_cannot_claim_pnl) ... ok
+test_all_three_models_have_distinct_fill_quantities (test_fill_management.ResearchTests.test_all_three_models_have_distinct_fill_quantities) ... ok
+test_closed_run_partial_hedge_and_settlement_reports_reconcile (test_fill_management.ResearchTests.test_closed_run_partial_hedge_and_settlement_reports_reconcile) ... ok
+test_crash_rollback_does_not_leave_fill_in_fifo_ledger (test_fill_management.ResearchTests.test_crash_rollback_does_not_leave_fill_in_fifo_ledger) ... ok
+test_cross_day_equity_and_retrospective_markouts (test_fill_management.ResearchTests.test_cross_day_equity_and_retrospective_markouts) ... ok
+test_current_markout_cannot_see_future_input (test_fill_management.ResearchTests.test_current_markout_cannot_see_future_input) ... ok
+test_equivalent_decimal_grid_not_cancelled_and_close_keeps_peak (test_fill_management.ResearchTests.test_equivalent_decimal_grid_not_cancelled_and_close_keeps_peak) ... ok
+test_existing_complementary_inventory_not_bought_twice (test_fill_management.ResearchTests.test_existing_complementary_inventory_not_bought_twice) ... ok
+test_exit_candidates_consider_depth_fee_and_cash (test_fill_management.ResearchTests.test_exit_candidates_consider_depth_fee_and_cash) ... ok
+test_future_depth_never_changes_initial_queue_and_duplicates (test_fill_management.ResearchTests.test_future_depth_never_changes_initial_queue_and_duplicates) ... ok
+test_l2_partial_fill_then_cancel_and_three_models_differ (test_fill_management.ResearchTests.test_l2_partial_fill_then_cancel_and_three_models_differ) ... ok
+test_model_configuration_and_fees_are_traceable (test_fill_management.ResearchTests.test_model_configuration_and_fees_are_traceable) ... ok
+test_native_yes_no_order_and_unseen_complement_zero_position (test_fill_management.ResearchTests.test_native_yes_no_order_and_unseen_complement_zero_position) ... ok
+test_paper_import_idempotent_and_read_only_source (test_fill_management.ResearchTests.test_paper_import_idempotent_and_read_only_source) ... ok
+test_report_net_pnl_matches_cash_positions_and_daily_rates (test_fill_management.ResearchTests.test_report_net_pnl_matches_cash_positions_and_daily_rates) ... ok
+test_restart_preserves_equity_and_queue (test_fill_management.ResearchTests.test_restart_preserves_equity_and_queue) ... ok
+test_zero_live_calls_and_unavailable_market_is_no_quote (test_fill_management.ResearchTests.test_zero_live_calls_and_unavailable_market_is_no_quote) ... ok
+test_all_categories_flow_through_dynamic_metadata_discovery (test_general_chart.AsyncDiscovery.test_all_categories_flow_through_dynamic_metadata_discovery) ... Executing <Task finished name='Task-85' coro=<AsyncDiscovery.test_all_categories_flow_through_dynamic_metadata_discovery() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:70> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.063 seconds
+ok
+test_schedule_without_market_distinct_from_access_failure (test_general_chart.AsyncDiscovery.test_schedule_without_market_distinct_from_access_failure) ... Executing <Task finished name='Task-90' coro=<AsyncDiscovery.test_schedule_without_market_distinct_from_access_failure() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:90> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.453 seconds
+ok
+test_accepted_orders_partial_cancel_unknown_and_historical_ledger (test_general_chart.ChartTests.test_accepted_orders_partial_cancel_unknown_and_historical_ledger) ... ok
+test_late_fill_during_bad_data_updates_inventory_without_fabricated_pnl (test_general_chart.ChartTests.test_late_fill_during_bad_data_updates_inventory_without_fabricated_pnl) ... ok
+test_mid_band_gaps_asof_and_readonly_refresh (test_general_chart.ChartTests.test_mid_band_gaps_asof_and_readonly_refresh) ... ok
+test_public_prints_are_separate_from_paper_and_unknown_aggressor (test_general_chart.ChartTests.test_public_prints_are_separate_from_paper_and_unknown_aggressor) ... ok
+test_ui_has_one_canvas_and_no_strategy_calls_in_chart_code (test_general_chart.ChartTests.test_ui_has_one_canvas_and_no_strategy_calls_in_chart_code) ... ok
+test_unaccepted_target_not_evidence_and_cursor_no_silent_truncation (test_general_chart.ChartTests.test_unaccepted_target_not_evidence_and_cursor_no_silent_truncation) ... ok
+test_all_types_cross_season_without_fixed_slug_or_date (test_general_chart.DiscoveryTests.test_all_types_cross_season_without_fixed_slug_or_date) ... ok
+test_cup_tags_not_blanket_exclusion_and_unknown_is_readable (test_general_chart.DiscoveryTests.test_cup_tags_not_blanket_exclusion_and_unknown_is_readable) ... ok
+test_expanded_discovery_never_grants_phase_permission (test_general_chart.DiscoveryTests.test_expanded_discovery_never_grants_phase_permission) ... ok
+test_identity_same_teams_time_conflict_and_wrong_outcome (test_general_chart.DiscoveryTests.test_identity_same_teams_time_conflict_and_wrong_outcome) ... ok
+test_invalid_custom_dates_rejected_before_scan_or_account_allocation (test_general_chart.DiscoveryTests.test_invalid_custom_dates_rejected_before_scan_or_account_allocation) ... ok
+test_other_full_game_slug_allowed_with_rule_proof_not_half_game (test_general_chart.DiscoveryTests.test_other_full_game_slug_allowed_with_rule_proof_not_half_game) ... ok
+test_bad_books_all_modes_reject (test_inplay.InplayTests.test_bad_books_all_modes_reject) ... ok
+test_book_driven_without_odds_external_fair_still_refuses (test_inplay.InplayTests.test_book_driven_without_odds_external_fair_still_refuses) ... ok
+test_book_freeze_respects_processing_and_future_metadata (test_inplay.InplayTests.test_book_freeze_respects_processing_and_future_metadata) ... ok
+test_book_realized_decomposition_is_not_predictive_edge (test_inplay.InplayTests.test_book_realized_decomposition_is_not_predictive_edge) ... ok
+test_cancel_inflight_fill_same_ledger_and_restart (test_inplay.InplayTests.test_cancel_inflight_fill_same_ledger_and_restart) ... ok
+test_clock_correction_and_delayed_status_stay_conservative (test_inplay.InplayTests.test_clock_correction_and_delayed_status_stay_conservative) ... ok
+test_close_race_dispatch_and_restart_overtime_latch (test_inplay.InplayTests.test_close_race_dispatch_and_restart_overtime_latch) ... ok
+test_collection_scope_is_not_quote_permission (test_inplay.InplayTests.test_collection_scope_is_not_quote_permission) ... ok
+test_duplicate_fill_does_not_duplicate_fifo (test_inplay.InplayTests.test_duplicate_fill_does_not_duplicate_fifo) ... ok
+test_expected_unallocated_rebate_not_cash_and_missing_marks_unknown (test_inplay.InplayTests.test_expected_unallocated_rebate_not_cash_and_missing_marks_unknown) ... ok
+test_income_cash_flow_identity_and_costs_reconcile (test_inplay.InplayTests.test_income_cash_flow_identity_and_costs_reconcile) ... ok
+test_input_transaction_rolls_back_phase_orders_and_ledger (test_inplay.InplayTests.test_input_transaction_rolls_back_phase_orders_and_ledger) ... ok
+test_many_partial_same_side_fills_cannot_exceed_inventory_cap (test_inplay.InplayTests.test_many_partial_same_side_fills_cannot_exceed_inventory_cap) ... ok
+test_missing_book_with_resting_orders_halts_without_losing_risk_event (test_inplay.InplayTests.test_missing_book_with_resting_orders_halts_without_losing_risk_event) ... ok
+test_models_fill_through_same_async_oms_with_different_quantities (test_inplay.InplayTests.test_models_fill_through_same_async_oms_with_different_quantities) ... ok
+test_no_future_frame_and_no_fill_model_changes (test_inplay.InplayTests.test_no_future_frame_and_no_fill_model_changes) ... ok
+test_os_exit_unreceived_fill_reconciles_into_same_ledger (test_inplay.InplayTests.test_os_exit_unreceived_fill_reconciles_into_same_ledger) ... ok
+test_predictive_fields_cannot_change_orders (test_inplay.InplayTests.test_predictive_fields_cannot_change_orders) ... ok
+test_raw_sports_without_semantic_evidence_cannot_authorize (test_inplay.InplayTests.test_raw_sports_without_semantic_evidence_cannot_authorize) ... ok
+test_reduce_only_preserves_pairs_and_no_reverse_risk (test_inplay.InplayTests.test_reduce_only_preserves_pairs_and_no_reverse_risk) ... ok
+test_single_writer_and_zero_network (test_inplay.InplayTests.test_single_writer_and_zero_network) ... ok
+test_split_is_collateral_funded_and_no_new_capital (test_inplay.InplayTests.test_split_is_collateral_funded_and_no_new_capital) ... ok
+test_unknown_phase_and_unknown_elapsed_reject (test_inplay.InplayTests.test_unknown_phase_and_unknown_elapsed_reject) ... ok
+test_analyze_asof_excludes_later_records (test_next_iteration.ResearchTests.test_analyze_asof_excludes_later_records) ... ok
+test_auto_q4_once_and_report_failure_not_oms_action (test_next_iteration.ResearchTests.test_auto_q4_once_and_report_failure_not_oms_action) ... ok
+test_bounded_paper_exit_updates_same_fifo_and_fee_cashflow (test_next_iteration.ResearchTests.test_bounded_paper_exit_updates_same_fifo_and_fee_cashflow) ... ok
+test_clock_review_cannot_be_bypassed_at_dispatch_boundary (test_next_iteration.ResearchTests.test_clock_review_cannot_be_bypassed_at_dispatch_boundary) ... ok
+test_closed_latch_manual_cannot_reopen (test_next_iteration.ResearchTests.test_closed_latch_manual_cannot_reopen) ... ok
+test_compatible_parameter_change_preserves_capital_on_restart (test_next_iteration.ResearchTests.test_compatible_parameter_change_preserves_capital_on_restart) ... ok
+test_current_data_revalidates_order_without_old_snapshot_expiry (test_next_iteration.ResearchTests.test_current_data_revalidates_order_without_old_snapshot_expiry) ... ok
+test_distribution_conservation_duplicates_and_missing_quantity (test_next_iteration.ResearchTests.test_distribution_conservation_duplicates_and_missing_quantity) ... ok
+test_history_is_readonly_and_report_versions_immutable (test_next_iteration.ResearchTests.test_history_is_readonly_and_report_versions_immutable) ... ok
+test_markout_sign_units_pending_unknown_no_future (test_next_iteration.ResearchTests.test_markout_sign_units_pending_unknown_no_future) ... ok
+test_multi_lot_exits_use_depth_once_and_reserve_pending (test_next_iteration.ResearchTests.test_multi_lot_exits_use_depth_once_and_reserve_pending) ... ok
+test_paper_exit_partial_depth_below_minimum_fill_is_not_lost (test_next_iteration.ResearchTests.test_paper_exit_partial_depth_below_minimum_fill_is_not_lost) ... ok
+test_path_injection_rejected (test_next_iteration.ResearchTests.test_path_injection_rejected) ... ok
+test_research_unknown_category_missing_upstream_time_can_quote (test_next_iteration.ResearchTests.test_research_unknown_category_missing_upstream_time_can_quote) ... ok
+test_stale_cancels_but_not_permanent_account_halt (test_next_iteration.ResearchTests.test_stale_cancels_but_not_permanent_account_halt) ... ok
+test_taker_needs_persisted_authority (test_next_iteration.ResearchTests.test_taker_needs_persisted_authority) ... ok
+test_thin_book_mid_valuation_and_size (test_next_iteration.ResearchTests.test_thin_book_mid_valuation_and_size) ... ok
+test_watchdog_compression_keeps_interval_and_duplicate_guard (test_next_iteration.ResearchTests.test_watchdog_compression_keeps_interval_and_duplicate_guard) ... ok
+test_order_lifecycle_uses_different_process_and_database (test_offline_research.OfflineHTTPTests.test_order_lifecycle_uses_different_process_and_database) ... ok
+Paper lane p0-L0-d0 done: 0.21s
+Paper lane p0-L0-d1 done: 0.20s
+Paper lane p0-L0-d2 done: 0.20s
+Paper lane p0-L1-d0 done: 0.21s
+Paper lane p0-L1-d1 done: 0.20s
+Paper lane p0-L1-d2 done: 0.19s
+Paper lane p0-L2-d0 done: 0.21s
+Paper lane p0-L2-d1 done: 0.21s
+Paper lane p0-L2-d2 done: 0.20s
+test_page_to_experiment_to_exports_and_plot (test_offline_research.OfflineHTTPTests.test_page_to_experiment_to_exports_and_plot) ... ok
+test_exact_recorded_callbacks_and_sample_period (test_offline_research.OfflineTests.test_exact_recorded_callbacks_and_sample_period) ... ok
+Paper lane p0-L0-d0 done: 0.19s
+Paper lane p0-L0-d1 done: 0.20s
+Paper lane p0-L0-d2 done: 0.19s
+Paper lane p0-L1-d0 done: 0.21s
+Paper lane p0-L1-d1 done: 0.21s
+Paper lane p0-L1-d2 done: 0.20s
+Paper lane p0-L2-d0 done: 0.21s
+Paper lane p0-L2-d1 done: 0.20s
+Paper lane p0-L2-d2 done: 0.20s
+Paper lane p0-L0-d0 done: 0.21s
+Paper lane p0-L0-d1 done: 0.21s
+Paper lane p0-L0-d2 done: 0.22s
+Paper lane p0-L1-d0 done: 0.22s
+Paper lane p0-L1-d1 done: 0.20s
+Paper lane p0-L1-d2 done: 0.22s
+Paper lane p0-L2-d0 done: 0.23s
+Paper lane p0-L2-d1 done: 0.24s
+Paper lane p0-L2-d2 done: 0.24s
+test_grid_independent_reproducible_and_reconciled (test_offline_research.OfflineTests.test_grid_independent_reproducible_and_reconciled) ... ok
+test_order_preview_has_no_signature_or_sender (test_offline_research.OfflineTests.test_order_preview_has_no_signature_or_sender) ... ok
+test_public_account_is_not_authenticated_authority (test_offline_research.OfflineTests.test_public_account_is_not_authenticated_authority) ... ok
+test_queue_assumption_restart_immutable (test_offline_research.OfflineTests.test_queue_assumption_restart_immutable) ... ok
+test_sdk_acknowledgement_never_invents_fill_quantity (test_offline_research.OfflineTests.test_sdk_acknowledgement_never_invents_fill_quantity) ... ok
+test_streaming_freeze_matches_existing_hash_and_is_immutable (test_offline_research.OfflineTests.test_streaming_freeze_matches_existing_hash_and_is_immutable) ... ok
+test_remote_partial_cancel_timeout_and_restart (test_offline_research.SeparateAuthorityTests.test_remote_partial_cancel_timeout_and_restart) ... ok
+test_depth_comparison_and_stale_rejection (test_paper_execution.HedgeTests.test_depth_comparison_and_stale_rejection) ... ok
+test_cancel_timeout_not_success_and_unknown_never_resumes (test_paper_execution.PaperExecutionTests.test_cancel_timeout_not_success_and_unknown_never_resumes) ... ok
+test_daily_loss_breaker_is_paper_and_latched (test_paper_execution.PaperExecutionTests.test_daily_loss_breaker_is_paper_and_latched) ... ok
+test_delayed_submit_ack_cannot_regress_partial_fill (test_paper_execution.PaperExecutionTests.test_delayed_submit_ack_cannot_regress_partial_fill) ... ok
+test_duplicate_fill_and_duplicate_report (test_paper_execution.PaperExecutionTests.test_duplicate_fill_and_duplicate_report) ... ok
+test_exchange_rejection_and_zero_network (test_paper_execution.PaperExecutionTests.test_exchange_rejection_and_zero_network) ... ok
+test_expiry_cancels_and_journal_restores_cache (test_paper_execution.PaperExecutionTests.test_expiry_cancels_and_journal_restores_cache) ... ok
+test_full_fill_before_cancel (test_paper_execution.PaperExecutionTests.test_full_fill_before_cancel) ... ok
+test_kill_atomically_clears_queue_blocks_new_orders (test_paper_execution.PaperExecutionTests.test_kill_atomically_clears_queue_blocks_new_orders) ... ok
+test_paper_state_machine_rejects_impossible_transition (test_paper_execution.PaperExecutionTests.test_paper_state_machine_rejects_impossible_transition) ... ok
+test_partial_fill_during_cancel (test_paper_execution.PaperExecutionTests.test_partial_fill_during_cancel) ... ok
+test_quote_session_replay_trade_proxy_and_duplicate_cursor (test_paper_execution.PaperExecutionTests.test_quote_session_replay_trade_proxy_and_duplicate_cursor) ... ok
+test_reconcile_mismatch_keeps_halted (test_paper_execution.PaperExecutionTests.test_reconcile_mismatch_keeps_halted) ... ok
+test_rest_delay_timeout_and_recovery_latency (test_paper_execution.PaperExecutionTests.test_rest_delay_timeout_and_recovery_latency) ... ok
+test_restart_recovers_intent_authority_and_stays_halted (test_paper_execution.PaperExecutionTests.test_restart_recovers_intent_authority_and_stays_halted) ... ok
+test_risk_detection_fill_race_retains_inventory (test_paper_execution.PaperExecutionTests.test_risk_detection_fill_race_retains_inventory) ... ok
+test_same_event_multiple_fills_preserve_committed_risk (test_paper_execution.PaperExecutionTests.test_same_event_multiple_fills_preserve_committed_risk) ... ok
+test_sell_reservation_and_cash_and_order_risk (test_paper_execution.PaperExecutionTests.test_sell_reservation_and_cash_and_order_risk) ... ok
+test_stale_odds_book_disconnect_edge_jump_start_and_market (test_paper_execution.PaperExecutionTests.test_stale_odds_book_disconnect_edge_jump_start_and_market) ... ok
+test_submit_timeout_but_exchange_accepted (test_paper_execution.PaperExecutionTests.test_submit_timeout_but_exchange_accepted) ... ok
+test_actual_child_generates_report_without_parent_writer (test_postcapture.PostcaptureTests.test_actual_child_generates_report_without_parent_writer) ... ok
+test_cache_corruption_detected_and_old_report_retained (test_postcapture.PostcaptureTests.test_cache_corruption_detected_and_old_report_retained) ... ok
+test_frozen_idempotent_replay_and_source_untouched (test_postcapture.PostcaptureTests.test_frozen_idempotent_replay_and_source_untouched) ... ok
+test_no_games_and_atomic_immutable_publication (test_postcapture.PostcaptureTests.test_no_games_and_atomic_immutable_publication) ... ok
+test_postcapture_uses_independent_process_not_live_writer (test_postcapture.PostcaptureTests.test_postcapture_uses_independent_process_not_live_writer) ... ok
+test_scheduler_final_consolidation_without_any_orders (test_postcapture.PostcaptureTests.test_scheduler_final_consolidation_without_any_orders) ... ok
+test_watchdog_gap_not_new_observations_and_unfinished_no_analysis (test_postcapture.PostcaptureTests.test_watchdog_gap_not_new_observations_and_unfinished_no_analysis) ... ok
+test_console_research_catalog_and_real_start_parameters (test_preseason_pilot.AsyncTests.test_console_research_catalog_and_real_start_parameters) ... Executing <Task pending name='Task-108' coro=<AsyncTests.test_console_research_catalog_and_real_start_parameters() running at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:260> wait_for=<Task pending name='Task-109' coro=<ConsoleService.session() running at D:\vibe coding\polymarket\nba\nba_recorder\console\service.py:498> cb=[Task.task_wakeup()] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py:420> cb=[_run_until_complete_cb() at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py:181] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.375 seconds
+ok
+test_preflight_access_failure_not_no_market_and_schema_separate (test_preseason_pilot.AsyncTests.test_preflight_access_failure_not_no_market_and_schema_separate) ... Executing <Task finished name='Task-114' coro=<AsyncTests.test_preflight_access_failure_not_no_market_and_schema_separate() done, defined at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:265> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.516 seconds
+ok
+test_preflight_success_empty_is_no_matching_market (test_preseason_pilot.AsyncTests.test_preflight_success_empty_is_no_matching_market) ... Executing <Task finished name='Task-119' coro=<AsyncTests.test_preflight_success_empty_is_no_matching_market() done, defined at D:\vibe coding\polymarket\nba\tests\test_preseason_pilot.py:271> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.781 seconds
+ok
+test_explicit_research_preserves_regular_default_and_season (test_preseason_pilot.IdentityTests.test_explicit_research_preserves_regular_default_and_season) ... ok
+test_live_discovery_independent_of_season_or_quote_permission (test_preseason_pilot.IdentityTests.test_live_discovery_independent_of_season_or_quote_permission) ... ok
+test_missing_fields_remain_unknown_and_clock_does_not_tick (test_preseason_pilot.IdentityTests.test_missing_fields_remain_unknown_and_clock_does_not_tick) ... ok
+test_outcome_mapping_cannot_reverse_or_invent_teams (test_preseason_pilot.IdentityTests.test_outcome_mapping_cannot_reverse_or_invent_teams) ... ok
+test_same_teams_different_date_not_same_verified_game (test_preseason_pilot.IdentityTests.test_same_teams_different_date_not_same_verified_game) ... ok
+test_utc8_tomorrow_is_previous_exchange_date (test_preseason_pilot.IdentityTests.test_utc8_tomorrow_is_previous_exchange_date) ... ok
+test_wrong_roles_or_game_id_fail_information_mapping (test_preseason_pilot.IdentityTests.test_wrong_roles_or_game_id_fail_information_mapping) ... ok
+test_end_latches_paper_stop_while_collection_can_continue (test_preseason_pilot.WindowTests.test_end_latches_paper_stop_while_collection_can_continue) ... ok
+test_fresh_confirmed_end_tail_not_market_settlement (test_preseason_pilot.WindowTests.test_fresh_confirmed_end_tail_not_market_settlement) ... ok
+test_over_thirty_minutes_one_account_continues_without_capital (test_preseason_pilot.WindowTests.test_over_thirty_minutes_one_account_continues_without_capital) ... ok
+test_overtime_no_finish_and_hard_limit_not_complete (test_preseason_pilot.WindowTests.test_overtime_no_finish_and_hard_limit_not_complete) ... ok
+test_paper_stop_intent_survives_real_store_reopen (test_preseason_pilot.WindowTests.test_paper_stop_intent_survives_real_store_reopen) ... ok
+test_report_counts_unique_books_not_watchdog_or_trade_reuse (test_preseason_pilot.WindowTests.test_report_counts_unique_books_not_watchdog_or_trade_reuse) ... ok
+test_same_ms_replay_seal_preserves_original_order_and_timestamps (test_preseason_pilot.WindowTests.test_same_ms_replay_seal_preserves_original_order_and_timestamps) ... ok
+test_stale_conflicting_or_market_closed_does_not_finish_game (test_preseason_pilot.WindowTests.test_stale_conflicting_or_market_closed_does_not_finish_game) ... ok
+test_stop_paper_preserves_collection_and_forbids_resume (test_preseason_pilot.WindowTests.test_stop_paper_preserves_collection_and_forbids_resume) ... ok
+test_cancel_wins_disconnect_and_tick_change (test_quote_engine.ExecutionTests.test_cancel_wins_disconnect_and_tick_change) ... ok
+test_duplicate_trade_never_refills (test_quote_engine.ExecutionTests.test_duplicate_trade_never_refills) ... ok
+test_expiry_precedes_touch (test_quote_engine.ExecutionTests.test_expiry_precedes_touch) ... ok
+test_freeze_uses_asof_evidence_and_no_valid_odds (test_quote_engine.ExecutionTests.test_freeze_uses_asof_evidence_and_no_valid_odds) ... ok
+test_immutable_tape_and_no_network (test_quote_engine.ExecutionTests.test_immutable_tape_and_no_network) ... ok
+test_invalid_print_does_not_fill (test_quote_engine.ExecutionTests.test_invalid_print_does_not_fill) ... ok
+test_no_future_asset_inventory_seed (test_quote_engine.ExecutionTests.test_no_future_asset_inventory_seed) ... ok
+test_print_volume_capped_and_unchanged_book_not_reused (test_quote_engine.ExecutionTests.test_print_volume_capped_and_unchanged_book_not_reused) ... ok
+test_quote_and_fill_markouts_no_future_peek (test_quote_engine.ExecutionTests.test_quote_and_fill_markouts_no_future_peek) ... ok
+test_reproducible_resume_equals_uninterrupted (test_quote_engine.ExecutionTests.test_reproducible_resume_equals_uninterrupted) ... ok
+test_restart_after_partial_cancel_and_terminal_states (test_quote_engine.ExecutionTests.test_restart_after_partial_cancel_and_terminal_states) ... ok
+test_restart_idempotence_and_journal_audit (test_quote_engine.ExecutionTests.test_restart_idempotence_and_journal_audit) ... ok
+test_touch_vs_through_and_lane_isolation (test_quote_engine.ExecutionTests.test_touch_vs_through_and_lane_isolation) ... ok
+test_transaction_rollback_preserves_cursor (test_quote_engine.ExecutionTests.test_transaction_rollback_preserves_cursor) ... ok
+test_bad_market_and_start (test_quote_engine.QuoteTests.test_bad_market_and_start) ... ok
+test_four_states (test_quote_engine.QuoteTests.test_four_states) ... ok
+test_reservations_across_assets (test_quote_engine.QuoteTests.test_reservations_across_assets) ... ok
+test_risk_limits_and_minimum_size (test_quote_engine.QuoteTests.test_risk_limits_and_minimum_size) ... ok
+test_stale_future_and_missing_sources (test_quote_engine.QuoteTests.test_stale_future_and_missing_sources) ... ok
+test_supported_ticks_and_maker_constraints (test_quote_engine.QuoteTests.test_supported_ticks_and_maker_constraints) ... ok
+test_deterministic_clock_prints_and_explicit_synthetic_source (test_research_scale.ScaleTests.test_deterministic_clock_prints_and_explicit_synthetic_source) ... ok
+test_plot_sampling_preserves_real_segments_not_artificial_gaps (test_research_scale.ScaleTests.test_plot_sampling_preserves_real_segments_not_artificial_gaps) ... ok
+Paper lane p0-L0-d0 done: 0.27s
+Paper lane p0-L1-d0 done: 0.26s
+Paper lane p0-L2-d0 done: 0.26s
+test_replay_performance_and_isolated_ledger_evidence (test_research_scale.ScaleTests.test_replay_performance_and_isolated_ledger_evidence) ... ok
+test_deterministic_complete_fault_matrix_and_zero_network (test_stress.StressTests.test_deterministic_complete_fault_matrix_and_zero_network) ... ok
+test_fault_account_mismatch (test_stress.StressTests.test_fault_account_mismatch) ... ok
+test_fault_cancel_partial_race (test_stress.StressTests.test_fault_cancel_partial_race) ... ok
+test_fault_daily_loss (test_stress.StressTests.test_fault_daily_loss) ... ok
+test_fault_duplicate_fill (test_stress.StressTests.test_fault_duplicate_fill) ... ok
+test_fault_fair_value_jump (test_stress.StressTests.test_fault_fair_value_jump) ... ok
+test_fault_game_start_boundary (test_stress.StressTests.test_fault_game_start_boundary) ... ok
+test_fault_manual_reset_barrier (test_stress.StressTests.test_fault_manual_reset_barrier) ... ok
+test_fault_odds_conflict (test_stress.StressTests.test_fault_odds_conflict) ... ok
+test_fault_odds_stale (test_stress.StressTests.test_fault_odds_stale) ... ok
+test_fault_pause (test_stress.StressTests.test_fault_pause) ... ok
+test_fault_rest_timeout (test_stress.StressTests.test_fault_rest_timeout) ... ok
+test_fault_service_restart (test_stress.StressTests.test_fault_service_restart) ... ok
+test_fault_simultaneous_fills (test_stress.StressTests.test_fault_simultaneous_fills) ... ok
+test_fault_submission_boundary (test_stress.StressTests.test_fault_submission_boundary) ... ok
+test_fault_submit_response_lost (test_stress.StressTests.test_fault_submit_response_lost) ... ok
+test_fault_websocket_disconnect (test_stress.StressTests.test_fault_websocket_disconnect) ... ok
+test_no_overwrite_and_unknown_fault_rejected (test_stress.StressTests.test_no_overwrite_and_unknown_fault_rejected) ... ok
+test_reconciling_blocks_submission_and_orphan_authority (test_stress.StressTests.test_reconciling_blocks_submission_and_orphan_authority) ... ok
+test_submission_uses_latest_persisted_reference (test_stress.StressTests.test_submission_uses_latest_persisted_reference) ... ok
+test_beijing_day_and_pregame_window (test_unattended.UnattendedTests.test_beijing_day_and_pregame_window) ... ok
+test_no_us_unknown_or_unverified_paper (test_unattended.UnattendedTests.test_no_us_unknown_or_unverified_paper) ... ok
+test_one_hour_tail_requires_observed_end (test_unattended.UnattendedTests.test_one_hour_tail_requires_observed_end) ... ok
+test_preflight_never_runs_or_refunds (test_unattended.UnattendedTests.test_preflight_never_runs_or_refunds) ... ok
+test_changed_price_waits_for_cancel_ack_before_replacement (test_v21_controls.ControlRegressions.test_changed_price_waits_for_cancel_ack_before_replacement) ... ok
+test_complementary_pending_reduction_keeps_shared_capacity_reserved (test_v21_controls.ControlRegressions.test_complementary_pending_reduction_keeps_shared_capacity_reserved) ... ok
+test_delayed_public_print_before_cancel_fills_causally_after_local_cancel (test_v21_controls.ControlRegressions.test_delayed_public_print_before_cancel_fills_causally_after_local_cancel) ... ok
+test_incompatible_restart_does_not_write_new_capital_or_replace_ledger (test_v21_controls.ControlRegressions.test_incompatible_restart_does_not_write_new_capital_or_replace_ledger) ... ok
+test_manual_expiry_not_upstream_freshness_and_auto_mode_stays_unknown (test_v21_controls.ControlRegressions.test_manual_expiry_not_upstream_freshness_and_auto_mode_stays_unknown) ... ok
+test_near_cash_and_inventory_cap_buy_retains_itself (test_v21_controls.ControlRegressions.test_near_cash_and_inventory_cap_buy_retains_itself) ... ok
+test_no_message_watchdog_cancels_resting_orders (test_v21_controls.ControlRegressions.test_no_message_watchdog_cancels_resting_orders) ... ok
+test_paired_vs_directional_inventory_named_one_sided_rule (test_v21_controls.ControlRegressions.test_paired_vs_directional_inventory_named_one_sided_rule) ... ok
+test_public_sixteen_shares_without_own_fill_is_diagnostic_not_halted (test_v21_controls.ControlRegressions.test_public_sixteen_shares_without_own_fill_is_diagnostic_not_halted) ... ok
+test_reduce_only_retains_twenty_frames_without_extra_capacity (test_v21_controls.ControlRegressions.test_reduce_only_retains_twenty_frames_without_extra_capacity) ... ok
+test_same_ms_submit_and_cancel_prints_are_explicitly_ambiguous (test_v21_controls.ControlRegressions.test_same_ms_submit_and_cancel_prints_are_explicitly_ambiguous) ... ok
+test_twenty_stable_frames_preserve_order_ids_and_partial_remainders (test_v21_controls.ControlRegressions.test_twenty_stable_frames_preserve_order_ids_and_partial_remainders) ... ok
+test_unknown_sports_timestamp_at_submission_boundary_is_unknown (test_v21_controls.ControlRegressions.test_unknown_sports_timestamp_at_submission_boundary_is_unknown) ... ok
+test_watchdog_runs_while_source_is_permanently_waiting (test_v21_controls.IndependentWatchdog.test_watchdog_runs_while_source_is_permanently_waiting) ... ok
+test_reduce_only_retains_its_existing_risk_exit (test_v21_regressions.RestingOrderRetentionRegression.test_reduce_only_retains_its_existing_risk_exit) ... ok
+test_stable_book_retains_existing_sell_without_reserving_twice (test_v21_regressions.RestingOrderRetentionRegression.test_stable_book_retains_existing_sell_without_reserving_twice) ... ok
+test_book_remains_unavailable_before_processing (test_v21_timing.AvailabilityRegressions.test_book_remains_unavailable_before_processing) ... ok
+test_metadata_and_connection_completion_are_not_receive_times (test_v21_timing.AvailabilityRegressions.test_metadata_and_connection_completion_are_not_receive_times) ... ok
+test_missing_processing_is_unknown_and_future_append_does_not_change_tape (test_v21_timing.AvailabilityRegressions.test_missing_processing_is_unknown_and_future_append_does_not_change_tape) ... ok
+test_sports_not_visible_until_processed_and_bucket_is_present (test_v21_timing.AvailabilityRegressions.test_sports_not_visible_until_processed_and_bucket_is_present) ... ok
+test_trade_first_available_at_processed_time_preserves_exchange_time (test_v21_timing.AvailabilityRegressions.test_trade_first_available_at_processed_time_preserves_exchange_time) ... ok
+test_bounded_catalog_and_start_chain (test_v221_console.Discovery.test_bounded_catalog_and_start_chain) ... Executing <Task pending name='Task-134' coro=<Discovery.test_bounded_catalog_and_start_chain() running at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:160> wait_for=<Task pending name='Task-135' coro=<Discovery.test_bounded_catalog_and_start_chain.<locals>.session() running at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:156> cb=[Task.task_wakeup()] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py:420> cb=[_run_until_complete_cb() at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py:181] created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.375 seconds
+Executing <Task finished name='Task-134' coro=<Discovery.test_bounded_catalog_and_start_chain() done, defined at D:\vibe coding\polymarket\nba\tests\test_v221_console.py:129> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 0.344 seconds
+ok
+test_operator_pause_rechecked_at_final_dispatch (test_v221_console.PauseLifecycle.test_operator_pause_rechecked_at_final_dispatch) ... ok
+test_pause_keeps_causal_late_partial_fill_and_cash (test_v221_console.PauseLifecycle.test_pause_keeps_causal_late_partial_fill_and_cash) ... ok
+test_pause_ticks_real_reconcile_ticks_explicit_resume_with_inventory (test_v221_console.PauseLifecycle.test_pause_ticks_real_reconcile_ticks_explicit_resume_with_inventory) ... ok
+test_resume_rejects_closed_phase (test_v221_console.PauseLifecycle.test_resume_rejects_closed_phase) ... ok
+test_resume_rejects_physical_disconnect (test_v221_console.PauseLifecycle.test_resume_rejects_physical_disconnect) ... ok
+test_resume_rejects_stale_book (test_v221_console.PauseLifecycle.test_resume_rejects_stale_book) ... ok
+test_resume_rejects_unknown_order (test_v221_console.PauseLifecycle.test_resume_rejects_unknown_order) ... ok
+test_different_ports_cannot_start_second_console_owner (test_v22_console.HTTPTests.test_different_ports_cannot_start_second_console_owner) ... ok
+test_host_origin_token_and_content_type_protection (test_v22_console.HTTPTests.test_host_origin_token_and_content_type_protection) ... ok
+test_idempotent_http_commands_and_collision (test_v22_console.HTTPTests.test_idempotent_http_commands_and_collision) ... ok
+test_read_only_refresh_empty_unknown_and_no_wildcard_cors (test_v22_console.HTTPTests.test_read_only_refresh_empty_unknown_and_no_wildcard_cors) ... ok
+test_ui_resume_cannot_override_unknown_or_closed_phase (test_v22_console.HTTPTests.test_ui_resume_cannot_override_unknown_or_closed_phase) ... ok
+test_single_owner_start_pause_stop_export_and_read_projection (test_v22_console.OwnerTests.test_single_owner_start_pause_stop_export_and_read_projection) ... ok
+test_stale_session_version_rejected_and_no_silent_mode_upgrade (test_v22_console.OwnerTests.test_stale_session_version_rejected_and_no_silent_mode_upgrade) ... ok
+test_backlogged_input_no_quote_but_preserves_raw_connectivity (test_v22_runner.RunnerBoundaryTests.test_backlogged_input_no_quote_but_preserves_raw_connectivity) ... ok
+test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill (test_v22_runner.RunnerBoundaryTests.test_disconnect_queued_trade_before_watchdog_blocks_new_submission_keeps_fill) ... ok
+test_guard_rechecked_at_dispatch_even_when_no_new_feed (test_v22_runner.RunnerBoundaryTests.test_guard_rechecked_at_dispatch_even_when_no_new_feed) ... ok
+test_reconnect_epoch_and_failed_watchdog_cannot_authorize_old_frames (test_v22_runner.RunnerBoundaryTests.test_reconnect_epoch_and_failed_watchdog_cannot_authorize_old_frames) ... ok
+test_amounts_are_dollars_not_shares (test_wallet_research.WalletResearchTests.test_amounts_are_dollars_not_shares) ... ok
+test_explicit_taker_false_roles_unknown_and_metadata_identity (test_wallet_research.WalletResearchTests.test_explicit_taker_false_roles_unknown_and_metadata_identity) ... ok
+test_http_failure_is_blocked_not_empty_success (test_wallet_research.WalletResearchTests.test_http_failure_is_blocked_not_empty_success) ... ok
+test_same_second_overflow_and_outside_window_fail_explicitly (test_wallet_research.WalletResearchTests.test_same_second_overflow_and_outside_window_fail_explicitly) ... ok
+test_window_bisection_keeps_equal_timestamp_boundaries (test_wallet_research.WalletResearchTests.test_window_bisection_keeps_equal_timestamp_boundaries) ... ok
+test_direction_preparation_reconciles_and_never_reopens_orders (test_workbench_completion.CompletionTests.test_direction_preparation_reconciles_and_never_reopens_orders) ... ok
+test_directional_risk_does_not_offset_pending_complement_sells (test_workbench_completion.CompletionTests.test_directional_risk_does_not_offset_pending_complement_sells) ... ok
+test_history_exposes_residual_inventory_without_creating_capital (test_workbench_completion.CompletionTests.test_history_exposes_residual_inventory_without_creating_capital) ... ok
+test_history_includes_cleanup_cancel_confirmation_after_last_book (test_workbench_completion.CompletionTests.test_history_includes_cleanup_cancel_confirmation_after_last_book) ... ok
+test_later_parameter_version_does_not_change_old_analysis (test_workbench_completion.CompletionTests.test_later_parameter_version_does_not_change_old_analysis) ... ok
+test_manual_q3_report_note_is_not_phase_or_order_authority (test_workbench_completion.CompletionTests.test_manual_q3_report_note_is_not_phase_or_order_authority) ... ok
+test_mutating_commands_cannot_run_while_stopping (test_workbench_completion.CompletionTests.test_mutating_commands_cannot_run_while_stopping) ... ok
+test_review_keeps_original_notes_and_excludes_future_inputs (test_workbench_completion.CompletionTests.test_review_keeps_original_notes_and_excludes_future_inputs) ... ok
+test_recent_growth_uses_pre_window_baseline_and_stale_spread_is_unknown (test_workbench_completion.MetricsTests.test_recent_growth_uses_pre_window_baseline_and_stale_spread_is_unknown) ... ok
+test_time_denominator_excludes_operator_pause_and_never_counts_frames (test_workbench_completion.MetricsTests.test_time_denominator_excludes_operator_pause_and_never_counts_frames) ... ok
+test_selected_plan_and_budget_bound_at_explicit_start (test_workbench_completion.PlanTests.test_selected_plan_and_budget_bound_at_explicit_start) ... ok
+test_versions_are_immutable_and_cannot_carry_live_or_wallet_fields (test_workbench_completion.PlanTests.test_versions_are_immutable_and_cannot_carry_live_or_wallet_fields) ... ok
+
+----------------------------------------------------------------------
+Ran 322 tests in 35.198s
+
+OK

@@ -1,0 +1,55 @@
+{
+  "id": "e7f80ccaaf8b54abed6d7837a458cf65d0fd751019f3ec91faa2257dfc9d98f0",
+  "day": "2026-10-21",
+  "sessions": [
+    {
+      "market_id": "123",
+      "session_id": "dddddddddddddddddddddddddddddddd",
+      "recording_status": "FINISHED",
+      "review": {
+        "id": "d7abda641f692249b0abcd47ab68f5ba897a12aa4f68030afac49b34dae45cf8",
+        "session_id": "dddddddddddddddddddddddddddddddd",
+        "path": "data\\postcapture\\dddddddddddddddddddddddddddddddd\\d7abda641f692249b0abcd47ab68f5ba897a12aa4f68030afac49b34dae45cf8.json"
+      },
+      "audit_summary": {
+        "data_status": "BOUNDED_OBSERVATIONS",
+        "paper_status": "LOCAL_LEDGER_VERIFIED_NOT_STRATEGY_ACCEPTANCE",
+        "reasons": [
+          "NOT_REAL_OBSERVED",
+          "PRE_GAME_ONLY",
+          "END_AND_TAIL_NOT_OBSERVED"
+        ],
+        "coverage": {
+          "a": {
+            "valid_ms": 44000,
+            "window_ms": 44000,
+            "ratio": "1",
+            "largest_uncovered_ms": 0,
+            "unique_book_observations": 45
+          },
+          "b": {
+            "valid_ms": 44000,
+            "window_ms": 44000,
+            "ratio": "1",
+            "largest_uncovered_ms": 0,
+            "unique_book_observations": 45
+          }
+        },
+        "ledger_checks": [
+          {
+            "event_replay_equals_cache": true,
+            "cash_positions_equal_oms": true
+          }
+        ],
+        "full_game_verified": false,
+        "as_of_ms": 1791954044205
+      }
+    }
+  ],
+  "discovery_status": "FIXTURE",
+  "schedule_only": null,
+  "status": "REVIEWS_AVAILABLE",
+  "real_submission_calls": 0,
+  "live_go": false,
+  "all_games_coverage_verified": false
+}

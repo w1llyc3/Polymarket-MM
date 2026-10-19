@@ -1,0 +1,103 @@
+test_cache_corruption_detected_and_old_report_retained (test_postcapture.PostcaptureTests.test_cache_corruption_detected_and_old_report_retained) ... ERROR
+test_frozen_idempotent_replay_and_source_untouched (test_postcapture.PostcaptureTests.test_frozen_idempotent_replay_and_source_untouched) ... ERROR
+test_no_games_and_atomic_immutable_publication (test_postcapture.PostcaptureTests.test_no_games_and_atomic_immutable_publication) ... ok
+test_postcapture_uses_independent_process_not_live_writer (test_postcapture.PostcaptureTests.test_postcapture_uses_independent_process_not_live_writer) ... ok
+test_watchdog_gap_not_new_observations_and_unfinished_no_analysis (test_postcapture.PostcaptureTests.test_watchdog_gap_not_new_observations_and_unfinished_no_analysis) ... ERROR
+
+======================================================================
+ERROR: test_cache_corruption_detected_and_old_report_retained (test_postcapture.PostcaptureTests.test_cache_corruption_detected_and_old_report_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] ��һ����������ʹ�ô��ļ��������޷����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\tmpsd_cywx5\\data\\console\\dddddddddddddddddddddddddddddddd.sqlite'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_postcapture.py", line 69, in test_cache_corruption_detected_and_old_report_retained
+    with tempfile.TemporaryDirectory() as directory:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] ��һ����������ʹ�ô��ļ��������޷����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\tmpsd_cywx5\\data\\console\\dddddddddddddddddddddddddddddddd.sqlite'
+
+======================================================================
+ERROR: test_frozen_idempotent_replay_and_source_untouched (test_postcapture.PostcaptureTests.test_frozen_idempotent_replay_and_source_untouched)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] ��һ����������ʹ�ô��ļ��������޷����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\nba-postcapture-hzc5g8hj\\snapshot.sqlite'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_postcapture.py", line 44, in test_frozen_idempotent_replay_and_source_untouched
+    first=review_session(root,SID);second=review_session(root,SID)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\vibe coding\polymarket\nba\nba_recorder\research\daily.py", line 117, in review_session
+    with tempfile.TemporaryDirectory(prefix='nba-postcapture-') as temp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] ��һ����������ʹ�ô��ļ��������޷����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\nba-postcapture-hzc5g8hj\\snapshot.sqlite'
+
+======================================================================
+ERROR: test_watchdog_gap_not_new_observations_and_unfinished_no_analysis (test_postcapture.PostcaptureTests.test_watchdog_gap_not_new_observations_and_unfinished_no_analysis)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] ��һ����������ʹ�ô��ļ��������޷����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\nba-postcapture-_l29nb8f\\snapshot.sqlite'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\vibe coding\polymarket\nba\tests\test_postcapture.py", line 61, in test_watchdog_gap_not_new_observations_and_unfinished_no_analysis
+    result=review_session(root,SID);audit=result['audit']
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\vibe coding\polymarket\nba\nba_recorder\research\daily.py", line 117, in review_session
+    with tempfile.TemporaryDirectory(prefix='nba-postcapture-') as temp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] ��һ����������ʹ�ô��ļ��������޷����ʡ�: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\nba-postcapture-_l29nb8f\\snapshot.sqlite'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.547s
+
+FAILED (errors=3)

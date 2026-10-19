@@ -4,6 +4,7 @@ import asyncio
 import json
 import math
 import os
+import sys
 import uuid
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -71,6 +72,16 @@ class Control:
                 'watchdog_ticks': self.runner.ticks})
 
 
+async def postcapture(root,day):
+    """Separate process after recording closes; never share the live account writer."""
+    log=root/'data/unattended'/day/'postcapture.log'
+    with log.open('ab') as fp:
+        process=await asyncio.create_subprocess_exec(sys.executable,'-m','nba_recorder.research.daily',
+            '--date',day,'--root',str(root),cwd=Path(__file__).resolve().parent.parent,stdout=fp,stderr=fp,
+            creationflags=getattr(__import__('subprocess'),'CREATE_NO_WINDOW',0))
+        return await process.wait()
+
+
 async def run(day, root, scan_s=120, once=False):
     start, end = bounds(day)
     directory = root/'data'/'unattended'/day
@@ -111,6 +122,13 @@ async def run(day, root, scan_s=120, once=False):
             entry.update(status='FAILED_NEEDS_REVIEW', error=type(error).__name__, stop_ms=utc_ms())
         finally:
             save(state_path, state)
+        if entry['status'] in {'FINISHED','FAILED_NEEDS_REVIEW'}:
+            try:
+                code=await postcapture(root,day)
+                entry['postcapture_status']='FINISHED' if code==0 else 'FAILED_NEEDS_REVIEW'
+            except Exception as error:
+                entry.update(postcapture_status='FAILED_NEEDS_REVIEW',postcapture_error=type(error).__name__)
+            save(state_path,state)
 
     try:
         while utc_ms() < end+7*3600000:
@@ -147,6 +165,14 @@ async def run(day, root, scan_s=120, once=False):
         await asyncio.gather(*active.values())
         state.update(scheduler_status='COMPLETE' if not once else 'PREFLIGHT_ONLY', stopped_ms=utc_ms())
         save(state_path, state)
+        if not once:
+            # Consolidate after all per-game workers: a slower earlier report
+            # must not remain the latest view of a day with more finished games.
+            try:
+                state['postcapture_status']='FINISHED' if await postcapture(root,day)==0 else 'FAILED_NEEDS_REVIEW'
+            except Exception as error:
+                state.update(postcapture_status='FAILED_NEEDS_REVIEW',postcapture_error=type(error).__name__)
+            save(state_path,state)
     finally:
         for task in active.values():
             if not task.done(): task.cancel()
