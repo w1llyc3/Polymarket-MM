@@ -118,7 +118,7 @@ def experiment(root, output, sample_id=None, synthetic=False, distances=('.01','
                     lane_dir = output/lane_id
                     lane_dir.mkdir()
                     lane_started=time.perf_counter();lane_cpu=time.process_time()
-                    store = SingleWriterStore(lane_dir/'paper.sqlite')
+                    store = SingleWriterStore(lane_dir/'paper.sqlite', shared_inputs=output/'shared-inputs.sqlite')
                     try:
                         om = UnifiedPaperManager(store, policy, manifest['start_ms'])
                         session = BookSession(om, model, queue_multiplier=scenario.get('queue_multiplier','1'))
@@ -177,6 +177,8 @@ def experiment(root, output, sample_id=None, synthetic=False, distances=('.01','
             for lane in lanes:
                 m=lane['metrics']; writer.writerow([lane['lane'],lane['model'],lane['distance_from_book_mid'],lane['scenario'],
                     m['fill_events'],m['account']['net_pnl'],m['account']['equity'],m['quote_availability'],lane['shutdown_ledger_consistent']])
+        from ..storage_workflow import after_research
+        after_research(root, output)
         return summary
     finally:
         source.close()

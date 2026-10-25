@@ -1,0 +1,14 @@
+{
+  "orders.json": {
+    "same": true,
+    "sha256": "504400e43b6178859ce580d81fe630aeecd54a16cae3afaa4e8f99af65edeb00"
+  },
+  "fills.json": {
+    "same": true,
+    "sha256": "a6beb2a848a8149d01fb5f13fb66e97f09d2114ea334fdddcfcf0a47ee8c134a"
+  },
+  "account_same": true,
+  "derived_input_same": true,
+  "before_wall_seconds": 615.9543857999379,
+  "indexed_wall_seconds": 175.9187792999437
+}

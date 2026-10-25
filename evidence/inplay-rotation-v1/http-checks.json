@@ -1,0 +1,32 @@
+[
+  {
+    "route": "/api/health",
+    "status": 200,
+    "bytes": 114
+  },
+  {
+    "route": "/strategy-study/inplay-rotation-v1-20261023/",
+    "status": 200,
+    "bytes": 17060
+  },
+  {
+    "route": "/strategy-study/inplay-rotation-v1-20261023/metrics.csv",
+    "status": 200,
+    "bytes": 35163
+  },
+  {
+    "route": "/strategy-study/inplay-rotation-v1-20261023/validation.json",
+    "status": 200,
+    "bytes": 16938
+  },
+  {
+    "route": "/day-study.css",
+    "status": 200,
+    "bytes": 739
+  },
+  {
+    "route": "/strategy-study/inplay-rotation-v1-20261023/07ac29b9a864454f95d72b5e042fa79b/L0/paper.sqlite",
+    "status": 404,
+    "bytes": 43
+  }
+]

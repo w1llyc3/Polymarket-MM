@@ -72,6 +72,12 @@ def book_risk(frame, policy, at=None, *, check_operator=True):
         if policy.research_phase:
             from .research_phase import permission
             reasons.extend(permission(frame, policy, at)[1])
+            if policy.quote_profile == 'INPLAY_ROTATION_V1':
+                context = frame.get('rotation') or {}
+                if context.get('asof_ms') != at or context.get('book_ref') != frame.get('book_ref'):
+                    reasons.append('rotation_context_unavailable')
+                elif at < context.get('pause_until_ms', 0):
+                    reasons.append('rotation_price_shock_cooldown')
             return sorted(set(reasons))
         if policy.allow_manual_phase:
             from .manual import effective
@@ -143,11 +149,17 @@ def submission_risk(order, frame, account, orders, policy, at, retaining=False):
         elif not taker:
             distance = mid-price if side == "BUY" else price-mid
             floor=decimal(policy.quote_distance)
-            if policy.research_phase and side=='SELL':
+            if policy.quote_profile == 'INPLAY_ROTATION_V1':
+                from .rotation import prices
+                allowed = prices(frame, account, policy)[side]
+                if (side == 'BUY' and price > allowed) or (side == 'SELL' and price < allowed):
+                    reasons.append('rotation_quote_edge_lost')
+                floor=decimal(0)  # profile-specific distance checked above
+            elif policy.research_phase and side=='SELL':
                 other=next(o['asset_id'] for o in frame['market']['outcomes'] if o['asset_id']!=asset)
                 if decimal(account['positions'].get(asset,'0'))>decimal(account['positions'].get(other,'0')):
                     floor=max(decimal(book['tick_size']),floor-decimal(policy.inventory_skew)*decimal(account['positions'].get(asset,'0')))
-            if distance < floor:
+            if policy.quote_profile != 'INPLAY_ROTATION_V1' and distance < floor:
                 reasons.append("quote_distance_lost")
             if frame["phase"] == "REDUCE_ONLY":
                 reasons.append("entry_forbidden_in_reduce_only")
@@ -209,17 +221,22 @@ def book_targets(frame, account, orders, catalog, policy):
         for side in ("BUY", "SELL"):
             reduce = frame["phase"] == "REDUCE_ONLY"
             price = grid(min(center-distance, mid-distance, decimal(book["ask"])-tick), tick, side) if side == "BUY" else grid(max(center+distance, mid+distance, decimal(book["bid"])+tick), tick, side)
+            if policy.quote_profile == 'INPLAY_ROTATION_V1' and not reduce:
+                from .rotation import prices
+                price = prices(frame, account, policy)[side]
+                result.update(rotation=frame.get('rotation'), inventory_rule='SYMMETRIC_NET_INVENTORY_SKEW')
             if reduce:
                 # Independent risk-exit distance budget; still post-only.
                 price = decimal(book["bid"]) if side == "BUY" else decimal(book["ask"])
-            elif policy.research_phase and side=='SELL' and directional>0:
+            elif policy.quote_profile == 'LEGACY' and policy.research_phase and side=='SELL' and directional>0:
                 price=grid(max(mid+max(tick,distance-decimal(policy.inventory_skew)*directional),decimal(book['bid'])+tick),tick,side)
             retained = None
             for existing in orders:
                 if existing["asset_id"] != asset or existing["side"] != side or existing["state"] not in {"SUBMITTING", "OPEN", "PARTIALLY_FILLED"}:
                     continue
                 purpose = "RISK_EXIT" if reduce else "MAKER"
-                if decimal(existing["price"]) != price or existing.get("purpose") != purpose:
+                tolerance = tick*policy.rotation_retain_ticks if policy.quote_profile == 'INPLAY_ROTATION_V1' and not reduce else decimal(0)
+                if abs(decimal(existing["price"])-price) > tolerance or existing.get("purpose") != purpose:
                     continue
                 remaining = decimal(existing["size"])-decimal(existing["filled"])
                 probe = {**existing, "size": str(remaining), "filled": "0"}

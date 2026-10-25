@@ -32,7 +32,7 @@ def information(raw, market, received, processed):
     """Requires exact exchange game ID + team roles. No slug/date inference."""
     identity = (str(raw.get('gameId')) == str(market.get('polymarket_game_id'))
                 and market.get('polymarket_game_id') is not None
-                and raw.get('leagueAbbreviation') == 'NBA'
+                and str(raw.get('leagueAbbreviation','')).casefold() == 'nba'
                 and team_code(raw.get('homeTeam')) == market.get('home_team')
                 and team_code(raw.get('awayTeam')) == market.get('away_team')
                 and market.get('home_team') is not None and market.get('away_team') is not None)

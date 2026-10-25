@@ -3,9 +3,10 @@ import os
 import sqlite3
 from pathlib import Path
 from ..paper_execution.store import ExecutionStore
+from ..shared_inputs import ResourceConnection, attach
 
 
-class AtomicConnection(sqlite3.Connection):
+class AtomicConnection(ResourceConnection):
     """Nested manager transactions join one outer input transaction."""
     depth = 0
     failed = False
@@ -32,7 +33,7 @@ class AtomicConnection(sqlite3.Connection):
 
 
 class SingleWriterStore(ExecutionStore):
-    def __init__(self, path):
+    def __init__(self, path, shared_inputs=None):
         Path(path).parent.mkdir(parents=True, exist_ok=True)
         self.lock = open(str(path)+".writer.lock", "a+b")
         try:
@@ -55,7 +56,10 @@ class SingleWriterStore(ExecutionStore):
             self.db = sqlite3.connect(path, factory=AtomicConnection)
             self.db.row_factory = sqlite3.Row
             self.db.execute("PRAGMA journal_mode=WAL")
+            attach(self.db, path, shared_inputs, writable=True)
         except Exception:
+            if hasattr(self, 'db'):
+                self.db.close()
             self.lock.close()
             raise
 

@@ -1,0 +1,67 @@
+{
+  "compressed_old_database_reads": [
+    {
+      "path": "data/day-studies/2026-10-21/5680507/REDECODED-L1/paper.sqlite",
+      "input_id": "0be621f3041b87331765c2cf6e30fa063a2a5d354cd586a06b5b0dbf4322b344",
+      "time_ms": 1792542664336,
+      "payload_valid": true,
+      "orders": 52
+    },
+    {
+      "path": "data/strategy-studies/inplay-rotation-v1-20261023/07ac29b9a864454f95d72b5e042fa79b/L2/paper.sqlite",
+      "input_id": "acb80a916a3ae2a29185d2ceb8b0b3d1d6bd6135d5322c4ebaed457a4c773de1",
+      "time_ms": 1792533680215,
+      "payload_valid": true,
+      "orders": 23
+    },
+    {
+      "path": "data/research/e43e28bd1f604cde9faaf5e9075314bc/p0-L1-d0/paper.sqlite",
+      "input_id": "synthetic-scale-0",
+      "time_ms": 1791954000000,
+      "payload_valid": true,
+      "orders": 943
+    }
+  ],
+  "http": [
+    {
+      "route": "/api/health",
+      "status": 200,
+      "bytes": 114
+    },
+    {
+      "route": "/offline",
+      "status": 200,
+      "bytes": 3588
+    },
+    {
+      "route": "/day-study/2026-10-21/",
+      "status": 200,
+      "bytes": 6429
+    },
+    {
+      "route": "/day-study/2026-10-22/",
+      "status": 200,
+      "bytes": 20760
+    },
+    {
+      "route": "/strategy-study/inplay-rotation-v1-20261023/",
+      "status": 200,
+      "bytes": 17060
+    },
+    {
+      "route": "/api/offline/download?id=421ab130b7574c029846ea2618865149&name=comparison.json",
+      "status": 200,
+      "bytes": 303424
+    }
+  ],
+  "service": {
+    "pid": 41424,
+    "mode": "RECORD_ONLY",
+    "console_status": "HEALTHY",
+    "real_submission_calls": 0,
+    "live_enabled": false,
+    "heartbeat_ms": 1792947308676
+  },
+  "free_disk_bytes": 521924689920,
+  "console_logical_bytes": 77845900129
+}

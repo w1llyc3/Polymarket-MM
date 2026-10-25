@@ -23,7 +23,7 @@ def normalize(raw, received, contract=None):
               "identity_evidence": None, "clock_semantics": "UNVERIFIED", "clock_evidence": None,
               "status": raw.get("status"), "live": raw.get("live"), "ended": raw.get("ended"), "paused": None,
               "period": None, "remaining_s": None, "raw": raw}
-    if str(raw.get("gameId")) != str(contract.get("game_id")) or raw.get("leagueAbbreviation") != "NBA" or not contract.get("identity_evidence"):
+    if str(raw.get("gameId")) != str(contract.get("game_id")) or str(raw.get("leagueAbbreviation",'')).casefold() != "nba" or not contract.get("identity_evidence"):
         return result
     from ..teams import team_code
     if not contract.get("home_team") or not contract.get("away_team") or team_code(raw.get("homeTeam")) != contract["home_team"] or team_code(raw.get("awayTeam")) != contract["away_team"]:

@@ -1,0 +1,21 @@
+{
+  "heartbeat_ms": 1792744076826,
+  "pid": 41424,
+  "mode": "RECORD_ONLY",
+  "pre_minutes": 30,
+  "post_minutes": 30,
+  "timezone": "Asia/Shanghai",
+  "requested_days": [
+    "2026-10-23",
+    "2026-10-24"
+  ],
+  "day_worker_pids": {
+    "2026-10-23": 15540,
+    "2026-10-24": 45884
+  },
+  "retry_after_ms": {},
+  "completed_days": [],
+  "console_status": "HEALTHY",
+  "real_submission_calls": 0,
+  "live_enabled": false
+}

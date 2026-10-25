@@ -1,0 +1,90 @@
+[
+  {
+    "market_id": "5716392",
+    "question": "Timberwolves vs. Heat",
+    "inputs": 16047,
+    "policy_matches_oct21": true,
+    "original_orders": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716400",
+    "question": "Hawks vs. Magic",
+    "inputs": 19444,
+    "policy_matches_oct21": true,
+    "original_orders": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716421",
+    "question": "Bucks vs. Wizards",
+    "inputs": 17799,
+    "policy_matches_oct21": true,
+    "original_orders": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716444",
+    "question": "Hornets vs. Nets",
+    "inputs": 15947,
+    "policy_matches_oct21": true,
+    "original_orders": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716452",
+    "question": "Bulls vs. Raptors",
+    "inputs": 14666,
+    "policy_matches_oct21": true,
+    "original_orders": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716460",
+    "question": "Jazz vs. Grizzlies",
+    "inputs": 13135,
+    "policy_matches_oct21": true,
+    "original_orders": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716465",
+    "question": "Pacers vs. Pelicans",
+    "inputs": 15117,
+    "policy_matches_oct21": true,
+    "original_orders": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716468",
+    "question": "Mavericks vs. Rockets",
+    "inputs": 10718,
+    "policy_matches_oct21": true,
+    "original_orders": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5722990",
+    "question": "Warriors vs. Lakers",
+    "inputs": 12853,
+    "policy_matches_oct21": true,
+    "original_orders": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5722993",
+    "question": "Suns vs. Trail Blazers",
+    "inputs": 10818,
+    "policy_matches_oct21": true,
+    "original_orders": 0,
+    "capture_status": "FAILED_NEEDS_REVIEW"
+  },
+  {
+    "market_id": "5722996",
+    "question": "Kings vs. Clippers",
+    "inputs": 12413,
+    "policy_matches_oct21": true,
+    "original_orders": 0,
+    "capture_status": "FINISHED"
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-26",
+  "files": 232,
+  "logical_bytes": 154435803142,
+  "saved_bytes": 104225728518,
+  "errors": [],
+  "groups": {
+    "day-studies": {
+      "files": 56,
+      "before_bytes": 69127483392,
+      "after_bytes": 22442180608
+    },
+    "research": {
+      "files": 108,
+      "before_bytes": 9724719763,
+      "after_bytes": 2247778304
+    },
+    "strategy-studies": {
+      "files": 63,
+      "before_bytes": 67118133248,
+      "after_bytes": 22802849792
+    },
+    "unattended": {
+      "files": 5,
+      "before_bytes": 8465466739,
+      "after_bytes": 2717265920
+    }
+  },
+  "tests": {
+    "passed": 382,
+    "failed": 0,
+    "seconds": 79.524
+  },
+  "raw_console_compressed": false,
+  "source_files_deleted": false,
+  "historical_migration": false,
+  "live_enabled": false,
+  "real_submission_calls": 0
+}

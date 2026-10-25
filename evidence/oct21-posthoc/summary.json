@@ -1,0 +1,633 @@
+[
+  {
+    "market_id": "5676016",
+    "session_id": "9604866cbb934b208a30f36b9e006373",
+    "question": "Celtics vs. Pistons",
+    "source_input_sha256": "36960936fed4dccc683190e218e04a699b2dac3f1a96e374137e08077b7b4f2d",
+    "start_ms": 1792519240351,
+    "end_ms": 1792547989446,
+    "replay_status": "FINISHED",
+    "unique_book_refs": {
+      "67105986151420762389444558710598385187601372419417593599928887317008220174126": 8714,
+      "6194634649894872222114139800075806437965693537103509072979175541757029916386": 8739
+    },
+    "lanes": [
+      {
+        "mode": "ORIGINAL",
+        "model": "L2",
+        "orders": 0,
+        "fills": 0,
+        "risk_state": "ACTIVE",
+        "account": {
+          "cash": "25",
+          "capital_contributions": "25",
+          "positions": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "0"
+          },
+          "reserved_cash": "0",
+          "available_cash": "25",
+          "cash_flows": "0",
+          "reserved_inventory": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "0"
+          },
+          "available_inventory": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "0"
+          },
+          "realized_trading_pnl": "0",
+          "unrealized_trading_pnl": "0",
+          "trading_pnl": "0",
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": "0",
+          "equity": "25",
+          "net_pnl": "0",
+          "reconciled": true,
+          "missing_marks": [],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "0",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "63d4a21608ae92b170b0d70bee2b4e9e9e143e497076f96f1bc3d2bd9ed3612e",
+        "real_submission_calls": 0,
+        "result": "ORIGINAL-L2/result.json",
+        "wall_seconds": 107.48964709998108
+      },
+      {
+        "mode": "REDECODED",
+        "model": "L0",
+        "orders": 1637,
+        "fills": 46,
+        "risk_state": "ACTIVE",
+        "account": {
+          "cash": "16.360",
+          "capital_contributions": "25",
+          "positions": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "0"
+          },
+          "reserved_cash": "0",
+          "available_cash": "16.360",
+          "cash_flows": "-8.640",
+          "reserved_inventory": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "0"
+          },
+          "available_inventory": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "0"
+          },
+          "realized_trading_pnl": "-8.640",
+          "unrealized_trading_pnl": "0",
+          "trading_pnl": "-8.640",
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": "0",
+          "equity": "16.360",
+          "net_pnl": "-8.640",
+          "reconciled": true,
+          "missing_marks": [],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "0",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "d743d53172acce7646f86a1f0cb4b4a7194c5e3059535bae893f789961ae6a69",
+        "real_submission_calls": 0,
+        "result": "REDECODED-L0/result.json",
+        "wall_seconds": 175.9187792999437
+      },
+      {
+        "mode": "REDECODED",
+        "model": "L1",
+        "orders": 571,
+        "fills": 3,
+        "risk_state": "HALTED",
+        "account": {
+          "cash": "21.10",
+          "capital_contributions": "25",
+          "positions": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "5"
+          },
+          "reserved_cash": "0",
+          "available_cash": "21.10",
+          "cash_flows": "-3.90",
+          "reserved_inventory": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "0"
+          },
+          "available_inventory": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "5"
+          },
+          "realized_trading_pnl": "-0.30",
+          "unrealized_trading_pnl": null,
+          "trading_pnl": null,
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": null,
+          "equity": null,
+          "net_pnl": null,
+          "reconciled": false,
+          "missing_marks": [
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126"
+          ],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "5",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "d743d53172acce7646f86a1f0cb4b4a7194c5e3059535bae893f789961ae6a69",
+        "real_submission_calls": 0,
+        "result": "REDECODED-L1/result.json",
+        "wall_seconds": 239.27777200005949
+      },
+      {
+        "mode": "REDECODED",
+        "model": "L2",
+        "orders": 937,
+        "fills": 3,
+        "risk_state": "HALTED",
+        "account": {
+          "cash": "22.65",
+          "capital_contributions": "25",
+          "positions": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "5"
+          },
+          "reserved_cash": "0",
+          "available_cash": "22.65",
+          "cash_flows": "-2.35",
+          "reserved_inventory": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "0"
+          },
+          "available_inventory": {
+            "6194634649894872222114139800075806437965693537103509072979175541757029916386": "0",
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126": "5"
+          },
+          "realized_trading_pnl": "-0.05",
+          "unrealized_trading_pnl": null,
+          "trading_pnl": null,
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": null,
+          "equity": null,
+          "net_pnl": null,
+          "reconciled": false,
+          "missing_marks": [
+            "67105986151420762389444558710598385187601372419417593599928887317008220174126"
+          ],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "5",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "d743d53172acce7646f86a1f0cb4b4a7194c5e3059535bae893f789961ae6a69",
+        "real_submission_calls": 0,
+        "result": "REDECODED-L2/result.json",
+        "wall_seconds": 239.55887099995743
+      }
+    ],
+    "source_tape_id": "487c26ef6c8dbde1340f17dfa403b0dc87bc027e5cc15fec545a3c656698f640",
+    "original_orders": 0,
+    "original_fills": 0
+  },
+  {
+    "market_id": "5676021",
+    "session_id": "07ac29b9a864454f95d72b5e042fa79b",
+    "question": "76ers vs. Knicks",
+    "source_input_sha256": "6dc18041093baa2d009aa6c46e047bac31aa9ebc46c441ed4c0002c6ff32370f",
+    "start_ms": 1792533680215,
+    "end_ms": 1792562400885,
+    "replay_status": "FINISHED",
+    "unique_book_refs": {
+      "18530775482813086164830807568132305463750341655031391169642129768649683734274": 9618,
+      "66905676566583664317573429201649106692138646973280275919092487111590728334465": 9651
+    },
+    "lanes": [
+      {
+        "mode": "ORIGINAL",
+        "model": "L2",
+        "orders": 0,
+        "fills": 0,
+        "risk_state": "ACTIVE",
+        "account": {
+          "cash": "25",
+          "capital_contributions": "25",
+          "positions": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "0",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "0"
+          },
+          "reserved_cash": "0",
+          "available_cash": "25",
+          "cash_flows": "0",
+          "reserved_inventory": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "0",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "0"
+          },
+          "available_inventory": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "0",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "0"
+          },
+          "realized_trading_pnl": "0",
+          "unrealized_trading_pnl": "0",
+          "trading_pnl": "0",
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": "0",
+          "equity": "25",
+          "net_pnl": "0",
+          "reconciled": true,
+          "missing_marks": [],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "0",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "8a009dc3ed845658e8fb69a51d41a8fef6a90c0275d7621b4c0f2af27640307f",
+        "real_submission_calls": 0,
+        "result": "ORIGINAL-L2/result.json",
+        "wall_seconds": 143.96863659995142
+      },
+      {
+        "mode": "REDECODED",
+        "model": "L0",
+        "orders": 1962,
+        "fills": 97,
+        "risk_state": "ACTIVE",
+        "account": {
+          "cash": "11.45",
+          "capital_contributions": "25",
+          "positions": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "0",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "5"
+          },
+          "reserved_cash": "0",
+          "available_cash": "11.45",
+          "cash_flows": "-13.55",
+          "reserved_inventory": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "0",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "0"
+          },
+          "available_inventory": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "0",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "5"
+          },
+          "realized_trading_pnl": "-13.05",
+          "unrealized_trading_pnl": null,
+          "trading_pnl": null,
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": null,
+          "equity": null,
+          "net_pnl": null,
+          "reconciled": false,
+          "missing_marks": [
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465"
+          ],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "5",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "77ff378c9c6bf0a55c68895a43e207db42ff2d946f8c2a1f76d67ca905758408",
+        "real_submission_calls": 0,
+        "result": "REDECODED-L0/result.json",
+        "wall_seconds": 249.77017140004318
+      },
+      {
+        "mode": "REDECODED",
+        "model": "L1",
+        "orders": 630,
+        "fills": 1,
+        "risk_state": "HALTED",
+        "account": {
+          "cash": "22.95",
+          "capital_contributions": "25",
+          "positions": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "5",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "0"
+          },
+          "reserved_cash": "0.00",
+          "available_cash": "22.95",
+          "cash_flows": "-2.05",
+          "reserved_inventory": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "0",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "0"
+          },
+          "available_inventory": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "5",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "0"
+          },
+          "realized_trading_pnl": "0",
+          "unrealized_trading_pnl": null,
+          "trading_pnl": null,
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": null,
+          "equity": null,
+          "net_pnl": null,
+          "reconciled": false,
+          "missing_marks": [
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274"
+          ],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "5",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "77ff378c9c6bf0a55c68895a43e207db42ff2d946f8c2a1f76d67ca905758408",
+        "real_submission_calls": 0,
+        "result": "REDECODED-L1/result.json",
+        "wall_seconds": 217.6211225000443
+      },
+      {
+        "mode": "REDECODED",
+        "model": "L2",
+        "orders": 739,
+        "fills": 1,
+        "risk_state": "HALTED",
+        "account": {
+          "cash": "22.80",
+          "capital_contributions": "25",
+          "positions": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "5",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "0"
+          },
+          "reserved_cash": "0.00",
+          "available_cash": "22.80",
+          "cash_flows": "-2.20",
+          "reserved_inventory": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "0",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "0"
+          },
+          "available_inventory": {
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274": "5",
+            "66905676566583664317573429201649106692138646973280275919092487111590728334465": "0"
+          },
+          "realized_trading_pnl": "0",
+          "unrealized_trading_pnl": null,
+          "trading_pnl": null,
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": null,
+          "equity": null,
+          "net_pnl": null,
+          "reconciled": false,
+          "missing_marks": [
+            "18530775482813086164830807568132305463750341655031391169642129768649683734274"
+          ],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "5",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "77ff378c9c6bf0a55c68895a43e207db42ff2d946f8c2a1f76d67ca905758408",
+        "real_submission_calls": 0,
+        "result": "REDECODED-L2/result.json",
+        "wall_seconds": 226.1585233999649
+      }
+    ],
+    "source_tape_id": "4182f4359f171d2e95ccea9a73f0db5bcc8b63ad00abf9663adb962b07259b31",
+    "original_orders": 0,
+    "original_fills": 0
+  },
+  {
+    "market_id": "5680507",
+    "session_id": "8fc9793f22e64aabbac64d64f1d48ab3",
+    "question": "Thunder vs. Spurs",
+    "source_input_sha256": "aef37e95b6648ac5ec7d75a74beb4aecb6460afe382a2d833a6d7ecb13932969",
+    "start_ms": 1792542664336,
+    "end_ms": 1792571398114,
+    "replay_status": "FINISHED",
+    "unique_book_refs": {
+      "48048387611605248970312168510075685614966865009736904258504751936343270135339": 9197,
+      "86140706431574137092378421405597667358309804892234804809603750735484644932576": 9237
+    },
+    "lanes": [
+      {
+        "mode": "ORIGINAL",
+        "model": "L2",
+        "orders": 0,
+        "fills": 0,
+        "risk_state": "ACTIVE",
+        "account": {
+          "cash": "25",
+          "capital_contributions": "25",
+          "positions": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "0",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "0"
+          },
+          "reserved_cash": "0",
+          "available_cash": "25",
+          "cash_flows": "0",
+          "reserved_inventory": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "0",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "0"
+          },
+          "available_inventory": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "0",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "0"
+          },
+          "realized_trading_pnl": "0",
+          "unrealized_trading_pnl": "0",
+          "trading_pnl": "0",
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": "0",
+          "equity": "25",
+          "net_pnl": "0",
+          "reconciled": true,
+          "missing_marks": [],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "0",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "799d2de6f3cf9b0d9c92fc23de26af276e51812247fe366abed2ae2512f44621",
+        "real_submission_calls": 0,
+        "result": "ORIGINAL-L2/result.json",
+        "wall_seconds": 113.93417779996525
+      },
+      {
+        "mode": "REDECODED",
+        "model": "L0",
+        "orders": 1217,
+        "fills": 17,
+        "risk_state": "ACTIVE",
+        "account": {
+          "cash": "15.05",
+          "capital_contributions": "25",
+          "positions": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "10",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "5"
+          },
+          "reserved_cash": "0",
+          "available_cash": "15.05",
+          "cash_flows": "-9.95",
+          "reserved_inventory": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "0",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "0"
+          },
+          "available_inventory": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "10",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "5"
+          },
+          "realized_trading_pnl": "-0.85",
+          "unrealized_trading_pnl": null,
+          "trading_pnl": null,
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": null,
+          "equity": null,
+          "net_pnl": null,
+          "reconciled": false,
+          "missing_marks": [
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576"
+          ],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "15",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "703edb0466589e67e5a641482326b15826550267d7728270ae62f96776d5b74f",
+        "real_submission_calls": 0,
+        "result": "REDECODED-L0/result.json",
+        "wall_seconds": 207.4812460000394
+      },
+      {
+        "mode": "REDECODED",
+        "model": "L1",
+        "orders": 52,
+        "fills": 2,
+        "risk_state": "HALTED",
+        "account": {
+          "cash": "24.85",
+          "capital_contributions": "25",
+          "positions": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "0",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "0"
+          },
+          "reserved_cash": "0",
+          "available_cash": "24.85",
+          "cash_flows": "-0.15",
+          "reserved_inventory": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "0",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "0"
+          },
+          "available_inventory": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "0",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "0"
+          },
+          "realized_trading_pnl": "-0.15",
+          "unrealized_trading_pnl": "0",
+          "trading_pnl": "-0.15",
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": "0",
+          "equity": "24.85",
+          "net_pnl": "-0.15",
+          "reconciled": true,
+          "missing_marks": [],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "0",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "703edb0466589e67e5a641482326b15826550267d7728270ae62f96776d5b74f",
+        "real_submission_calls": 0,
+        "result": "REDECODED-L1/result.json",
+        "wall_seconds": 206.3641314000124
+      },
+      {
+        "mode": "REDECODED",
+        "model": "L2",
+        "orders": 975,
+        "fills": 0,
+        "risk_state": "ACTIVE",
+        "account": {
+          "cash": "25",
+          "capital_contributions": "25",
+          "positions": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "0",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "0"
+          },
+          "reserved_cash": "0",
+          "available_cash": "25",
+          "cash_flows": "0",
+          "reserved_inventory": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "0",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "0"
+          },
+          "available_inventory": {
+            "48048387611605248970312168510075685614966865009736904258504751936343270135339": "0",
+            "86140706431574137092378421405597667358309804892234804809603750735484644932576": "0"
+          },
+          "realized_trading_pnl": "0",
+          "unrealized_trading_pnl": "0",
+          "trading_pnl": "0",
+          "fees": "0",
+          "rewards": "0",
+          "settlement_cash_flow": "0",
+          "pair_cash_flow": "0",
+          "market_value": "0",
+          "equity": "25",
+          "net_pnl": "0",
+          "reconciled": true,
+          "missing_marks": [],
+          "cost_basis_complete": true,
+          "conservative_committed_exposure": "0",
+          "virtual": true,
+          "not_real_profit": true
+        },
+        "ledger_consistent": true,
+        "derived_input_sha256": "703edb0466589e67e5a641482326b15826550267d7728270ae62f96776d5b74f",
+        "real_submission_calls": 0,
+        "result": "REDECODED-L2/result.json",
+        "wall_seconds": 191.64802500000224
+      }
+    ],
+    "source_tape_id": "a6429119f6e70ecc520483d0bb0158feded093c6a0c8abff3d205563dea86ec6",
+    "original_orders": 0,
+    "original_fills": 0
+  }
+]

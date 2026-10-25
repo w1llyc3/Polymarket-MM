@@ -1,0 +1,2656 @@
+{
+  "mode": "INDEPENDENT_POSTHOC_PAPER",
+  "profile": {
+    "strategy_mode": "BOOK_DRIVEN",
+    "initial_cash": "25",
+    "initial_inventory": "0",
+    "target_inventory": "0",
+    "order_size": "5",
+    "max_order_notional": "5",
+    "max_event_risk": "30",
+    "max_account_risk": "40",
+    "max_asset_inventory": "20",
+    "min_spread": "0.02",
+    "inventory_skew": ".002",
+    "ttl_ms": 30000,
+    "start_guard_ms": 300000,
+    "markout_window_ms": 5000,
+    "request_timeout_ms": 100,
+    "submit_ack_ms": 5,
+    "cancel_latency_ms": 10,
+    "risk_detection_ms": 1,
+    "data_transport_ms": 2,
+    "rest_latency_ms": 5,
+    "rest_timeout_ms": 100,
+    "max_price_jump": "0.05",
+    "max_daily_loss": "20",
+    "max_order_shares": "5",
+    "quote_distance": ".02",
+    "book_max_age_ms": 3000,
+    "sports_max_age_ms": 3000,
+    "metadata_max_age_ms": 60000,
+    "max_backlog_ms": 500,
+    "reduce_remaining_s": 180,
+    "close_remaining_s": 60,
+    "sync_observations": 2,
+    "enhanced": true,
+    "public_flow_pause": false,
+    "allow_manual_phase": false,
+    "manual_max_age_ms": 15000,
+    "max_one_sided_shares": "10",
+    "min_top_depth": "5",
+    "exit_slippage": ".03",
+    "exit_notional": "5",
+    "research_phase": true,
+    "research_phase_age_ms": 120000,
+    "max_order_lifetime_ms": 60000,
+    "quote_profile": "INPLAY_ROTATION_V1",
+    "rotation_lookback_ms": 5000,
+    "rotation_cooldown_ms": 5000,
+    "rotation_jump": ".03",
+    "rotation_max_distance": ".05",
+    "rotation_retain_ticks": 1
+  },
+  "samples": [
+    {
+      "id": "6280836b84505ae398ee87acbc8cd65bcb29f3ef06f367208d75506f060df03d",
+      "path": "console/00ca9b591df24b0bb81ed452cea4a58b.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "PRE_GAME",
+      "start_ms": 1792157953892,
+      "end_ms": 1792158008646,
+      "duration_s": 54.754,
+      "input_records": 291,
+      "bytes": 67956736,
+      "markets": [
+        {
+          "market_id": "5477725",
+          "question": "Heat vs. Magic",
+          "game_start_ms": 1792191600000
+        }
+      ],
+      "research_phase": false,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "00ca9b591df24b0bb81ed452cea4a58b",
+      "market": {
+        "away_team": "mia",
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0xe0f7727d3f05d038618bc44f8cc2e14cefa02016b53805028e82070eb5c84a67",
+        "description": "In the upcoming NBA game, scheduled for October 16 at 7:00PM ET:\nIf the Heat win, the market will resolve to \"Heat\".\nIf the Magic win, the market will resolve to \"Magic\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1162056",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-16 23:00:00+00",
+        "game_start_ms": 1792191600000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "orl",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5477725",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "7562586475665475402123490327198343175637844099829254017348713587857017082220",
+            "label": "Heat"
+          },
+          {
+            "asset_id": "51601174485102282566957103432443605617545832636965842912989083310849065188860",
+            "label": "Magic"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023839,
+        "question": "Heat vs. Magic",
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 16 at 7:00PM ET:\nIf the Heat win, the market will resolve to \"Heat\".\nIf the Magic win, the market will resolve to \"Magic\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-mia-orl-2026-10-16"
+        },
+        "rules_verified": true,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata"
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-mia-orl-2026-10-16",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\strategy-studies\\inplay-rotation-v1-20261023\\00ca9b591df24b0bb81ed452cea4a58b\\source-tape.sqlite",
+      "tape_id": "030a50c8b584b95ac5200511e3356d080008952f502a438eb9870f543da0e98a",
+      "source_input_sha256": "8aa310f59930e8144f8a16a931735aeeef6324340de836361efb23cac858c2e5"
+    },
+    {
+      "id": "7836b0d85f96bb9590af7c00ff80a75085da2abb92a2f70208e8da97f67256e8",
+      "path": "console/07ac29b9a864454f95d72b5e042fa79b.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792533680215,
+      "end_ms": 1792562400885,
+      "duration_s": 28720.67,
+      "input_records": 33928,
+      "bytes": 2931875840,
+      "markets": [
+        {
+          "market_id": "5676021",
+          "question": "76ers vs. Knicks",
+          "game_start_ms": 1792537200000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "07ac29b9a864454f95d72b5e042fa79b",
+      "market": {
+        "away_team": "phi",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0xff6a7cad39309b7170cb0f05207d5391c1d7443174842570803d204e674960d9",
+        "description": "In the upcoming NBA game, scheduled for October 20 at 7:00PM ET:\nIf the 76ers win, the market will resolve to \"76ers\".\nIf the Knicks win, the market will resolve to \"Knicks\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1185701",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-20 23:00:00+00",
+        "game_start_ms": 1792537200000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "nyk",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5676021",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": "0022600002",
+        "official_game": {
+          "away_team": "phi",
+          "classification_source": "https://www.nba.com/news/2026-27-nba-regular-season-schedule",
+          "home_team": "nyk",
+          "method": "official opening-night release and individual game pages; exact teams, roles and UTC time only; not a live phase grant",
+          "nba_game_id": "0022600002",
+          "season": "2026-27",
+          "season_type": "REGULAR_SEASON",
+          "source": "https://www.nba.com/game/phi-vs-nyk-0022600002",
+          "start_ms": 1792537200000,
+          "verified_date": "2026-10-19"
+        },
+        "outcomes": [
+          {
+            "asset_id": "18530775482813086164830807568132305463750341655031391169642129768649683734274",
+            "label": "76ers"
+          },
+          {
+            "asset_id": "66905676566583664317573429201649106692138646973280275919092487111590728334465",
+            "label": "Knicks"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023881,
+        "question": "76ers vs. Knicks",
+        "research_authorized": true,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 20 at 7:00PM ET:\nIf the 76ers win, the market will resolve to \"76ers\".\nIf the Knicks win, the market will resolve to \"Knicks\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-phi-nyk-2026-10-20"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "",
+            "",
+            "REGULAR_SEASON"
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": {
+            "away_team": "phi",
+            "classification_source": "https://www.nba.com/news/2026-27-nba-regular-season-schedule",
+            "home_team": "nyk",
+            "method": "official opening-night release and individual game pages; exact teams, roles and UTC time only; not a live phase grant",
+            "nba_game_id": "0022600002",
+            "season": "2026-27",
+            "season_type": "REGULAR_SEASON",
+            "source": "https://www.nba.com/game/phi-vs-nyk-0022600002",
+            "start_ms": 1792537200000,
+            "verified_date": "2026-10-19"
+          }
+        },
+        "season_type": "REGULAR_SEASON",
+        "slug": "nba-phi-nyk-2026-10-20",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-21\\5676021\\source-tape.sqlite",
+      "tape_id": "4182f4359f171d2e95ccea9a73f0db5bcc8b63ad00abf9663adb962b07259b31",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-21\\5676021",
+      "source_input_sha256": "6dc18041093baa2d009aa6c46e047bac31aa9ebc46c441ed4c0002c6ff32370f"
+    },
+    {
+      "id": "e3aee811e16573d975e3be6ffbc7cbcbc5ebfec73ce5f61c66610a6a909524b8",
+      "path": "console/1853cb7575ab4711bb24745e8b3e5cf7.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792621801141,
+      "end_ms": 1792634480178,
+      "duration_s": 12679.037,
+      "input_records": 17799,
+      "bytes": 1267335168,
+      "markets": [
+        {
+          "market_id": "5716421",
+          "question": "Bucks vs. Wizards",
+          "game_start_ms": 1792623600000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "1853cb7575ab4711bb24745e8b3e5cf7",
+      "market": {
+        "away_team": "mil",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0x49c26a169079ce41dd215fa99782dfb35262b9104ac640f9255105e4a4beea06",
+        "description": "In the upcoming NBA game, scheduled for October 21 at 7:00PM ET:\nIf the Bucks win, the market will resolve to \"Bucks\".\nIf the Wizards win, the market will resolve to \"Wizards\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1191463",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-21 23:00:00+00",
+        "game_start_ms": 1792623600000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "was",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5716421",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "1599101620680797671383335695906161815959476547649246036701380628339498427273",
+            "label": "Bucks"
+          },
+          {
+            "asset_id": "10307919734785835536852019134434226434969834839440074442822746127189529151426",
+            "label": "Wizards"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023963,
+        "question": "Bucks vs. Wizards",
+        "research_authorized": false,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 21 at 7:00PM ET:\nIf the Bucks win, the market will resolve to \"Bucks\".\nIf the Wizards win, the market will resolve to \"Wizards\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-mil-was-2026-10-21"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": null
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-mil-was-2026-10-21",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716421\\source-tape.sqlite",
+      "tape_id": "5b7d73fbf65dff730920ceee7f75e0a56edcc47bffa7239ad17e8aa2b3d46a52",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716421",
+      "source_input_sha256": "f62bf22418b3cd8468cffa1ede0bd87e886f04fca24af161e7f41ebabf829428"
+    },
+    {
+      "id": "550075a3fcf0113bb12b350e8e2e9ba72cdb407f590200a8d97abb22b1cacb6a",
+      "path": "console/2537ddedc47c40e6bcf222cb9aba90b4.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "PRE_GAME",
+      "start_ms": 1792159391488,
+      "end_ms": 1792159451319,
+      "duration_s": 59.831,
+      "input_records": 314,
+      "bytes": 73584640,
+      "markets": [
+        {
+          "market_id": "5477725",
+          "question": "Heat vs. Magic",
+          "game_start_ms": 1792191600000
+        }
+      ],
+      "research_phase": false,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "2537ddedc47c40e6bcf222cb9aba90b4",
+      "market": {
+        "away_team": "mia",
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0xe0f7727d3f05d038618bc44f8cc2e14cefa02016b53805028e82070eb5c84a67",
+        "description": "In the upcoming NBA game, scheduled for October 16 at 7:00PM ET:\nIf the Heat win, the market will resolve to \"Heat\".\nIf the Magic win, the market will resolve to \"Magic\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1162056",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-16 23:00:00+00",
+        "game_start_ms": 1792191600000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "orl",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5477725",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "7562586475665475402123490327198343175637844099829254017348713587857017082220",
+            "label": "Heat"
+          },
+          {
+            "asset_id": "51601174485102282566957103432443605617545832636965842912989083310849065188860",
+            "label": "Magic"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023839,
+        "question": "Heat vs. Magic",
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 16 at 7:00PM ET:\nIf the Heat win, the market will resolve to \"Heat\".\nIf the Magic win, the market will resolve to \"Magic\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-mia-orl-2026-10-16"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata"
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-mia-orl-2026-10-16",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\strategy-studies\\inplay-rotation-v1-20261023\\2537ddedc47c40e6bcf222cb9aba90b4\\source-tape.sqlite",
+      "tape_id": "791c3fbf5aa8dd1b494c86abec3c4357db0b099d1abfb214192abf8b36281e3b",
+      "source_input_sha256": "b4417a05929ca6e4a5eaf458830348e4f5192cf5cf349556807f9097aefe4e97"
+    },
+    {
+      "id": "267cfb1de4fcdccc2e59343a4750f23015fcbc965aafd3ac0160ae5a0b8c224a",
+      "path": "console/2b428cb03d6242db9889f2a0fc8f09c1.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792621801135,
+      "end_ms": 1792635184190,
+      "duration_s": 13383.055,
+      "input_records": 19444,
+      "bytes": 1354457088,
+      "markets": [
+        {
+          "market_id": "5716400",
+          "question": "Hawks vs. Magic",
+          "game_start_ms": 1792623600000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "2b428cb03d6242db9889f2a0fc8f09c1",
+      "market": {
+        "away_team": "atl",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0x4261b968013320f835cc37a0c80a27ba559befad056723cf54102bd0059450f1",
+        "description": "In the upcoming NBA game, scheduled for October 21 at 7:00PM ET:\nIf the Hawks win, the market will resolve to \"Hawks\".\nIf the Magic win, the market will resolve to \"Magic\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1191461",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-21 23:00:00+00",
+        "game_start_ms": 1792623600000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "orl",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5716400",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "44887259505946660799050523095589383516895296837192507586209222338540683060118",
+            "label": "Hawks"
+          },
+          {
+            "asset_id": "17467605151473494662545556567107818232983710767751217862985172203041132078695",
+            "label": "Magic"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023962,
+        "question": "Hawks vs. Magic",
+        "research_authorized": false,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 21 at 7:00PM ET:\nIf the Hawks win, the market will resolve to \"Hawks\".\nIf the Magic win, the market will resolve to \"Magic\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-atl-orl-2026-10-21"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": null
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-atl-orl-2026-10-21",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716400\\source-tape.sqlite",
+      "tape_id": "abfc2ae5c3f7715fb90c07c2b51dd75b09bffd9b0ffff1f31d4688802dec85e5",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716400",
+      "source_input_sha256": "05124ba6690834ab3bbbc67e2628b0d53ef508f3ef84e2be05b3870367d90a93"
+    },
+    {
+      "id": "0f00fa821f832b341dbc220ad7c1f52a77af8307f8467052f05324dcca9d491d",
+      "path": "console/31af7e6155734dd9b0aa690b0aba59f5.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "PRE_GAME",
+      "start_ms": 1792127385547,
+      "end_ms": 1792127445428,
+      "duration_s": 59.881,
+      "input_records": 294,
+      "bytes": 59338752,
+      "markets": [
+        {
+          "market_id": "5477728",
+          "question": "Celtics vs. 76ers",
+          "game_start_ms": 1792191600000
+        }
+      ],
+      "research_phase": false,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "31af7e6155734dd9b0aa690b0aba59f5",
+      "market": {
+        "away_team": "bos",
+        "calendar_source": "https://pr.nba.com/2026-27-nba-regular-season-schedule",
+        "condition_id": "0x3201d4320ae5908a4d743ca4ecbfd7d3b9842473daff098dbea83dc728530f08",
+        "description": "In the upcoming NBA game, scheduled for October 16 at 7:00PM ET:\nIf the Celtics win, the market will resolve to \"Celtics\".\nIf the 76ers win, the market will resolve to \"76ers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "event_ended": null,
+        "event_id": "1162057",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "event_teams": [
+          {
+            "abbreviation": "bos",
+            "alias": "Celtics",
+            "color": "#00A040",
+            "createdAt": "2024-10-11T19:41:12.760981Z",
+            "id": 100502,
+            "league": "nba",
+            "logo": "https://polymarket-upload.s3.us-east-2.amazonaws.com/NBA+Team+Logos/BOS.png",
+            "name": "Celtics",
+            "ordering": "away",
+            "providerId": 9,
+            "record": "0-0",
+            "updatedAt": "2025-11-05T00:19:50.993931Z"
+          },
+          {
+            "abbreviation": "phi",
+            "alias": "76ers",
+            "color": "#0080C0",
+            "createdAt": "2024-10-11T19:41:14.191817Z",
+            "id": 100510,
+            "league": "nba",
+            "logo": "https://polymarket-upload.s3.us-east-2.amazonaws.com/NBA+Team+Logos/PHI.png",
+            "name": "76ers",
+            "ordering": "home",
+            "providerId": 7,
+            "record": "0-0",
+            "updatedAt": "2025-11-05T00:19:50.996254Z"
+          }
+        ],
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-16 23:00:00+00",
+        "game_start_ms": 1792191600000,
+        "home_away_evidence": "event_teams",
+        "home_team": "phi",
+        "league": "nba",
+        "market_id": "5477728",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": "0012600018",
+        "no_asset_id": null,
+        "outcomes": [
+          {
+            "asset_id": "111470496536165082842948025139242430866806306682827957753942903453481778926937",
+            "label": "Celtics"
+          },
+          {
+            "asset_id": "41289258799151916592704873427529425668235346916587755759206395301682081835252",
+            "label": "76ers"
+          }
+        ],
+        "polymarket_game_id": 20023840,
+        "question": "Celtics vs. 76ers",
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 16 at 7:00PM ET:\nIf the Celtics win, the market will resolve to \"Celtics\".\nIf the 76ers win, the market will resolve to \"76ers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "includes_overtime": true,
+          "postponement_and_cancellation_verified": true,
+          "resolution_source": "https://www.nba.com/",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-bos-phi-2026-10-16"
+        },
+        "rules_verified": true,
+        "season": "2026-27",
+        "season_evidence": {
+          "away_team": "bos",
+          "classification_source": "https://www.nba.com/celtics/news/celtics-announce-2026-27-preseason-schedule",
+          "home_team": "phi",
+          "method": "official pages cross-checked; not a sports phase contract",
+          "nba_game_id": "0012600018",
+          "season_type": "PRESEASON",
+          "source": "https://www.nba.com/game/0012600018",
+          "start_ms": 1792191600000,
+          "verified_date": "2026-10-16"
+        },
+        "season_type": "PRESEASON",
+        "slug": "nba-bos-phi-2026-10-16",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "team_ordering": "away",
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1",
+        "yes_asset_id": null
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\strategy-studies\\inplay-rotation-v1-20261023\\31af7e6155734dd9b0aa690b0aba59f5\\source-tape.sqlite",
+      "tape_id": "48bd217303e640af5a7fe7fb39322864880344c51873badb8d2b4b18d3dd17e2",
+      "source_input_sha256": "367cb17a1a60825be4291bc8223f340a0e82a39d80f92b6bdf41bce45dd391a3"
+    },
+    {
+      "id": "6a87bc6d10864ef154a14eca28b27fead935c56c1f5c6cdea8b5cd8d84586c5e",
+      "path": "console/403cdc76a25740cdb721116a2edf2891.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "PRE_GAME",
+      "start_ms": 1792124920513,
+      "end_ms": 1792125069978,
+      "duration_s": 149.465,
+      "input_records": 687,
+      "bytes": 115408896,
+      "markets": [
+        {
+          "market_id": "5676016",
+          "question": "Celtics vs. Pistons",
+          "game_start_ms": 1792522800000
+        }
+      ],
+      "research_phase": false,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "403cdc76a25740cdb721116a2edf2891",
+      "market": {
+        "away_team": "bos",
+        "calendar_source": "https://pr.nba.com/2026-27-nba-regular-season-schedule",
+        "condition_id": "0x028dc9f74bd4f1ae80594afb93e46cd579030afcab48a74e96195f4c8c67a3d3",
+        "description": "In the upcoming NBA game, scheduled for October 20 at 3:00PM ET:\nIf the Celtics win, the market will resolve to \"Celtics\".\nIf the Pistons win, the market will resolve to \"Pistons\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "event_ended": null,
+        "event_id": "1185700",
+        "event_live": null,
+        "event_teams": [
+          {
+            "abbreviation": "bos",
+            "alias": "Celtics",
+            "color": "#00A040",
+            "createdAt": "2024-10-11T19:41:12.760981Z",
+            "id": 100502,
+            "league": "nba",
+            "logo": "https://polymarket-upload.s3.us-east-2.amazonaws.com/NBA+Team+Logos/BOS.png",
+            "name": "Celtics",
+            "ordering": "away",
+            "providerId": 9,
+            "record": "0-0",
+            "updatedAt": "2025-11-05T00:19:50.993931Z"
+          },
+          {
+            "abbreviation": "det",
+            "alias": "Pistons",
+            "color": "#C02040",
+            "createdAt": "2024-10-11T19:41:14.855354Z",
+            "id": 100518,
+            "league": "nba",
+            "logo": "https://polymarket-upload.s3.us-east-2.amazonaws.com/NBA+Team+Logos/DET.png",
+            "name": "Pistons",
+            "ordering": "home",
+            "providerId": 14,
+            "record": "0-0",
+            "updatedAt": "2025-11-05T00:19:51.00235Z"
+          }
+        ],
+        "game_start": "2026-10-20 19:00:00+00",
+        "game_start_ms": 1792522800000,
+        "home_away_evidence": "event_teams",
+        "home_team": "det",
+        "league": "nba",
+        "market_id": "5676016",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "no_asset_id": null,
+        "outcomes": [
+          {
+            "asset_id": "67105986151420762389444558710598385187601372419417593599928887317008220174126",
+            "label": "Celtics"
+          },
+          {
+            "asset_id": "6194634649894872222114139800075806437965693537103509072979175541757029916386",
+            "label": "Pistons"
+          }
+        ],
+        "question": "Celtics vs. Pistons",
+        "resolution_source": "https://www.nba.com/",
+        "season": "2026-27",
+        "slug": "nba-bos-det-2026-10-20",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "team_ordering": "away",
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1",
+        "yes_asset_id": null
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\strategy-studies\\inplay-rotation-v1-20261023\\403cdc76a25740cdb721116a2edf2891\\source-tape.sqlite",
+      "tape_id": "b2b53b26ddc64b4821c0d9daf977c6b1fb71d8bf34da9c254fc4c69023d84f54",
+      "source_input_sha256": "1a1de7a182fc5b962f9aa0d74e5ac99ea8e8a7626e8cfba53931ee1a6cb98cff"
+    },
+    {
+      "id": "cbc0aa1c9a7488216acef69bc5d796b50ba21bde991cf601ab3598ba06a3b2a7",
+      "path": "console/498d43355d2a44328de0dbba6d633837.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "PRE_GAME",
+      "start_ms": 1792127197753,
+      "end_ms": 1792127257700,
+      "duration_s": 59.947,
+      "input_records": 289,
+      "bytes": 58322944,
+      "markets": [
+        {
+          "market_id": "5477728",
+          "question": "Celtics vs. 76ers",
+          "game_start_ms": 1792191600000
+        }
+      ],
+      "research_phase": false,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "498d43355d2a44328de0dbba6d633837",
+      "market": {
+        "away_team": "bos",
+        "calendar_source": "https://pr.nba.com/2026-27-nba-regular-season-schedule",
+        "condition_id": "0x3201d4320ae5908a4d743ca4ecbfd7d3b9842473daff098dbea83dc728530f08",
+        "description": "In the upcoming NBA game, scheduled for October 16 at 7:00PM ET:\nIf the Celtics win, the market will resolve to \"Celtics\".\nIf the 76ers win, the market will resolve to \"76ers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "event_ended": null,
+        "event_id": "1162057",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "event_teams": [
+          {
+            "abbreviation": "bos",
+            "alias": "Celtics",
+            "color": "#00A040",
+            "createdAt": "2024-10-11T19:41:12.760981Z",
+            "id": 100502,
+            "league": "nba",
+            "logo": "https://polymarket-upload.s3.us-east-2.amazonaws.com/NBA+Team+Logos/BOS.png",
+            "name": "Celtics",
+            "ordering": "away",
+            "providerId": 9,
+            "record": "0-0",
+            "updatedAt": "2025-11-05T00:19:50.993931Z"
+          },
+          {
+            "abbreviation": "phi",
+            "alias": "76ers",
+            "color": "#0080C0",
+            "createdAt": "2024-10-11T19:41:14.191817Z",
+            "id": 100510,
+            "league": "nba",
+            "logo": "https://polymarket-upload.s3.us-east-2.amazonaws.com/NBA+Team+Logos/PHI.png",
+            "name": "76ers",
+            "ordering": "home",
+            "providerId": 7,
+            "record": "0-0",
+            "updatedAt": "2025-11-05T00:19:50.996254Z"
+          }
+        ],
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-16 23:00:00+00",
+        "game_start_ms": 1792191600000,
+        "home_away_evidence": "event_teams",
+        "home_team": "phi",
+        "league": "nba",
+        "market_id": "5477728",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": "0012600018",
+        "no_asset_id": null,
+        "outcomes": [
+          {
+            "asset_id": "111470496536165082842948025139242430866806306682827957753942903453481778926937",
+            "label": "Celtics"
+          },
+          {
+            "asset_id": "41289258799151916592704873427529425668235346916587755759206395301682081835252",
+            "label": "76ers"
+          }
+        ],
+        "polymarket_game_id": 20023840,
+        "question": "Celtics vs. 76ers",
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 16 at 7:00PM ET:\nIf the Celtics win, the market will resolve to \"Celtics\".\nIf the 76ers win, the market will resolve to \"76ers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "includes_overtime": true,
+          "postponement_and_cancellation_verified": true,
+          "resolution_source": "https://www.nba.com/",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-bos-phi-2026-10-16"
+        },
+        "rules_verified": true,
+        "season": "2026-27",
+        "season_evidence": {
+          "away_team": "bos",
+          "classification_source": "https://www.nba.com/celtics/news/celtics-announce-2026-27-preseason-schedule",
+          "home_team": "phi",
+          "method": "official pages cross-checked; not a sports phase contract",
+          "nba_game_id": "0012600018",
+          "season_type": "PRESEASON",
+          "source": "https://www.nba.com/game/0012600018",
+          "start_ms": 1792191600000,
+          "verified_date": "2026-10-16"
+        },
+        "season_type": "PRESEASON",
+        "slug": "nba-bos-phi-2026-10-16",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "team_ordering": "away",
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1",
+        "yes_asset_id": null
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\strategy-studies\\inplay-rotation-v1-20261023\\498d43355d2a44328de0dbba6d633837\\source-tape.sqlite",
+      "tape_id": "91a6ed4a0a929b0b7729c9faa8bf9cd832a5da08419185e5d26c437f77b998f6",
+      "source_input_sha256": "6fc078f79bfc9a11b0da863f8248070693dc9c17ba1fd0594c4adc48a4a26c4a"
+    },
+    {
+      "id": "0279f126a055ac853d3ef50247aeb88c01d457aea8ad9f21d60eeee94c0a3452",
+      "path": "console/5050f6d4b02b4e3cbccac4b8f5d552ea.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792627200630,
+      "end_ms": 1792639265750,
+      "duration_s": 12065.12,
+      "input_records": 10718,
+      "bytes": 793288704,
+      "markets": [
+        {
+          "market_id": "5716468",
+          "question": "Mavericks vs. Rockets",
+          "game_start_ms": 1792629000000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "5050f6d4b02b4e3cbccac4b8f5d552ea",
+      "market": {
+        "away_team": "dal",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0xa9ced0ba40242ad009b8668b13ec5269644905e86016e702f49e83054f30f1c7",
+        "description": "In the upcoming NBA game, scheduled for October 21 at 8:30PM ET:\nIf the Mavericks win, the market will resolve to \"Mavericks\".\nIf the Rockets win, the market will resolve to \"Rockets\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1191469",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-22 00:30:00+00",
+        "game_start_ms": 1792629000000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "hou",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5716468",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "70448374113237600852894674614824159045901244794984612914777108422734736077371",
+            "label": "Mavericks"
+          },
+          {
+            "asset_id": "64698927313611102726409711210982081603793479545509554906925009949133726827935",
+            "label": "Rockets"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023968,
+        "question": "Mavericks vs. Rockets",
+        "research_authorized": false,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 21 at 8:30PM ET:\nIf the Mavericks win, the market will resolve to \"Mavericks\".\nIf the Rockets win, the market will resolve to \"Rockets\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-dal-hou-2026-10-21"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": null
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-dal-hou-2026-10-21",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716468\\source-tape.sqlite",
+      "tape_id": "f514304439834c2ab14de644d786d9aa71b56e61ea312ef8d2634c05d68d9eb1",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716468",
+      "source_input_sha256": "f165951483bf8987b324a34568f518c597a2b811ee5e7b53601a3e0e4eca895c"
+    },
+    {
+      "id": "b8d5aaec96744838fa947da26ffbd2ebe42d751f71a7a02521d5b0aa89179b0b",
+      "path": "console/5110d29dc85e4844b5b0634ac95f7b19.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792623601831,
+      "end_ms": 1792636984100,
+      "duration_s": 13382.269,
+      "input_records": 14666,
+      "bytes": 1110253568,
+      "markets": [
+        {
+          "market_id": "5716452",
+          "question": "Bulls vs. Raptors",
+          "game_start_ms": 1792625400000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "5110d29dc85e4844b5b0634ac95f7b19",
+      "market": {
+        "away_team": "chi",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0xa7b7af4f22cf97db51b80d4692222b26f6d7c60209abcb1c27ced6c87f52038a",
+        "description": "In the upcoming NBA game, scheduled for October 21 at 7:30PM ET:\nIf the Bulls win, the market will resolve to \"Bulls\".\nIf the Raptors win, the market will resolve to \"Raptors\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1191465",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-21 23:30:00+00",
+        "game_start_ms": 1792625400000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "tor",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5716452",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "8478232975053021656102481848967329190182250864822625630950559616369952555004",
+            "label": "Bulls"
+          },
+          {
+            "asset_id": "99964542458256567041071603202810954439068213855769986773400890577966753751107",
+            "label": "Raptors"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023965,
+        "question": "Bulls vs. Raptors",
+        "research_authorized": false,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 21 at 7:30PM ET:\nIf the Bulls win, the market will resolve to \"Bulls\".\nIf the Raptors win, the market will resolve to \"Raptors\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-chi-tor-2026-10-21"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": null
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-chi-tor-2026-10-21",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716452\\source-tape.sqlite",
+      "tape_id": "7503f9ce431d9e025e94e62dcfdb577e02edc46f75d7ce6747bc6218806cece9",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716452",
+      "source_input_sha256": "b0ffc315604c202ad28e73225dc624175ce6fce2a126d339961ed15b7102d549"
+    },
+    {
+      "id": "df63ec06b7f51b18f26935af1a3f00933ff43c7bd1b193083ebe248bd54476de",
+      "path": "console/54dbe7610c5d4df6b6c5e26788f4de78.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792623601826,
+      "end_ms": 1792636414528,
+      "duration_s": 12812.702,
+      "input_records": 15947,
+      "bytes": 1145106432,
+      "markets": [
+        {
+          "market_id": "5716444",
+          "question": "Hornets vs. Nets",
+          "game_start_ms": 1792625400000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "54dbe7610c5d4df6b6c5e26788f4de78",
+      "market": {
+        "away_team": "cha",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0x12c0ff4a99b3f160c77b10c8e9ab08a858bd00270de1be3e00aef8a70808fba7",
+        "description": "In the upcoming NBA game, scheduled for October 21 at 7:30PM ET:\nIf the Hornets win, the market will resolve to \"Hornets\".\nIf the Nets win, the market will resolve to \"Nets\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1191464",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-21 23:30:00+00",
+        "game_start_ms": 1792625400000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "bkn",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5716444",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "58802458597374928740225519735423162012398763515664846118442539672822667668833",
+            "label": "Hornets"
+          },
+          {
+            "asset_id": "41247778526275081611027808679193000552257350876256303216214713529864810603781",
+            "label": "Nets"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023964,
+        "question": "Hornets vs. Nets",
+        "research_authorized": false,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 21 at 7:30PM ET:\nIf the Hornets win, the market will resolve to \"Hornets\".\nIf the Nets win, the market will resolve to \"Nets\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-cha-bkn-2026-10-21"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": null
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-cha-bkn-2026-10-21",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716444\\source-tape.sqlite",
+      "tape_id": "1306917c3215bf2d482592b7af787650fd7df5344866aed6c9cf14c1f7952b39",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716444",
+      "source_input_sha256": "39918faf2b651446c8c88f6335a79b848a39ea2951159aa058a049ae96323a2d"
+    },
+    {
+      "id": "2c1a46dc77d81bb53c1d840f3478a65003edfc94074ca681d5c0d2c9c200ec8f",
+      "path": "console/85f73b902f514b439d670643b42b116f.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "PRE_GAME",
+      "start_ms": 1792080651631,
+      "end_ms": 1792080709749,
+      "duration_s": 58.118,
+      "input_records": 285,
+      "bytes": 46301184,
+      "markets": [
+        {
+          "market_id": "5676016",
+          "question": "Celtics vs. Pistons",
+          "game_start_ms": 1792522800000
+        }
+      ],
+      "research_phase": false,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "85f73b902f514b439d670643b42b116f",
+      "market": {
+        "away_team": "bos",
+        "calendar_source": "https://pr.nba.com/2026-27-nba-regular-season-schedule",
+        "condition_id": "0x028dc9f74bd4f1ae80594afb93e46cd579030afcab48a74e96195f4c8c67a3d3",
+        "description": "In the upcoming NBA game, scheduled for October 20 at 3:00PM ET:\nIf the Celtics win, the market will resolve to \"Celtics\".\nIf the Pistons win, the market will resolve to \"Pistons\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "event_ended": null,
+        "event_id": "1185700",
+        "event_live": null,
+        "event_teams": [
+          {
+            "abbreviation": "bos",
+            "alias": "Celtics",
+            "color": "#00A040",
+            "createdAt": "2024-10-11T19:41:12.760981Z",
+            "id": 100502,
+            "league": "nba",
+            "logo": "https://polymarket-upload.s3.us-east-2.amazonaws.com/NBA+Team+Logos/BOS.png",
+            "name": "Celtics",
+            "ordering": "away",
+            "providerId": 9,
+            "record": "0-0",
+            "updatedAt": "2025-11-05T00:19:50.993931Z"
+          },
+          {
+            "abbreviation": "det",
+            "alias": "Pistons",
+            "color": "#C02040",
+            "createdAt": "2024-10-11T19:41:14.855354Z",
+            "id": 100518,
+            "league": "nba",
+            "logo": "https://polymarket-upload.s3.us-east-2.amazonaws.com/NBA+Team+Logos/DET.png",
+            "name": "Pistons",
+            "ordering": "home",
+            "providerId": 14,
+            "record": "0-0",
+            "updatedAt": "2025-11-05T00:19:51.00235Z"
+          }
+        ],
+        "game_start": "2026-10-20 19:00:00+00",
+        "game_start_ms": 1792522800000,
+        "home_away_evidence": "event_teams",
+        "home_team": "det",
+        "league": "nba",
+        "market_id": "5676016",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "no_asset_id": null,
+        "outcomes": [
+          {
+            "asset_id": "67105986151420762389444558710598385187601372419417593599928887317008220174126",
+            "label": "Celtics"
+          },
+          {
+            "asset_id": "6194634649894872222114139800075806437965693537103509072979175541757029916386",
+            "label": "Pistons"
+          }
+        ],
+        "question": "Celtics vs. Pistons",
+        "resolution_source": "https://www.nba.com/",
+        "season": "2026-27",
+        "slug": "nba-bos-det-2026-10-20",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "team_ordering": "away",
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1",
+        "yes_asset_id": null
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\strategy-studies\\inplay-rotation-v1-20261023\\85f73b902f514b439d670643b42b116f\\source-tape.sqlite",
+      "tape_id": "94049cd098cdbfd93261794bdbfe3bf1bf0f51ccf4387d2056f1574cdb5bcfc8",
+      "source_input_sha256": "56c772419301293743cf35929a4fc8ce4945420ba0fd379c892786fd7bdcb595"
+    },
+    {
+      "id": "56332da64618ef4dbfe3eabd25833d6a6da64b8c9634482c0cbb7f3ece01aaf1",
+      "path": "console/8fc9793f22e64aabbac64d64f1d48ab3.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792542664336,
+      "end_ms": 1792571398114,
+      "duration_s": 28733.778,
+      "input_records": 31608,
+      "bytes": 2808487936,
+      "markets": [
+        {
+          "market_id": "5680507",
+          "question": "Thunder vs. Spurs",
+          "game_start_ms": 1792546200000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "8fc9793f22e64aabbac64d64f1d48ab3",
+      "market": {
+        "away_team": "okc",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0x738bf4c43717a69335109fc8882915b55be456cb42811cf008d97fdf3a8cb6a8",
+        "description": "In the upcoming NBA game, scheduled for October 20 at 9:30PM ET:\nIf the Thunder win, the market will resolve to \"Thunder\".\nIf the Spurs win, the market will resolve to \"Spurs\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1186925",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-21 01:30:00+00",
+        "game_start_ms": 1792546200000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "sas",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5680507",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": "0022600003",
+        "official_game": {
+          "away_team": "okc",
+          "classification_source": "https://www.nba.com/news/2026-27-nba-regular-season-schedule",
+          "home_team": "sas",
+          "method": "official opening-night release and individual game pages; exact teams, roles and UTC time only; not a live phase grant",
+          "nba_game_id": "0022600003",
+          "season": "2026-27",
+          "season_type": "REGULAR_SEASON",
+          "source": "https://www.nba.com/game/okc-vs-sas-0022600003",
+          "start_ms": 1792546200000,
+          "verified_date": "2026-10-19"
+        },
+        "outcomes": [
+          {
+            "asset_id": "48048387611605248970312168510075685614966865009736904258504751936343270135339",
+            "label": "Thunder"
+          },
+          {
+            "asset_id": "86140706431574137092378421405597667358309804892234804809603750735484644932576",
+            "label": "Spurs"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023882,
+        "question": "Thunder vs. Spurs",
+        "research_authorized": true,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 20 at 9:30PM ET:\nIf the Thunder win, the market will resolve to \"Thunder\".\nIf the Spurs win, the market will resolve to \"Spurs\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-okc-sas-2026-10-20"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            "REGULAR_SEASON"
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": {
+            "away_team": "okc",
+            "classification_source": "https://www.nba.com/news/2026-27-nba-regular-season-schedule",
+            "home_team": "sas",
+            "method": "official opening-night release and individual game pages; exact teams, roles and UTC time only; not a live phase grant",
+            "nba_game_id": "0022600003",
+            "season": "2026-27",
+            "season_type": "REGULAR_SEASON",
+            "source": "https://www.nba.com/game/okc-vs-sas-0022600003",
+            "start_ms": 1792546200000,
+            "verified_date": "2026-10-19"
+          }
+        },
+        "season_type": "REGULAR_SEASON",
+        "slug": "nba-okc-sas-2026-10-20",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-21\\5680507\\source-tape.sqlite",
+      "tape_id": "a6429119f6e70ecc520483d0bb0158feded093c6a0c8abff3d205563dea86ec6",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-21\\5680507",
+      "source_input_sha256": "aef37e95b6648ac5ec7d75a74beb4aecb6460afe382a2d833a6d7ecb13932969"
+    },
+    {
+      "id": "dbab0acc06b0b18fa3a3b328bd89c8d95742ee680a98163037ed9d1002842940",
+      "path": "console/9604866cbb934b208a30f36b9e006373.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792519240351,
+      "end_ms": 1792547989446,
+      "duration_s": 28749.095,
+      "input_records": 38412,
+      "bytes": 3212763136,
+      "markets": [
+        {
+          "market_id": "5676016",
+          "question": "Celtics vs. Pistons",
+          "game_start_ms": 1792522800000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "9604866cbb934b208a30f36b9e006373",
+      "market": {
+        "away_team": "bos",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0x028dc9f74bd4f1ae80594afb93e46cd579030afcab48a74e96195f4c8c67a3d3",
+        "description": "In the upcoming NBA game, scheduled for October 20 at 3:00PM ET:\nIf the Celtics win, the market will resolve to \"Celtics\".\nIf the Pistons win, the market will resolve to \"Pistons\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1185700",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-20 19:00:00+00",
+        "game_start_ms": 1792522800000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "det",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5676016",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": "0022600001",
+        "official_game": {
+          "away_team": "bos",
+          "classification_source": "https://www.nba.com/news/2026-27-nba-regular-season-schedule",
+          "home_team": "det",
+          "method": "official opening-night release and individual game pages; exact teams, roles and UTC time only; not a live phase grant",
+          "nba_game_id": "0022600001",
+          "season": "2026-27",
+          "season_type": "REGULAR_SEASON",
+          "source": "https://www.nba.com/game/bos-vs-det-0022600001",
+          "start_ms": 1792522800000,
+          "verified_date": "2026-10-19"
+        },
+        "outcomes": [
+          {
+            "asset_id": "67105986151420762389444558710598385187601372419417593599928887317008220174126",
+            "label": "Celtics"
+          },
+          {
+            "asset_id": "6194634649894872222114139800075806437965693537103509072979175541757029916386",
+            "label": "Pistons"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023880,
+        "question": "Celtics vs. Pistons",
+        "research_authorized": true,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 20 at 3:00PM ET:\nIf the Celtics win, the market will resolve to \"Celtics\".\nIf the Pistons win, the market will resolve to \"Pistons\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-bos-det-2026-10-20"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "",
+            "",
+            "REGULAR_SEASON"
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": {
+            "away_team": "bos",
+            "classification_source": "https://www.nba.com/news/2026-27-nba-regular-season-schedule",
+            "home_team": "det",
+            "method": "official opening-night release and individual game pages; exact teams, roles and UTC time only; not a live phase grant",
+            "nba_game_id": "0022600001",
+            "season": "2026-27",
+            "season_type": "REGULAR_SEASON",
+            "source": "https://www.nba.com/game/bos-vs-det-0022600001",
+            "start_ms": 1792522800000,
+            "verified_date": "2026-10-19"
+          }
+        },
+        "season_type": "REGULAR_SEASON",
+        "slug": "nba-bos-det-2026-10-20",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-21\\5676016\\source-tape.sqlite",
+      "tape_id": "487c26ef6c8dbde1340f17dfa403b0dc87bc027e5cc15fec545a3c656698f640",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-21\\5676016",
+      "source_input_sha256": "36960936fed4dccc683190e218e04a699b2dac3f1a96e374137e08077b7b4f2d"
+    },
+    {
+      "id": "623cff0805b5175a34026ce2d07005f9e9c9e81ecfa21b3408d357a8657af093",
+      "path": "console/a3f7df5039cc42c28c3814ca3f4352b0.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792634400723,
+      "end_ms": 1792646268870,
+      "duration_s": 11868.147,
+      "input_records": 12413,
+      "bytes": 938610688,
+      "markets": [
+        {
+          "market_id": "5722996",
+          "question": "Kings vs. Clippers",
+          "game_start_ms": 1792636200000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "a3f7df5039cc42c28c3814ca3f4352b0",
+      "market": {
+        "away_team": "sac",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0x75e1f6d6fe20e8785185c3437ff5f861049c06125707bfef8c658834f68df250",
+        "description": "In the upcoming NBA game, scheduled for October 21 at 10:30PM ET:\nIf the Kings win, the market will resolve to \"Kings\".\nIf the Clippers win, the market will resolve to \"Clippers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1192659",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-22 02:30:00+00",
+        "game_start_ms": 1792636200000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "lac",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5722996",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "112910648330465833413877547232231876252900072314935588375523944706456051504208",
+            "label": "Kings"
+          },
+          {
+            "asset_id": "103335723504333456841466589540340058426502303539215038984020301173401753259156",
+            "label": "Clippers"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023970,
+        "question": "Kings vs. Clippers",
+        "research_authorized": false,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 21 at 10:30PM ET:\nIf the Kings win, the market will resolve to \"Kings\".\nIf the Clippers win, the market will resolve to \"Clippers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-sac-lac-2026-10-21"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": null
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-sac-lac-2026-10-21",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5722996\\source-tape.sqlite",
+      "tape_id": "587b3f670360c4dbbe3aa50d49367263c55c2e52762292d82b979c521857b8d0",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5722996",
+      "source_input_sha256": "95b48a40b3a490daca7afb6ac34ca92f70cc95c3d904e8c751700477dc45812e"
+    },
+    {
+      "id": "d07498428b660ef4113f940e724cc732669e956fa72b5468dba11c75e460bde2",
+      "path": "console/abfb9f232bc849528b379e06e8248966.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792632602825,
+      "end_ms": 1792645143890,
+      "duration_s": 12541.065,
+      "input_records": 12853,
+      "bytes": 982233088,
+      "markets": [
+        {
+          "market_id": "5722990",
+          "question": "Warriors vs. Lakers",
+          "game_start_ms": 1792634400000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "abfb9f232bc849528b379e06e8248966",
+      "market": {
+        "away_team": "gsw",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0x74112dc67487ec5f08d44436bbaedd1512c77daf671e829187d995a29398da22",
+        "description": "In the upcoming NBA game, scheduled for October 21 at 10:00PM ET:\nIf the Warriors win, the market will resolve to \"Warriors\".\nIf the Lakers win, the market will resolve to \"Lakers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1192657",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-22 02:00:00+00",
+        "game_start_ms": 1792634400000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "lal",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5722990",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "80730637204578696425332924759165995147927212368472537832361698073482062305289",
+            "label": "Warriors"
+          },
+          {
+            "asset_id": "32077427596348687645986457298945173410464971554983670989912723102826107714575",
+            "label": "Lakers"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023884,
+        "question": "Warriors vs. Lakers",
+        "research_authorized": false,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 21 at 10:00PM ET:\nIf the Warriors win, the market will resolve to \"Warriors\".\nIf the Lakers win, the market will resolve to \"Lakers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-gsw-lal-2026-10-21"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": null
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-gsw-lal-2026-10-21",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5722990\\source-tape.sqlite",
+      "tape_id": "4017b37e0c6fa4d0cf88fe21e1c407c8d519452c4e46767d88c6183cb9dff236",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5722990",
+      "source_input_sha256": "fa4a7654f8b3b4c419e0a512eeb1f3771dff7556972058a973c170b1fe5f5471"
+    },
+    {
+      "id": "762fb702fe4cfdeda108e12e082188f8d5830bffb78c4ec0645d0d931a108649",
+      "path": "console/b40576e1fae04ca284c4863f9adceebf.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792625401147,
+      "end_ms": 1792637622756,
+      "duration_s": 12221.609,
+      "input_records": 15117,
+      "bytes": 1056657408,
+      "markets": [
+        {
+          "market_id": "5716465",
+          "question": "Pacers vs. Pelicans",
+          "game_start_ms": 1792627200000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "b40576e1fae04ca284c4863f9adceebf",
+      "market": {
+        "away_team": "ind",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0x24bab815e0e348358839f3bcf9d962b702610256b189506c9ef6197640d463e6",
+        "description": "In the upcoming NBA game, scheduled for October 21 at 8:00PM ET:\nIf the Pacers win, the market will resolve to \"Pacers\".\nIf the Pelicans win, the market will resolve to \"Pelicans\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1191468",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-22 00:00:00+00",
+        "game_start_ms": 1792627200000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "nop",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5716465",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "79113085505766518662127377485187921541630763377385828811087128160824652816998",
+            "label": "Pacers"
+          },
+          {
+            "asset_id": "108616402403932080629855776799105602053503138750417498235877447818713316349902",
+            "label": "Pelicans"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023967,
+        "question": "Pacers vs. Pelicans",
+        "research_authorized": false,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 21 at 8:00PM ET:\nIf the Pacers win, the market will resolve to \"Pacers\".\nIf the Pelicans win, the market will resolve to \"Pelicans\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-ind-nop-2026-10-21"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": null
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-ind-nop-2026-10-21",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716465\\source-tape.sqlite",
+      "tape_id": "2986ee22f3a0b38ee14d0881a3f2ae9346024c38a1909bc99d2eba880e7accff",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716465",
+      "source_input_sha256": "329a68e8ccca97aa42c57cb998ac2cc92775b27da3648b7145fe6fc7657b3718"
+    },
+    {
+      "id": "69b9e5d91e9a9e9a981c03636bf723ffc413485e5666d648d3ba1df882aa9f8d",
+      "path": "console/e368a18ef1d3453f8a89b0bd74ec8ece.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792632602819,
+      "end_ms": 1792644305642,
+      "duration_s": 11702.823,
+      "input_records": 10818,
+      "bytes": 837767168,
+      "markets": [
+        {
+          "market_id": "5722993",
+          "question": "Suns vs. Trail Blazers",
+          "game_start_ms": 1792634400000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "e368a18ef1d3453f8a89b0bd74ec8ece",
+      "market": {
+        "away_team": "phx",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0x01179dec7271755254eb8bca5787eb66fe88a6aed9f2a12f20f79e09bd039f78",
+        "description": "In the upcoming NBA game, scheduled for October 21 at 10:00PM ET:\nIf the Suns win, the market will resolve to \"Suns\".\nIf the Trail Blazers win, the market will resolve to \"Trail Blazers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1192658",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-22 02:00:00+00",
+        "game_start_ms": 1792634400000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "por",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5722993",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "1626975480582476361111092423160356505312836372115980751489295500681894874827",
+            "label": "Suns"
+          },
+          {
+            "asset_id": "18625742319258406505977946415703900329967320002785877138838923961838029415209",
+            "label": "Trail Blazers"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023969,
+        "question": "Suns vs. Trail Blazers",
+        "research_authorized": false,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 21 at 10:00PM ET:\nIf the Suns win, the market will resolve to \"Suns\".\nIf the Trail Blazers win, the market will resolve to \"Trail Blazers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-phx-por-2026-10-21"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": null
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-phx-por-2026-10-21",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5722993\\source-tape.sqlite",
+      "tape_id": "cdde8bef1a18652d3ee3f775ab1b37ea0ac023153a0ff109559d6419a87ea323",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5722993",
+      "source_input_sha256": "459e811ee35a53d2ad7635b60d3fd1c19497ee17d47f3a1b646519559a7e0857"
+    },
+    {
+      "id": "1e8dac720a366ac1d7cc16a31a736c9510352ea4e19b00991af13276eaef0ccc",
+      "path": "console/e4c6f182913d427c8794fb531d6956c0.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792623601829,
+      "end_ms": 1792636601605,
+      "duration_s": 12999.776,
+      "input_records": 16047,
+      "bytes": 1162682368,
+      "markets": [
+        {
+          "market_id": "5716392",
+          "question": "Timberwolves vs. Heat",
+          "game_start_ms": 1792625400000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "e4c6f182913d427c8794fb531d6956c0",
+      "market": {
+        "away_team": "min",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0x47f97bc90f048a7a94f3c7245fbc2f193caf20a136212aae58db4b6a5672e727",
+        "description": "In the upcoming NBA game, scheduled for October 21 at 7:30PM ET:\nIf the Timberwolves win, the market will resolve to \"Timberwolves\".\nIf the Heat win, the market will resolve to \"Heat\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1191459",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-21 23:30:00+00",
+        "game_start_ms": 1792625400000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "mia",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5716392",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "107102793637680157985081124002726182334464514298802794132890893773707404215371",
+            "label": "Timberwolves"
+          },
+          {
+            "asset_id": "75308551391533164007717414884845562358431109684778838881230857244672309536073",
+            "label": "Heat"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023883,
+        "question": "Timberwolves vs. Heat",
+        "research_authorized": false,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 21 at 7:30PM ET:\nIf the Timberwolves win, the market will resolve to \"Timberwolves\".\nIf the Heat win, the market will resolve to \"Heat\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-min-mia-2026-10-21"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": null
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-min-mia-2026-10-21",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716392\\source-tape.sqlite",
+      "tape_id": "0ab5e9dff7b63eb24956e474d0720357b87dde7c86882f687d92dce8f2e9d1c2",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716392",
+      "source_input_sha256": "dedfebbb680f9ccc8ce9dab9194514c12fce008e5d7bbf26cc7a62ae139a3091"
+    },
+    {
+      "id": "559c3e73784923569edce86c6b26c315c28728bdc0f3c8a643e91e24c205cbd2",
+      "path": "console/f1dc6d75c789474696db2d5c9cfd2eaa.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "PRE_GAME",
+      "start_ms": 1792129129011,
+      "end_ms": 1792143526373,
+      "duration_s": 14397.362,
+      "input_records": 32230,
+      "bytes": 6964494336,
+      "markets": [
+        {
+          "market_id": "5477728",
+          "question": "Celtics vs. 76ers",
+          "game_start_ms": 1792191600000
+        }
+      ],
+      "research_phase": false,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "f1dc6d75c789474696db2d5c9cfd2eaa",
+      "market": {
+        "away_team": "bos",
+        "calendar_source": "https://pr.nba.com/2026-27-nba-regular-season-schedule",
+        "condition_id": "0x3201d4320ae5908a4d743ca4ecbfd7d3b9842473daff098dbea83dc728530f08",
+        "description": "In the upcoming NBA game, scheduled for October 16 at 7:00PM ET:\nIf the Celtics win, the market will resolve to \"Celtics\".\nIf the 76ers win, the market will resolve to \"76ers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "event_ended": null,
+        "event_id": "1162057",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "event_teams": [
+          {
+            "abbreviation": "bos",
+            "alias": "Celtics",
+            "color": "#00A040",
+            "createdAt": "2024-10-11T19:41:12.760981Z",
+            "id": 100502,
+            "league": "nba",
+            "logo": "https://polymarket-upload.s3.us-east-2.amazonaws.com/NBA+Team+Logos/BOS.png",
+            "name": "Celtics",
+            "ordering": "away",
+            "providerId": 9,
+            "record": "0-0",
+            "updatedAt": "2025-11-05T00:19:50.993931Z"
+          },
+          {
+            "abbreviation": "phi",
+            "alias": "76ers",
+            "color": "#0080C0",
+            "createdAt": "2024-10-11T19:41:14.191817Z",
+            "id": 100510,
+            "league": "nba",
+            "logo": "https://polymarket-upload.s3.us-east-2.amazonaws.com/NBA+Team+Logos/PHI.png",
+            "name": "76ers",
+            "ordering": "home",
+            "providerId": 7,
+            "record": "0-0",
+            "updatedAt": "2025-11-05T00:19:50.996254Z"
+          }
+        ],
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-16 23:00:00+00",
+        "game_start_ms": 1792191600000,
+        "home_away_evidence": "event_teams",
+        "home_team": "phi",
+        "league": "nba",
+        "market_id": "5477728",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": "0012600018",
+        "no_asset_id": null,
+        "outcomes": [
+          {
+            "asset_id": "111470496536165082842948025139242430866806306682827957753942903453481778926937",
+            "label": "Celtics"
+          },
+          {
+            "asset_id": "41289258799151916592704873427529425668235346916587755759206395301682081835252",
+            "label": "76ers"
+          }
+        ],
+        "polymarket_game_id": 20023840,
+        "question": "Celtics vs. 76ers",
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 16 at 7:00PM ET:\nIf the Celtics win, the market will resolve to \"Celtics\".\nIf the 76ers win, the market will resolve to \"76ers\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "includes_overtime": true,
+          "postponement_and_cancellation_verified": true,
+          "resolution_source": "https://www.nba.com/",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-bos-phi-2026-10-16"
+        },
+        "rules_verified": true,
+        "season": "2026-27",
+        "season_evidence": {
+          "away_team": "bos",
+          "classification_source": "https://www.nba.com/celtics/news/celtics-announce-2026-27-preseason-schedule",
+          "home_team": "phi",
+          "method": "official pages cross-checked; not a sports phase contract",
+          "nba_game_id": "0012600018",
+          "season_type": "PRESEASON",
+          "source": "https://www.nba.com/game/0012600018",
+          "start_ms": 1792191600000,
+          "verified_date": "2026-10-16"
+        },
+        "season_type": "PRESEASON",
+        "slug": "nba-bos-phi-2026-10-16",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "team_ordering": "away",
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1",
+        "yes_asset_id": null
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\strategy-studies\\inplay-rotation-v1-20261023\\f1dc6d75c789474696db2d5c9cfd2eaa\\source-tape.sqlite",
+      "tape_id": "d48031dfba64c32cd33eba5c5416fe7ab7cb70576102388fcbe2af282fc16e49",
+      "source_input_sha256": "b4fc38cb41ca7795169be91d2160897c21fdd27f16b829a84edc48cbb73ed214"
+    },
+    {
+      "id": "82e5ef4f8ea95d9963c59fccad376fad29bac4b7d855b956bb4dc21bdceec9ce",
+      "path": "console/f7bb08b9bdf74034bbdd056317fcfb37.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "TIME_OVERLAPS_GAME_NOT_VERIFIED",
+      "start_ms": 1792625401149,
+      "end_ms": 1792637644939,
+      "duration_s": 12243.79,
+      "input_records": 13135,
+      "bytes": 952446976,
+      "markets": [
+        {
+          "market_id": "5716460",
+          "question": "Jazz vs. Grizzlies",
+          "game_start_ms": 1792627200000
+        }
+      ],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "session_id": "f7bb08b9bdf74034bbdd056317fcfb37",
+      "market": {
+        "away_team": "uta",
+        "classification_conflict": false,
+        "collection_allowed": true,
+        "competition_round": "UNKNOWN",
+        "competition_tags": [],
+        "condition_id": "0x3659aae64ada65eb275fec0018a21a5f7242f75911deda14fbafea17c51ffd6e",
+        "description": "In the upcoming NBA game, scheduled for October 21 at 8:00PM ET:\nIf the Jazz win, the market will resolve to \"Jazz\".\nIf the Grizzlies win, the market will resolve to \"Grizzlies\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+        "discovery_schema": "NBA_GENERAL_V1",
+        "event_ended": null,
+        "event_id": "1191467",
+        "event_live": null,
+        "event_status": {
+          "active": true,
+          "archived": false,
+          "closed": false
+        },
+        "game_phase": "SCHEDULED",
+        "game_start": "2026-10-22 00:00:00+00",
+        "game_start_ms": 1792627200000,
+        "home_away_evidence": "Gamma event teams",
+        "home_team": "mem",
+        "identity_conflict": false,
+        "league": "nba",
+        "market_id": "5716460",
+        "market_type": "moneyline",
+        "minimum_order_size": "5",
+        "nba_game_id": null,
+        "official_game": null,
+        "outcomes": [
+          {
+            "asset_id": "7685158848984498977390071784341171138992058973607044422044852725107513658437",
+            "label": "Jazz"
+          },
+          {
+            "asset_id": "92026908821928990759307387761911364987540060356600925155085252262202735890787",
+            "label": "Grizzlies"
+          }
+        ],
+        "paper_scope_approved": false,
+        "polymarket_game_id": 20023966,
+        "question": "Jazz vs. Grizzlies",
+        "research_authorized": false,
+        "research_eligible": true,
+        "resolution_source": "https://www.nba.com/",
+        "rules_evidence": {
+          "description": "In the upcoming NBA game, scheduled for October 21 at 8:00PM ET:\nIf the Jazz win, the market will resolve to \"Jazz\".\nIf the Grizzlies win, the market will resolve to \"Grizzlies\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\nThe result will be determined based on the final score including any overtime periods.",
+          "source": "https://gamma-api.polymarket.com/events/slug/nba-uta-mem-2026-10-21"
+        },
+        "rules_verified": true,
+        "schedule_status_raw": null,
+        "season": "2026-27",
+        "season_evidence": {
+          "labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Sports",
+            "NBA",
+            "Games",
+            "Basketball",
+            "NBA Tip-Off",
+            "",
+            "",
+            ""
+          ],
+          "season_label_basis": "explicit season when available, otherwise July-to-June display convention; not classification evidence",
+          "source": "official schedule + Gamma explicit metadata",
+          "verified_schedule": null
+        },
+        "season_type": "UNKNOWN",
+        "slug": "nba-uta-mem-2026-10-21",
+        "status": {
+          "acceptingOrders": true,
+          "active": true,
+          "archived": false,
+          "closed": false,
+          "enableOrderBook": true,
+          "restricted": true
+        },
+        "tick_size": "0.01",
+        "venue": "polymarket.com",
+        "version": "v1"
+      },
+      "original_counts": {
+        "orders": 0,
+        "fills": 0
+      },
+      "tape": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716460\\source-tape.sqlite",
+      "tape_id": "d43bc0a3e9ee20072a17008686982f3f3bc09c460145a310f358761488120ed5",
+      "old_result_folder": "D:\\vibe coding\\polymarket\\nba\\data\\day-studies\\2026-10-22\\5716460",
+      "source_input_sha256": "26b0e0e62b5ec9de6511358dc52f3ecd596746346bc3b05ec67a6ec59e2eb060"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "aa73dc567cf905f17306ddc9c2e869677186d103537f7419e87ae53a2d4c36dd",
+      "path": "console/7dcd2316a48f4bcc9dc69d9562900f0b.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "UNKNOWN",
+      "start_ms": 1792743960313,
+      "end_ms": 1792743961869,
+      "duration_s": 1.556,
+      "input_records": 2,
+      "bytes": 2486272,
+      "markets": [],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "reason": "NO_USABLE_MARKET_FRAMES"
+    }
+  ],
+  "catalog_errors": [],
+  "created_ms": 1792757558932,
+  "old_results_unchanged": true,
+  "real_submission_calls": 0,
+  "live_go": false
+}

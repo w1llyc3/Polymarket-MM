@@ -60,6 +60,12 @@ class FairStore:
 
 
 def read_connection(path):
-    db = sqlite3.connect(Path(path).resolve().as_uri() + "?mode=ro", uri=True)
+    from ..shared_inputs import ResourceConnection, attach
+    db = sqlite3.connect(Path(path).resolve().as_uri() + "?mode=ro", uri=True, factory=ResourceConnection)
     db.row_factory = sqlite3.Row
+    try:
+        attach(db, path)
+    except Exception:
+        db.close()
+        raise
     return db

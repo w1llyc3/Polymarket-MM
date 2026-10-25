@@ -7,6 +7,31 @@ from nba_recorder.pilot import PilotWindow
 
 
 class UnattendedTests(unittest.TestCase):
+    def test_half_hour_record_only_window(self):
+        start,end=bounds('2026-10-19');m=self.market();tip=m['game_start_ms']
+        self.assertFalse(due(m,tip-1800001,start,end,1800))
+        self.assertTrue(due(m,tip-1800000,start,end,1800))
+        self.assertEqual(Control(m,record_only=True).mode,'OBSERVATION')
+        w=PilotWindow(tip-1800000,28800,1800)
+        finished=tip+7200000
+        w.observe({'display_eligible':True,'game_finished':True,'received_ms':finished},finished)
+        self.assertIsNone(w.stop_reason(finished+1799999))
+        self.assertEqual(w.stop_reason(finished+1800000),'OBSERVED_GAME_END_PLUS_TAIL')
+
+    def test_observed_end_is_persisted_without_extending_tail_on_repeated_messages(self):
+        from nba_recorder.inplay.store import SingleWriterStore
+        from nba_recorder.inplay.manager import UnifiedPaperManager
+        from nba_recorder.inplay.runner import PaperRunner
+        with tempfile.TemporaryDirectory() as directory:
+            store=SingleWriterStore(Path(directory)/'paper.sqlite')
+            try:
+                om=UnifiedPaperManager(store,start_ms=1000);runner=PaperRunner(om,'L2');w=PilotWindow(1000,28800,1800)
+                for at in (2000,3000):runner.observe_game_information({'display_eligible':True,'game_finished':True,'received_ms':at},w,at)
+                self.assertEqual(w.finished_ms,2000)
+                self.assertEqual(int(om.db.execute("SELECT payload FROM ip_session_config WHERE id='recording_finished_ms'").fetchone()[0]),2000)
+                self.assertEqual(om.real_submission_calls,0)
+            finally:store.close()
+
     def market(self):
         start, _ = bounds('2026-10-19')
         return {'market_id': '123', 'slug': 'nba-test', 'venue': 'polymarket.com',
@@ -58,4 +83,9 @@ class UnattendedTests(unittest.TestCase):
                 self.assertEqual(first['games']['123']['session_id'],second['games']['123']['session_id'])
                 self.assertEqual(second['real_submission_calls'],0)
                 self.assertEqual(second['games']['123']['status'],'SCHEDULED')
+                summaries=[json.loads(line) for line in (path.parent/'discovery-summary.jsonl').read_text(encoding='utf-8').splitlines()]
+                self.assertEqual(len(summaries),2)
+                self.assertEqual(summaries[0]['schema'],'DISCOVERY_SUMMARY_V2')
+                self.assertFalse(summaries[1]['raw_response_saved'])
+                self.assertFalse((path.parent/'discovery.jsonl').exists())
         with tempfile.TemporaryDirectory() as directory: asyncio.run(execute(Path(directory)))

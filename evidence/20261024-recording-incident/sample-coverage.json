@@ -1,0 +1,442 @@
+{
+  "date": "2026-10-24",
+  "status": "INCOMPLETE_FAILURE",
+  "markets": [
+    {
+      "market_id": "5792063",
+      "question": "Knicks vs. Celtics",
+      "session_id": "0ca2cf5948924cc794ade9d574d2a4be",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 14557,
+      "public_trade_messages": 298,
+      "first_raw_ms": 1792794604601,
+      "last_raw_ms": 1792797204341,
+      "first_raw_cst": "2026-10-24T06:30:04.601000+08:00",
+      "last_raw_cst": "2026-10-24T07:13:24.341000+08:00",
+      "recorded_span_s": 2599.74,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792797229271,
+      "health_tail": [
+        [
+          1792797229167,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792797204346,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792797203231,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    },
+    {
+      "market_id": "5792066",
+      "question": "Hawks vs. Hornets",
+      "session_id": "916c301d06554363b4d18c4d72cc863d",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 11106,
+      "public_trade_messages": 145,
+      "first_raw_ms": 1792794604656,
+      "last_raw_ms": 1792797244125,
+      "first_raw_cst": "2026-10-24T06:30:04.656000+08:00",
+      "last_raw_cst": "2026-10-24T07:14:04.125000+08:00",
+      "recorded_span_s": 2639.469,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792797279811,
+      "health_tail": [
+        [
+          1792797279727,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792797244137,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792797243716,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    },
+    {
+      "market_id": "5792069",
+      "question": "Mavericks vs. Pacers",
+      "session_id": "c54f02fff3174bd682ae7a655d5762d3",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 9610,
+      "public_trade_messages": 66,
+      "first_raw_ms": 1792794604645,
+      "last_raw_ms": 1792797245541,
+      "first_raw_cst": "2026-10-24T06:30:04.645000+08:00",
+      "last_raw_cst": "2026-10-24T07:14:05.541000+08:00",
+      "recorded_span_s": 2640.896,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792797338909,
+      "health_tail": [
+        [
+          1792797338758,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792797279917,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792797244849,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    },
+    {
+      "market_id": "5792072",
+      "question": "Timberwolves vs. Magic",
+      "session_id": "eaf88b03459d4636a0d2b810404e66ff",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 15180,
+      "public_trade_messages": 181,
+      "first_raw_ms": 1792794604653,
+      "last_raw_ms": 1792797102916,
+      "first_raw_cst": "2026-10-24T06:30:04.653000+08:00",
+      "last_raw_cst": "2026-10-24T07:11:42.916000+08:00",
+      "recorded_span_s": 2498.263,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792797112522,
+      "health_tail": [
+        [
+          1792797112464,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792797102929,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792797102686,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    },
+    {
+      "market_id": "5792075",
+      "question": "Raptors vs. Wizards",
+      "session_id": "c49a7dacfa474b38a458021757403de7",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 14434,
+      "public_trade_messages": 105,
+      "first_raw_ms": 1792794604604,
+      "last_raw_ms": 1792797173464,
+      "first_raw_cst": "2026-10-24T06:30:04.604000+08:00",
+      "last_raw_cst": "2026-10-24T07:12:53.464000+08:00",
+      "recorded_span_s": 2568.86,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792797183446,
+      "health_tail": [
+        [
+          1792797183353,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792797173466,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792797173063,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    },
+    {
+      "market_id": "5792078",
+      "question": "Pistons vs. Heat",
+      "session_id": "aaf4ddb77af345afa1b1534acb657379",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 16693,
+      "public_trade_messages": 171,
+      "first_raw_ms": 1792798201986,
+      "last_raw_ms": 1792800784568,
+      "first_raw_cst": "2026-10-24T07:30:01.986000+08:00",
+      "last_raw_cst": "2026-10-24T08:13:04.568000+08:00",
+      "recorded_span_s": 2582.582,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792800797173,
+      "health_tail": [
+        [
+          1792800797131,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792800784579,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792800783202,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    },
+    {
+      "market_id": "5792081",
+      "question": "Bulls vs. Bucks",
+      "session_id": "150828c8fa79471195be9ca5a1048b9f",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 19672,
+      "public_trade_messages": 172,
+      "first_raw_ms": 1792783802072,
+      "last_raw_ms": 1792786616482,
+      "first_raw_cst": "2026-10-24T03:30:02.072000+08:00",
+      "last_raw_cst": "2026-10-24T04:16:56.482000+08:00",
+      "recorded_span_s": 2814.41,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792786629123,
+      "health_tail": [
+        [
+          1792786629111,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792786616506,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792786616484,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    },
+    {
+      "market_id": "5797980",
+      "question": "Rockets vs. Spurs",
+      "session_id": "efdd036dfe9d40a7a5391ee66c68cd00",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 22429,
+      "public_trade_messages": 274,
+      "first_raw_ms": 1792803602764,
+      "last_raw_ms": 1792806574621,
+      "first_raw_cst": "2026-10-24T09:00:02.764000+08:00",
+      "last_raw_cst": "2026-10-24T09:49:34.621000+08:00",
+      "recorded_span_s": 2971.857,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792806585720,
+      "health_tail": [
+        [
+          1792806585651,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792806574622,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792806573257,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    },
+    {
+      "market_id": "5797983",
+      "question": "Pelicans vs. Jazz",
+      "session_id": "f5dce56d436a4a599c81b56496f18ee9",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 14282,
+      "public_trade_messages": 149,
+      "first_raw_ms": 1792803602760,
+      "last_raw_ms": 1792806272729,
+      "first_raw_cst": "2026-10-24T09:00:02.760000+08:00",
+      "last_raw_cst": "2026-10-24T09:44:32.729000+08:00",
+      "recorded_span_s": 2669.969,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792806286099,
+      "health_tail": [
+        [
+          1792806286047,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792806273204,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792806272235,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    },
+    {
+      "market_id": "5797986",
+      "question": "Grizzlies vs. Warriors",
+      "session_id": "b9971e784e2845858cafacc1711a1b2c",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 17355,
+      "public_trade_messages": 454,
+      "first_raw_ms": 1792805403785,
+      "last_raw_ms": 1792808080760,
+      "first_raw_cst": "2026-10-24T09:30:03.785000+08:00",
+      "last_raw_cst": "2026-10-24T10:14:40.760000+08:00",
+      "recorded_span_s": 2676.975,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792808151055,
+      "health_tail": [
+        [
+          1792808150931,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792808081142,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792808080019,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    },
+    {
+      "market_id": "5797989",
+      "question": "Clippers vs. Lakers",
+      "session_id": "1e1925adac26428c95ff7e40b3af3e6c",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 12871,
+      "public_trade_messages": 85,
+      "first_raw_ms": 1792805403620,
+      "last_raw_ms": 1792807900377,
+      "first_raw_cst": "2026-10-24T09:30:03.620000+08:00",
+      "last_raw_cst": "2026-10-24T10:11:40.377000+08:00",
+      "recorded_span_s": 2496.757,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792807911388,
+      "health_tail": [
+        [
+          1792807911325,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792807900413,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792807899444,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    },
+    {
+      "market_id": "5797992",
+      "question": "Trail Blazers vs. Kings",
+      "session_id": "f216915cfa474762812f2e8d60275440",
+      "status": "FAILED_NEEDS_REVIEW",
+      "raw_events": 9853,
+      "public_trade_messages": 74,
+      "first_raw_ms": 1792805403565,
+      "last_raw_ms": 1792807900164,
+      "first_raw_cst": "2026-10-24T09:30:03.565000+08:00",
+      "last_raw_cst": "2026-10-24T10:11:40.164000+08:00",
+      "recorded_span_s": 2496.599,
+      "original_failure": "AttributeError",
+      "stop_ms": 1792807943104,
+      "health_tail": [
+        [
+          1792807943020,
+          "stopped",
+          "bounded_paper_runner"
+        ],
+        [
+          1792807900606,
+          "disconnected",
+          "SERVICE_ERROR_AttributeError_NOT_COMPLETE"
+        ],
+        [
+          1792807899662,
+          "connected",
+          "REST_PUBLIC_SNAPSHOTS_NOT_WS_CONTINUITY"
+        ]
+      ],
+      "paper_orders": 0,
+      "paper_fills": 0,
+      "old_policy_missing_quote_profile": true,
+      "complete": false
+    }
+  ],
+  "total_raw_events": 178042,
+  "total_public_trade_messages": 2174,
+  "real_submission_calls": 0,
+  "missing_intervals_backfilled": false
+}

@@ -1,0 +1,18 @@
+{
+  "comparison.csv": "6abe80fd6aab863c638ebb69afabf59010261528a8920ca52c143750d64b7e1d",
+  "execution-audit.json": "d307759670d10ca88ac38731b8a91ffbf7cfba50ff55cac586ff6f263d6e64c5",
+  "fee-audit.json": "b9bcf61e5bdf781dba0d975c12a02e19cca98e842bb0f24de9a3a3fce0311947",
+  "model-totals.json": "bb07cfc02d93549e0b4a3873d0c6d37908d28d84e3622b8e6cfad635d6647d7d",
+  "oct22-posthoc-final-tests.txt": "41500f080919db2adc8caf7070c4baeb140f65b6102a9891619ebeda12f93956",
+  "oct22-posthoc-targeted-tests.txt": "f24470cce297ef21f9edd1be861dc3a60f51d5ed3a12f57ce5ba0dc08318f156",
+  "oct22-terminal-tests.txt": "a3c374542e3ccb5916fed8f61802784d73653251533142c6bee2262fd8107a1f",
+  "OCT22_POSTHOC_STUDY.md": "415983b6dc27a7e2838c6f2ac00d9803065c30852c9aab3fdced1c740ff8a686",
+  "original-accounts-after.json": "e63f14d5824661ff70dce537e22f471476b66996dd8644e70bad2de5807b0cf5",
+  "quote-placement-analysis.json": "b1e5bf2214b204300f44f7b94dac82524046e9debb42f4b8200750a38bb52b15",
+  "quote-time-coverage-L2.csv": "b2c2384f48782389831f73a2aba26618cb876b4ba1b159da649b32ccda4f995a",
+  "resolution-audit.json": "f6f559c9d9e944159ca43a4753892904733b10c176d2cb3f49a1a63e13bd351f",
+  "source-audit.json": "75bff9063e491b9b8b52084d63a6c9ce5e3602c69b59018fd19ba12f61c71d77",
+  "summary.json": "ffc0d1ff43c389dce6353b5a2edb02e06acd5d5f12480dc77811ae38ce4dee60",
+  "terminal-valuation.csv": "4aa9e05becef6be4e9830e180ba2a157fa9c1a501138acb995ca1250e68d276e",
+  "terminal-valuation.json": "1cfd71c968d2dfc17dff32e1f8603e99ec8b92eef84e91b0b7a8571369bedb85"
+}

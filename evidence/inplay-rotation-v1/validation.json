@@ -1,0 +1,591 @@
+{
+  "status": "PASS",
+  "sample_count": 21,
+  "lanes": 63,
+  "samples": [
+    {
+      "session_id": "00ca9b591df24b0bb81ed452cea4a58b",
+      "same_derived_input_sha256": "a52fe71fc2c186170ed60fb30ebfa6842061aa9f31ab6288f4e16aaf8fe7c329",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "07ac29b9a864454f95d72b5e042fa79b",
+      "same_derived_input_sha256": "c501f958eb0a1d2def587e7514bd10ca7d4a8ba27d41ba368c9cb062ee08511e",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "1853cb7575ab4711bb24745e8b3e5cf7",
+      "same_derived_input_sha256": "1bcef1c6e7449a13e65a8de8eda62103a77e4bc53d0ff34b4d0b4e466c6a3451",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "2537ddedc47c40e6bcf222cb9aba90b4",
+      "same_derived_input_sha256": "380bf0242393a6f1d13db4cf68fca35b43ce07638d3687935c61d43c732f4509",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "2b428cb03d6242db9889f2a0fc8f09c1",
+      "same_derived_input_sha256": "8a1199fd19390242051c5fb6dd1b6fe55fe10fc873ed80049bafe1bf7cfc9f35",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "31af7e6155734dd9b0aa690b0aba59f5",
+      "same_derived_input_sha256": "7ae820d8b384f1d7635413fa84c015128c5d11b44d87db544fb0f456b383dd0a",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "403cdc76a25740cdb721116a2edf2891",
+      "same_derived_input_sha256": "896d661ce9b9fade714ebfcfc0dbdfd32c00fa00cca9cdf98690649f0bf4b5fc",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "498d43355d2a44328de0dbba6d633837",
+      "same_derived_input_sha256": "828eaea63f301b5869f993c62d4d64b8d071a8feff78ba07d2a9fea44b06c485",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "5050f6d4b02b4e3cbccac4b8f5d552ea",
+      "same_derived_input_sha256": "29f9855aafd860bb7185c3630c31cc3973685075525c1f51bf76ee816542ccaf",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "5110d29dc85e4844b5b0634ac95f7b19",
+      "same_derived_input_sha256": "a8005d9ddca2c0601e5d4298a7b905257d45e55d5f690f835ac5b64197b9ebaf",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "54dbe7610c5d4df6b6c5e26788f4de78",
+      "same_derived_input_sha256": "d5f076c0b76583ad3e3f8ab67bfd3721fa4029bf0a31b7540830944a78c6e352",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "85f73b902f514b439d670643b42b116f",
+      "same_derived_input_sha256": "8f82301794d7a9041b081d1ce3d0ad4e5f3df528f45e8f58924810cd69783689",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "8fc9793f22e64aabbac64d64f1d48ab3",
+      "same_derived_input_sha256": "b5d2988f857e8e006f68112f3be08a3f99be2a1e0e2025bff71b610629e55c8b",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "9604866cbb934b208a30f36b9e006373",
+      "same_derived_input_sha256": "47b3a2183180d18e09ca6ccd5ed747d58d8c39e01109ee392771bae61e1c3e4c",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "a3f7df5039cc42c28c3814ca3f4352b0",
+      "same_derived_input_sha256": "1b006a6446bc19e10c9fada96c0d508d9d9a319688d8e2e06f81b41152987587",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "abfb9f232bc849528b379e06e8248966",
+      "same_derived_input_sha256": "6c365f793c8051ad53a9f297e4ab8e02439395c1aedf6f2bf85024c90c78e0e8",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "b40576e1fae04ca284c4863f9adceebf",
+      "same_derived_input_sha256": "9c914f554e66389fd1260ccda52a6bfeb3f7fd748522b3ec4f9332ef2e4328d6",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "e368a18ef1d3453f8a89b0bd74ec8ece",
+      "same_derived_input_sha256": "36f01168db5fca7b057fdb2d8365c60dc87ad52ba0367b247180e1133aa33280",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "e4c6f182913d427c8794fb531d6956c0",
+      "same_derived_input_sha256": "ab03e1b8b1a89fb673bbed7d887995ae88eadb79d14d3266d95f6aeb29cc445a",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "f1dc6d75c789474696db2d5c9cfd2eaa",
+      "same_derived_input_sha256": "9ab5efc907a42d22bf1b10fd7fc2f34051ba85543de8d5982f6c109f44848536",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    },
+    {
+      "session_id": "f7bb08b9bdf74034bbdd056317fcfb37",
+      "same_derived_input_sha256": "ac082ad6075590811a7fbc61cf580b5139ccf8df83708f1cdacf8fe1e7c46b0b",
+      "models": [
+        {
+          "model": "L0",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L1",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        },
+        {
+          "model": "L2",
+          "ledger_verified": true,
+          "submissions_after_halt": 0,
+          "fills_unique": true
+        }
+      ]
+    }
+  ],
+  "totals": [
+    {
+      "model": "L0",
+      "inplay_samples": 14,
+      "terminal_valued_samples": 14,
+      "capital_per_sample": "25",
+      "terminal_pnl": "-9.30",
+      "old_strategy_pnl_same_samples": "-12.940",
+      "fills": 130,
+      "buy_fills": 70,
+      "sell_fills": 60,
+      "cycle_closures_excluding_seed": 40,
+      "cycle_realized_gross_pnl": "-3.70",
+      "halted_samples": 0,
+      "paper_resting_time_fraction": "0.3627175815442218193219983895",
+      "max_net_directional_shares": "10"
+    },
+    {
+      "model": "L1",
+      "inplay_samples": 14,
+      "terminal_valued_samples": 14,
+      "capital_per_sample": "25",
+      "terminal_pnl": "-9.12333347",
+      "old_strategy_pnl_same_samples": "-6.1148",
+      "fills": 22,
+      "buy_fills": 5,
+      "sell_fills": 17,
+      "cycle_closures_excluding_seed": 1,
+      "cycle_realized_gross_pnl": "-0.40",
+      "halted_samples": 9,
+      "paper_resting_time_fraction": "0.1967087301703239936438527745",
+      "max_net_directional_shares": "10"
+    },
+    {
+      "model": "L2",
+      "inplay_samples": 14,
+      "terminal_valued_samples": 14,
+      "capital_per_sample": "25",
+      "terminal_pnl": "4.45",
+      "old_strategy_pnl_same_samples": "0.30",
+      "fills": 7,
+      "buy_fills": 0,
+      "sell_fills": 7,
+      "cycle_closures_excluding_seed": 0,
+      "cycle_realized_gross_pnl": "0",
+      "halted_samples": 4,
+      "paper_resting_time_fraction": "0.3173837225489504432831237425",
+      "max_net_directional_shares": "5"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "aa73dc567cf905f17306ddc9c2e869677186d103537f7419e87ae53a2d4c36dd",
+      "path": "console/7dcd2316a48f4bcc9dc69d9562900f0b.sqlite",
+      "source": "REAL_OBSERVED",
+      "period": "UNKNOWN",
+      "start_ms": 1792743960313,
+      "end_ms": 1792743961869,
+      "duration_s": 1.556,
+      "input_records": 2,
+      "bytes": 2486272,
+      "markets": [],
+      "research_phase": true,
+      "full_game_verified": false,
+      "limitations": [
+        "Input records include watchdog reuse, not unique market observations",
+        "Scheduled-tip comparison is not proof of actual game phase"
+      ],
+      "reason": "NO_USABLE_MARKET_FRAMES"
+    }
+  ],
+  "real_submission_calls": 0,
+  "network_attempts": 0,
+  "live_go": false,
+  "limitations": [
+    "Decision availability is event-weighted, not wall time",
+    "Risk halts retained; no automatic account reset",
+    "No statistical independence across games or fill models; no holdout evaluation",
+    "Net PnL under zero simulated costs and terminal outcome valuation; not actual redemption or profit"
+  ]
+}

@@ -1,0 +1,199 @@
+[
+  {
+    "market_id": "5676016",
+    "decoder": "ORIGINAL",
+    "model": "L2",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "0",
+    "order_filled_qty": "0",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {}
+  },
+  {
+    "market_id": "5676016",
+    "decoder": "REDECODED",
+    "model": "L0",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "230",
+    "order_filled_qty": "230",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {
+      "CANCELLED": 1591,
+      "FILLED": 46
+    }
+  },
+  {
+    "market_id": "5676016",
+    "decoder": "REDECODED",
+    "model": "L1",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "15",
+    "order_filled_qty": "15",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {
+      "CANCELLED": 568,
+      "FILLED": 2,
+      "RECONCILED": 1
+    }
+  },
+  {
+    "market_id": "5676016",
+    "decoder": "REDECODED",
+    "model": "L2",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "15",
+    "order_filled_qty": "15",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {
+      "CANCELLED": 934,
+      "FILLED": 2,
+      "RECONCILED": 1
+    }
+  },
+  {
+    "market_id": "5676021",
+    "decoder": "ORIGINAL",
+    "model": "L2",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "0",
+    "order_filled_qty": "0",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {}
+  },
+  {
+    "market_id": "5676021",
+    "decoder": "REDECODED",
+    "model": "L0",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "485",
+    "order_filled_qty": "485",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {
+      "CANCELLED": 1865,
+      "FILLED": 97
+    }
+  },
+  {
+    "market_id": "5676021",
+    "decoder": "REDECODED",
+    "model": "L1",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "5",
+    "order_filled_qty": "5",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {
+      "CANCELLED": 629,
+      "RECONCILED": 1
+    }
+  },
+  {
+    "market_id": "5676021",
+    "decoder": "REDECODED",
+    "model": "L2",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "5",
+    "order_filled_qty": "5",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {
+      "CANCELLED": 738,
+      "RECONCILED": 1
+    }
+  },
+  {
+    "market_id": "5680507",
+    "decoder": "ORIGINAL",
+    "model": "L2",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "0",
+    "order_filled_qty": "0",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {}
+  },
+  {
+    "market_id": "5680507",
+    "decoder": "REDECODED",
+    "model": "L0",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "85",
+    "order_filled_qty": "85",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {
+      "CANCELLED": 1200,
+      "FILLED": 17
+    }
+  },
+  {
+    "market_id": "5680507",
+    "decoder": "REDECODED",
+    "model": "L1",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "10",
+    "order_filled_qty": "10",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {
+      "CANCELLED": 50,
+      "FILLED": 1,
+      "RECONCILED": 1
+    }
+  },
+  {
+    "market_id": "5680507",
+    "decoder": "REDECODED",
+    "model": "L2",
+    "fill_events_match": true,
+    "fill_ids_unique": true,
+    "fill_qty": "0",
+    "order_filled_qty": "0",
+    "quantities_match": true,
+    "submissions_after_first_halt": 0,
+    "ledger_consistent": true,
+    "real_submission_calls": 0,
+    "order_states": {
+      "CANCELLED": 975
+    }
+  }
+]

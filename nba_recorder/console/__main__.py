@@ -66,6 +66,34 @@ def make_server(service, port=8765):
                 self.send(200, {"app": APP, "token": token, "real_trading_permission": False})
             elif path == "/api/state":
                 self.send(200, service.read())
+            elif path.startswith('/strategy-study/'):
+                import re
+                match=re.fullmatch(r'/strategy-study/([a-z0-9-]{1,80})/(.*)',path)
+                try:
+                    if not match:raise ValueError('study path')
+                    name=match[2] or 'index.html'
+                    if name not in {'index.html','manifest.json','summary.json','comparison.csv','audit.json','policy.json','validation.json','metrics.csv'} and not re.fullmatch(r'[0-9a-f]{32}/L[012]/(?:result|orders|fills|fill-markouts|quote-markouts|closures)\.json',name):raise ValueError('study file')
+                    base=(service.root/'data/strategy-studies').resolve()
+                    file=base/match[1]/name
+                    if base not in file.resolve().parents or any(p.is_symlink() for p in [file,*file.parents] if p!=base):raise ValueError('study boundary')
+                    mime='text/html; charset=utf-8' if name.endswith('.html') else 'text/csv; charset=utf-8' if name.endswith('.csv') else 'application/json; charset=utf-8'
+                    self.send(200,file.read_bytes(),mime)
+                except (ValueError,OSError):self.send(404,{'error':'独立策略回放尚未生成'})
+            elif path.startswith('/day-study/'):
+                import re
+                match=re.fullmatch(r'/day-study/(\d{4}-\d{2}-\d{2})/(.*)',path)
+                try:
+                    if not match:raise ValueError('study reference')
+                    from ..unattended import bounds
+                    bounds(match[1]);name=match[2] or 'index.html'
+                    if name not in {'index.html','summary.json','comparison.csv','terminal-valuation.json','terminal-valuation.csv'} and not re.fullmatch(r'\d+/(?:(?:price-trades|depth-heatmap|liquidity-activity)\.png|(?:ORIGINAL-L2|REDECODED-L[012])/(?:result|orders|fills)\.json)',name):raise ValueError('study file')
+                    file=service.root/'data/day-studies'/match[1]/name
+                    if file.is_symlink():raise ValueError('study symlink')
+                    mime='image/png' if name.endswith('.png') else 'text/html; charset=utf-8' if name.endswith('.html') else 'text/csv; charset=utf-8' if name.endswith('.csv') else 'application/json; charset=utf-8'
+                    self.send(200,file.read_bytes(),mime)
+                except (ValueError,OSError):self.send(404,{'error':'研究图表或回放尚未生成'})
+            elif path=='/day-study.css':
+                self.send(200,(STATIC/'day-study.css').read_bytes(),'text/css; charset=utf-8')
             elif path in {'/api/postcapture','/api/postcapture-download'}:
                 from urllib.parse import urlparse,parse_qs
                 import re

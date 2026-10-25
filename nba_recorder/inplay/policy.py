@@ -34,9 +34,24 @@ class BookPolicy(ExecutionPolicy):
     research_phase: bool = False
     research_phase_age_ms: int = 120000
     max_order_lifetime_ms: int = 60000
+    quote_profile: str = "LEGACY"
+    rotation_lookback_ms: int = 5000
+    rotation_cooldown_ms: int = 5000
+    rotation_jump: str = ".03"
+    rotation_max_distance: str = ".05"
+    rotation_retain_ticks: int = 1
 
     def __post_init__(self):
         super().__post_init__()
+        from ..fair_value.maths import decimal
+        if self.quote_profile not in {'LEGACY', 'INPLAY_ROTATION_V1'}:
+            raise ValueError('unknown quote profile')
+        if self.quote_profile != 'LEGACY' and not self.research_phase:
+            raise ValueError('rotation is restricted to explicit Paper research')
+        if not 1000 <= self.rotation_lookback_ms <= 60000 or not 1000 <= self.rotation_cooldown_ms <= 60000 or not 0 <= self.rotation_retain_ticks <= 3:
+            raise ValueError('invalid rotation time/grid parameters')
+        if not decimal('0') < decimal(self.rotation_jump) <= decimal('.2') or (self.quote_profile != 'LEGACY' and not decimal(self.quote_distance) <= decimal(self.rotation_max_distance) < decimal('.5')):
+            raise ValueError('invalid rotation distances')
         if self.strategy_mode != "BOOK_DRIVEN" or self.initial_inventory != "0":
             raise ValueError("BookPolicy requires explicit BOOK_DRIVEN and cash-only initialization")
         if not 0 < self.close_remaining_s < self.reduce_remaining_s < 720 or self.sync_observations < 2:

@@ -1,0 +1,84 @@
+{
+  "day": "2026-10-24",
+  "mode": "RECORD_ONLY",
+  "recording_window": {
+    "pregame_s": 1800,
+    "postgame_s": 1800,
+    "record_only": true
+  },
+  "discovery_status": "MARKET_FOUND",
+  "games": [
+    {
+      "question": "Knicks vs. Celtics",
+      "market_id": "5792063",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792794600000
+    },
+    {
+      "question": "Hawks vs. Hornets",
+      "market_id": "5792066",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792794600000
+    },
+    {
+      "question": "Mavericks vs. Pacers",
+      "market_id": "5792069",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792794600000
+    },
+    {
+      "question": "Timberwolves vs. Magic",
+      "market_id": "5792072",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792794600000
+    },
+    {
+      "question": "Raptors vs. Wizards",
+      "market_id": "5792075",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792794600000
+    },
+    {
+      "question": "Pistons vs. Heat",
+      "market_id": "5792078",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792798200000
+    },
+    {
+      "question": "Bulls vs. Bucks",
+      "market_id": "5792081",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792783800000
+    },
+    {
+      "question": "Rockets vs. Spurs",
+      "market_id": "5797980",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792803600000
+    },
+    {
+      "question": "Pelicans vs. Jazz",
+      "market_id": "5797983",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792803600000
+    },
+    {
+      "question": "Grizzlies vs. Warriors",
+      "market_id": "5797986",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792805400000
+    },
+    {
+      "question": "Clippers vs. Lakers",
+      "market_id": "5797989",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792805400000
+    },
+    {
+      "question": "Trail Blazers vs. Kings",
+      "market_id": "5797992",
+      "status": "SCHEDULED",
+      "planned_start_ms": 1792805400000
+    }
+  ]
+}

@@ -10,6 +10,9 @@ def normalize(name):
 
 ALIASES = {normalize(alias): code for code, full in NAMES.items() for alias in (code, full, full.split()[-1])}
 ALIASES.update({"trail blazers": "por", "la clippers": "lac", "la lakers": "lal"})
+# Exact abbreviations observed on Polymarket's NBA sports stream, with game ID
+# and home/away role verification still required by the sports decoder.
+ALIASES.update({"ny": "nyk", "sa": "sas", "gs": "gsw", "no": "nop", "pho": "phx"})
 
 
 def team_code(name):

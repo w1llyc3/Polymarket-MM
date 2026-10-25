@@ -1,0 +1,2687 @@
+{
+  "basis": "Created order intents; temporal coverage uses union of accepted Paper authority lifetimes across both assets, not two-sided quoting and not real execution",
+  "games": [
+    {
+      "market_id": "5716392",
+      "question": "Timberwolves vs. Heat",
+      "model": "L0",
+      "orders": 1085,
+      "first_order": "07:43:29",
+      "last_order": "09:56:23",
+      "observed_live": "07:43:29",
+      "observed_closed": "10:19:42",
+      "scheduled_tip": "07:30:00",
+      "side_counts": {
+        "BUY": 862,
+        "SELL": 223
+      },
+      "period_counts": {
+        "1": 276,
+        "2": 410,
+        "3": 344,
+        "4": 55
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 303,
+        "50-60": 201,
+        "30-40": 95,
+        "60-70": 51,
+        "20-30": 115,
+        "70-80": 80,
+        "80-90": 48,
+        "10-20": 109,
+        "0-10": 21,
+        "90-100": 62
+      },
+      "actual_paper_resting_union_minutes": 64.82,
+      "observed_live_minutes": 156.22,
+      "at_least_one_paper_order_pct_of_observed_live": 41.49,
+      "first_kill": {
+        "time": "10:36:41",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 17.0,
+        "p50": 47.0,
+        "p90": 80.0
+      },
+      "mid_distance_cents": {
+        "p10": 1.5,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:43:29",
+          "side": "BUY",
+          "price": "0.44",
+          "bid": "0.46",
+          "ask": "0.47",
+          "mid": "0.46499999999999997",
+          "visible_ahead_shares": 73649.47,
+          "team": "Timberwolves"
+        },
+        {
+          "time": "07:43:29",
+          "side": "BUY",
+          "price": "0.51",
+          "bid": "0.53",
+          "ask": "0.54",
+          "mid": "0.535",
+          "visible_ahead_shares": 60872.51,
+          "team": "Heat"
+        }
+      ]
+    },
+    {
+      "market_id": "5716392",
+      "question": "Timberwolves vs. Heat",
+      "model": "L1",
+      "orders": 374,
+      "first_order": "07:43:29",
+      "last_order": "08:33:36",
+      "observed_live": "07:43:29",
+      "observed_closed": "10:19:42",
+      "scheduled_tip": "07:30:00",
+      "side_counts": {
+        "BUY": 374
+      },
+      "period_counts": {
+        "1": 223,
+        "2": 151
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 197,
+        "50-60": 131,
+        "30-40": 40,
+        "60-70": 6
+      },
+      "actual_paper_resting_union_minutes": 35.84,
+      "observed_live_minutes": 156.22,
+      "at_least_one_paper_order_pct_of_observed_live": 22.94,
+      "first_kill": {
+        "time": "08:33:41",
+        "reason": "late_terminal_fill_correction"
+      },
+      "price_cents": {
+        "p10": 39.0,
+        "p50": 48.0,
+        "p90": 56.0
+      },
+      "mid_distance_cents": {
+        "p10": 2.5,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 2.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:43:29",
+          "side": "BUY",
+          "price": "0.44",
+          "bid": "0.46",
+          "ask": "0.47",
+          "mid": "0.46499999999999997",
+          "visible_ahead_shares": 73649.47,
+          "team": "Timberwolves"
+        },
+        {
+          "time": "07:43:29",
+          "side": "BUY",
+          "price": "0.51",
+          "bid": "0.53",
+          "ask": "0.54",
+          "mid": "0.535",
+          "visible_ahead_shares": 60872.51,
+          "team": "Heat"
+        }
+      ]
+    },
+    {
+      "market_id": "5716392",
+      "question": "Timberwolves vs. Heat",
+      "model": "L2",
+      "orders": 789,
+      "first_order": "07:43:29",
+      "last_order": "09:56:23",
+      "observed_live": "07:43:29",
+      "observed_closed": "10:19:42",
+      "scheduled_tip": "07:30:00",
+      "side_counts": {
+        "BUY": 789
+      },
+      "period_counts": {
+        "1": 223,
+        "2": 270,
+        "3": 241,
+        "4": 55
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 212,
+        "50-60": 158,
+        "30-40": 70,
+        "60-70": 32,
+        "20-30": 47,
+        "70-80": 62,
+        "10-20": 82,
+        "80-90": 46,
+        "0-10": 18,
+        "90-100": 62
+      },
+      "actual_paper_resting_union_minutes": 67.15,
+      "observed_live_minutes": 156.22,
+      "at_least_one_paper_order_pct_of_observed_live": 42.99,
+      "first_kill": {
+        "time": "10:36:41",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 17.0,
+        "p50": 48.0,
+        "p90": 84.0
+      },
+      "mid_distance_cents": {
+        "p10": 2.05,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.96,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:43:29",
+          "side": "BUY",
+          "price": "0.44",
+          "bid": "0.46",
+          "ask": "0.47",
+          "mid": "0.46499999999999997",
+          "visible_ahead_shares": 73649.47,
+          "team": "Timberwolves"
+        },
+        {
+          "time": "07:43:29",
+          "side": "BUY",
+          "price": "0.51",
+          "bid": "0.53",
+          "ask": "0.54",
+          "mid": "0.535",
+          "visible_ahead_shares": 60872.51,
+          "team": "Heat"
+        }
+      ]
+    },
+    {
+      "market_id": "5716400",
+      "question": "Hawks vs. Magic",
+      "model": "L0",
+      "orders": 2423,
+      "first_order": "07:14:32",
+      "last_order": "09:54:57",
+      "observed_live": "07:14:32",
+      "observed_closed": "09:55:36",
+      "scheduled_tip": "07:00:00",
+      "side_counts": {
+        "BUY": 1560,
+        "SELL": 863
+      },
+      "period_counts": {
+        "1": 214,
+        "2": 540,
+        "3": 1135,
+        "4": 534
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 450,
+        "50-60": 463,
+        "30-40": 503,
+        "60-70": 338,
+        "20-30": 354,
+        "70-80": 156,
+        "80-90": 13,
+        "10-20": 32,
+        "90-100": 75,
+        "0-10": 39
+      },
+      "actual_paper_resting_union_minutes": 83.37,
+      "observed_live_minutes": 161.07,
+      "at_least_one_paper_order_pct_of_observed_live": 51.76,
+      "first_kill": {
+        "time": "10:13:04",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 26.0,
+        "p50": 47.0,
+        "p90": 70.0
+      },
+      "mid_distance_cents": {
+        "p10": 1.5,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:14:32",
+          "side": "BUY",
+          "price": "0.43",
+          "bid": "0.45",
+          "ask": "0.46",
+          "mid": "0.455",
+          "visible_ahead_shares": 8683.62,
+          "team": "Hawks"
+        },
+        {
+          "time": "07:14:32",
+          "side": "BUY",
+          "price": "0.52",
+          "bid": "0.54",
+          "ask": "0.55",
+          "mid": "0.545",
+          "visible_ahead_shares": 5371.5,
+          "team": "Magic"
+        }
+      ]
+    },
+    {
+      "market_id": "5716400",
+      "question": "Hawks vs. Magic",
+      "model": "L1",
+      "orders": 243,
+      "first_order": "07:14:32",
+      "last_order": "07:51:26",
+      "observed_live": "07:14:32",
+      "observed_closed": "09:55:36",
+      "scheduled_tip": "07:00:00",
+      "side_counts": {
+        "BUY": 243
+      },
+      "period_counts": {
+        "1": 214,
+        "2": 29
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 46,
+        "50-60": 67,
+        "30-40": 63,
+        "60-70": 51,
+        "20-30": 13,
+        "70-80": 3
+      },
+      "actual_paper_resting_union_minutes": 29.91,
+      "observed_live_minutes": 161.07,
+      "at_least_one_paper_order_pct_of_observed_live": 18.57,
+      "first_kill": {
+        "time": "07:51:26",
+        "reason": "late_terminal_fill_correction"
+      },
+      "price_cents": {
+        "p10": 31.0,
+        "p50": 49.0,
+        "p90": 64.0
+      },
+      "mid_distance_cents": {
+        "p10": 2.5,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 2.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:14:32",
+          "side": "BUY",
+          "price": "0.43",
+          "bid": "0.45",
+          "ask": "0.46",
+          "mid": "0.455",
+          "visible_ahead_shares": 8683.62,
+          "team": "Hawks"
+        },
+        {
+          "time": "07:14:32",
+          "side": "BUY",
+          "price": "0.52",
+          "bid": "0.54",
+          "ask": "0.55",
+          "mid": "0.545",
+          "visible_ahead_shares": 5371.5,
+          "team": "Magic"
+        }
+      ]
+    },
+    {
+      "market_id": "5716400",
+      "question": "Hawks vs. Magic",
+      "model": "L2",
+      "orders": 1061,
+      "first_order": "07:14:32",
+      "last_order": "09:54:57",
+      "observed_live": "07:14:32",
+      "observed_closed": "09:55:36",
+      "scheduled_tip": "07:00:00",
+      "side_counts": {
+        "BUY": 1061
+      },
+      "period_counts": {
+        "1": 214,
+        "2": 311,
+        "3": 307,
+        "4": 229
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 236,
+        "50-60": 193,
+        "30-40": 188,
+        "60-70": 188,
+        "20-30": 121,
+        "70-80": 57,
+        "10-20": 9,
+        "90-100": 47,
+        "0-10": 22
+      },
+      "actual_paper_resting_union_minutes": 95.67,
+      "observed_live_minutes": 161.07,
+      "at_least_one_paper_order_pct_of_observed_live": 59.4,
+      "first_kill": {
+        "time": "10:13:04",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 27.0,
+        "p50": 48.0,
+        "p90": 69.0
+      },
+      "mid_distance_cents": {
+        "p10": 2.05,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.7,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:14:32",
+          "side": "BUY",
+          "price": "0.43",
+          "bid": "0.45",
+          "ask": "0.46",
+          "mid": "0.455",
+          "visible_ahead_shares": 8683.62,
+          "team": "Hawks"
+        },
+        {
+          "time": "07:14:32",
+          "side": "BUY",
+          "price": "0.52",
+          "bid": "0.54",
+          "ask": "0.55",
+          "mid": "0.545",
+          "visible_ahead_shares": 5371.5,
+          "team": "Magic"
+        }
+      ]
+    },
+    {
+      "market_id": "5716421",
+      "question": "Bucks vs. Wizards",
+      "model": "L0",
+      "orders": 1746,
+      "first_order": "07:16:02",
+      "last_order": "09:37:49",
+      "observed_live": "07:16:02",
+      "observed_closed": "09:43:33",
+      "scheduled_tip": "07:00:00",
+      "side_counts": {
+        "BUY": 1276,
+        "SELL": 470
+      },
+      "period_counts": {
+        "1": 236,
+        "2": 347,
+        "3": 617,
+        "4": 546
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 384,
+        "50-60": 386,
+        "30-40": 340,
+        "60-70": 204,
+        "20-30": 17,
+        "70-80": 63,
+        "80-90": 182,
+        "10-20": 64,
+        "90-100": 79,
+        "0-10": 27
+      },
+      "actual_paper_resting_union_minutes": 79.91,
+      "observed_live_minutes": 147.52,
+      "at_least_one_paper_order_pct_of_observed_live": 54.17,
+      "first_kill": {
+        "time": "10:01:20",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 33.0,
+        "p50": 51.0,
+        "p90": 84.0
+      },
+      "mid_distance_cents": {
+        "p10": 1.5,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:16:02",
+          "side": "BUY",
+          "price": "0.40",
+          "bid": "0.42",
+          "ask": "0.43",
+          "mid": "0.425",
+          "visible_ahead_shares": 10083.28,
+          "team": "Bucks"
+        },
+        {
+          "time": "07:16:02",
+          "side": "BUY",
+          "price": "0.55",
+          "bid": "0.57",
+          "ask": "0.58",
+          "mid": "0.575",
+          "visible_ahead_shares": 9775.32,
+          "team": "Wizards"
+        }
+      ]
+    },
+    {
+      "market_id": "5716421",
+      "question": "Bucks vs. Wizards",
+      "model": "L1",
+      "orders": 135,
+      "first_order": "07:16:02",
+      "last_order": "07:28:45",
+      "observed_live": "07:16:02",
+      "observed_closed": "09:43:33",
+      "scheduled_tip": "07:00:00",
+      "side_counts": {
+        "BUY": 125,
+        "SELL": 10
+      },
+      "period_counts": {
+        "1": 135
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 39,
+        "50-60": 57,
+        "30-40": 30,
+        "60-70": 8,
+        "20-30": 1
+      },
+      "actual_paper_resting_union_minutes": 10.78,
+      "observed_live_minutes": 147.52,
+      "at_least_one_paper_order_pct_of_observed_live": 7.3,
+      "first_kill": {
+        "time": "07:28:45",
+        "reason": "late_terminal_fill_correction"
+      },
+      "price_cents": {
+        "p10": 36.0,
+        "p50": 45.0,
+        "p90": 56.6
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:16:02",
+          "side": "BUY",
+          "price": "0.40",
+          "bid": "0.42",
+          "ask": "0.43",
+          "mid": "0.425",
+          "visible_ahead_shares": 10083.28,
+          "team": "Bucks"
+        },
+        {
+          "time": "07:16:02",
+          "side": "BUY",
+          "price": "0.55",
+          "bid": "0.57",
+          "ask": "0.58",
+          "mid": "0.575",
+          "visible_ahead_shares": 9775.32,
+          "team": "Wizards"
+        }
+      ]
+    },
+    {
+      "market_id": "5716421",
+      "question": "Bucks vs. Wizards",
+      "model": "L2",
+      "orders": 1005,
+      "first_order": "07:16:02",
+      "last_order": "09:37:50",
+      "observed_live": "07:16:02",
+      "observed_closed": "09:43:33",
+      "scheduled_tip": "07:00:00",
+      "side_counts": {
+        "BUY": 1005
+      },
+      "period_counts": {
+        "1": 230,
+        "2": 261,
+        "3": 357,
+        "4": 157
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 241,
+        "50-60": 268,
+        "30-40": 241,
+        "60-70": 130,
+        "20-30": 8,
+        "70-80": 16,
+        "10-20": 34,
+        "80-90": 34,
+        "90-100": 26,
+        "0-10": 7
+      },
+      "actual_paper_resting_union_minutes": 86.74,
+      "observed_live_minutes": 147.52,
+      "at_least_one_paper_order_pct_of_observed_live": 58.8,
+      "first_kill": {
+        "time": "10:01:20",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 33.0,
+        "p50": 48.0,
+        "p90": 64.0
+      },
+      "mid_distance_cents": {
+        "p10": 2.5,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 2.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:16:02",
+          "side": "BUY",
+          "price": "0.40",
+          "bid": "0.42",
+          "ask": "0.43",
+          "mid": "0.425",
+          "visible_ahead_shares": 10083.28,
+          "team": "Bucks"
+        },
+        {
+          "time": "07:16:02",
+          "side": "BUY",
+          "price": "0.55",
+          "bid": "0.57",
+          "ask": "0.58",
+          "mid": "0.575",
+          "visible_ahead_shares": 9775.32,
+          "team": "Wizards"
+        }
+      ]
+    },
+    {
+      "market_id": "5716444",
+      "question": "Hornets vs. Nets",
+      "model": "L0",
+      "orders": 1245,
+      "first_order": "07:44:55",
+      "last_order": "10:13:30",
+      "observed_live": "07:44:55",
+      "observed_closed": "10:16:41",
+      "scheduled_tip": "07:30:00",
+      "side_counts": {
+        "BUY": 1000,
+        "SELL": 245
+      },
+      "period_counts": {
+        "1": 189,
+        "2": 255,
+        "3": 275,
+        "4": 526
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 154,
+        "50-60": 174,
+        "30-40": 165,
+        "60-70": 93,
+        "20-30": 103,
+        "70-80": 79,
+        "10-20": 120,
+        "80-90": 78,
+        "0-10": 185,
+        "90-100": 94
+      },
+      "actual_paper_resting_union_minutes": 81.01,
+      "observed_live_minutes": 151.77,
+      "at_least_one_paper_order_pct_of_observed_live": 53.38,
+      "first_kill": {
+        "time": "10:33:34",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 6.0,
+        "p50": 42.0,
+        "p90": 86.6
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:44:55",
+          "side": "BUY",
+          "price": "0.48",
+          "bid": "0.5",
+          "ask": "0.51",
+          "mid": "0.505",
+          "visible_ahead_shares": 18937.36,
+          "team": "Hornets"
+        },
+        {
+          "time": "07:44:55",
+          "side": "BUY",
+          "price": "0.47",
+          "bid": "0.49",
+          "ask": "0.5",
+          "mid": "0.495",
+          "visible_ahead_shares": 36472.04,
+          "team": "Nets"
+        }
+      ]
+    },
+    {
+      "market_id": "5716444",
+      "question": "Hornets vs. Nets",
+      "model": "L1",
+      "orders": 517,
+      "first_order": "07:44:55",
+      "last_order": "09:20:16",
+      "observed_live": "07:44:55",
+      "observed_closed": "10:16:41",
+      "scheduled_tip": "07:30:00",
+      "side_counts": {
+        "BUY": 517
+      },
+      "period_counts": {
+        "1": 189,
+        "2": 238,
+        "3": 90
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 106,
+        "50-60": 148,
+        "30-40": 136,
+        "60-70": 90,
+        "20-30": 26,
+        "70-80": 10,
+        "10-20": 1
+      },
+      "actual_paper_resting_union_minutes": 55.94,
+      "observed_live_minutes": 151.77,
+      "at_least_one_paper_order_pct_of_observed_live": 36.86,
+      "first_kill": {
+        "time": "09:20:17",
+        "reason": "late_terminal_fill_correction"
+      },
+      "price_cents": {
+        "p10": 32.6,
+        "p50": 49.0,
+        "p90": 62.4
+      },
+      "mid_distance_cents": {
+        "p10": 2.5,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 2.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:44:55",
+          "side": "BUY",
+          "price": "0.48",
+          "bid": "0.5",
+          "ask": "0.51",
+          "mid": "0.505",
+          "visible_ahead_shares": 18937.36,
+          "team": "Hornets"
+        },
+        {
+          "time": "07:44:55",
+          "side": "BUY",
+          "price": "0.47",
+          "bid": "0.49",
+          "ask": "0.5",
+          "mid": "0.495",
+          "visible_ahead_shares": 36472.04,
+          "team": "Nets"
+        }
+      ]
+    },
+    {
+      "market_id": "5716444",
+      "question": "Hornets vs. Nets",
+      "model": "L2",
+      "orders": 681,
+      "first_order": "07:44:55",
+      "last_order": "09:46:01",
+      "observed_live": "07:44:55",
+      "observed_closed": "10:16:41",
+      "scheduled_tip": "07:30:00",
+      "side_counts": {
+        "BUY": 659,
+        "SELL": 22
+      },
+      "period_counts": {
+        "1": 189,
+        "2": 238,
+        "3": 239,
+        "4": 15
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 132,
+        "50-60": 173,
+        "30-40": 153,
+        "60-70": 91,
+        "20-30": 78,
+        "70-80": 41,
+        "10-20": 12,
+        "80-90": 1
+      },
+      "actual_paper_resting_union_minutes": 66.28,
+      "observed_live_minutes": 151.77,
+      "at_least_one_paper_order_pct_of_observed_live": 43.67,
+      "first_kill": {
+        "time": "09:46:07",
+        "reason": "late_terminal_fill_correction"
+      },
+      "price_cents": {
+        "p10": 26.0,
+        "p50": 46.0,
+        "p90": 64.0
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:44:55",
+          "side": "BUY",
+          "price": "0.48",
+          "bid": "0.5",
+          "ask": "0.51",
+          "mid": "0.505",
+          "visible_ahead_shares": 18937.36,
+          "team": "Hornets"
+        },
+        {
+          "time": "07:44:55",
+          "side": "BUY",
+          "price": "0.47",
+          "bid": "0.49",
+          "ask": "0.5",
+          "mid": "0.495",
+          "visible_ahead_shares": 36472.04,
+          "team": "Nets"
+        }
+      ]
+    },
+    {
+      "market_id": "5716452",
+      "question": "Bulls vs. Raptors",
+      "model": "L0",
+      "orders": 593,
+      "first_order": "07:45:40",
+      "last_order": "09:42:39",
+      "observed_live": "07:45:40",
+      "observed_closed": "10:28:30",
+      "scheduled_tip": "07:30:00",
+      "side_counts": {
+        "BUY": 593
+      },
+      "period_counts": {
+        "1": 163,
+        "2": 319,
+        "3": 111
+      },
+      "absolute_price_bins_cents": {
+        "10-20": 47,
+        "70-80": 4,
+        "80-90": 53,
+        "0-10": 188,
+        "90-100": 301
+      },
+      "actual_paper_resting_union_minutes": 69.19,
+      "observed_live_minutes": 162.83,
+      "at_least_one_paper_order_pct_of_observed_live": 42.49,
+      "first_kill": {
+        "time": "10:43:04",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 1.2,
+        "p50": 92.0,
+        "p90": 97.6
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.05,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.7,
+        "p50": 1.9,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:45:40",
+          "side": "BUY",
+          "price": "0.17",
+          "bid": "0.19",
+          "ask": "0.2",
+          "mid": "0.195",
+          "visible_ahead_shares": 27620.559999999998,
+          "team": "Bulls"
+        },
+        {
+          "time": "07:45:40",
+          "side": "BUY",
+          "price": "0.78",
+          "bid": "0.8",
+          "ask": "0.81",
+          "mid": "0.805",
+          "visible_ahead_shares": 46636.04,
+          "team": "Raptors"
+        }
+      ]
+    },
+    {
+      "market_id": "5716452",
+      "question": "Bulls vs. Raptors",
+      "model": "L1",
+      "orders": 593,
+      "first_order": "07:45:40",
+      "last_order": "09:42:39",
+      "observed_live": "07:45:40",
+      "observed_closed": "10:28:30",
+      "scheduled_tip": "07:30:00",
+      "side_counts": {
+        "BUY": 593
+      },
+      "period_counts": {
+        "1": 163,
+        "2": 319,
+        "3": 111
+      },
+      "absolute_price_bins_cents": {
+        "10-20": 47,
+        "70-80": 4,
+        "80-90": 53,
+        "0-10": 188,
+        "90-100": 301
+      },
+      "actual_paper_resting_union_minutes": 69.19,
+      "observed_live_minutes": 162.83,
+      "at_least_one_paper_order_pct_of_observed_live": 42.49,
+      "first_kill": {
+        "time": "10:43:04",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 1.2,
+        "p50": 92.0,
+        "p90": 97.6
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.05,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.7,
+        "p50": 1.9,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:45:40",
+          "side": "BUY",
+          "price": "0.17",
+          "bid": "0.19",
+          "ask": "0.2",
+          "mid": "0.195",
+          "visible_ahead_shares": 27620.559999999998,
+          "team": "Bulls"
+        },
+        {
+          "time": "07:45:40",
+          "side": "BUY",
+          "price": "0.78",
+          "bid": "0.8",
+          "ask": "0.81",
+          "mid": "0.805",
+          "visible_ahead_shares": 46636.04,
+          "team": "Raptors"
+        }
+      ]
+    },
+    {
+      "market_id": "5716452",
+      "question": "Bulls vs. Raptors",
+      "model": "L2",
+      "orders": 593,
+      "first_order": "07:45:40",
+      "last_order": "09:42:39",
+      "observed_live": "07:45:40",
+      "observed_closed": "10:28:30",
+      "scheduled_tip": "07:30:00",
+      "side_counts": {
+        "BUY": 593
+      },
+      "period_counts": {
+        "1": 163,
+        "2": 319,
+        "3": 111
+      },
+      "absolute_price_bins_cents": {
+        "10-20": 47,
+        "70-80": 4,
+        "80-90": 53,
+        "0-10": 188,
+        "90-100": 301
+      },
+      "actual_paper_resting_union_minutes": 69.19,
+      "observed_live_minutes": 162.83,
+      "at_least_one_paper_order_pct_of_observed_live": 42.49,
+      "first_kill": {
+        "time": "10:43:04",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 1.2,
+        "p50": 92.0,
+        "p90": 97.6
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.05,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.7,
+        "p50": 1.9,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "07:45:40",
+          "side": "BUY",
+          "price": "0.17",
+          "bid": "0.19",
+          "ask": "0.2",
+          "mid": "0.195",
+          "visible_ahead_shares": 27620.559999999998,
+          "team": "Bulls"
+        },
+        {
+          "time": "07:45:40",
+          "side": "BUY",
+          "price": "0.78",
+          "bid": "0.8",
+          "ask": "0.81",
+          "mid": "0.805",
+          "visible_ahead_shares": 46636.04,
+          "team": "Raptors"
+        }
+      ]
+    },
+    {
+      "market_id": "5716460",
+      "question": "Jazz vs. Grizzlies",
+      "model": "L0",
+      "orders": 962,
+      "first_order": "08:15:07",
+      "last_order": "10:33:17",
+      "observed_live": "08:15:07",
+      "observed_closed": "10:37:44",
+      "scheduled_tip": "08:00:00",
+      "side_counts": {
+        "BUY": 894,
+        "SELL": 68
+      },
+      "period_counts": {
+        "1": 256,
+        "2": 331,
+        "3": 233,
+        "4": 142
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 177,
+        "50-60": 118,
+        "30-40": 84,
+        "60-70": 65,
+        "20-30": 60,
+        "70-80": 63,
+        "10-20": 20,
+        "80-90": 33,
+        "0-10": 136,
+        "90-100": 206
+      },
+      "actual_paper_resting_union_minutes": 67.85,
+      "observed_live_minutes": 142.61,
+      "at_least_one_paper_order_pct_of_observed_live": 47.58,
+      "first_kill": {
+        "time": "10:54:04",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 2.0,
+        "p50": 50.5,
+        "p90": 95.6
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "08:15:07",
+          "side": "BUY",
+          "price": "0.42",
+          "bid": "0.44",
+          "ask": "0.45",
+          "mid": "0.445",
+          "visible_ahead_shares": 42512.99,
+          "team": "Jazz"
+        },
+        {
+          "time": "08:15:07",
+          "side": "BUY",
+          "price": "0.53",
+          "bid": "0.55",
+          "ask": "0.56",
+          "mid": "0.555",
+          "visible_ahead_shares": 8996.87,
+          "team": "Grizzlies"
+        }
+      ]
+    },
+    {
+      "market_id": "5716460",
+      "question": "Jazz vs. Grizzlies",
+      "model": "L1",
+      "orders": 876,
+      "first_order": "08:15:07",
+      "last_order": "10:33:17",
+      "observed_live": "08:15:07",
+      "observed_closed": "10:37:44",
+      "scheduled_tip": "08:00:00",
+      "side_counts": {
+        "BUY": 876
+      },
+      "period_counts": {
+        "1": 236,
+        "2": 265,
+        "3": 233,
+        "4": 142
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 152,
+        "50-60": 110,
+        "30-40": 61,
+        "60-70": 40,
+        "20-30": 60,
+        "70-80": 58,
+        "10-20": 20,
+        "80-90": 33,
+        "0-10": 136,
+        "90-100": 206
+      },
+      "actual_paper_resting_union_minutes": 68.41,
+      "observed_live_minutes": 142.61,
+      "at_least_one_paper_order_pct_of_observed_live": 47.97,
+      "first_kill": {
+        "time": "10:54:04",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 1.85,
+        "p50": 51.0,
+        "p90": 95.6
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.4,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "08:15:07",
+          "side": "BUY",
+          "price": "0.42",
+          "bid": "0.44",
+          "ask": "0.45",
+          "mid": "0.445",
+          "visible_ahead_shares": 42512.99,
+          "team": "Jazz"
+        },
+        {
+          "time": "08:15:07",
+          "side": "BUY",
+          "price": "0.53",
+          "bid": "0.55",
+          "ask": "0.56",
+          "mid": "0.555",
+          "visible_ahead_shares": 8996.87,
+          "team": "Grizzlies"
+        }
+      ]
+    },
+    {
+      "market_id": "5716460",
+      "question": "Jazz vs. Grizzlies",
+      "model": "L2",
+      "orders": 876,
+      "first_order": "08:15:07",
+      "last_order": "10:33:17",
+      "observed_live": "08:15:07",
+      "observed_closed": "10:37:44",
+      "scheduled_tip": "08:00:00",
+      "side_counts": {
+        "BUY": 876
+      },
+      "period_counts": {
+        "1": 236,
+        "2": 265,
+        "3": 233,
+        "4": 142
+      },
+      "absolute_price_bins_cents": {
+        "40-50": 152,
+        "50-60": 110,
+        "30-40": 61,
+        "60-70": 40,
+        "20-30": 60,
+        "70-80": 58,
+        "10-20": 20,
+        "80-90": 33,
+        "0-10": 136,
+        "90-100": 206
+      },
+      "actual_paper_resting_union_minutes": 68.41,
+      "observed_live_minutes": 142.61,
+      "at_least_one_paper_order_pct_of_observed_live": 47.97,
+      "first_kill": {
+        "time": "10:54:04",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 1.85,
+        "p50": 51.0,
+        "p90": 95.6
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.4,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "08:15:07",
+          "side": "BUY",
+          "price": "0.42",
+          "bid": "0.44",
+          "ask": "0.45",
+          "mid": "0.445",
+          "visible_ahead_shares": 42512.99,
+          "team": "Jazz"
+        },
+        {
+          "time": "08:15:07",
+          "side": "BUY",
+          "price": "0.53",
+          "bid": "0.55",
+          "ask": "0.56",
+          "mid": "0.555",
+          "visible_ahead_shares": 8996.87,
+          "team": "Grizzlies"
+        }
+      ]
+    },
+    {
+      "market_id": "5716465",
+      "question": "Pacers vs. Pelicans",
+      "model": "L0",
+      "orders": 1573,
+      "first_order": "08:12:06",
+      "last_order": "10:34:54",
+      "observed_live": "08:12:06",
+      "observed_closed": "10:36:45",
+      "scheduled_tip": "08:00:00",
+      "side_counts": {
+        "BUY": 1241,
+        "SELL": 332
+      },
+      "period_counts": {
+        "1": 249,
+        "2": 299,
+        "3": 432,
+        "4": 593
+      },
+      "absolute_price_bins_cents": {
+        "50-60": 323,
+        "40-50": 359,
+        "30-40": 214,
+        "60-70": 292,
+        "20-30": 133,
+        "70-80": 207,
+        "0-10": 35,
+        "80-90": 5,
+        "90-100": 5
+      },
+      "actual_paper_resting_union_minutes": 63.54,
+      "observed_live_minutes": 144.65,
+      "at_least_one_paper_order_pct_of_observed_live": 43.93,
+      "first_kill": {
+        "time": "10:53:42",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 28.0,
+        "p50": 51.0,
+        "p90": 72.0
+      },
+      "mid_distance_cents": {
+        "p10": 1.5,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "08:12:06",
+          "side": "BUY",
+          "price": "0.52",
+          "bid": "0.54",
+          "ask": "0.55",
+          "mid": "0.545",
+          "visible_ahead_shares": 1305.92,
+          "team": "Pacers"
+        },
+        {
+          "time": "08:12:06",
+          "side": "BUY",
+          "price": "0.43",
+          "bid": "0.45",
+          "ask": "0.46",
+          "mid": "0.455",
+          "visible_ahead_shares": 2656.5299999999997,
+          "team": "Pelicans"
+        }
+      ]
+    },
+    {
+      "market_id": "5716465",
+      "question": "Pacers vs. Pelicans",
+      "model": "L1",
+      "orders": 931,
+      "first_order": "08:12:06",
+      "last_order": "10:34:54",
+      "observed_live": "08:12:06",
+      "observed_closed": "10:36:45",
+      "scheduled_tip": "08:00:00",
+      "side_counts": {
+        "BUY": 931
+      },
+      "period_counts": {
+        "1": 249,
+        "2": 255,
+        "3": 211,
+        "4": 216
+      },
+      "absolute_price_bins_cents": {
+        "50-60": 190,
+        "40-50": 271,
+        "30-40": 160,
+        "60-70": 179,
+        "20-30": 77,
+        "70-80": 40,
+        "0-10": 9,
+        "80-90": 5
+      },
+      "actual_paper_resting_union_minutes": 70.77,
+      "observed_live_minutes": 144.65,
+      "at_least_one_paper_order_pct_of_observed_live": 48.92,
+      "first_kill": {
+        "time": "10:53:42",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 30.0,
+        "p50": 48.0,
+        "p90": 66.0
+      },
+      "mid_distance_cents": {
+        "p10": 2.5,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "08:12:06",
+          "side": "BUY",
+          "price": "0.52",
+          "bid": "0.54",
+          "ask": "0.55",
+          "mid": "0.545",
+          "visible_ahead_shares": 1305.92,
+          "team": "Pacers"
+        },
+        {
+          "time": "08:12:06",
+          "side": "BUY",
+          "price": "0.43",
+          "bid": "0.45",
+          "ask": "0.46",
+          "mid": "0.455",
+          "visible_ahead_shares": 2656.5299999999997,
+          "team": "Pelicans"
+        }
+      ]
+    },
+    {
+      "market_id": "5716465",
+      "question": "Pacers vs. Pelicans",
+      "model": "L2",
+      "orders": 931,
+      "first_order": "08:12:06",
+      "last_order": "10:34:54",
+      "observed_live": "08:12:06",
+      "observed_closed": "10:36:45",
+      "scheduled_tip": "08:00:00",
+      "side_counts": {
+        "BUY": 931
+      },
+      "period_counts": {
+        "1": 249,
+        "2": 255,
+        "3": 211,
+        "4": 216
+      },
+      "absolute_price_bins_cents": {
+        "50-60": 190,
+        "40-50": 271,
+        "30-40": 160,
+        "60-70": 179,
+        "20-30": 77,
+        "70-80": 40,
+        "0-10": 9,
+        "80-90": 5
+      },
+      "actual_paper_resting_union_minutes": 70.77,
+      "observed_live_minutes": 144.65,
+      "at_least_one_paper_order_pct_of_observed_live": 48.92,
+      "first_kill": {
+        "time": "10:53:42",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 30.0,
+        "p50": 48.0,
+        "p90": 66.0
+      },
+      "mid_distance_cents": {
+        "p10": 2.5,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "08:12:06",
+          "side": "BUY",
+          "price": "0.52",
+          "bid": "0.54",
+          "ask": "0.55",
+          "mid": "0.545",
+          "visible_ahead_shares": 1305.92,
+          "team": "Pacers"
+        },
+        {
+          "time": "08:12:06",
+          "side": "BUY",
+          "price": "0.43",
+          "bid": "0.45",
+          "ask": "0.46",
+          "mid": "0.455",
+          "visible_ahead_shares": 2656.5299999999997,
+          "team": "Pelicans"
+        }
+      ]
+    },
+    {
+      "market_id": "5716468",
+      "question": "Mavericks vs. Rockets",
+      "model": "L0",
+      "orders": 504,
+      "first_order": "08:43:27",
+      "last_order": "10:46:18",
+      "observed_live": "08:43:19",
+      "observed_closed": "11:04:00",
+      "scheduled_tip": "08:30:00",
+      "side_counts": {
+        "BUY": 504
+      },
+      "period_counts": {
+        "1": 228,
+        "2": 175,
+        "3": 58,
+        "4": 43
+      },
+      "absolute_price_bins_cents": {
+        "70-80": 114,
+        "20-30": 66,
+        "60-70": 2,
+        "10-20": 80,
+        "80-90": 41,
+        "0-10": 32,
+        "90-100": 169
+      },
+      "actual_paper_resting_union_minutes": 57.7,
+      "observed_live_minutes": 140.69,
+      "at_least_one_paper_order_pct_of_observed_live": 41.01,
+      "first_kill": {
+        "time": "11:21:05",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 11.0,
+        "p50": 75.5,
+        "p90": 97.5
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.7,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "08:43:27",
+          "side": "BUY",
+          "price": "0.73",
+          "bid": "0.75",
+          "ask": "0.76",
+          "mid": "0.755",
+          "visible_ahead_shares": 3739.09,
+          "team": "Rockets"
+        },
+        {
+          "time": "08:43:28",
+          "side": "BUY",
+          "price": "0.22",
+          "bid": "0.24",
+          "ask": "0.25",
+          "mid": "0.245",
+          "visible_ahead_shares": 32451.03,
+          "team": "Mavericks"
+        }
+      ]
+    },
+    {
+      "market_id": "5716468",
+      "question": "Mavericks vs. Rockets",
+      "model": "L1",
+      "orders": 504,
+      "first_order": "08:43:27",
+      "last_order": "10:46:18",
+      "observed_live": "08:43:19",
+      "observed_closed": "11:04:00",
+      "scheduled_tip": "08:30:00",
+      "side_counts": {
+        "BUY": 504
+      },
+      "period_counts": {
+        "1": 228,
+        "2": 175,
+        "3": 58,
+        "4": 43
+      },
+      "absolute_price_bins_cents": {
+        "70-80": 114,
+        "20-30": 66,
+        "60-70": 2,
+        "10-20": 80,
+        "80-90": 41,
+        "0-10": 32,
+        "90-100": 169
+      },
+      "actual_paper_resting_union_minutes": 57.7,
+      "observed_live_minutes": 140.69,
+      "at_least_one_paper_order_pct_of_observed_live": 41.01,
+      "first_kill": {
+        "time": "11:21:05",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 11.0,
+        "p50": 75.5,
+        "p90": 97.5
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.7,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "08:43:27",
+          "side": "BUY",
+          "price": "0.73",
+          "bid": "0.75",
+          "ask": "0.76",
+          "mid": "0.755",
+          "visible_ahead_shares": 3739.09,
+          "team": "Rockets"
+        },
+        {
+          "time": "08:43:28",
+          "side": "BUY",
+          "price": "0.22",
+          "bid": "0.24",
+          "ask": "0.25",
+          "mid": "0.245",
+          "visible_ahead_shares": 32451.03,
+          "team": "Mavericks"
+        }
+      ]
+    },
+    {
+      "market_id": "5716468",
+      "question": "Mavericks vs. Rockets",
+      "model": "L2",
+      "orders": 504,
+      "first_order": "08:43:27",
+      "last_order": "10:46:18",
+      "observed_live": "08:43:19",
+      "observed_closed": "11:04:00",
+      "scheduled_tip": "08:30:00",
+      "side_counts": {
+        "BUY": 504
+      },
+      "period_counts": {
+        "1": 228,
+        "2": 175,
+        "3": 58,
+        "4": 43
+      },
+      "absolute_price_bins_cents": {
+        "70-80": 114,
+        "20-30": 66,
+        "60-70": 2,
+        "10-20": 80,
+        "80-90": 41,
+        "0-10": 32,
+        "90-100": 169
+      },
+      "actual_paper_resting_union_minutes": 57.7,
+      "observed_live_minutes": 140.69,
+      "at_least_one_paper_order_pct_of_observed_live": 41.01,
+      "first_kill": {
+        "time": "11:21:05",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 11.0,
+        "p50": 75.5,
+        "p90": 97.5
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.7,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "08:43:27",
+          "side": "BUY",
+          "price": "0.73",
+          "bid": "0.75",
+          "ask": "0.76",
+          "mid": "0.755",
+          "visible_ahead_shares": 3739.09,
+          "team": "Rockets"
+        },
+        {
+          "time": "08:43:28",
+          "side": "BUY",
+          "price": "0.22",
+          "bid": "0.24",
+          "ask": "0.25",
+          "mid": "0.245",
+          "visible_ahead_shares": 32451.03,
+          "team": "Mavericks"
+        }
+      ]
+    },
+    {
+      "market_id": "5722990",
+      "question": "Warriors vs. Lakers",
+      "model": "L0",
+      "orders": 292,
+      "first_order": "10:20:03",
+      "last_order": "12:12:20",
+      "observed_live": "10:18:45",
+      "observed_closed": "12:44:20",
+      "scheduled_tip": "10:00:00",
+      "side_counts": {
+        "BUY": 292
+      },
+      "period_counts": {
+        "1": 115,
+        "2": 41,
+        "3": 134,
+        "4": 2
+      },
+      "absolute_price_bins_cents": {
+        "60-70": 62,
+        "20-30": 20,
+        "30-40": 45,
+        "50-60": 20,
+        "70-80": 9,
+        "90-100": 96,
+        "0-10": 40
+      },
+      "actual_paper_resting_union_minutes": 36.19,
+      "observed_live_minutes": 145.59,
+      "at_least_one_paper_order_pct_of_observed_live": 24.86,
+      "first_kill": {
+        "time": "12:59:03",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 2.0,
+        "p50": 63.0,
+        "p90": 97.4
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.8,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "10:20:03",
+          "side": "BUY",
+          "price": "0.65",
+          "bid": "0.67",
+          "ask": "0.68",
+          "mid": "0.675",
+          "visible_ahead_shares": 15364.24,
+          "team": "Lakers"
+        },
+        {
+          "time": "10:20:33",
+          "side": "BUY",
+          "price": "0.66",
+          "bid": "0.68",
+          "ask": "0.69",
+          "mid": "0.685",
+          "visible_ahead_shares": 17186.1,
+          "team": "Lakers"
+        }
+      ]
+    },
+    {
+      "market_id": "5722990",
+      "question": "Warriors vs. Lakers",
+      "model": "L1",
+      "orders": 292,
+      "first_order": "10:20:03",
+      "last_order": "12:12:20",
+      "observed_live": "10:18:45",
+      "observed_closed": "12:44:20",
+      "scheduled_tip": "10:00:00",
+      "side_counts": {
+        "BUY": 292
+      },
+      "period_counts": {
+        "1": 115,
+        "2": 41,
+        "3": 134,
+        "4": 2
+      },
+      "absolute_price_bins_cents": {
+        "60-70": 62,
+        "20-30": 20,
+        "30-40": 45,
+        "50-60": 20,
+        "70-80": 9,
+        "90-100": 96,
+        "0-10": 40
+      },
+      "actual_paper_resting_union_minutes": 36.19,
+      "observed_live_minutes": 145.59,
+      "at_least_one_paper_order_pct_of_observed_live": 24.86,
+      "first_kill": {
+        "time": "12:59:03",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 2.0,
+        "p50": 63.0,
+        "p90": 97.4
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.8,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "10:20:03",
+          "side": "BUY",
+          "price": "0.65",
+          "bid": "0.67",
+          "ask": "0.68",
+          "mid": "0.675",
+          "visible_ahead_shares": 15364.24,
+          "team": "Lakers"
+        },
+        {
+          "time": "10:20:33",
+          "side": "BUY",
+          "price": "0.66",
+          "bid": "0.68",
+          "ask": "0.69",
+          "mid": "0.685",
+          "visible_ahead_shares": 17186.1,
+          "team": "Lakers"
+        }
+      ]
+    },
+    {
+      "market_id": "5722990",
+      "question": "Warriors vs. Lakers",
+      "model": "L2",
+      "orders": 292,
+      "first_order": "10:20:03",
+      "last_order": "12:12:20",
+      "observed_live": "10:18:45",
+      "observed_closed": "12:44:20",
+      "scheduled_tip": "10:00:00",
+      "side_counts": {
+        "BUY": 292
+      },
+      "period_counts": {
+        "1": 115,
+        "2": 41,
+        "3": 134,
+        "4": 2
+      },
+      "absolute_price_bins_cents": {
+        "60-70": 62,
+        "20-30": 20,
+        "30-40": 45,
+        "50-60": 20,
+        "70-80": 9,
+        "90-100": 96,
+        "0-10": 40
+      },
+      "actual_paper_resting_union_minutes": 36.19,
+      "observed_live_minutes": 145.59,
+      "at_least_one_paper_order_pct_of_observed_live": 24.86,
+      "first_kill": {
+        "time": "12:59:03",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 2.0,
+        "p50": 63.0,
+        "p90": 97.4
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.8,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "10:20:03",
+          "side": "BUY",
+          "price": "0.65",
+          "bid": "0.67",
+          "ask": "0.68",
+          "mid": "0.675",
+          "visible_ahead_shares": 15364.24,
+          "team": "Lakers"
+        },
+        {
+          "time": "10:20:33",
+          "side": "BUY",
+          "price": "0.66",
+          "bid": "0.68",
+          "ask": "0.69",
+          "mid": "0.685",
+          "visible_ahead_shares": 17186.1,
+          "team": "Lakers"
+        }
+      ]
+    },
+    {
+      "market_id": "5722993",
+      "question": "Suns vs. Trail Blazers",
+      "model": "L0",
+      "orders": 174,
+      "first_order": "10:16:38",
+      "last_order": "11:49:17",
+      "observed_live": "10:15:46",
+      "observed_closed": "12:28:16",
+      "scheduled_tip": "10:00:00",
+      "side_counts": {
+        "BUY": 174
+      },
+      "period_counts": {
+        "1": 104,
+        "2": 29,
+        "3": 41
+      },
+      "absolute_price_bins_cents": {
+        "60-70": 2,
+        "70-80": 12,
+        "20-30": 1,
+        "10-20": 14,
+        "80-90": 26,
+        "0-10": 43,
+        "90-100": 76
+      },
+      "actual_paper_resting_union_minutes": 24.05,
+      "observed_live_minutes": 132.51,
+      "at_least_one_paper_order_pct_of_observed_live": 18.15,
+      "first_kill": {
+        "time": "12:45:05",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 2.0,
+        "p50": 83.0,
+        "p90": 97.7
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.73,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "10:16:38",
+          "side": "BUY",
+          "price": "0.64",
+          "bid": "0.66",
+          "ask": "0.67",
+          "mid": "0.665",
+          "visible_ahead_shares": 5879.43,
+          "team": "Trail Blazers"
+        },
+        {
+          "time": "10:16:40",
+          "side": "BUY",
+          "price": "0.64",
+          "bid": "0.66",
+          "ask": "0.67",
+          "mid": "0.665",
+          "visible_ahead_shares": 5879.43,
+          "team": "Trail Blazers"
+        }
+      ]
+    },
+    {
+      "market_id": "5722993",
+      "question": "Suns vs. Trail Blazers",
+      "model": "L1",
+      "orders": 174,
+      "first_order": "10:16:38",
+      "last_order": "11:49:17",
+      "observed_live": "10:15:46",
+      "observed_closed": "12:28:16",
+      "scheduled_tip": "10:00:00",
+      "side_counts": {
+        "BUY": 174
+      },
+      "period_counts": {
+        "1": 104,
+        "2": 29,
+        "3": 41
+      },
+      "absolute_price_bins_cents": {
+        "60-70": 2,
+        "70-80": 12,
+        "20-30": 1,
+        "10-20": 14,
+        "80-90": 26,
+        "0-10": 43,
+        "90-100": 76
+      },
+      "actual_paper_resting_union_minutes": 24.05,
+      "observed_live_minutes": 132.51,
+      "at_least_one_paper_order_pct_of_observed_live": 18.15,
+      "first_kill": {
+        "time": "12:45:05",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 2.0,
+        "p50": 83.0,
+        "p90": 97.7
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.73,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "10:16:38",
+          "side": "BUY",
+          "price": "0.64",
+          "bid": "0.66",
+          "ask": "0.67",
+          "mid": "0.665",
+          "visible_ahead_shares": 5879.43,
+          "team": "Trail Blazers"
+        },
+        {
+          "time": "10:16:40",
+          "side": "BUY",
+          "price": "0.64",
+          "bid": "0.66",
+          "ask": "0.67",
+          "mid": "0.665",
+          "visible_ahead_shares": 5879.43,
+          "team": "Trail Blazers"
+        }
+      ]
+    },
+    {
+      "market_id": "5722993",
+      "question": "Suns vs. Trail Blazers",
+      "model": "L2",
+      "orders": 174,
+      "first_order": "10:16:38",
+      "last_order": "11:49:17",
+      "observed_live": "10:15:46",
+      "observed_closed": "12:28:16",
+      "scheduled_tip": "10:00:00",
+      "side_counts": {
+        "BUY": 174
+      },
+      "period_counts": {
+        "1": 104,
+        "2": 29,
+        "3": 41
+      },
+      "absolute_price_bins_cents": {
+        "60-70": 2,
+        "70-80": 12,
+        "20-30": 1,
+        "10-20": 14,
+        "80-90": 26,
+        "0-10": 43,
+        "90-100": 76
+      },
+      "actual_paper_resting_union_minutes": 24.05,
+      "observed_live_minutes": 132.51,
+      "at_least_one_paper_order_pct_of_observed_live": 18.15,
+      "first_kill": {
+        "time": "12:45:05",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 2.0,
+        "p50": 83.0,
+        "p90": 97.7
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.73,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "10:16:38",
+          "side": "BUY",
+          "price": "0.64",
+          "bid": "0.66",
+          "ask": "0.67",
+          "mid": "0.665",
+          "visible_ahead_shares": 5879.43,
+          "team": "Trail Blazers"
+        },
+        {
+          "time": "10:16:40",
+          "side": "BUY",
+          "price": "0.64",
+          "bid": "0.66",
+          "ask": "0.67",
+          "mid": "0.665",
+          "visible_ahead_shares": 5879.43,
+          "team": "Trail Blazers"
+        }
+      ]
+    },
+    {
+      "market_id": "5722996",
+      "question": "Kings vs. Clippers",
+      "model": "L0",
+      "orders": 488,
+      "first_order": "10:44:46",
+      "last_order": "12:42:39",
+      "observed_live": "10:44:46",
+      "observed_closed": "13:00:25",
+      "scheduled_tip": "10:30:00",
+      "side_counts": {
+        "BUY": 440,
+        "SELL": 48
+      },
+      "period_counts": {
+        "1": 45,
+        "2": 113,
+        "3": 285,
+        "4": 45
+      },
+      "absolute_price_bins_cents": {
+        "30-40": 14,
+        "60-70": 39,
+        "20-30": 49,
+        "70-80": 63,
+        "10-20": 126,
+        "80-90": 81,
+        "0-10": 44,
+        "90-100": 72
+      },
+      "actual_paper_resting_union_minutes": 49.83,
+      "observed_live_minutes": 135.65,
+      "at_least_one_paper_order_pct_of_observed_live": 36.74,
+      "first_kill": {
+        "time": "13:17:48",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 10.0,
+        "p50": 64.5,
+        "p90": 95.66
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "10:44:46",
+          "side": "BUY",
+          "price": "0.32",
+          "bid": "0.34",
+          "ask": "0.35",
+          "mid": "0.345",
+          "visible_ahead_shares": 20318.92,
+          "team": "Kings"
+        },
+        {
+          "time": "10:44:46",
+          "side": "BUY",
+          "price": "0.63",
+          "bid": "0.65",
+          "ask": "0.66",
+          "mid": "0.655",
+          "visible_ahead_shares": 9715.61,
+          "team": "Clippers"
+        }
+      ]
+    },
+    {
+      "market_id": "5722996",
+      "question": "Kings vs. Clippers",
+      "model": "L1",
+      "orders": 427,
+      "first_order": "10:44:46",
+      "last_order": "12:42:39",
+      "observed_live": "10:44:46",
+      "observed_closed": "13:00:25",
+      "scheduled_tip": "10:30:00",
+      "side_counts": {
+        "BUY": 427
+      },
+      "period_counts": {
+        "1": 45,
+        "2": 113,
+        "3": 224,
+        "4": 45
+      },
+      "absolute_price_bins_cents": {
+        "30-40": 14,
+        "60-70": 39,
+        "20-30": 47,
+        "70-80": 58,
+        "10-20": 80,
+        "80-90": 74,
+        "0-10": 43,
+        "90-100": 72
+      },
+      "actual_paper_resting_union_minutes": 49.94,
+      "observed_live_minutes": 135.65,
+      "at_least_one_paper_order_pct_of_observed_live": 36.82,
+      "first_kill": {
+        "time": "13:17:48",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 9.6,
+        "p50": 68.0,
+        "p90": 96.5
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.8,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "10:44:46",
+          "side": "BUY",
+          "price": "0.32",
+          "bid": "0.34",
+          "ask": "0.35",
+          "mid": "0.345",
+          "visible_ahead_shares": 20318.92,
+          "team": "Kings"
+        },
+        {
+          "time": "10:44:46",
+          "side": "BUY",
+          "price": "0.63",
+          "bid": "0.65",
+          "ask": "0.66",
+          "mid": "0.655",
+          "visible_ahead_shares": 9715.61,
+          "team": "Clippers"
+        }
+      ]
+    },
+    {
+      "market_id": "5722996",
+      "question": "Kings vs. Clippers",
+      "model": "L2",
+      "orders": 427,
+      "first_order": "10:44:46",
+      "last_order": "12:42:39",
+      "observed_live": "10:44:46",
+      "observed_closed": "13:00:25",
+      "scheduled_tip": "10:30:00",
+      "side_counts": {
+        "BUY": 427
+      },
+      "period_counts": {
+        "1": 45,
+        "2": 113,
+        "3": 224,
+        "4": 45
+      },
+      "absolute_price_bins_cents": {
+        "30-40": 14,
+        "60-70": 39,
+        "20-30": 47,
+        "70-80": 58,
+        "10-20": 80,
+        "80-90": 74,
+        "0-10": 43,
+        "90-100": 72
+      },
+      "actual_paper_resting_union_minutes": 49.94,
+      "observed_live_minutes": 135.65,
+      "at_least_one_paper_order_pct_of_observed_live": 36.82,
+      "first_kill": {
+        "time": "13:17:48",
+        "reason": "posthoc_end_no_forced_liquidation"
+      },
+      "price_cents": {
+        "p10": 9.6,
+        "p50": 68.0,
+        "p90": 96.5
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_same_side_bbo_cents": {
+        "p10": 1.8,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "examples": [
+        {
+          "time": "10:44:46",
+          "side": "BUY",
+          "price": "0.32",
+          "bid": "0.34",
+          "ask": "0.35",
+          "mid": "0.345",
+          "visible_ahead_shares": 20318.92,
+          "team": "Kings"
+        },
+        {
+          "time": "10:44:46",
+          "side": "BUY",
+          "price": "0.63",
+          "bid": "0.65",
+          "ask": "0.66",
+          "mid": "0.655",
+          "visible_ahead_shares": 9715.61,
+          "team": "Clippers"
+        }
+      ]
+    }
+  ],
+  "aggregate": [
+    {
+      "model": "L0",
+      "order_count": 11085,
+      "side_counts": {
+        "BUY": 8836,
+        "SELL": 2249
+      },
+      "period_counts": {
+        "1": 2075,
+        "2": 2859,
+        "3": 3665,
+        "4": 2486
+      },
+      "absolute_price_10c_bins": {
+        "0-10": 790,
+        "10-20": 612,
+        "20-30": 918,
+        "30-40": 1460,
+        "40-50": 1827,
+        "50-60": 1685,
+        "60-70": 1148,
+        "70-80": 850,
+        "80-90": 560,
+        "90-100": 1235
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_bbo_cents": {
+        "p10": 1.0,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "visible_queue_ahead_shares": {
+        "p10": 1735.928,
+        "p50": 13672.32,
+        "p90": 75633.372
+      },
+      "aggregate_resting_coverage_pct": 41.79,
+      "by_side": {
+        "BUY": {
+          "orders": 8836,
+          "price_cents": {
+            "p10": 14.0,
+            "p50": 49.0,
+            "p90": 94.0
+          },
+          "mid_distance_cents": {
+            "p10": 2.0,
+            "p50": 2.5,
+            "p90": 2.5
+          },
+          "behind_bbo_cents": {
+            "p10": 1.7,
+            "p50": 2.0,
+            "p90": 2.0
+          }
+        },
+        "SELL": {
+          "orders": 2249,
+          "price_cents": {
+            "p10": 19.0,
+            "p50": 49.0,
+            "p90": 83.0
+          },
+          "mid_distance_cents": {
+            "p10": 1.5,
+            "p50": 2.0,
+            "p90": 2.5
+          },
+          "behind_bbo_cents": {
+            "p10": 1.0,
+            "p50": 1.0,
+            "p90": 2.0
+          }
+        }
+      }
+    },
+    {
+      "model": "L1",
+      "order_count": 5066,
+      "side_counts": {
+        "BUY": 5056,
+        "SELL": 10
+      },
+      "period_counts": {
+        "1": 1901,
+        "2": 1615,
+        "3": 1102,
+        "4": 448
+      },
+      "absolute_price_10c_bins": {
+        "0-10": 491,
+        "10-20": 242,
+        "20-30": 311,
+        "30-40": 549,
+        "40-50": 811,
+        "50-60": 723,
+        "60-70": 479,
+        "70-80": 308,
+        "80-90": 232,
+        "90-100": 920
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_bbo_cents": {
+        "p10": 1.6,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "visible_queue_ahead_shares": {
+        "p10": 3821.425,
+        "p50": 17813.64,
+        "p90": 86268.88
+      },
+      "aggregate_resting_coverage_pct": 31.38,
+      "by_side": {
+        "BUY": {
+          "orders": 5056,
+          "price_cents": {
+            "p10": 10.0,
+            "p50": 51.0,
+            "p90": 95.7
+          },
+          "mid_distance_cents": {
+            "p10": 2.0,
+            "p50": 2.5,
+            "p90": 2.5
+          },
+          "behind_bbo_cents": {
+            "p10": 1.6,
+            "p50": 2.0,
+            "p90": 2.0
+          }
+        },
+        "SELL": {
+          "orders": 10,
+          "price_cents": {
+            "p10": 33.9,
+            "p50": 36.0,
+            "p90": 38.0
+          },
+          "mid_distance_cents": {
+            "p10": 1.5,
+            "p50": 1.5,
+            "p90": 1.55
+          },
+          "behind_bbo_cents": {
+            "p10": 1.0,
+            "p50": 1.0,
+            "p90": 1.0
+          }
+        }
+      }
+    },
+    {
+      "model": "L2",
+      "order_count": 7333,
+      "side_counts": {
+        "BUY": 7311,
+        "SELL": 22
+      },
+      "period_counts": {
+        "1": 1996,
+        "2": 2277,
+        "3": 2156,
+        "4": 904
+      },
+      "absolute_price_10c_bins": {
+        "0-10": 538,
+        "10-20": 378,
+        "20-30": 525,
+        "30-40": 932,
+        "40-50": 1244,
+        "50-60": 1112,
+        "60-70": 765,
+        "70-80": 471,
+        "80-90": 313,
+        "90-100": 1055
+      },
+      "mid_distance_cents": {
+        "p10": 2.0,
+        "p50": 2.5,
+        "p90": 2.5
+      },
+      "behind_bbo_cents": {
+        "p10": 1.6,
+        "p50": 2.0,
+        "p90": 2.0
+      },
+      "visible_queue_ahead_shares": {
+        "p10": 2987.082,
+        "p50": 17044.72,
+        "p90": 79015.268
+      },
+      "aggregate_resting_coverage_pct": 42.69,
+      "by_side": {
+        "BUY": {
+          "orders": 7311,
+          "price_cents": {
+            "p10": 14.0,
+            "p50": 50.0,
+            "p90": 94.8
+          },
+          "mid_distance_cents": {
+            "p10": 2.0,
+            "p50": 2.5,
+            "p90": 2.5
+          },
+          "behind_bbo_cents": {
+            "p10": 1.7,
+            "p50": 2.0,
+            "p90": 2.0
+          }
+        },
+        "SELL": {
+          "orders": 22,
+          "price_cents": {
+            "p10": 25.0,
+            "p50": 26.0,
+            "p90": 30.0
+          },
+          "mid_distance_cents": {
+            "p10": 1.5,
+            "p50": 1.5,
+            "p90": 1.5
+          },
+          "behind_bbo_cents": {
+            "p10": 1.0,
+            "p50": 1.0,
+            "p90": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "L2_buy_exact_price_placement_counts": {
+    "behind": 7305,
+    "improve_bid": 1,
+    "at_best_bid": 5
+  },
+  "L2_buy_mid_distance_cents_counts": {
+    "2.5": 5699,
+    "2": 977,
+    "2.05": 633,
+    "3": 2
+  }
+}

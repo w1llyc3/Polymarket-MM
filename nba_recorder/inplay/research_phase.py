@@ -23,6 +23,11 @@ def permission(frame, policy, at):
         return 'UNKNOWN', ['research_start_not_confirmed']
     # No extrapolated countdown: unknown remaining time never becomes zero.
     period, remaining = sports['period'], sports.get('remaining_s')
+    # A long-running recorder can lazily import this module after an update
+    # while still holding the previous BookPolicy class. Its behavior is legacy.
+    if getattr(policy, 'quote_profile', 'LEGACY') == 'INPLAY_ROTATION_V1':
+        # Period only: do not infer a countdown from ambiguous elapsed text.
+        return ('REDUCE_ONLY' if period >= 4 else 'ACTIVE_MM'), []
     if period >= 4 and type(remaining) is int and sports.get('clock_evidence'):
         if remaining <= policy.close_remaining_s:
             return 'MM_CLOSED', []

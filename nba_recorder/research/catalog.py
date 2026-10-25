@@ -8,7 +8,7 @@ def inspect(root, path):
     relative = path.relative_to(root/'data').as_posix()
     db = read_connection(path)
     try:
-        tables = {r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        tables = {r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type IN ('table','view')")}
         if 'ip_inputs' not in tables:
             return None
         n, start, end = db.execute('SELECT count(*),min(time_ms),max(time_ms) FROM ip_inputs').fetchone()

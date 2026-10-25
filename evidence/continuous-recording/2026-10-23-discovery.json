@@ -1,0 +1,24 @@
+{
+  "day": "2026-10-23",
+  "mode": "RECORD_ONLY",
+  "recording_window": {
+    "pregame_s": 1800,
+    "postgame_s": 1800,
+    "record_only": true
+  },
+  "discovery_status": "MARKET_FOUND",
+  "games": [
+    {
+      "question": "Cavaliers vs. 76ers",
+      "market_id": "5765055",
+      "status": "MISSED_WINDOW_NOT_COMPLETE",
+      "planned_start_ms": 1792708200000
+    },
+    {
+      "question": "Nuggets vs. Thunder",
+      "market_id": "5769220",
+      "status": "RUNNING",
+      "planned_start_ms": 1792717200000
+    }
+  ]
+}

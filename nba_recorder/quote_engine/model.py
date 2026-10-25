@@ -30,7 +30,9 @@ class Policy:
 
     def __post_init__(self):
         for key, value in asdict(self).items():
-            if key == "strategy_mode":
+            if key == "quote_profile":
+                continue
+            elif key == "strategy_mode":
                 if value not in {"EXTERNAL_FAIR", "BOOK_DRIVEN"}:
                     raise ValueError("explicit supported strategy_mode required")
             elif isinstance(value, bool):

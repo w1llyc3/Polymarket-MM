@@ -1,0 +1,30 @@
+{
+  "source": "SYNTHETIC_OFFLINE_ACCEPTANCE_NOT_A_GAME",
+  "experiment": "ed636901abfc40c8989b2aa4b8dfb150",
+  "models": [
+    {
+      "lane": "p0-L0-d0",
+      "input_records": 45,
+      "plot_points": 90,
+      "ledger_consistent": true
+    },
+    {
+      "lane": "p0-L1-d0",
+      "input_records": 45,
+      "plot_points": 90,
+      "ledger_consistent": true
+    },
+    {
+      "lane": "p0-L2-d0",
+      "input_records": 45,
+      "plot_points": 90,
+      "ledger_consistent": true
+    }
+  ],
+  "shared_blobs": 45,
+  "compression_reports": [
+    "data/storage-workflow/1792947303-22f8f6a3.json"
+  ],
+  "real_submission_calls": 0,
+  "live_go": false
+}

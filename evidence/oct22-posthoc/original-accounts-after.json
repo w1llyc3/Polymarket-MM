@@ -1,0 +1,68 @@
+[
+  {
+    "market_id": "5716392",
+    "original_orders": 0,
+    "original_fills": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716400",
+    "original_orders": 0,
+    "original_fills": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716421",
+    "original_orders": 0,
+    "original_fills": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716444",
+    "original_orders": 0,
+    "original_fills": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716452",
+    "original_orders": 0,
+    "original_fills": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716460",
+    "original_orders": 0,
+    "original_fills": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716465",
+    "original_orders": 0,
+    "original_fills": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5716468",
+    "original_orders": 0,
+    "original_fills": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5722990",
+    "original_orders": 0,
+    "original_fills": 0,
+    "capture_status": "FINISHED"
+  },
+  {
+    "market_id": "5722993",
+    "original_orders": 0,
+    "original_fills": 0,
+    "capture_status": "FAILED_NEEDS_REVIEW"
+  },
+  {
+    "market_id": "5722996",
+    "original_orders": 0,
+    "original_fills": 0,
+    "capture_status": "FINISHED"
+  }
+]

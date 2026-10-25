@@ -1,0 +1,3 @@
+5676016 frames 76822 future_attached_sports 0 league_identity {('nba', False): 57608}
+5676021 frames 67854 future_attached_sports 0 league_identity {('nba', False): 52100}
+5680507 frames 63214 future_attached_sports 0 league_identity {('nba', False): 46760}

@@ -191,7 +191,8 @@ class StorageTests(unittest.TestCase):
 
 
 class IntegrationUnitTests(unittest.IsolatedAsyncioTestCase):
-    async def test_missing_list_roles_fetches_public_event_detail(self):
+    @patch('nba_recorder.api.utc_ms',return_value=1792400000000)
+    async def test_missing_list_roles_fetches_public_event_detail(self,_clock):
         api = PublicAPI()
         e, m, _ = fixture()
         detailed = {**e, "markets": [m]}
@@ -264,7 +265,8 @@ class IntegrationUnitTests(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(s.db.execute("SELECT count(*) FROM raw_events").fetchone()[0], 1)
             s.close()
 
-    async def test_transport_reconnect_resnapshots_and_stops(self):
+    @patch('nba_recorder.recorder.utc_ms',return_value=1792400000000)
+    async def test_transport_reconnect_resnapshots_and_stops(self,_clock):
         import nba_recorder.recorder as module
         real_sleep = asyncio.sleep
         class FakeAPI:
@@ -328,7 +330,8 @@ class IntegrationUnitTests(unittest.IsolatedAsyncioTestCase):
         finally:
             await api.close()
 
-    async def test_pagination_no_market_and_errors(self):
+    @patch('nba_recorder.api.utc_ms',return_value=1792400000000)
+    async def test_pagination_no_market_and_errors(self,_clock):
         api = PublicAPI()
         calls = []
         e, m, _ = fixture()

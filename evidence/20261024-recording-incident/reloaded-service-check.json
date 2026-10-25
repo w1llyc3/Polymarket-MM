@@ -1,0 +1,215 @@
+{
+  "checked_at_ms": 1792819742936,
+  "decision": "NOTIFY",
+  "service_heartbeat_age_ms": 24635,
+  "service": {
+    "heartbeat_ms": 1792819718301,
+    "pid": 41424,
+    "mode": "RECORD_ONLY",
+    "pre_minutes": 30,
+    "post_minutes": 30,
+    "timezone": "Asia/Shanghai",
+    "requested_days": [
+      "2026-10-24",
+      "2026-10-25"
+    ],
+    "day_worker_pids": {
+      "2026-10-24": 35372,
+      "2026-10-25": 4056
+    },
+    "retry_after_ms": {
+      "2026-10-24": 1792819057653,
+      "2026-10-25": 1792819057653
+    },
+    "completed_days": [
+      "2026-10-23"
+    ],
+    "console_status": "HEALTHY",
+    "real_submission_calls": 0,
+    "live_enabled": false
+  },
+  "console_health": {
+    "app": "NBA_MM_LOCAL_CONSOLE_V2_2",
+    "root_id": "3eae08c4cc0d8a8b",
+    "owner_alive": true,
+    "owner_responsive": true,
+    "verification": "readonly browser /api/health",
+    "checked_at_ms": 1792819742936
+  },
+  "disk_free_bytes": 438450036736,
+  "days": {
+    "2026-10-24": {
+      "heartbeat_ms": 1792819681435,
+      "scan_error": null,
+      "discovery_status": "MARKET_FOUND",
+      "active_games": 0,
+      "waiting_games": 0,
+      "mode": "RECORD_ONLY",
+      "recording_window": {
+        "pregame_s": 1800,
+        "postgame_s": 1800,
+        "record_only": true
+      },
+      "games": {
+        "5792063": {
+          "question": "Knicks vs. Celtics",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792794600000,
+          "coverage_status": null
+        },
+        "5792066": {
+          "question": "Hawks vs. Hornets",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792794600000,
+          "coverage_status": null
+        },
+        "5792069": {
+          "question": "Mavericks vs. Pacers",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792794600000,
+          "coverage_status": null
+        },
+        "5792072": {
+          "question": "Timberwolves vs. Magic",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792794600000,
+          "coverage_status": null
+        },
+        "5792075": {
+          "question": "Raptors vs. Wizards",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792794600000,
+          "coverage_status": null
+        },
+        "5792078": {
+          "question": "Pistons vs. Heat",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792798200000,
+          "coverage_status": null
+        },
+        "5792081": {
+          "question": "Bulls vs. Bucks",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792783800000,
+          "coverage_status": null
+        },
+        "5797980": {
+          "question": "Rockets vs. Spurs",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792803600000,
+          "coverage_status": null
+        },
+        "5797983": {
+          "question": "Pelicans vs. Jazz",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792803600000,
+          "coverage_status": null
+        },
+        "5797986": {
+          "question": "Grizzlies vs. Warriors",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792805400000,
+          "coverage_status": null
+        },
+        "5797989": {
+          "question": "Clippers vs. Lakers",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792805400000,
+          "coverage_status": null
+        },
+        "5797992": {
+          "question": "Trail Blazers vs. Kings",
+          "status": "FAILED_NEEDS_REVIEW",
+          "planned_start_ms": 1792805400000,
+          "coverage_status": null
+        }
+      }
+    },
+    "2026-10-25": {
+      "heartbeat_ms": 1792819675539,
+      "scan_error": null,
+      "discovery_status": "MARKET_FOUND",
+      "active_games": 0,
+      "waiting_games": 8,
+      "mode": "RECORD_ONLY",
+      "recording_window": {
+        "pregame_s": 1800,
+        "postgame_s": 1800,
+        "record_only": true
+      },
+      "games": {
+        "5847746": {
+          "question": "Heat vs. Hornets",
+          "status": "SCHEDULED",
+          "planned_start_ms": 1792877400000,
+          "coverage_status": null
+        },
+        "5847749": {
+          "question": "Nets vs. Cavaliers",
+          "status": "SCHEDULED",
+          "planned_start_ms": 1792882800000,
+          "coverage_status": null
+        },
+        "5847752": {
+          "question": "Bucks vs. 76ers",
+          "status": "SCHEDULED",
+          "planned_start_ms": 1792882800000,
+          "coverage_status": null
+        },
+        "5847755": {
+          "question": "Rockets vs. Hawks",
+          "status": "SCHEDULED",
+          "planned_start_ms": 1792886400000,
+          "coverage_status": null
+        },
+        "5847758": {
+          "question": "Wizards vs. Bulls",
+          "status": "SCHEDULED",
+          "planned_start_ms": 1792884600000,
+          "coverage_status": null
+        },
+        "5847761": {
+          "question": "Spurs vs. Mavericks",
+          "status": "SCHEDULED",
+          "planned_start_ms": 1792884600000,
+          "coverage_status": null
+        },
+        "5861655": {
+          "question": "Pelicans vs. Nuggets",
+          "status": "SCHEDULED",
+          "planned_start_ms": 1792888200000,
+          "coverage_status": null
+        },
+        "5861664": {
+          "question": "Warriors vs. Suns",
+          "status": "SCHEDULED",
+          "planned_start_ms": 1792891800000,
+          "coverage_status": null
+        }
+      }
+    }
+  },
+  "service_log_errors": {
+    "data\\unattended\\service\\console.log": {
+      "bytes": 0,
+      "tail": ""
+    },
+    "data\\unattended\\service\\day-2026-10-23.log": {
+      "bytes": 0,
+      "tail": ""
+    },
+    "data\\unattended\\service\\day-2026-10-24.log": {
+      "bytes": 0,
+      "tail": ""
+    },
+    "data\\unattended\\service\\day-2026-10-25.log": {
+      "bytes": 0,
+      "tail": ""
+    }
+  },
+  "state_unchanged": false,
+  "recovery_attempt_status": "PRECHECK_REFUSED_EXPIRED_WINDOW",
+  "known_completed_days": {
+    "2026-10-23": "Previously known incomplete capture; not newly complete coverage"
+  }
+}

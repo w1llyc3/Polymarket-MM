@@ -59,6 +59,9 @@ class PaperRunner:
             self._last_chart_game = info
         self.game_information = info
         window.observe(info, at)
+        if window.finished_ms is not None:
+            with self.om.db:
+                self.om.db.execute("INSERT OR IGNORE INTO ip_session_config VALUES('recording_finished_ms',?)",(str(window.finished_ms),))
         if window.finished_ms is not None and not self.paper_stopped:
             self.stop_paper("observed_game_finished_keep_recording_tail")
 
@@ -154,7 +157,7 @@ class PaperRunner:
                 pass
 
 
-async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, interval=1, model="L2", manual_file=None, contracts=None, operator_reset=False, control=None, research=False, postgame_s=600, initial_market=None):
+async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, interval=1, model="L2", manual_file=None, contracts=None, operator_reset=False, control=None, research=False, postgame_s=600, initial_market=None, filter_sports_to_game=False):
     if seconds <= 0 or seconds > 28800 or interval <= 0 or Path(db_path).resolve() == Path(source_path).resolve():
         raise ValueError("bounded duration, positive interval and distinct source/paper paths required")
     api = PublicAPI()
@@ -196,6 +199,10 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
     from ..pilot import PilotWindow
     from ..game_state import information
     window = PilotWindow(now, max(60, min(28800, int(seconds))), postgame_s)
+    saved_end=om.db.execute("SELECT payload FROM ip_session_config WHERE id='recording_finished_ms'").fetchone()
+    if saved_end:
+        window.finished_ms=int(saved_end[0])
+        if window.finished_ms>now:raise ValueError('future recorded end')
     stop_reason = "HARD_LIMIT_NOT_COMPLETE"
     with source.db:
         source.db.executescript("CREATE TABLE IF NOT EXISTS game_information(id INTEGER PRIMARY KEY,received_ms INTEGER,processed_ms INTEGER,payload TEXT); CREATE TABLE IF NOT EXISTS public_metadata(id INTEGER PRIMARY KEY,received_ms INTEGER,payload TEXT);")
@@ -239,6 +246,12 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                     runner.game_information = info
                 source.markets([selected], at, processed_ms=at)
                 market_state.update(market=selected, received_ms=at, processed_ms=at)
+                # Game ended is independent of market closed/resolved. Exact
+                # Gamma game identity/roles have just been revalidated above.
+                if event.get('ended') is True and selected.get('polymarket_game_id') is not None and str(event.get('gameId'))==str(selected['polymarket_game_id']):
+                    market_state['end_info']={'display_eligible':True,'conflict':False,'game_finished':True,
+                        'received_ms':at,'processed_ms':at,'source':GAMMA+'/events/slug/'+event_slug,
+                        'identity_evidence':'revalidated exact Gamma game ID and team roles; event ended flag, not market closure'}
                 health["metadata_updates"] += 1
             except asyncio.CancelledError:
                 raise
@@ -371,6 +384,8 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
                             continue
                         payload = json.loads(raw)
                         processed = utc_ms()
+                        if filter_sports_to_game and (not isinstance(payload,dict) or str(payload.get('gameId'))!=str((runner.bound_market or initial_market or {}).get('polymarket_game_id'))):
+                            continue
                         with source.db:
                             source.db.execute("INSERT INTO sports_raw(receive_ms,processed_ms,payload) VALUES(?,?,?)", (received, processed, encode(payload)))
                         health["sports_updates"] += 1
@@ -390,6 +405,8 @@ async def run_paper(db_path, source_path, event_slug, market_id, seconds=30, int
     try:
         while time.monotonic() < deadline:
             current = utc_ms()
+            if market_state.get('end_info'):
+                runner.observe_game_information(market_state['end_info'],window,current)
             if runner.bound_market:
                 game = sports_state.get(str(runner.bound_market.get("polymarket_game_id")))
                 if game:

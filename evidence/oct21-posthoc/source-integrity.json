@@ -1,0 +1,29 @@
+[
+  {
+    "market_id": "5676016",
+    "source_path": "data\\console\\9604866cbb934b208a30f36b9e006373.sqlite",
+    "source_inputs": 38412,
+    "input_sha256": "36960936fed4dccc683190e218e04a699b2dac3f1a96e374137e08077b7b4f2d",
+    "matches_initial_chart_source": true,
+    "original_orders": 0,
+    "original_fills": 0
+  },
+  {
+    "market_id": "5676021",
+    "source_path": "data\\console\\07ac29b9a864454f95d72b5e042fa79b.sqlite",
+    "source_inputs": 33928,
+    "input_sha256": "6dc18041093baa2d009aa6c46e047bac31aa9ebc46c441ed4c0002c6ff32370f",
+    "matches_initial_chart_source": true,
+    "original_orders": 0,
+    "original_fills": 0
+  },
+  {
+    "market_id": "5680507",
+    "source_path": "data\\console\\8fc9793f22e64aabbac64d64f1d48ab3.sqlite",
+    "source_inputs": 31608,
+    "input_sha256": "aef37e95b6648ac5ec7d75a74beb4aecb6460afe382a2d833a6d7ecb13932969",
+    "matches_initial_chart_source": true,
+    "original_orders": 0,
+    "original_fills": 0
+  }
+]

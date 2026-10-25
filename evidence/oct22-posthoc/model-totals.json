@@ -1,0 +1,26 @@
+[
+  {
+    "model": "L0",
+    "capital": "275",
+    "simulated_terminal_pnl": "9.20",
+    "fill_events": 72,
+    "zero_fill_games": 4,
+    "halted_games": 0
+  },
+  {
+    "model": "L1",
+    "capital": "275",
+    "simulated_terminal_pnl": "-5.0148",
+    "fill_events": 6,
+    "zero_fill_games": 7,
+    "halted_games": 4
+  },
+  {
+    "model": "L2",
+    "capital": "275",
+    "simulated_terminal_pnl": "-0.15",
+    "fill_events": 2,
+    "zero_fill_games": 10,
+    "halted_games": 1
+  }
+]

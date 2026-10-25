@@ -23,7 +23,7 @@ class UnifiedPaperManager(OrderManager):
         if not isinstance(policy, BookPolicy):
             raise ValueError("unified inplay manager requires BookPolicy")
         saved = store.db.execute("SELECT config FROM pe_control WHERE id=1").fetchone()
-        additive={'research_phase','research_phase_age_ms','max_order_lifetime_ms'}
+        additive={'research_phase','research_phase_age_ms','max_order_lifetime_ms','quote_profile','rotation_lookback_ms','rotation_cooldown_ms','rotation_jump','rotation_max_distance','rotation_retain_ticks'}
         if saved and (set(asdict(policy))-set(json.loads(saved[0]))-additive or asdict(BookPolicy(**json.loads(saved[0]))) != asdict(policy)):
             # Refuse legacy/incompatible writers before creating a new ledger
             # or capital receipt. Historical results remain read-only auditable.
@@ -35,13 +35,12 @@ class UnifiedPaperManager(OrderManager):
                 store.db.backup(backup)
         install(store.db)
         initialize(store.db)
+        from ..shared_inputs import ensure_inputs
+        ensure_inputs(store.db)
         store.db.executescript("""
         CREATE TABLE IF NOT EXISTS ip_receipts(id TEXT PRIMARY KEY,order_id TEXT,filled TEXT,payload TEXT);
         CREATE TABLE IF NOT EXISTS ip_income(id TEXT PRIMARY KEY,time_ms INTEGER,kind TEXT,stage TEXT,amount TEXT,market_id TEXT,evidence TEXT);
         CREATE TABLE IF NOT EXISTS ip_game_observations(id INTEGER PRIMARY KEY,time_ms INTEGER,payload TEXT);
-        CREATE TABLE IF NOT EXISTS ip_inputs(id TEXT PRIMARY KEY,time_ms INTEGER,payload TEXT);
-        CREATE TRIGGER IF NOT EXISTS ip_inputs_u BEFORE UPDATE ON ip_inputs BEGIN SELECT RAISE(ABORT,'immutable input'); END;
-        CREATE TRIGGER IF NOT EXISTS ip_inputs_d BEFORE DELETE ON ip_inputs BEGIN SELECT RAISE(ABORT,'immutable input'); END;
         CREATE TABLE IF NOT EXISTS ip_models(order_id TEXT PRIMARY KEY,payload TEXT);
         CREATE TABLE IF NOT EXISTS ip_prints(id TEXT PRIMARY KEY,payload TEXT);
         CREATE TABLE IF NOT EXISTS ip_fill_evidence(fill_id TEXT PRIMARY KEY,payload TEXT);
@@ -54,6 +53,7 @@ class UnifiedPaperManager(OrderManager):
         CREATE TABLE IF NOT EXISTS ip_diagnostic_intervals(kind TEXT PRIMARY KEY,signature TEXT,first_ms INTEGER,last_ms INTEGER,count INTEGER);
         CREATE TABLE IF NOT EXISTS ip_diagnostic_history(id INTEGER PRIMARY KEY,kind TEXT,signature TEXT,first_ms INTEGER,last_ms INTEGER,count INTEGER);
         CREATE TABLE IF NOT EXISTS ip_watchdog_seen(id TEXT PRIMARY KEY,signature TEXT);
+        CREATE TABLE IF NOT EXISTS ip_rotation(asset_id TEXT,time_ms INTEGER,book_ref TEXT,payload TEXT,PRIMARY KEY(asset_id,time_ms,book_ref));
         CREATE UNIQUE INDEX IF NOT EXISTS ip_unique_cash_receipt ON ip_income(json_extract(evidence,'$.cash_flow_id')) WHERE stage='RECEIVED';
         """)
         prior=store.db.execute("SELECT run_id FROM l6_accounts WHERE lane='UNIFIED_PAPER'").fetchall()
@@ -194,6 +194,9 @@ class UnifiedPaperManager(OrderManager):
         return result
 
     def phase_frame(self, frame):
+        if self.policy.quote_profile == 'INPLAY_ROTATION_V1':
+            from .rotation import decorate
+            frame = decorate(self.db, frame, self.policy, self.now)
         if self.policy.research_phase:
             row = self.db.execute("SELECT payload FROM ip_session_config WHERE id='research_phase_grant'").fetchone()
             return {**frame, 'research_phase_grant': json.loads(row[0]) if row else None}

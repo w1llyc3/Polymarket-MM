@@ -1,0 +1,277 @@
+[
+  {
+    "market_id": "5716392",
+    "observations": 1035,
+    "first": [
+      1792623603687,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "last": [
+      1792637345804,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "all_observed_zero_fee_and_rebate": true
+  },
+  {
+    "market_id": "5716400",
+    "observations": 1126,
+    "first": [
+      1792621802094,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "last": [
+      1792635925217,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "all_observed_zero_fee_and_rebate": true
+  },
+  {
+    "market_id": "5716421",
+    "observations": 1099,
+    "first": [
+      1792621802089,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "last": [
+      1792635212167,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "all_observed_zero_fee_and_rebate": true
+  },
+  {
+    "market_id": "5716444",
+    "observations": 1033,
+    "first": [
+      1792623603478,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "last": [
+      1792637193831,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "all_observed_zero_fee_and_rebate": true
+  },
+  {
+    "market_id": "5716452",
+    "observations": 1048,
+    "first": [
+      1792623603570,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "last": [
+      1792637899154,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "all_observed_zero_fee_and_rebate": true
+  },
+  {
+    "market_id": "5716460",
+    "observations": 895,
+    "first": [
+      1792625402386,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "last": [
+      1792638453149,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "all_observed_zero_fee_and_rebate": true
+  },
+  {
+    "market_id": "5716465",
+    "observations": 897,
+    "first": [
+      1792625402364,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "last": [
+      1792638464693,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "all_observed_zero_fee_and_rebate": true
+  },
+  {
+    "market_id": "5716468",
+    "observations": 801,
+    "first": [
+      1792627201811,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "last": [
+      1792640020274,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "all_observed_zero_fee_and_rebate": true
+  },
+  {
+    "market_id": "5722990",
+    "observations": 927,
+    "first": [
+      1792632609967,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "last": [
+      1792646358147,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "all_observed_zero_fee_and_rebate": true
+  },
+  {
+    "market_id": "5722993",
+    "observations": 818,
+    "first": [
+      1792632609974,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "last": [
+      1792645144792,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "all_observed_zero_fee_and_rebate": true
+  },
+  {
+    "market_id": "5722996",
+    "observations": 860,
+    "first": [
+      1792634423876,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "last": [
+      1792647025409,
+      "zero_fees",
+      {
+        "exponent": 1,
+        "rate": 0,
+        "rebateRate": 0,
+        "takerOnly": true
+      }
+    ],
+    "all_observed_zero_fee_and_rebate": true
+  }
+]

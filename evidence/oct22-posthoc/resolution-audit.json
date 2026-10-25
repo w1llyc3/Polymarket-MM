@@ -1,0 +1,332 @@
+[
+  {
+    "market_id": "5716392",
+    "resolution_messages": [
+      {
+        "event_key": "0547f3b41222d3281888273e47f0ef32e7eb3033a4b2e21c9b5dd743676f74dd",
+        "received_ms": 1792636595631,
+        "raw": {
+          "assets_ids": [
+            "107102793637680157985081124002726182334464514298802794132890893773707404215371",
+            "75308551391533164007717414884845562358431109684778838881230857244672309536073"
+          ],
+          "event_message": null,
+          "event_type": "market_resolved",
+          "id": "5716392",
+          "market": "0x47f97bc90f048a7a94f3c7245fbc2f193caf20a136212aae58db4b6a5672e727",
+          "tags": [
+            "Sports",
+            "Basketball",
+            "NBA",
+            "Games",
+            "NBA Tip-Off"
+          ],
+          "timestamp": "1792636592014",
+          "winning_asset_id": "107102793637680157985081124002726182334464514298802794132890893773707404215371",
+          "winning_outcome": "Timberwolves"
+        },
+        "sha256": "14fd5c80a6e7597af30d6489601dc4181831b797701ffd525f11c32ab63144ce"
+      }
+    ]
+  },
+  {
+    "market_id": "5716400",
+    "resolution_messages": [
+      {
+        "event_key": "46fe9e2870747674f9f0a04678a790297067510e2140f81b60ef80f7f7f172f5",
+        "received_ms": 1792635183498,
+        "raw": {
+          "assets_ids": [
+            "44887259505946660799050523095589383516895296837192507586209222338540683060118",
+            "17467605151473494662545556567107818232983710767751217862985172203041132078695"
+          ],
+          "event_message": null,
+          "event_type": "market_resolved",
+          "id": "5716400",
+          "market": "0x4261b968013320f835cc37a0c80a27ba559befad056723cf54102bd0059450f1",
+          "tags": [
+            "Sports",
+            "Basketball",
+            "NBA",
+            "Games",
+            "NBA Tip-Off"
+          ],
+          "timestamp": "1792635182336",
+          "winning_asset_id": "44887259505946660799050523095589383516895296837192507586209222338540683060118",
+          "winning_outcome": "Hawks"
+        },
+        "sha256": "028a8c4cb6a65de507605643a1632cb57b8334bf3fbf48297e18e1ff0088fab7"
+      }
+    ]
+  },
+  {
+    "market_id": "5716421",
+    "resolution_messages": [
+      {
+        "event_key": "aa2932f0a9d2bcb05264d35452db69dfcc1a9866e5662dd2fddb922049de70e3",
+        "received_ms": 1792634479138,
+        "raw": {
+          "assets_ids": [
+            "1599101620680797671383335695906161815959476547649246036701380628339498427273",
+            "10307919734785835536852019134434226434969834839440074442822746127189529151426"
+          ],
+          "event_message": null,
+          "event_type": "market_resolved",
+          "id": "5716421",
+          "market": "0x49c26a169079ce41dd215fa99782dfb35262b9104ac640f9255105e4a4beea06",
+          "tags": [
+            "Sports",
+            "Basketball",
+            "NBA",
+            "Games",
+            "NBA Tip-Off"
+          ],
+          "timestamp": "1792634478577",
+          "winning_asset_id": "10307919734785835536852019134434226434969834839440074442822746127189529151426",
+          "winning_outcome": "Wizards"
+        },
+        "sha256": "ae8401b6accdfb0a7734999bf1edcd99ed0ff4c0689988bbb996f3afdc8d6447"
+      }
+    ]
+  },
+  {
+    "market_id": "5716444",
+    "resolution_messages": [
+      {
+        "event_key": "9bfe7b349ae7c4399e1901bb92831fd8f599ccf7da18d4a6258bca6f626fc550",
+        "received_ms": 1792636413024,
+        "raw": {
+          "assets_ids": [
+            "58802458597374928740225519735423162012398763515664846118442539672822667668833",
+            "41247778526275081611027808679193000552257350876256303216214713529864810603781"
+          ],
+          "event_message": null,
+          "event_type": "market_resolved",
+          "id": "5716444",
+          "market": "0x12c0ff4a99b3f160c77b10c8e9ab08a858bd00270de1be3e00aef8a70808fba7",
+          "tags": [
+            "Sports",
+            "Basketball",
+            "NBA",
+            "Games",
+            "NBA Tip-Off"
+          ],
+          "timestamp": "1792636412133",
+          "winning_asset_id": "58802458597374928740225519735423162012398763515664846118442539672822667668833",
+          "winning_outcome": "Hornets"
+        },
+        "sha256": "433c8a8420972869e5d5fd9908e8d183bfd33715231f3f558f933f1f243259ae"
+      }
+    ]
+  },
+  {
+    "market_id": "5716452",
+    "resolution_messages": [
+      {
+        "event_key": "781332f3531f43af4d9a54aa69ff3578626281a0bc7b4574def8e54ef183d124",
+        "received_ms": 1792636982525,
+        "raw": {
+          "assets_ids": [
+            "8478232975053021656102481848967329190182250864822625630950559616369952555004",
+            "99964542458256567041071603202810954439068213855769986773400890577966753751107"
+          ],
+          "event_message": null,
+          "event_type": "market_resolved",
+          "id": "5716452",
+          "market": "0xa7b7af4f22cf97db51b80d4692222b26f6d7c60209abcb1c27ced6c87f52038a",
+          "tags": [
+            "Sports",
+            "Basketball",
+            "NBA",
+            "Games",
+            "NBA Tip-Off"
+          ],
+          "timestamp": "1792636981985",
+          "winning_asset_id": "99964542458256567041071603202810954439068213855769986773400890577966753751107",
+          "winning_outcome": "Raptors"
+        },
+        "sha256": "aacec2102c6fd9730b57acf7ec73f63d81e02a3e854e47f133f20d068b2f7c68"
+      }
+    ]
+  },
+  {
+    "market_id": "5716460",
+    "resolution_messages": [
+      {
+        "event_key": "4b148fb06077f49c12898934f765d002204d8d0fded3a80d957089b59954567b",
+        "received_ms": 1792637643457,
+        "raw": {
+          "assets_ids": [
+            "7685158848984498977390071784341171138992058973607044422044852725107513658437",
+            "92026908821928990759307387761911364987540060356600925155085252262202735890787"
+          ],
+          "event_message": null,
+          "event_type": "market_resolved",
+          "id": "5716460",
+          "market": "0x3659aae64ada65eb275fec0018a21a5f7242f75911deda14fbafea17c51ffd6e",
+          "tags": [
+            "Sports",
+            "Basketball",
+            "NBA",
+            "Games",
+            "NBA Tip-Off"
+          ],
+          "timestamp": "1792637642831",
+          "winning_asset_id": "92026908821928990759307387761911364987540060356600925155085252262202735890787",
+          "winning_outcome": "Grizzlies"
+        },
+        "sha256": "80199e211a793ea6ff7c306e4341d34edf96591046d8db339037c8bd72e7f89c"
+      }
+    ]
+  },
+  {
+    "market_id": "5716465",
+    "resolution_messages": [
+      {
+        "event_key": "9dd2d1e2cad59f33725e52fe34bd6561e7b72567223927f1d9b83ebbcc8e2904",
+        "received_ms": 1792637643408,
+        "raw": {
+          "assets_ids": [
+            "79113085505766518662127377485187921541630763377385828811087128160824652816998",
+            "108616402403932080629855776799105602053503138750417498235877447818713316349902"
+          ],
+          "event_message": null,
+          "event_type": "market_resolved",
+          "id": "5716465",
+          "market": "0x24bab815e0e348358839f3bcf9d962b702610256b189506c9ef6197640d463e6",
+          "tags": [
+            "Sports",
+            "Basketball",
+            "NBA",
+            "Games",
+            "NBA Tip-Off"
+          ],
+          "timestamp": "1792637642815",
+          "winning_asset_id": "79113085505766518662127377485187921541630763377385828811087128160824652816998",
+          "winning_outcome": "Pacers"
+        },
+        "sha256": "ab61b3c82f5ff9eab38a187d70e7a62a16dbff84975f5648d538dc04c03114ad"
+      }
+    ]
+  },
+  {
+    "market_id": "5716468",
+    "resolution_messages": [
+      {
+        "event_key": "a2da27bb0f369694a3437219833d53dc9527977d2bb4f7dc72a354c08edbfad9",
+        "received_ms": 1792639263336,
+        "raw": {
+          "assets_ids": [
+            "70448374113237600852894674614824159045901244794984612914777108422734736077371",
+            "64698927313611102726409711210982081603793479545509554906925009949133726827935"
+          ],
+          "event_message": null,
+          "event_type": "market_resolved",
+          "id": "5716468",
+          "market": "0xa9ced0ba40242ad009b8668b13ec5269644905e86016e702f49e83054f30f1c7",
+          "tags": [
+            "Sports",
+            "Basketball",
+            "NBA",
+            "Games",
+            "NBA Tip-Off"
+          ],
+          "timestamp": "1792639262775",
+          "winning_asset_id": "64698927313611102726409711210982081603793479545509554906925009949133726827935",
+          "winning_outcome": "Rockets"
+        },
+        "sha256": "d32e5e3c9560b5d33accbc83fad14b25cfbbca70be2774a80b5db8ef1a9e934e"
+      }
+    ]
+  },
+  {
+    "market_id": "5722990",
+    "resolution_messages": [
+      {
+        "event_key": "a59944ab99ec01c50e6675bdb37f4e20a9533a465545cb20e28903278b68ca72",
+        "received_ms": 1792645142829,
+        "raw": {
+          "assets_ids": [
+            "80730637204578696425332924759165995147927212368472537832361698073482062305289",
+            "32077427596348687645986457298945173410464971554983670989912723102826107714575"
+          ],
+          "event_message": null,
+          "event_type": "market_resolved",
+          "id": "5722990",
+          "market": "0x74112dc67487ec5f08d44436bbaedd1512c77daf671e829187d995a29398da22",
+          "tags": [
+            "Sports",
+            "Basketball",
+            "NBA",
+            "Games",
+            "NBA Tip-Off"
+          ],
+          "timestamp": "1792645142248",
+          "winning_asset_id": "32077427596348687645986457298945173410464971554983670989912723102826107714575",
+          "winning_outcome": "Lakers"
+        },
+        "sha256": "8f20880bf0440398675760d37ab8678f1158e5b59608e30e34b2f1010fa2b762"
+      }
+    ]
+  },
+  {
+    "market_id": "5722993",
+    "resolution_messages": [
+      {
+        "event_key": "d8dcaa77f1e7b00461d4ab38cd63ce0c45d2a51f4edb4a28e4d3d6502e069939",
+        "received_ms": 1792644303532,
+        "raw": {
+          "assets_ids": [
+            "1626975480582476361111092423160356505312836372115980751489295500681894874827",
+            "18625742319258406505977946415703900329967320002785877138838923961838029415209"
+          ],
+          "event_message": null,
+          "event_type": "market_resolved",
+          "id": "5722993",
+          "market": "0x01179dec7271755254eb8bca5787eb66fe88a6aed9f2a12f20f79e09bd039f78",
+          "tags": [
+            "Sports",
+            "Basketball",
+            "NBA",
+            "Games",
+            "NBA Tip-Off"
+          ],
+          "timestamp": "1792644302367",
+          "winning_asset_id": "18625742319258406505977946415703900329967320002785877138838923961838029415209",
+          "winning_outcome": "Trail Blazers"
+        },
+        "sha256": "ffc9bb95b8973aa5c91133a629ae071d4fb13b445ba7afa2c62480ae6f635d72"
+      }
+    ]
+  },
+  {
+    "market_id": "5722996",
+    "resolution_messages": [
+      {
+        "event_key": "ce1a3f20833713d4ec2a9dcf12589f69f0e398bcabec0c7dc441082f6ec24aca",
+        "received_ms": 1792646267620,
+        "raw": {
+          "assets_ids": [
+            "112910648330465833413877547232231876252900072314935588375523944706456051504208",
+            "103335723504333456841466589540340058426502303539215038984020301173401753259156"
+          ],
+          "event_message": null,
+          "event_type": "market_resolved",
+          "id": "5722996",
+          "market": "0x75e1f6d6fe20e8785185c3437ff5f861049c06125707bfef8c658834f68df250",
+          "tags": [
+            "Sports",
+            "Basketball",
+            "NBA",
+            "Games",
+            "NBA Tip-Off"
+          ],
+          "timestamp": "1792646267024",
+          "winning_asset_id": "103335723504333456841466589540340058426502303539215038984020301173401753259156",
+          "winning_outcome": "Clippers"
+        },
+        "sha256": "4ae4414fd5750d56aa99f892b5394960a69e5184768c7172b03d711b8da964b2"
+      }
+    ]
+  }
+]
