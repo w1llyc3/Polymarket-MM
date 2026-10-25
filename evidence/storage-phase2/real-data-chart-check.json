@@ -1,0 +1,30 @@
+{
+  "market_id": "5716421",
+  "session_id": "1853cb7575ab4711bb24745e8b3e5cf7",
+  "source_input_sha256": "f62bf22418b3cd8468cffa1ede0bd87e886f04fca24af161e7f41ebabf829428",
+  "matches_original_study_input": true,
+  "charts": [
+    {
+      "file": "depth-heatmap.png",
+      "bytes": 286392,
+      "matches_original_png": null,
+      "original_png_exists": false
+    },
+    {
+      "file": "liquidity-activity.png",
+      "bytes": 206924,
+      "matches_original_png": null,
+      "original_png_exists": false
+    },
+    {
+      "file": "price-trades.png",
+      "bytes": 201704,
+      "matches_original_png": null,
+      "original_png_exists": false
+    }
+  ],
+  "seconds": 16.479911100002937,
+  "does_not_rerun_strategy": true,
+  "real_submission_calls": 0,
+  "comparison_note": "The original Oct22 study has no saved PNG for this market; full input digest matches original study. New PNGs generated successfully. Same-code pre/post compression chart projection is checked separately."
+}

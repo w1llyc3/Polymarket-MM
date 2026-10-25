@@ -452,15 +452,17 @@ class ConsoleService:
 
     def chart_query(self, params):
         sid = params.get("session_id")
-        # Copy only tiny identity fields under the publication lock; no OMS
-        # calls, full log copies, or disk reads on the engine owner.
-        with self.lock:
-            state = self.view.get("state", {})
-            market = state.get("bound_market") or {}
-            assets = {o['asset_id'] for o in market.get('outcomes',[])} | {b['asset_id'] for b in state.get('books',[])}
-        from .history import resolve, view
+        from .history import resolve
         path = resolve(self.data,sid)
-        assets = {b['asset_id'] for b in view(self.data,sid)['state']['books']}
+        # Validate against recorded market identity, without computing the full
+        # history summary (which sorts large payloads and scans the journal).
+        # Historical outcomes remain inspectable even if the last frame is empty.
+        from contextlib import closing
+        from ..fair_value.store import read_connection
+        with closing(read_connection(path)) as db:
+            first = db.execute("SELECT payload FROM ip_inputs WHERE json_array_length(payload,'$.frames')>0 ORDER BY rowid LIMIT 1").fetchone()
+            frames = json.loads(first[0])['frames'] if first else []
+            assets = {o['asset_id'] for f in frames for o in f['market']['outcomes']}
         if params.get('asset_id') not in assets:
             raise ValueError("unknown outcome")
         from .chart import query

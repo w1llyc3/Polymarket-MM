@@ -1,3 +1,4 @@
 {
-  "compress_completed_research": true
+  "compress_completed_research": true,
+  "algorithm": "LZX"
 }

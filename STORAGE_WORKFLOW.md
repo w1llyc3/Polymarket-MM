@@ -21,7 +21,7 @@
 - 必须存在 `result.json`，其中 `shutdown_ledger_consistent=true`、`real_submission_calls=0`。
 - 持有原有 Paper writer 锁；有未清空 WAL/journal、未完成目录、路径重定向时跳过。
 - 压缩旧 `data/unattended/<日期>/discovery.jsonl`：须获取空闲 scheduler 锁，或确认该文件已被 V2 发现日志替代。V2 日志自身不在压缩范围。
-- 保留不处理：`data/console` 原始采集库、source-tape、shared-inputs、所有图表/HTML/JSON/CSV、账户与历史结果。
+- 默认不处理：`data/console` 原始采集库。需要额外明确指定 `--closed-recordings` 才会检查已停止采集库；source-tape、shared-inputs、所有图表/HTML/JSON/CSV 和账户内容始终保留。
 - 错误不会删除任何源文件。逐文件失败会保留在维护报告，CLI 返回非零状态。
 
 ## 命令
@@ -41,6 +41,10 @@
 # 可选更紧凑、但更耗 CPU 的算法；不要在比赛采集高峰做批量维护
 .\.venv\Scripts\python.exe -m nba_recorder.storage_workflow apply --algorithm LZX
 
+# 先检查、再压缩明确停止的采集库；不迁移、不删除、不自动清理 WAL
+.\.venv\Scripts\python.exe -m nba_recorder.storage_workflow plan --scope data/console --closed-recordings
+.\.venv\Scripts\python.exe -m nba_recorder.storage_workflow apply --scope data/console --closed-recordings --algorithm LZX
+
 # 启用新研究完成后的自动维护；仅首次设置，已有配置不要覆盖
 Copy-Item storage-policy.example.json data/storage-policy.json
 ```
@@ -49,6 +53,11 @@ Copy-Item storage-policy.example.json data/storage-policy.json
 `bytes` 是逻辑文件大小；`saved_bytes` 是本次节省量。已经压缩的文件可以重复验证。
 不支持的系统会明确失败，保留文件；没有静默删除或迁移路径。
 自动维护默认关闭，设置文件仅控制研究完成后的压缩，不控制行情采集。
+配置中的 `algorithm` 可选 `XPRESS8K` 或 `LZX`，省略兼容旧默认 XPRESS8K；新版示例采用 LZX。
+CLI 未指定 `--algorithm` 时也读取此配置，避免一次常规维护把已经升级的 LZX 改回较低压缩率。
+已停止采集库不进入自动研究维护，必须显式执行上述命令。
+每个采集库必须有 HALTED 状态及最终报告中的停止时间，压缩期间持有原采集器的配对写入锁。
+非空 WAL/journal 一律跳过，避免在存储维护中改写采集数据库；停止采集不代表比赛覆盖完整。
 维护失败保留研究结果并输出 `STORAGE_MAINTENANCE_FAILED`；无法启动维护时另写 `storage-maintenance-error.json`。
 
 ## 新离线回放的共享输入

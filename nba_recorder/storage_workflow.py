@@ -11,6 +11,8 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sqlite3
+import re
 import time
 import uuid
 
@@ -71,11 +73,40 @@ def lock(path):
         fp.close()
 
 
-def eligible(root, path):
+def eligible(root, path, include_closed=False):
     p = checked(root, path)
     rel = p.relative_to(Path(root).resolve() / 'data')
     if not p.is_file() or any('.incomplete-' in part for part in rel.parts):
         raise ValueError('Not a completed file')
+    if include_closed and len(rel.parts) == 2 and rel.parts[0] == 'console':
+        match = re.fullmatch(r'([0-9a-f]{32})(?:-source)?\.sqlite', p.name)
+        if not match:
+            raise ValueError('Not a paired recording database')
+        paper = checked(root, p.parent / (match[1] + '.sqlite'))
+        writer_lock = Path(str(paper) + '.writer.lock')
+        if not writer_lock.is_file():
+            raise ValueError('Missing original recording writer lock')
+        for database in (paper, p):
+            for suffix in ('-wal', '-journal'):
+                sidecar = Path(str(database) + suffix)
+                if sidecar.exists() and sidecar.stat().st_size:
+                    raise ValueError('Recording has pending WAL/journal; preserve without checkpointing')
+        db = sqlite3.connect(paper.as_uri() + '?mode=ro', uri=True)
+        try:
+            state = db.execute('SELECT state FROM pe_control WHERE id=1').fetchone()
+            row = db.execute('SELECT payload FROM ip_saved_report ORDER BY id DESC LIMIT 1').fetchone()
+            report = json.loads(row[0]) if row else {}
+            stopped = report.get('runner', {}).get('stop_ms')
+            if not state or state[0] != 'HALTED' or type(stopped) is not int or not 0 < stopped <= time.time()*1000:
+                raise ValueError('No durable stopped recording evidence')
+        except sqlite3.Error as e:
+            raise ValueError('Missing stopped recording report') from e
+        finally:
+            db.close()
+        # The recorder holds this same lock until BOTH paired databases close.
+        # Recheck eligibility under the lock before compression. A stopped
+        # recording is not a claim of full-game coverage.
+        return writer_lock
     if rel.parts[0] in ('research', 'day-studies', 'strategy-studies'):
         if p.name != 'paper.sqlite' and not (rel.parts[0] == 'research' and p.suffix == '.jsonl'):
             raise ValueError('Preserve shared inputs, reports and charts')
@@ -97,7 +128,7 @@ def eligible(root, path):
     raise ValueError('Outside approved cold-storage scope')
 
 
-def plan(root, scope=None):
+def plan(root, scope=None, include_closed=False):
     root = Path(root).resolve()
     scope = Path(scope).resolve() if scope else root / 'data'
     scope.relative_to(root / 'data')
@@ -108,26 +139,28 @@ def plan(root, scope=None):
         if folder == 'research':
             candidates.extend(base.rglob('*.jsonl'))
     candidates.extend((root / 'data/unattended').glob('*/discovery.jsonl'))
+    if include_closed:
+        candidates.extend((root / 'data/console').glob('*.sqlite'))
     items, skipped = [], []
     for p in sorted(set(candidates)):
         if scope != p and scope not in p.parents:
             continue
         try:
-            eligible(root, p)
+            eligible(root, p, include_closed)
             items.append({'path': p.relative_to(root).as_posix(), 'bytes': p.stat().st_size})
         except (ValueError, OSError, KeyError) as e:
             skipped.append({'path': str(p.relative_to(root)), 'reason': str(e)})
     return {'items': items, 'skipped': skipped, 'logical_bytes': sum(i['bytes'] for i in items)}
 
 
-def compress_one(root, item, algorithm='XPRESS8K'):
+def compress_one(root, item, algorithm='XPRESS8K', include_closed=False):
     if os.name != 'nt':
         raise RuntimeError('Transparent compression requires Windows NTFS; nothing modified')
     if algorithm not in ('XPRESS8K', 'LZX'):
         raise ValueError('Unsupported algorithm')
     root = Path(root).resolve(); p = checked(root, root / item['path'])
-    with lock(eligible(root, p)):
-        eligible(root, p)
+    with lock(eligible(root, p, include_closed)):
+        eligible(root, p, include_closed)
         before = (p.stat().st_size, p.stat().st_mtime_ns)
         digest = sha256(p); physical_before = allocated_bytes(p)
         command = [os.path.join(os.environ['SystemRoot'], 'System32', 'compact.exe'),
@@ -144,12 +177,13 @@ def compress_one(root, item, algorithm='XPRESS8K'):
                 'content_deleted': False}
 
 
-def apply(root, scope=None, algorithm='XPRESS8K'):
+def apply(root, scope=None, algorithm='XPRESS8K', include_closed=False):
     root = Path(root).resolve(); directory = root / 'data/storage-workflow'
     directory.mkdir(parents=True, exist_ok=True)
     report_path = directory / (str(int(time.time())) + '-' + uuid.uuid4().hex[:8] + '.json')
     with lock(directory / 'maintenance.lock'):
-        report = {'mode': 'LOSSLESS_TRANSPARENT_COMPRESSION', 'plan': plan(root, scope),
+        report = {'mode': 'LOSSLESS_TRANSPARENT_COMPRESSION', 'plan': plan(root, scope, include_closed),
+                  'include_closed_recordings': include_closed,
                   'results': [], 'errors': [], 'real_submission_calls': 0}
         def save():
             temporary = report_path.with_suffix('.tmp')
@@ -159,7 +193,7 @@ def apply(root, scope=None, algorithm='XPRESS8K'):
         for item in report['plan']['items']:
             print('COMPRESS ' + item['path'], flush=True)
             try:
-                result = compress_one(root, item, algorithm)
+                result = compress_one(root, item, algorithm, include_closed)
                 report['results'].append(result)
                 print(json.dumps(result), flush=True)
             except Exception as e:
@@ -179,10 +213,13 @@ def after_research(root, output):
         # External exports and temporary test workspaces are never managed.
         return
     policy = Path(root) / 'data/storage-policy.json'
-    if not policy.exists() or not json.loads(policy.read_text(encoding='utf-8')).get('compress_completed_research'):
+    if not policy.exists():
+        return
+    settings = json.loads(policy.read_text(encoding='utf-8'))
+    if not settings.get('compress_completed_research'):
         return
     try:
-        path, result = apply(root, output)
+        path, result = apply(root, output, algorithm=settings.get('algorithm', 'XPRESS8K'))
         if result['errors']:
             print('STORAGE_MAINTENANCE_FAILED; research retained: ' + str(path), flush=True)
     except Exception as e:
@@ -197,12 +234,17 @@ def main():
     p.add_argument('action', choices=('plan', 'apply'))
     p.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
     p.add_argument('--scope', type=Path)
-    p.add_argument('--algorithm', choices=('XPRESS8K', 'LZX'), default='XPRESS8K')
+    p.add_argument('--algorithm', choices=('XPRESS8K', 'LZX'), help='Defaults to storage-policy.json, otherwise XPRESS8K')
+    p.add_argument('--closed-recordings', action='store_true', help='Explicitly include stopped paired recording DBs; active or pending-WAL DBs are excluded')
     a = p.parse_args()
     if a.action == 'plan':
-        print(json.dumps(plan(a.root, a.scope), ensure_ascii=False, indent=2))
+        print(json.dumps(plan(a.root, a.scope, a.closed_recordings), ensure_ascii=False, indent=2))
     else:
-        path, report = apply(a.root, a.scope, a.algorithm)
+        policy = a.root / 'data/storage-policy.json'
+        algorithm = a.algorithm or (json.loads(policy.read_text(encoding='utf-8')).get('algorithm', 'XPRESS8K') if policy.exists() else 'XPRESS8K')
+        if algorithm not in ('XPRESS8K', 'LZX'):
+            raise ValueError('Unsupported storage policy algorithm')
+        path, report = apply(a.root, a.scope, algorithm, a.closed_recordings)
         print('REPORT ' + str(path))
         if report['errors']:
             raise SystemExit(1)

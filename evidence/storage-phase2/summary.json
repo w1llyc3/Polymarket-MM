@@ -1,0 +1,95 @@
+{
+  "at_ms": 1792951174949,
+  "processed_files": 332,
+  "skipped_files": [
+    {
+      "path": "data\\console\\04bbf0709573470e937629ded402ef5d.sqlite",
+      "reason": "No durable stopped recording evidence"
+    },
+    {
+      "path": "data\\console\\281f0844922a41e48cf7fed0716fa08a.sqlite",
+      "reason": "No durable stopped recording evidence"
+    },
+    {
+      "path": "data\\console\\2e466d06eb0f4b3ab88bf2d34aedb616.sqlite",
+      "reason": "No durable stopped recording evidence"
+    },
+    {
+      "path": "data\\console\\3233a95a06ee47a382e629ac032c345d.sqlite",
+      "reason": "No durable stopped recording evidence"
+    },
+    {
+      "path": "data\\console\\4528d8d5216848ee940ccecb8968ec9d.sqlite",
+      "reason": "No durable stopped recording evidence"
+    },
+    {
+      "path": "data\\console\\4da475c9b79b4c5ead8a954070261856.sqlite",
+      "reason": "No durable stopped recording evidence"
+    },
+    {
+      "path": "data\\console\\68839efd9b2549c49d9d00fb2fbb9314.sqlite",
+      "reason": "No durable stopped recording evidence"
+    },
+    {
+      "path": "data\\console\\6d0e67a660d24f6b80a8db2a56a13b0b.sqlite",
+      "reason": "No durable stopped recording evidence"
+    },
+    {
+      "path": "data\\console\\6d8df97492244e5c8fe9317f1198bbb4.sqlite",
+      "reason": "No durable stopped recording evidence"
+    },
+    {
+      "path": "data\\console\\71fa4c6b75a2495da6fc1d754b9e30a5.sqlite",
+      "reason": "No durable stopped recording evidence"
+    },
+    {
+      "path": "data\\console\\73eb542dea5046eb9948be9fbe243d9d.sqlite",
+      "reason": "No durable stopped recording evidence"
+    },
+    {
+      "path": "data\\console\\e368a18ef1d3453f8a89b0bd74ec8ece-source.sqlite",
+      "reason": "Missing stopped recording report"
+    },
+    {
+      "path": "data\\console\\e368a18ef1d3453f8a89b0bd74ec8ece.sqlite",
+      "reason": "Missing stopped recording report"
+    }
+  ],
+  "saved_bytes": 96325267456,
+  "groups": {
+    "console": {
+      "files": 82,
+      "before_bytes": 76419629056,
+      "after_bytes": 10405986304
+    },
+    "day-studies": {
+      "files": 56,
+      "before_bytes": 22442180608,
+      "after_bytes": 8949620736
+    },
+    "research": {
+      "files": 126,
+      "before_bytes": 2252611584,
+      "after_bytes": 724037632
+    },
+    "strategy-studies": {
+      "files": 63,
+      "before_bytes": 22802849792,
+      "after_bytes": 8982294528
+    },
+    "unattended": {
+      "files": 5,
+      "before_bytes": 2717265920,
+      "after_bytes": 1247330304
+    }
+  },
+  "data_logical_bytes": 247072301980,
+  "data_allocated_bytes": 46503032678,
+  "free_disk_bytes": 618237419520,
+  "test_count": 388,
+  "failures": 0,
+  "source_files_deleted": false,
+  "external_migration": "DEFERRED_BY_USER",
+  "live_enabled": false,
+  "real_submission_calls": 0
+}

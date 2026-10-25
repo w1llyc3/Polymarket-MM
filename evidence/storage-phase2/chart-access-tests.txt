@@ -1,0 +1,22 @@
+test_chart_uses_recorded_outcomes_without_whole_history_summary (tests.test_chart_storage_access.HistoricalChartAccessTests.test_chart_uses_recorded_outcomes_without_whole_history_summary) ... ok
+test_all_categories_flow_through_dynamic_metadata_discovery (tests.test_general_chart.AsyncDiscovery.test_all_categories_flow_through_dynamic_metadata_discovery) ... Executing <Task finished name='Task-2' coro=<AsyncDiscovery.test_all_categories_flow_through_dynamic_metadata_discovery() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:71> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.375 seconds
+ok
+test_schedule_without_market_distinct_from_access_failure (tests.test_general_chart.AsyncDiscovery.test_schedule_without_market_distinct_from_access_failure) ... Executing <Task finished name='Task-7' coro=<AsyncDiscovery.test_schedule_without_market_distinct_from_access_failure() done, defined at D:\vibe coding\polymarket\nba\tests\test_general_chart.py:91> result=None created at C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py:100> took 1.735 seconds
+ok
+test_accepted_orders_partial_cancel_unknown_and_historical_ledger (tests.test_general_chart.ChartTests.test_accepted_orders_partial_cancel_unknown_and_historical_ledger) ... ok
+test_late_fill_during_bad_data_updates_inventory_without_fabricated_pnl (tests.test_general_chart.ChartTests.test_late_fill_during_bad_data_updates_inventory_without_fabricated_pnl) ... ok
+test_mid_band_gaps_asof_and_readonly_refresh (tests.test_general_chart.ChartTests.test_mid_band_gaps_asof_and_readonly_refresh) ... ok
+test_public_prints_are_separate_from_paper_and_unknown_aggressor (tests.test_general_chart.ChartTests.test_public_prints_are_separate_from_paper_and_unknown_aggressor) ... ok
+test_ui_has_one_canvas_and_no_strategy_calls_in_chart_code (tests.test_general_chart.ChartTests.test_ui_has_one_canvas_and_no_strategy_calls_in_chart_code) ... ok
+test_unaccepted_target_not_evidence_and_cursor_no_silent_truncation (tests.test_general_chart.ChartTests.test_unaccepted_target_not_evidence_and_cursor_no_silent_truncation) ... ok
+test_all_types_cross_season_without_fixed_slug_or_date (tests.test_general_chart.DiscoveryTests.test_all_types_cross_season_without_fixed_slug_or_date) ... ok
+test_cup_tags_not_blanket_exclusion_and_unknown_is_readable (tests.test_general_chart.DiscoveryTests.test_cup_tags_not_blanket_exclusion_and_unknown_is_readable) ... ok
+test_expanded_discovery_never_grants_phase_permission (tests.test_general_chart.DiscoveryTests.test_expanded_discovery_never_grants_phase_permission) ... ok
+test_identity_same_teams_time_conflict_and_wrong_outcome (tests.test_general_chart.DiscoveryTests.test_identity_same_teams_time_conflict_and_wrong_outcome) ... ok
+test_invalid_custom_dates_rejected_before_scan_or_account_allocation (tests.test_general_chart.DiscoveryTests.test_invalid_custom_dates_rejected_before_scan_or_account_allocation) ... ok
+test_other_full_game_slug_allowed_with_rule_proof_not_half_game (tests.test_general_chart.DiscoveryTests.test_other_full_game_slug_allowed_with_rule_proof_not_half_game) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 4.702s
+
+OK

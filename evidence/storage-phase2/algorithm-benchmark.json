@@ -1,0 +1,227 @@
+[
+  {
+    "kind": "session",
+    "path": "data/console/f5dce56d436a4a599c81b56496f18ee9.sqlite",
+    "before_probe": {
+      "sha256": "5a0d120724d705291ccea0883c108bb06da3e349db281df7da8e8ae2ef993547",
+      "counts": {
+        "ip_inputs": 3768,
+        "pe_orders": 0,
+        "pe_fills": 0
+      },
+      "seconds": 0.16370850009843707,
+      "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+    },
+    "runs": [
+      {
+        "path": "data/console/f5dce56d436a4a599c81b56496f18ee9.sqlite",
+        "bytes": 262881280,
+        "sha256": "303dc510a3d221c3bec5bc42c73610b33256357b4817879e4441c071df29b1ea",
+        "allocated_before": 262881280,
+        "allocated_after": 61788160,
+        "algorithm": "XPRESS8K",
+        "verified_ms": 1792949625459,
+        "status": "VERIFIED",
+        "content_deleted": false,
+        "wall_seconds": 0.45372130000032485,
+        "probe": {
+          "sha256": "5a0d120724d705291ccea0883c108bb06da3e349db281df7da8e8ae2ef993547",
+          "counts": {
+            "ip_inputs": 3768,
+            "pe_orders": 0,
+            "pe_fills": 0
+          },
+          "seconds": 0.033573699998669326,
+          "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+        }
+      },
+      {
+        "path": "data/console/f5dce56d436a4a599c81b56496f18ee9.sqlite",
+        "bytes": 262881280,
+        "sha256": "303dc510a3d221c3bec5bc42c73610b33256357b4817879e4441c071df29b1ea",
+        "allocated_before": 61788160,
+        "allocated_after": 24027136,
+        "algorithm": "LZX",
+        "verified_ms": 1792949628163,
+        "status": "VERIFIED",
+        "content_deleted": false,
+        "wall_seconds": 2.670206699986011,
+        "probe": {
+          "sha256": "5a0d120724d705291ccea0883c108bb06da3e349db281df7da8e8ae2ef993547",
+          "counts": {
+            "ip_inputs": 3768,
+            "pe_orders": 0,
+            "pe_fills": 0
+          },
+          "seconds": 0.032674800022505224,
+          "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+        }
+      }
+    ]
+  },
+  {
+    "kind": "source",
+    "path": "data/console/eaf88b03459d4636a0d2b810404e66ff-source.sqlite",
+    "before_probe": {
+      "sha256": "b7a354015f496e7fe7f21b55e11c3c3efd7fd4516a4609e7dcfcfede1a522124",
+      "counts": {
+        "raw_events": 15180,
+        "snapshots": 1727
+      },
+      "seconds": 0.1269867999944836,
+      "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+    },
+    "runs": [
+      {
+        "path": "data/console/eaf88b03459d4636a0d2b810404e66ff-source.sqlite",
+        "bytes": 334766080,
+        "sha256": "4f3a26c7aa67c82ece87de73bbad9051895e16dc46d7d3001904225aeaf7c15b",
+        "allocated_before": 334766080,
+        "allocated_after": 106160128,
+        "algorithm": "XPRESS8K",
+        "verified_ms": 1792949628897,
+        "status": "VERIFIED",
+        "content_deleted": false,
+        "wall_seconds": 0.5728419999359176,
+        "probe": {
+          "sha256": "b7a354015f496e7fe7f21b55e11c3c3efd7fd4516a4609e7dcfcfede1a522124",
+          "counts": {
+            "raw_events": 15180,
+            "snapshots": 1727
+          },
+          "seconds": 0.019770100014284253,
+          "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+        }
+      },
+      {
+        "path": "data/console/eaf88b03459d4636a0d2b810404e66ff-source.sqlite",
+        "bytes": 334766080,
+        "sha256": "4f3a26c7aa67c82ece87de73bbad9051895e16dc46d7d3001904225aeaf7c15b",
+        "allocated_before": 106160128,
+        "allocated_after": 51310592,
+        "algorithm": "LZX",
+        "verified_ms": 1792949632612,
+        "status": "VERIFIED",
+        "content_deleted": false,
+        "wall_seconds": 3.6955641999375075,
+        "probe": {
+          "sha256": "b7a354015f496e7fe7f21b55e11c3c3efd7fd4516a4609e7dcfcfede1a522124",
+          "counts": {
+            "raw_events": 15180,
+            "snapshots": 1727
+          },
+          "seconds": 0.025513499975204468,
+          "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+        }
+      }
+    ]
+  },
+  {
+    "kind": "study",
+    "path": "data/day-studies/2026-10-22/5716468/ORIGINAL-L2/paper.sqlite",
+    "before_probe": {
+      "sha256": "dec188e96a44ae3bcaafb21cb489172a7cea460df0e66d1a4e3b9b51feee4361",
+      "counts": {
+        "ip_inputs": 10718,
+        "pe_orders": 0,
+        "pe_fills": 0
+      },
+      "seconds": 0.12773139995988458,
+      "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+    },
+    "runs": [
+      {
+        "path": "data/day-studies/2026-10-22/5716468/ORIGINAL-L2/paper.sqlite",
+        "bytes": 526462976,
+        "sha256": "28f4c50b60df5da421d87e8d3f2ab2bcb8774e7b4e12b10ca56078299b9ee69c",
+        "allocated_before": 158334976,
+        "allocated_after": 158334976,
+        "algorithm": "XPRESS8K",
+        "verified_ms": 1792949633949,
+        "status": "VERIFIED",
+        "content_deleted": false,
+        "wall_seconds": 1.18293819995597,
+        "probe": {
+          "sha256": "dec188e96a44ae3bcaafb21cb489172a7cea460df0e66d1a4e3b9b51feee4361",
+          "counts": {
+            "ip_inputs": 10718,
+            "pe_orders": 0,
+            "pe_fills": 0
+          },
+          "seconds": 0.03231219993904233,
+          "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+        }
+      },
+      {
+        "path": "data/day-studies/2026-10-22/5716468/ORIGINAL-L2/paper.sqlite",
+        "bytes": 526462976,
+        "sha256": "28f4c50b60df5da421d87e8d3f2ab2bcb8774e7b4e12b10ca56078299b9ee69c",
+        "allocated_before": 158334976,
+        "allocated_after": 63868928,
+        "algorithm": "LZX",
+        "verified_ms": 1792949639570,
+        "status": "VERIFIED",
+        "content_deleted": false,
+        "wall_seconds": 5.58907069999259,
+        "probe": {
+          "sha256": "dec188e96a44ae3bcaafb21cb489172a7cea460df0e66d1a4e3b9b51feee4361",
+          "counts": {
+            "ip_inputs": 10718,
+            "pe_orders": 0,
+            "pe_fills": 0
+          },
+          "seconds": 0.031056300038471818,
+          "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+        }
+      }
+    ]
+  },
+  {
+    "kind": "export",
+    "path": "data/research/e43e28bd1f604cde9faaf5e9075314bc/p0-L1-d0/timeline.jsonl",
+    "before_probe": {
+      "sha256": "7150d5338b33d07197df1077b9518a5ad26e85485cb554eb32beea484f9b3ce4",
+      "counts": {},
+      "seconds": 0.006541999988257885,
+      "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+    },
+    "runs": [
+      {
+        "path": "data/research/e43e28bd1f604cde9faaf5e9075314bc/p0-L1-d0/timeline.jsonl",
+        "bytes": 283079399,
+        "sha256": "fd9009dbf4133884c544935e7a1595b8c60bbf8aa131e9aad1a5f051deb3281b",
+        "allocated_before": 51617792,
+        "allocated_after": 51617792,
+        "algorithm": "XPRESS8K",
+        "verified_ms": 1792949640243,
+        "status": "VERIFIED",
+        "content_deleted": false,
+        "wall_seconds": 0.6350970999337733,
+        "probe": {
+          "sha256": "7150d5338b33d07197df1077b9518a5ad26e85485cb554eb32beea484f9b3ce4",
+          "counts": {},
+          "seconds": 0.002840899978764355,
+          "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+        }
+      },
+      {
+        "path": "data/research/e43e28bd1f604cde9faaf5e9075314bc/p0-L1-d0/timeline.jsonl",
+        "bytes": 283079399,
+        "sha256": "fd9009dbf4133884c544935e7a1595b8c60bbf8aa131e9aad1a5f051deb3281b",
+        "allocated_before": 51617792,
+        "allocated_after": 13549568,
+        "algorithm": "LZX",
+        "verified_ms": 1792949643138,
+        "status": "VERIFIED",
+        "content_deleted": false,
+        "wall_seconds": 2.8921896000392735,
+        "probe": {
+          "sha256": "7150d5338b33d07197df1077b9518a5ad26e85485cb554eb32beea484f9b3ce4",
+          "counts": {},
+          "seconds": 0.002756299916654825,
+          "cache_caveat": "warm-cache sample, not a full replay performance benchmark"
+        }
+      }
+    ]
+  }
+]

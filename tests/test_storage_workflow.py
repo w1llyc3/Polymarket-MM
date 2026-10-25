@@ -7,7 +7,7 @@ import unittest
 from contextlib import closing
 from unittest.mock import patch
 
-from nba_recorder.storage_workflow import plan, compress_one, lock, sha256, after_research
+from nba_recorder.storage_workflow import plan, compress_one, lock, sha256, after_research, eligible, main
 
 
 class StorageWorkflowTests(unittest.TestCase):
@@ -31,6 +31,37 @@ class StorageWorkflowTests(unittest.TestCase):
         raw = self.root / 'data/console'
         raw.mkdir(); (raw / 'paper.sqlite').touch()
         self.assertEqual([i['path'] for i in plan(self.root)['items']], ['data/research/test/L0/paper.sqlite'])
+
+    def closed_pair(self):
+        folder = self.root/'data/console'; folder.mkdir()
+        paper = folder/('a'*32+'.sqlite'); source=folder/('a'*32+'-source.sqlite')
+        with closing(sqlite3.connect(paper)) as db, db:
+            db.execute('CREATE TABLE pe_control(id,state)');db.execute("INSERT INTO pe_control VALUES(1,'HALTED')")
+            db.execute('CREATE TABLE ip_saved_report(id,payload)')
+            db.execute('INSERT INTO ip_saved_report VALUES(1,?)',(json.dumps({'runner':{'stop_ms':1}}),))
+        source.write_bytes(b'public evidence')
+        Path(str(paper)+'.writer.lock').write_bytes(b'0')
+        return paper,source
+
+    def test_closed_pair_requires_explicit_opt_in_and_same_lock(self):
+        paper,source=self.closed_pair()
+        self.assertFalse(plan(self.root,paper.parent)['items'])
+        self.assertEqual(len(plan(self.root,paper.parent,True)['items']),2)
+        self.assertEqual(eligible(self.root,paper,True),eligible(self.root,source,True))
+
+    def test_closed_pair_active_or_pending_wal_excluded(self):
+        paper,source=self.closed_pair()
+        wal=Path(str(paper)+'-wal');wal.write_bytes(b'pending')
+        self.assertFalse(plan(self.root,paper.parent,True)['items']);wal.unlink()
+        with closing(sqlite3.connect(paper)) as db,db:db.execute("UPDATE pe_control SET state='ACTIVE'")
+        self.assertFalse(plan(self.root,paper.parent,True)['items'])
+
+    @unittest.skipUnless(os.name == 'nt', 'Windows compression')
+    def test_source_uses_live_recorder_lock(self):
+        paper,source=self.closed_pair()
+        with lock(Path(str(paper)+'.writer.lock')):
+            with self.assertRaises(OSError):
+                compress_one(self.root,{'path':source.relative_to(self.root).as_posix()},include_closed=True)
 
     def test_unfinished_or_wal_is_skipped(self):
         wal = Path(str(self.db) + '-wal'); wal.write_bytes(b'pending')
@@ -64,7 +95,20 @@ class StorageWorkflowTests(unittest.TestCase):
         (self.root/'data/storage-policy.json').write_text('{"compress_completed_research":true}')
         with patch('nba_recorder.storage_workflow.apply', return_value=(self.root/'report.json', {'errors': []})) as apply:
             after_research(self.root, self.folder)
-        apply.assert_called_once_with(self.root, self.folder)
+        apply.assert_called_once_with(self.root, self.folder, algorithm='XPRESS8K')
+
+    def test_policy_keeps_selected_lzx_algorithm(self):
+        (self.root/'data/storage-policy.json').write_text('{"compress_completed_research":true,"algorithm":"LZX"}')
+        with patch('nba_recorder.storage_workflow.apply', return_value=(self.root/'report.json', {'errors': []})) as apply:
+            after_research(self.root, self.folder)
+        apply.assert_called_once_with(self.root, self.folder, algorithm='LZX')
+
+    def test_cli_honors_policy_and_explicit_override(self):
+        (self.root/'data/storage-policy.json').write_text('{"algorithm":"LZX"}')
+        for extra, expected in (([], 'LZX'), (['--algorithm','XPRESS8K'], 'XPRESS8K')):
+            with patch('sys.argv',['storage_workflow','apply','--root',str(self.root),*extra]), patch('nba_recorder.storage_workflow.apply', return_value=(self.root/'report.json',{'errors':[]})) as apply:
+                main()
+            apply.assert_called_once_with(self.root, None, expected, False)
 
     def test_enabled_policy_failure_keeps_research_and_evidence(self):
         (self.root/'data/storage-policy.json').write_text('{"compress_completed_research":true}')

@@ -1,0 +1,18 @@
+{
+  "at_ms": 1792951160273,
+  "prior_failures": [
+    "HTTP chart timed out at 30s before optimizing full-history identity lookup",
+    "HTTP chart timed out at 15s during concurrent bulk compression after optimization; retested after bulk completion"
+  ],
+  "chart_http_status": 200,
+  "chart_http_seconds": 2.3955060000298545,
+  "price_points": 91,
+  "full_http_payload_matches_direct_query": true,
+  "health": {
+    "app": "NBA_MM_LOCAL_CONSOLE_V2_2",
+    "root_id": "3eae08c4cc0d8a8b",
+    "owner_alive": true,
+    "owner_responsive": true
+  },
+  "real_submission_calls": 0
+}
