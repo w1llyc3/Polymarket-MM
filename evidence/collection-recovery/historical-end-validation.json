@@ -1,0 +1,96 @@
+{
+  "mode": "OFFLINE_VALIDATION_NOT_ACTUAL_STOP",
+  "results": [
+    {
+      "day": "2026-10-27",
+      "market": "5951674",
+      "matched_end_updates": 1340,
+      "first_observed_end_ms": 1793064985704,
+      "hypothetical_tail_stop_ms": 1793066785704
+    },
+    {
+      "day": "2026-10-27",
+      "market": "5951677",
+      "matched_end_updates": 0,
+      "first_observed_end_ms": null,
+      "hypothetical_tail_stop_ms": null
+    },
+    {
+      "day": "2026-10-27",
+      "market": "5951680",
+      "matched_end_updates": 4578,
+      "first_observed_end_ms": 1793066821519,
+      "hypothetical_tail_stop_ms": 1793068621519
+    },
+    {
+      "day": "2026-10-27",
+      "market": "5951683",
+      "matched_end_updates": 1,
+      "first_observed_end_ms": 1793069284049,
+      "hypothetical_tail_stop_ms": 1793071084049
+    },
+    {
+      "day": "2026-10-27",
+      "market": "5951686",
+      "matched_end_updates": 1,
+      "first_observed_end_ms": 1793068686446,
+      "hypothetical_tail_stop_ms": 1793070486446
+    },
+    {
+      "day": "2026-10-27",
+      "market": "5951689",
+      "matched_end_updates": 1,
+      "first_observed_end_ms": 1793069895138,
+      "hypothetical_tail_stop_ms": 1793071695138
+    },
+    {
+      "day": "2026-10-27",
+      "market": "5951692",
+      "matched_end_updates": 1,
+      "first_observed_end_ms": 1793070287114,
+      "hypothetical_tail_stop_ms": 1793072087114
+    },
+    {
+      "day": "2026-10-27",
+      "market": "5962889",
+      "matched_end_updates": 1,
+      "first_observed_end_ms": 1793072607793,
+      "hypothetical_tail_stop_ms": 1793074407793
+    },
+    {
+      "day": "2026-10-27",
+      "market": "5962892",
+      "matched_end_updates": 4372,
+      "first_observed_end_ms": 1793076297770,
+      "hypothetical_tail_stop_ms": 1793078097770
+    },
+    {
+      "day": "2026-10-28",
+      "market": "6000454",
+      "matched_end_updates": 1,
+      "first_observed_end_ms": 1793156136333,
+      "hypothetical_tail_stop_ms": 1793157936333
+    },
+    {
+      "day": "2026-10-28",
+      "market": "6000457",
+      "matched_end_updates": 1,
+      "first_observed_end_ms": 1793157041705,
+      "hypothetical_tail_stop_ms": 1793158841705
+    },
+    {
+      "day": "2026-10-28",
+      "market": "6000460",
+      "matched_end_updates": 1,
+      "first_observed_end_ms": 1793154906916,
+      "hypothetical_tail_stop_ms": 1793156706916
+    },
+    {
+      "day": "2026-10-28",
+      "market": "6004693",
+      "matched_end_updates": 1,
+      "first_observed_end_ms": 1793167389243,
+      "hypothetical_tail_stop_ms": 1793169189243
+    }
+  ]
+}

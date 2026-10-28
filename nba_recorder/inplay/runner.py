@@ -8,7 +8,7 @@ import asyncio
 import json
 import time
 from pathlib import Path
-from websockets.asyncio.client import connect
+from ..ws_transport import connect
 from ..api import PublicAPI, GAMMA, WS, utc_ms, select_market
 from ..book import Book
 from ..fair_value.store import digest

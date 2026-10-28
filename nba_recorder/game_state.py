@@ -36,6 +36,9 @@ def information(raw, market, received, processed):
                 and team_code(raw.get('homeTeam')) == market.get('home_team')
                 and team_code(raw.get('awayTeam')) == market.get('away_team')
                 and market.get('home_team') is not None and market.get('away_team') is not None)
+    # Exact game identity plus explicit end flag; market closure alone is never enough.
+    finished = bool(identity and raw.get('ended') is True and raw.get('live') is not True
+                    and str(raw.get('status', '')).casefold() in {'final', 'f/ot', 'closed'})
     return {'source': 'wss://sports-api.polymarket.com/ws', 'display_eligible': identity,
             'identity_evidence': 'Gamma gameId + exact NBA team roles' if identity else None,
             'game_id': raw.get('gameId'), 'nba_game_id': market.get('nba_game_id'),
@@ -43,8 +46,8 @@ def information(raw, market, received, processed):
             'period': raw.get('period') if identity else None,
             'clock_raw': raw.get('elapsed') if identity else None, 'clock_semantics': 'UNVERIFIED',
             'status': raw.get('status') if identity else None,
-            'game_phase': ('ENDED' if raw.get('ended') is True and raw.get('status') in {'Final','F/OT'} else 'BREAK' if raw.get('period') == 'HT' or raw.get('status') == 'Break' else 'LIVE' if raw.get('status') == 'InProgress' and raw.get('live') is True else 'SCHEDULED' if raw.get('status') == 'Scheduled' else 'UNKNOWN') if identity else 'UNKNOWN',
-            'game_finished': raw.get('ended') is True and raw.get('status') in {'Final', 'F/OT'} if identity else False,
+            'game_phase': ('ENDED' if finished else 'BREAK' if raw.get('period') == 'HT' or raw.get('status') == 'Break' else 'LIVE' if raw.get('status') == 'InProgress' and raw.get('live') is True else 'SCHEDULED' if raw.get('status') == 'Scheduled' else 'UNKNOWN') if identity else 'UNKNOWN',
+            'game_finished': finished,
             'upstream_timestamp_ms': None, 'received_ms': received, 'processed_ms': processed,
             'strategy_available_ms': processed, 'paused': None, 'quote_authorized': False,
             'conflict': not identity, 'raw': raw,

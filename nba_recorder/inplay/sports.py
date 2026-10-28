@@ -4,7 +4,7 @@ import json
 import sqlite3
 import time
 from pathlib import Path
-from websockets.asyncio.client import connect
+from ..ws_transport import connect
 from ..api import utc_ms
 
 SPORTS_WS = "wss://sports-api.polymarket.com/ws"

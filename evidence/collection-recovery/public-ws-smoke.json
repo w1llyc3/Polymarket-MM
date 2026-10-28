@@ -1,0 +1,17 @@
+{
+  "at_ms": 1793167758185,
+  "public_read_only": true,
+  "results": [
+    {
+      "attempt": 1,
+      "connected": false,
+      "error_type": "TimeoutError"
+    },
+    {
+      "attempt": 2,
+      "connected": true,
+      "message_received": true,
+      "message_bytes": 179
+    }
+  ]
+}

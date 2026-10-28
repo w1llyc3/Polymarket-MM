@@ -4,7 +4,7 @@ import random
 import time
 from contextlib import asynccontextmanager
 
-from websockets.asyncio.client import connect
+from .ws_transport import connect
 
 from .api import WS, utc_ms
 from .book import Book, ResyncRequired
